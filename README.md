@@ -16,6 +16,6 @@ Repo for assignments and stuff
 ---
 
 ### Links
-* [![alt text](https://cdn1.iconfinder.com/data/icons/simple-icons/32/heroku-32-black.png)Heroku Hosted App](https://webdev-janarthanan-hari-vikas.herokuapp.com/)
+* [![alt text](https://cdn1.iconfinder.com/data/icons/simple-icons/24/heroku-24-black.png)Heroku Hosted App](https://webdev-janarthanan-hari-vikas.herokuapp.com/)
 * Project (TBD)
 * Assignments (TBD)
