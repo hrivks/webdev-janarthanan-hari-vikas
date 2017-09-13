@@ -1,44 +1,21 @@
-# AngularFourMEANSeed
+# webdev [CS 5610] - Fall 2017
+### webdev-janarthanan-hari-vikas
 
-After you clone this repository and run "npm install"
-To start the project
-Open two terminals, One to start the front end, One to start the backend
+Repo for assignments and stuff
 
-~ npm start
+---
+### About me
 
+> the **--force** is <strong>```<strong>```</strong> with me
 
-~ nodemon server.js
+* Grad student at CCIS, NEU
+* C# developer (yes! Microsoft is the next Apple)
+* currently doing my co-op developing web application in Angular1.x, ASP.NET WebApi, Qlik Sense BI for a financial company
+* [![alt text](https://cdn3.iconfinder.com/data/icons/free-social-icons/67/linkedin_circle_color-24.png) LinkedIn](https://www.linkedin.com/in/harivikas/)
+* [my outdated personal webpage](http://meetvikas.net)
+---
 
-Front end will run on `http://localhost:4200/`
-Server will run on port 3100. Specified in server.js and in environment.ts files
-
-
-
-
-
-
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Links
+* [![alt text](https://cdn1.iconfinder.com/data/icons/simple-icons/32/heroku-32-black.png)Heroku Hosted App](https://webdev-janarthanan-hari-vikas.herokuapp.com/)
+* Project (TBD)
+* Assignments (TBD)
