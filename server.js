@@ -30,7 +30,7 @@ app.use(function(req, res, next) {
 });
 
 
-
+console.log('test');
 
 const port = process.env.PORT || '3100';
 app.set('port', port);
