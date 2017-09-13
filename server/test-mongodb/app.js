@@ -17,7 +17,7 @@ module.exports = function(app)
     connectionString += '@ds135234.mlab.com:35234/heroku_gjrgsqft';
   }
 
-
+ console.log(connectionString);
 
   var mongoose = require("mongoose");
     mongoose.connect(connectionString);
