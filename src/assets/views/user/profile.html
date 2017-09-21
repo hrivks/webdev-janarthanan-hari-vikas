@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Meta tags for making website for mobile-->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,83 +10,70 @@
 
   <meta charset="UTF-8">
   <title>User Profile</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-
-
-  <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
-
-  <link href="../css/style.css" rel="stylesheet"/>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"> -->
+  <link href="https://bootswatch.com/4-alpha/cosmo/bootstrap.css" rel="stylesheet" />
+  <link href="../../css/styles.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
+  <nav class="navbar navbar-toggleable navbar-inverse bg-inverse">
+    <a class="navbar-brand" href="#">Profile</a>
 
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="profile.html">
+                <span class="fa fa-check"></span>
+            </a>
+      </li>
+    </ul>
+  </nav>
+  <br>
+  <div class="container">
+    <form>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" placeholder="walice">
+      </div>
+    </form>
 
-    <!--heading on the nav bar-->
-    <p class="navbar-header pull-left">
-      <a class="navbar-brand thick">
-        <b>Profile</b>
-      </a>
-    </p>
+    <form>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email" placeholder="alice.wonderland@unicorn.com">
+      </div>
+    </form>
 
-    <!--tick mark-->
-    <p class="navbar-text pull-right">
-      <a href="profile.html" class="navbar-link">
-        <span class="glyphicon glyphicon-ok"></span>
-      </a>
-    </p>
+    <form>
+      <div class="form-group">
+        <label for="first-name">First Name</label>
+        <input type="text" class="form-control" id="first-name" placeholder="Alice">
+      </div>
+    </form>
+
+    <form>
+      <div class="form-group">
+        <label for="last-name">Last Name</label>
+        <input type="text" class="form-control" id="last-name" placeholder="Wonderland">
+      </div>
+    </form>
+    <a class="btn btn-primary btn-block" href="../website/website-list.html">Websites</a>
+    <a class="btn btn-danger btn-block " href="login.html">Logout</a>
 
   </div>
-</nav>
 
-
-<div class="container">
-  <form>
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" class="form-control" id="username" placeholder="walice">
-    </div>
-  </form>
-
-  <form>
-    <div class="form-group">
-      <label for="email">Email address</label>
-      <input type="email" class="form-control" id="email" placeholder="alice.wonderland@unicorn.com">
-    </div>
-  </form>
-
-  <form>
-    <div class="form-group">
-      <label for="first-name">First Name</label>
-      <input type="text" class="form-control" id="first-name" placeholder="Alice">
-    </div>
-  </form>
-
-  <form>
-    <div class="form-group">
-      <label for="last-name">Last Name</label>
-      <input type="text" class="form-control" id="last-name" placeholder="Wonderland">
-    </div>
-  </form>
-  <a class="btn btn-primary btn-block"
-     href="../website/website-list.html">Websites</a>
-  <a class="btn btn-danger btn-block "
-     href="login.html" >Logout</a>
-
-</div>
-
-<!-- Footer -->
-<nav class="navbar navbar-default navbar-fixed-bottom">
-  <div class="container-fluid">
-    <p class="navbar-text pull-right">
-      <a href="profile.html">
+  <!-- Footer -->
+  <nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+      <p class="navbar-text pull-right">
+        <a href="profile.html">
         <span class="glyphicon glyphicon-user"></span>
       </a>
-    </p>
+      </p>
 
-  </div>
-</nav>
+    </div>
+  </nav>
 
 </body>
+
 </html>
