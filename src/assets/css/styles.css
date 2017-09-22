@@ -1,5 +1,39 @@
 /** Interim CSS file for Assignment 1. Move styles to styles.css under /src */
-.container.hvj-outermost {
-    padding-top: 10px;
-    padding-bottom: 70px;
+
+/** Bootstrap Enhancements **/
+.hvj .bg-faded {
+  background: #ededed;
 }
+
+.hvj .border-faded {
+  border-color: #CCC;
+}
+
+.hvj .btn-xs {
+  padding: 0;
+}
+
+/** Bootstrap Enhancements end **/
+
+.hvj .container.hvj-outermost {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+/** Header start */
+.hvj nav {
+  padding-top: 0;
+  padding-bottom: 2px;
+}
+
+/** Header end */
+
+/** Footer start */
+.hvj .hvj-footer {
+  border-top-style: solid;
+  border-top-width: medium;
+}
+
+/** Footer end */
+
+

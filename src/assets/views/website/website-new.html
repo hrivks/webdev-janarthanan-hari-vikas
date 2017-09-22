@@ -11,12 +11,10 @@
   <meta charset="UTF-8">
   <title>User Profile</title>
   <!--Bootstrap -->
-  <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
-        crossorigin="anonymous">
+  <link href="https://bootswatch.com/4-alpha/materia/bootstrap.css" rel="stylesheet"/>
   <!-- Font Awesome -->
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        rel="stylesheet">
   <!-- Custom App Styles -->
   <link href="../../css/styles.css" rel="stylesheet">
 </head>
@@ -24,7 +22,7 @@
 <body class="hvj">
 
 <!--Top Nav-->
-<nav class="navbar navbar-toggleable-xl fixed-top navbar-dark bg-primary">
+<nav class="navbar navbar-toggleable-xl navbar-inverse bg-primary">
   <a class="navbar-brand" href="#">Profile</a>
 
   <ul class="navbar-nav ml-auto">
@@ -44,6 +42,7 @@
       <label for="username" class="font-weight-bold text-muted">Username</label>
       <input type="text" class="form-control" id="username" placeholder="walice">
     </div><!--/User Name-->
+    <br>
 
     <!--Email-->
     <div class="form-group">
@@ -51,12 +50,14 @@
       <input type="email" class="form-control" id="email"
              placeholder="alice.wonderland@unicorn.com">
     </div><!--/Email-->
+    <br>
 
     <!--First Name-->
     <div class="form-group">
       <label for="first-name" class="font-weight-bold text-muted">First Name</label>
       <input type="text" class="form-control" id="first-name" placeholder="Alice">
     </div><!--First Name-->
+    <br>
 
     <!--Last Name-->
     <div class="form-group">
@@ -74,7 +75,7 @@
 </div>
 
 <!-- Footer -->
-<nav class="navbar navbar-toggleable-xl bg-faded border-faded fixed-bottom hvj-footer">
+<nav class="navbar navbar-toggleable-xl bg-faded fixed-bottom hvj-footer border-muted">
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
       <a class="nav-link" href="profile.html" title="My Profile">
