@@ -9,6 +9,35 @@
   border-color: #CCC;
 }
 
+.hvj .bg-royal {
+    background-color: #236eaf !important;
+}
+
+.hvj .fg-royal {
+    color: #236eaf !important;
+}
+
+.hvj .btn-royal {
+    background-color: #236eaf !important;
+    border-color:  #236eaf !important;
+    color: #fff;
+}
+
+.hvj .btn-royal:hover {
+    background-color: #1A5688 !important;
+    border-color:  #1A5688 !important;
+    color: #fff;
+}
+
+.hvj .link-royal {
+    color: #236eaf !important;
+}
+
+.hvj .link-royal:hover {
+    color: #1A5688 !important;
+}
+
+
 .hvj .btn-xs {
   padding: 0;
 }
