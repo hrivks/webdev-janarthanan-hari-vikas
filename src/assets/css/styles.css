@@ -10,33 +10,32 @@
 }
 
 .hvj .bg-royal {
-    background-color: #236eaf !important;
+  background-color: #236eaf !important;
 }
 
 .hvj .fg-royal {
-    color: #236eaf !important;
+  color: #236eaf !important;
 }
 
 .hvj .btn-royal {
-    background-color: #236eaf !important;
-    border-color:  #236eaf !important;
-    color: #fff;
+  background-color: #236eaf !important;
+  border-color: #236eaf !important;
+  color: #fff;
 }
 
 .hvj .btn-royal:hover {
-    background-color: #1A5688 !important;
-    border-color:  #1A5688 !important;
-    color: #fff;
+  background-color: #1A5688 !important;
+  border-color: #1A5688 !important;
+  color: #fff;
 }
 
 .hvj .link-royal {
-    color: #236eaf !important;
+  color: #236eaf !important;
 }
 
 .hvj .link-royal:hover {
-    color: #1A5688 !important;
+  color: #1A5688 !important;
 }
-
 
 .hvj .btn-xs {
   padding: 0;
@@ -44,7 +43,7 @@
 
 /** Bootstrap Enhancements end **/
 
-.hvj .container.hvj-outermost {
+.hvj .hvj-outermost {
   padding-top: 60px;
   padding-bottom: 60px;
 }
@@ -64,5 +63,45 @@
 }
 
 /** Footer end */
+
+/** Landscape only styles starts */
+@media screen and (orientation: landscape) {
+  .hvj-landscape-col-8 {
+    -ms-flex: 0 0 66.666667%;
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .hvj-landscape-only {
+    display: none !important;
+  }
+}
+
+/** Landscape only styles ends */
+
+/** Portrait only Styles start */
+@media screen and (orientation: landscape) {
+  .hvj-portrait-only {
+    display: none !important;
+  }
+}
+
+/** Portrait only Styles ends */
+
+/** Split screen styles */
+.hvj .hvj-vertical-line {
+  border-right: solid thin #CCC;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.hvj .hvj-nav-border-right {
+  border-right: solid thin #CCC;
+}
+
 
 
