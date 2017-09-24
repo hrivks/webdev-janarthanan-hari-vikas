@@ -34,12 +34,24 @@
 }
 
 .hvj .link-royal:hover {
-  color: #1A5688 !important;
+  color: #75aad5 !important;
 }
 
 .hvj .btn-xs {
   padding: 0;
 }
+
+a {
+  text-decoration: none;
+  color: #236eaf;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #75aad5;
+}
+
+
 
 /** Bootstrap Enhancements end **/
 
@@ -103,5 +115,15 @@
   border-right: solid thin #CCC;
 }
 
+/** Widget styles starts */
+.hvj-widget-actions {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  background: #ffffff;
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 3px;
+  padding: 0 5px;
+}
 
-
+/** Widget styles ends */
