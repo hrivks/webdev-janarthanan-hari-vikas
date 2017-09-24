@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Meta tags for making website for mobile-->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,83 +10,80 @@
 
   <meta charset="UTF-8">
   <title>User Profile</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-
-
-  <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
-
-  <link href="../css/style.css" rel="stylesheet"/>
+  <!--Bootstrap -->
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+        crossorigin="anonymous">
+  <!-- Font Awesome -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Custom App Styles -->
+  <link href="../../css/styles.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="hvj">
 
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
+<!--Top Nav-->
+<nav class="navbar navbar-toggleable-xl fixed-top navbar-dark bg-royal">
+  <a class="navbar-brand" href="#">Profile</a>
 
-    <!--heading on the nav bar-->
-    <p class="navbar-header pull-left">
-      <a class="navbar-brand thick">
-        <b>Profile</b>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a class="nav-link" href="profile.html" title="Save Changes">
+        <span class="fa fa-check fa-lg"></span>
       </a>
-    </p>
-
-    <!--tick mark-->
-    <p class="navbar-text pull-right">
-      <a href="profile.html" class="navbar-link">
-        <span class="glyphicon glyphicon-ok"></span>
-      </a>
-    </p>
-
-  </div>
+    </li>
+  </ul>
 </nav>
+<!--/Top Nav-->
 
-
-<div class="container">
+<div class="container hvj-outermost">
   <form>
+    <!--User Name-->
     <div class="form-group">
-      <label for="username">Username</label>
+      <label for="username" class="font-weight-bold text-muted">Username</label>
       <input type="text" class="form-control" id="username" placeholder="walice">
-    </div>
-  </form>
+    </div><!--/User Name-->
 
-  <form>
+    <!--Email-->
     <div class="form-group">
-      <label for="email">Email address</label>
-      <input type="email" class="form-control" id="email" placeholder="alice.wonderland@unicorn.com">
-    </div>
-  </form>
+      <label for="email" class="font-weight-bold text-muted">Email address</label>
+      <input type="email" class="form-control" id="email"
+             placeholder="alice.wonderland@unicorn.com">
+    </div><!--/Email-->
 
-  <form>
+    <!--First Name-->
     <div class="form-group">
-      <label for="first-name">First Name</label>
+      <label for="first-name" class="font-weight-bold text-muted">First Name</label>
       <input type="text" class="form-control" id="first-name" placeholder="Alice">
-    </div>
-  </form>
+    </div><!--First Name-->
 
-  <form>
+    <!--Last Name-->
     <div class="form-group">
-      <label for="last-name">Last Name</label>
+      <label for="last-name" class="font-weight-bold text-muted">Last Name</label>
       <input type="text" class="form-control" id="last-name" placeholder="Wonderland">
-    </div>
-  </form>
-  <a class="btn btn-primary btn-block"
-     href="../website/website-list.html">Websites</a>
-  <a class="btn btn-danger btn-block "
-     href="login.html" >Logout</a>
+    </div><!--/Last Name-->
 
+    <!--Action Buttons-->
+    <div class="form-group">
+      <a class="btn btn-royal btn-block" href="../website/website-list.html">Websites</a>
+      <a class="btn btn-danger btn-block" href="login.html">Logout</a>
+    </div><!--/Action Buttons-->
+  </form>
 </div>
 
 <!-- Footer -->
-<nav class="navbar navbar-default navbar-fixed-bottom">
-  <div class="container-fluid">
-    <p class="navbar-text pull-right">
-      <a href="profile.html">
-        <span class="glyphicon glyphicon-user"></span>
+<nav class="navbar navbar-toggleable-xl bg-faded border-faded fixed-bottom hvj-footer">
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a class="nav-link link-royal" href="profile.html" title="My Profile">
+        <span class="fa fa-user fa-lg"></span>
       </a>
-    </p>
-
-  </div>
+    </li>
+  </ul>
 </nav>
+<!-- /Footer -->
 
 </body>
+
 </html>

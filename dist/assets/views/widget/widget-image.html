@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Meta tags for making website for mobile-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
+
+
+  <meta charset="UTF-8">
+  <title>Widget - Image</title>
+  <!--Bootstrap -->
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+        crossorigin="anonymous">
+  <!-- Font Awesome -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        rel="stylesheet">
+  <!-- Custom App Styles -->
+  <link href="../../css/styles.css" rel="stylesheet">
+</head>
+
+<body class="hvj">
+<div class="container-fluid hvj-outermost">
+  <!--Top Nav-->
+  <nav
+    class="navbar navbar-toggleable-xl fixed-top navbar-dark bg-royal">
+    <ul class="navbar-nav mr-3">
+      <li class="nav-item">
+        <a class="nav-link" href="widget-list.html" title="Widgets">
+          <span class="fa fa-chevron-left fa-lg"></span>
+        </a>
+      </li>
+    </ul>
+
+    <a class="navbar-brand" href="">Widget Edit</a>
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="widget-list.html" title="Save Changes">
+          <span class="fa fa-check fa-lg"></span>
+        </a>
+      </li>
+    </ul>
+  </nav><!--/Top Nav-->
+
+  <!--content-->
+  <div>
+    <form>
+      <!--Widget Name-->
+      <div class="form-group">
+        <label for="widget-name" class="font-weight-bold text-muted">Name</label>
+        <input type="text" class="form-control" id="widget-name" placeholder="Name">
+      </div><!--/Widget Name-->
+
+      <!--Widget Title-->
+      <div class="form-group">
+        <label for="widget-text" class="font-weight-bold text-muted">Text</label>
+        <input type="text" class="form-control" id="widget-text" placeholder="Text">
+      </div><!--/Widget Title-->
+
+      <!--Widget URL-->
+      <div class="form-group">
+        <label for="widget-url" class="font-weight-bold text-muted">URL</label>
+        <input type="text" class="form-control" id="widget-url" placeholder="URL">
+      </div><!--/Widget URL-->
+
+      <!--Widget width-->
+      <div class="form-group">
+        <label for="widget-width" class="font-weight-bold text-muted">Size</label>
+        <input type="text" class="form-control" id="widget-width" placeholder="Width">
+      </div><!--/Widget width-->
+
+      <!--Widget Upload-->
+      <div class="form-group">
+        <label for="widget-upload" class="font-weight-bold text-muted">Upload</label>
+        <input type="file" class="form-control" id="widget-upload" placeholder="Upload">
+      </div><!--/Widget upload-->
+      <button class="btn btn-royal btn-block">Upload Image</button>
+      <a class="btn btn-danger btn-block" href="widget-list.html">Delete</a>
+    </form>
+  </div><!--/content-->
+</div>
+
+<!-- Footer -->
+<nav class="navbar navbar-toggleable-xl bg-faded border-faded fixed-bottom hvj-footer">
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a class="nav-link link-royal" href="../user/profile.html" title="My Profile">
+        <span class="fa fa-user fa-lg"></span>
+      </a>
+    </li>
+  </ul>
+</nav><!-- /Footer -->
+
+</body>
+
+</html>
