@@ -17,5 +17,5 @@ Repo for assignments and stuff
 
 ### Links
 * [![alt text](https://cdn1.iconfinder.com/data/icons/simple-icons/24/heroku-24-black.png)Heroku Hosted App](https://webdev-janarthanan-hari-vikas.herokuapp.com/)
-* Project (TBD)
+* [Project](https://github.com/hrivks/webdev-janarthanan-hari-vikas/wiki/Project)
 * [Assignment 2](https://webdev-janarthanan-hari-vikas.herokuapp.com/assets/)
