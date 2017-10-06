@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>AngularFourMEANSeed</title>
+  <base href="/">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <link rel="icon"
+        type="image/x-icon"
+        href="favicon.ico">
+        <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+        crossorigin="anonymous">
+  <!-- Font Awesome -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        rel="stylesheet">
+
+</head>
+
+<body class="hvj">
+  <div class="container-fluid">
+  <app-root>
+    <em class="text-secondary">loading ...</em>
+  </app-root>
+  
+  <!-- Footer -->
+  <nav class="navbar navbar-expand bg-faded border-faded fixed-bottom hvj-footer px-0">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link link-royal"
+          [routerLink] = "['/user/:uid']"           
+           title="My Profile">
+          <span class="fa fa-user fa-lg"></span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /Footer -->
+</div>
+<script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="styles.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script></body>
+
+</html>
