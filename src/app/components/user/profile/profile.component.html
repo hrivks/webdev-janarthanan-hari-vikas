@@ -1,0 +1,49 @@
+
+<!--Top Nav-->
+<nav class="navbar navbar-expand fixed-top navbar-dark bg-royal px-2">
+  <a class="navbar-brand" [routerLink]="['user/:uid']">Profile</a>
+
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a class="nav-link px-0" [routerLink]="['user/:uid']" title="Save Changes">
+        <span class="fa fa-check fa-lg"></span>
+      </a>
+    </li>
+  </ul>
+</nav>
+<!--/Top Nav-->
+
+<div class="container hvj-outermost">
+  <form>
+    <!--User Name-->
+    <div class="form-group">
+      <label for="username" class="font-weight-bold text-muted">Username</label>
+      <input type="text" class="form-control" id="username" placeholder="walice">
+    </div><!--/User Name-->
+
+    <!--Email-->
+    <div class="form-group">
+      <label for="email" class="font-weight-bold text-muted">Email address</label>
+      <input type="email" class="form-control" id="email"
+             placeholder="alice.wonderland@unicorn.com">
+    </div><!--/Email-->
+
+    <!--First Name-->
+    <div class="form-group">
+      <label for="first-name" class="font-weight-bold text-muted">First Name</label>
+      <input type="text" class="form-control" id="first-name" placeholder="Alice">
+    </div><!--First Name-->
+
+    <!--Last Name-->
+    <div class="form-group">
+      <label for="last-name" class="font-weight-bold text-muted">Last Name</label>
+      <input type="text" class="form-control" id="last-name" placeholder="Wonderland">
+    </div><!--/Last Name-->
+
+    <!--Action Buttons-->
+    <div class="form-group">
+      <a class="btn btn-royal btn-block" [routerLink]="['user/:uid/website']">Websites</a>
+      <a class="btn btn-danger btn-block"  [routerLink]="['/login']">Logout</a>
+    </div><!--/Action Buttons-->
+  </form>
+</div>
