@@ -1,96 +1,82 @@
 import { Injectable } from '@angular/core';
+import { Widget, WidgetType } from '../model/model';
 
 @Injectable()
 export class WidgetService {
 
   constructor() { }
 
-  users = [
-    { _id: '123', username: 'alice', password: 'alice', firstName: 'Alice', lastName: 'Wonder' },
-    { _id: '234', username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Marley' },
-    { _id: '345', username: 'charly', password: 'charly', firstName: 'Charly', lastName: 'Garcia' },
-    { _id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose', lastName: 'Annunzi' }
+  widgets: Widget[] = [
+    { '_id': '123', 'widgetType': WidgetType.HEADING, 'pageId': '321', 'size': 2, 'text': 'GIZMODO' },
+    { '_id': '234', 'widgetType': WidgetType.HEADING, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
+    {
+      '_id': '345', 'widgetType': WidgetType.IMAGE, 'pageId': '321', 'width': '100%',
+      'url': 'http://lorempixel.com/400/200/'
+    },
+    { '_id': '456', 'widgetType': WidgetType.HTML, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' },
+    { '_id': '567', 'widgetType': WidgetType.HEADING, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
+    {
+      '_id': '678', 'widgetType': WidgetType.YOUTUBE, 'pageId': '321', 'width': '100%',
+      'url': 'https://youtu.be/AM2Ivdi9c4E'
+    },
+    { '_id': '789', 'widgetType': WidgetType.HTML, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' }
   ];
 
-  api = {
-    'createUser': this.createUser,
-    'findUserById': this.findUserById,
-    'findUserByUsername': this.findUserByUsername,
-    'findUserByCredentials': this.findUserByCredentials,
-    'updateUser': this.updateUser,
-    'deleteUser': this.deleteUser
-  };
-
   /**
-   * Create a new user
-   * @param user user object to be added to the user list
+   * Create a new widget
+   * @param pageId id of the page in which the widget is to be added
+   * @param widget widget object created
+   * @returns the created widget object
    */
-  createUser(user: any) {
-    user._id = Math.floor(Math.random() * 1000).toString();
+  createPage(pageId: string, widget: Widget): Widget {
+    let id = Math.floor(Math.random() * 10000);
 
     // ensure generated ID is unique
-    while (this.findUserById(user._id)) {
-      user._id++;
+    while (this.findWidgetById(id.toString())) {
+      id++;
     }
 
-    this.users.push(user);
-    return user;
+    widget._id = id.toString();
+    widget.pageId = pageId;
+    this.widgets.push(widget);
+    return widget;
   }
 
   /**
-   * Find user by user id
-   * @param userId id of the user
-   */
-  findUserById(userId: string) {
-    return this.users.find(u => u._id === userId);
+    * Find widget by Id
+    * @param widgetId id of the page
+    * @returns widget corresponding to the given Id; null if id widget doesn't exit
+    */
+    findWidgetById(widgetId: string): Widget {
+    return this.widgets.find(w => w._id === widgetId);
   }
 
   /**
-   * Find user by user name
-   * @param username username of the user
+   * Update widget by Id
+   * @param widgetId Id of the widget to update
+   * @param widget updated widget object
+   * @returns the updated widget object
    */
-  findUserByUsername(username: string) {
-    return this.users.find(u => u.username === username);
-  }
-
-  /**
-   * Find user by credentials
-   * @param username username of the user
-   * @param password password of the user
-   */
-  findUserByCredentials(username: string, password: string) {
-    return this.users.find(u => u.username === username && u.password === password);
-  }
-
-  /**
-   * Update user by user id
-   * @param {string} userId id of the user
-   * @param {any} user updated user object
-   * @returns {any} updated user object
-   */
-  updateUser(userId: string, user) {
-    const toUpdateIndex = this.users.findIndex(u => u._id === userId);
-    const toUpdate = this.users[toUpdateIndex];
-    if (toUpdate) {
-      for (const key in user) {
-        if (user.hasOwnProperty(key)) {
-          toUpdate[key] = user[key];
-        }
-      }
+  updateWidget(widgetId: string, widget: Widget): Widget {
+    const toUpdateIndex = this.widgets.findIndex(w => w._id === widgetId);
+    if (toUpdateIndex > 0) {
+      this.widgets[toUpdateIndex] = widget;
+      return widget;
+    } else {
+      return null;
     }
-    return toUpdate;
   }
 
   /**
-   * Delete user by user id
-   * @param {string} userId id of the user
-   * @returns {any} deleted user object
+   * Delete widget by Id
+   * @param widgetId Id of the widget to delete
+   * @returns widget that was deleted, null if the id doesn't exist
    */
-  deleteUser(userId: string) {
-    const toDeleteIndex = this.users.findIndex(u => u._id === userId);
-    const toDelete = this.users[toDeleteIndex];
+  deletePage(widgetId: string): Widget {
+    const toDeleteIndex = this.widgets.findIndex(u => u._id === widgetId);
+    const toDelete = this.widgets[toDeleteIndex];
     if (toDelete) {
-      this.users.splice(toDeleteIndex, 1);
+      this.widgets.splice(toDeleteIndex, 1);
     }
     return toDelete;
   }
