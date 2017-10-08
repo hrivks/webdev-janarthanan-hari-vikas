@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from '../../../services/user.service.client';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  // login form
+  @ViewChild('f') loginForm: NgForm;
+
+  // properties
+  username: string;
+  password: string;
+  error: 'Invalid Credentials';
+
+  constructor(private router: Router, private userService: UserService) { }
+
+  login() {
+    this.username = this.loginForm.value.username;
+    this.password = this.loginForm.value.password;
+    const user = this.userService.findUserByCredentials(this.username, this.password);
+    if (user) {
+      this.router.navigate(['/user', user._id]);
+    }
+  }
 
   ngOnInit() {
   }

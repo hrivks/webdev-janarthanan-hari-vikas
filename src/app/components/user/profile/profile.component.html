@@ -1,11 +1,13 @@
-
 <!--Top Nav-->
 <nav class="navbar navbar-expand fixed-top navbar-dark bg-royal px-2">
-  <a class="navbar-brand" [routerLink]="['user/:uid']">Profile</a>
+  <a class="navbar-brand"
+     [routerLink]="['/user', this.userId]">Profile</a>
 
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
-      <a class="nav-link px-0" [routerLink]="['user/:uid']" title="Save Changes">
+      <a class="nav-link px-0"
+         (click)="saveProfile()"
+         title="Save Changes">
         <span class="fa fa-check fa-lg"></span>
       </a>
     </li>
@@ -14,36 +16,84 @@
 <!--/Top Nav-->
 
 <div class="container hvj-outermost">
-  <form>
+  <form #f="ngForm">
     <!--User Name-->
     <div class="form-group">
-      <label for="username" class="font-weight-bold text-muted">Username</label>
-      <input type="text" class="form-control" id="username" placeholder="walice">
-    </div><!--/User Name-->
+      <label for="username"
+             class="font-weight-bold text-muted">Username</label>
+      <input type="text"
+             class="form-control"
+             id="username"
+             placeholder="walice"
+             name="username"
+             [(ngModel)]="user.username"
+             #username="ngModel"
+             [ngClass]="{'border-danger': profileErrors.username || (!username.valid && username.touched)}"
+             required>
+             <span [hidden]="username.valid || !username.touched" class="text-danger ml-2">Username is required</span>
+             <span [hidden]="!profileErrors.username" class="text-danger ml-2">{{profileErrors.username}}</span>
+    </div>
+    <!--/User Name-->
 
     <!--Email-->
     <div class="form-group">
-      <label for="email" class="font-weight-bold text-muted">Email address</label>
-      <input type="email" class="form-control" id="email"
-             placeholder="alice.wonderland@unicorn.com">
-    </div><!--/Email-->
+      <label for="email"
+             class="font-weight-bold text-muted">Email address</label>
+      <input type="email"
+             class="form-control"
+             id="email"
+             name="email"
+             placeholder="alice.wonderland@unicorn.com"
+             [(ngModel)]="user.email"
+             #email="ngModel"
+             [ngClass]="{'border-danger': profileErrors.email}">
+             <span [hidden]="!profileErrors.email" class="text-danger ml-2"></span>
+    </div>
+    <!--/Email-->
 
     <!--First Name-->
     <div class="form-group">
-      <label for="first-name" class="font-weight-bold text-muted">First Name</label>
-      <input type="text" class="form-control" id="first-name" placeholder="Alice">
-    </div><!--First Name-->
+      <label for="first-name"
+             class="font-weight-bold text-muted">First Name</label>
+      <input type="text"
+             class="form-control"
+             id="first-name"
+             name="firstName"
+             placeholder="Alice"
+             [(ngModel)]="user.firstName"
+             #firstName="ngModel"
+             [ngClass]="{'border-danger': profileErrors.firstName || (!firstName.valid && firstName.touched)}"
+             required>
+             <span [hidden]="firstName.valid || !firstName.touched" class="text-danger ml-2">First Name is required</span>
+             <span [hidden]="!profileErrors.firstName" class="text-danger ml-2"></span>
+    </div>
+    <!--First Name-->
 
     <!--Last Name-->
     <div class="form-group">
-      <label for="last-name" class="font-weight-bold text-muted">Last Name</label>
-      <input type="text" class="form-control" id="last-name" placeholder="Wonderland">
-    </div><!--/Last Name-->
+      <label for="last-name"
+             class="font-weight-bold text-muted">Last Name</label>
+      <input type="text"
+             class="form-control"
+             id="last-name"
+             name="lastName"
+             placeholder="Wonderland"
+             [(ngModel)]="user.lastName"
+             #lastName="ngModel"
+             [ngClass]="{'border-danger': profileErrors.lastName || (!lastName.valid && lastName.touched)}"
+             required>
+             <span [hidden]="lastName.valid || !lastName.touched" class="text-danger ml-2">Last Name is required</span>
+             <span [hidden]="!profileErrors.lastName" class="text-danger ml-2"></span>
+    </div>
+    <!--/Last Name-->
 
     <!--Action Buttons-->
     <div class="form-group">
-      <a class="btn btn-royal btn-block" [routerLink]="['user/:uid/website']">Websites</a>
-      <a class="btn btn-danger btn-block"  [routerLink]="['/login']">Logout</a>
-    </div><!--/Action Buttons-->
+      <a class="btn btn-royal btn-block"
+         [routerLink]="['/user', userId, 'wesbite']">Websites</a>
+      <a class="btn btn-danger btn-block"
+         [routerLink]="['/login']">Logout</a>
+    </div>
+    <!--/Action Buttons-->
   </form>
 </div>

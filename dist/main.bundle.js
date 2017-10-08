@@ -231,7 +231,7 @@ var APP_ROUTES = [
     { path: 'user/:uid/website/:wid/page/:pid/widget/:wgid', component: __WEBPACK_IMPORTED_MODULE_13__components_widget_widget_edit_widget_edit_component__["a" /* WidgetEditComponent */] }
 ];
 // Export the routes as module providers
-var Routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* RouterModule */].forRoot(APP_ROUTES);
+var Routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["c" /* RouterModule */].forRoot(APP_ROUTES);
 //# sourceMappingURL=app.routing.js.map
 
 /***/ }),
@@ -594,7 +594,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  <span class=\"display-3\">Login</span>\r\n</p>\r\n<hr>\r\n<br>\r\n<!--form-->\r\n<div class=\"form\">\r\n  <div class=\"form-group\">\r\n    <input placeholder=\"User Name\" type=\"text\" class=\"form-control\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <input placeholder=\"Password\" type=\"password\" class=\"form-control\"/>\r\n  </div>\r\n  <!-- form actions -->\r\n  <div>\r\n    <a class=\"btn btn-royal btn-block\"  [routerLink]=\"['/user/:uid']\">Login</a>\r\n    <a class=\"btn btn-secondary btn-block\" [routerLink]=\"['/register']\">Register</a>\r\n  </div><!-- /form actions -->\r\n</div><!--/form-->"
+module.exports = "<p>\r\n  <span class=\"display-3\">Login</span>\r\n</p>\r\n<hr>\r\n<br>\r\n<!--form-->\r\n<form class=\"form\"\r\n      #f=\"ngForm\"\r\n      (ngSubmit)=\"login(f)\" novalidate>\r\n  <div class=\"form-group\">\r\n    <input placeholder=\"User Name\"\r\n           type=\"text\"\r\n           class=\"form-control\"\r\n           name=\"username\"\r\n           #username=\"ngModel\"\r\n           ngModel\r\n           [ngClass]=\"{'border-danger': !username.valid && username.touched}\"\r\n           required />\r\n           <span class=\"small text-danger ml-2\" [hidden]=\"username.valid || !username.touched\">Username is required</span>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <input placeholder=\"Password\"\r\n           type=\"password\"\r\n           class=\"form-control\"\r\n           name=\"password\"\r\n           #password=\"ngModel\"\r\n           ngModel\r\n           [ngClass]=\"{'border-danger': !password.valid && password.touched}\"\r\n           required/>\r\n           <span class=\"small text-danger ml-2\" [hidden]=\"password.valid || !password.touched\">Password is required</span>\r\n  </div>\r\n  <!-- form actions -->\r\n  <div>\r\n    <button type=\"submit\"\r\n            class=\"btn btn-royal btn-block\" [disabled]=\"!f.valid\">Login</button>\r\n    <a class=\"btn btn-secondary btn-block\"\r\n       [routerLink]=\"['/register']\">Register</a>\r\n  </div>\r\n  <!-- /form actions -->\r\n</form>\r\n<!--/form-->"
 
 /***/ }),
 
@@ -604,6 +604,9 @@ module.exports = "<p>\r\n  <span class=\"display-3\">Login</span>\r\n</p>\r\n<hr
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -614,22 +617,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var LoginComponent = (function () {
-    function LoginComponent() {
+    function LoginComponent(router, userService) {
+        this.router = router;
+        this.userService = userService;
     }
+    LoginComponent.prototype.login = function () {
+        this.username = this.loginForm.value.username;
+        this.password = this.loginForm.value.password;
+        var user = this.userService.findUserByCredentials(this.username, this.password);
+        if (user) {
+            this.router.navigate(['/user', user._id]);
+        }
+    };
     LoginComponent.prototype.ngOnInit = function () {
     };
     return LoginComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */]) === "function" && _a || Object)
+], LoginComponent.prototype, "loginForm", void 0);
 LoginComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-login',
         template: __webpack_require__("../../../../../src/app/components/user/login/login.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/user/login/login.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */]) === "function" && _c || Object])
 ], LoginComponent);
 
+var _a, _b, _c;
 //# sourceMappingURL=login.component.js.map
 
 /***/ }),
@@ -655,7 +676,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\">\r\n  <a class=\"navbar-brand\" [routerLink]=\"['user/:uid']\">Profile</a>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link px-0\" [routerLink]=\"['user/:uid']\" title=\"Save Changes\">\r\n        <span class=\"fa fa-check fa-lg\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-outermost\">\r\n  <form>\r\n    <!--User Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"username\" class=\"font-weight-bold text-muted\">Username</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"username\" placeholder=\"walice\">\r\n    </div><!--/User Name-->\r\n\r\n    <!--Email-->\r\n    <div class=\"form-group\">\r\n      <label for=\"email\" class=\"font-weight-bold text-muted\">Email address</label>\r\n      <input type=\"email\" class=\"form-control\" id=\"email\"\r\n             placeholder=\"alice.wonderland@unicorn.com\">\r\n    </div><!--/Email-->\r\n\r\n    <!--First Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"first-name\" class=\"font-weight-bold text-muted\">First Name</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"first-name\" placeholder=\"Alice\">\r\n    </div><!--First Name-->\r\n\r\n    <!--Last Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"last-name\" class=\"font-weight-bold text-muted\">Last Name</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"last-name\" placeholder=\"Wonderland\">\r\n    </div><!--/Last Name-->\r\n\r\n    <!--Action Buttons-->\r\n    <div class=\"form-group\">\r\n      <a class=\"btn btn-royal btn-block\" [routerLink]=\"['user/:uid/website']\">Websites</a>\r\n      <a class=\"btn btn-danger btn-block\"  [routerLink]=\"['/login']\">Logout</a>\r\n    </div><!--/Action Buttons-->\r\n  </form>\r\n</div>"
+module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\">\r\n  <a class=\"navbar-brand\"\r\n     [routerLink]=\"['/user', this.userId]\">Profile</a>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link px-0\"\r\n         (click)=\"saveProfile()\"\r\n         title=\"Save Changes\">\r\n        <span class=\"fa fa-check fa-lg\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-outermost\">\r\n  <form #f=\"ngForm\">\r\n    <!--User Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"username\"\r\n             class=\"font-weight-bold text-muted\">Username</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"username\"\r\n             placeholder=\"walice\"\r\n             name=\"username\"\r\n             [(ngModel)]=\"user.username\"\r\n             #username=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.username || (!username.valid && username.touched)}\"\r\n             required>\r\n             <span [hidden]=\"username.valid || !username.touched\" class=\"text-danger ml-2\">Username is required</span>\r\n             <span [hidden]=\"!profileErrors.username\" class=\"text-danger ml-2\">{{profileErrors.username}}</span>\r\n    </div>\r\n    <!--/User Name-->\r\n\r\n    <!--Email-->\r\n    <div class=\"form-group\">\r\n      <label for=\"email\"\r\n             class=\"font-weight-bold text-muted\">Email address</label>\r\n      <input type=\"email\"\r\n             class=\"form-control\"\r\n             id=\"email\"\r\n             name=\"email\"\r\n             placeholder=\"alice.wonderland@unicorn.com\"\r\n             [(ngModel)]=\"user.email\"\r\n             #email=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.email}\">\r\n             <span [hidden]=\"!profileErrors.email\" class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--/Email-->\r\n\r\n    <!--First Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"first-name\"\r\n             class=\"font-weight-bold text-muted\">First Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"first-name\"\r\n             name=\"firstName\"\r\n             placeholder=\"Alice\"\r\n             [(ngModel)]=\"user.firstName\"\r\n             #firstName=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.firstName || (!firstName.valid && firstName.touched)}\"\r\n             required>\r\n             <span [hidden]=\"firstName.valid || !firstName.touched\" class=\"text-danger ml-2\">First Name is required</span>\r\n             <span [hidden]=\"!profileErrors.firstName\" class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--First Name-->\r\n\r\n    <!--Last Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"last-name\"\r\n             class=\"font-weight-bold text-muted\">Last Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"last-name\"\r\n             name=\"lastName\"\r\n             placeholder=\"Wonderland\"\r\n             [(ngModel)]=\"user.lastName\"\r\n             #lastName=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.lastName || (!lastName.valid && lastName.touched)}\"\r\n             required>\r\n             <span [hidden]=\"lastName.valid || !lastName.touched\" class=\"text-danger ml-2\">Last Name is required</span>\r\n             <span [hidden]=\"!profileErrors.lastName\" class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--/Last Name-->\r\n\r\n    <!--Action Buttons-->\r\n    <div class=\"form-group\">\r\n      <a class=\"btn btn-royal btn-block\"\r\n         [routerLink]=\"['/user', userId, 'wesbite']\">Websites</a>\r\n      <a class=\"btn btn-danger btn-block\"\r\n         [routerLink]=\"['/login']\">Logout</a>\r\n    </div>\r\n    <!--/Action Buttons-->\r\n  </form>\r\n</div>"
 
 /***/ }),
 
@@ -665,6 +686,9 @@ module.exports = "\r\n<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfileComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -675,22 +699,87 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var ProfileComponent = (function () {
-    function ProfileComponent() {
+    function ProfileComponent(userService, activatedRoute) {
+        this.userService = userService;
+        this.activatedRoute = activatedRoute;
+        this.profileErrors = {
+            hasError: false
+        };
     }
     ProfileComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.activatedRoute.params.subscribe(function (params) {
+            _this.userId = params['uid'];
+        });
+        this.user = this.userService.findUserById(this.userId);
+    };
+    ProfileComponent.prototype.saveProfile = function () {
+        console.log('hi');
+        if (!this.profileForm.valid) {
+            return;
+        }
+        //#region: validate form
+        // reset
+        this.profileErrors = {
+            hasError: false
+        };
+        // username validation
+        var userExists = this.userService.findUserByUsername(this.user.username);
+        if (userExists._id !== this.user._id) {
+            this.profileErrors.username = 'Username already exists. Please try another username';
+            this.profileErrors.hasError = true;
+        }
+        else if (this.testInvalidString(this.user.username, true)) {
+            this.profileErrors.username = 'Invalid username. Only alphabets and . allowed';
+            this.profileErrors.hasError = true;
+        }
+        // first name validation
+        if (this.testInvalidString(this.user.firstName)) {
+            this.profileErrors.firstName = 'Invalid Name. Only alphabets allowed';
+            this.profileErrors.hasError = true;
+        }
+        // last name validation
+        if (this.testInvalidString(this.user.lastName)) {
+            this.profileErrors.lastName = 'Invalid Name. Only alphabets allowed';
+            this.profileErrors.hasError = true;
+        }
+        //#endregion
+        if (!this.profileErrors.hasError) {
+            this.user = this.userService.updateUser(this.userId, this.user);
+        }
+    };
+    /** Test if the given string contains characters apart from alphabets */
+    ProfileComponent.prototype.testInvalidString = function (s, allowDot) {
+        if (allowDot === void 0) { allowDot = false; }
+        var regEx;
+        if (allowDot) {
+            regEx = new RegExp('[^a-zA-Z.]');
+        }
+        else {
+            regEx = new RegExp('[^a-zA-Z]');
+        }
+        return regEx.test(s);
     };
     return ProfileComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */]) === "function" && _a || Object)
+], ProfileComponent.prototype, "profileForm", void 0);
 ProfileComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-profile',
         template: __webpack_require__("../../../../../src/app/components/user/profile/profile.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/user/profile/profile.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object])
 ], ProfileComponent);
 
+var _a, _b, _c;
 //# sourceMappingURL=profile.component.js.map
 
 /***/ }),

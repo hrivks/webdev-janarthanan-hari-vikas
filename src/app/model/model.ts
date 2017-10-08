@@ -10,6 +10,7 @@ export class User implements IAppEntity {
     password: string;
     firstName: string;
     lastName: string;
+    email?: string;
 }
 
 /** Models a website that is created by a User */
