@@ -594,7 +594,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  <span class=\"display-3\">Login</span>\r\n</p>\r\n<hr>\r\n<br>\r\n<!--form-->\r\n<form class=\"form\"\r\n      #f=\"ngForm\"\r\n      (ngSubmit)=\"login(f)\"\r\n      novalidate>\r\n  <div class=\"form-group\">\r\n    <input placeholder=\"User Name\"\r\n           type=\"text\"\r\n           class=\"form-control\"\r\n           name=\"username\"\r\n           #usernameField=\"ngModel\"\r\n           ngModel\r\n           [ngClass]=\"{'border-danger': !usernameField.valid && usernameField.touched}\"\r\n           required />\r\n    <span class=\"small text-danger ml-2\"\r\n          *ngIf=\"usernameField.invalid && usernameField.touched\">Username is required</span>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <input placeholder=\"Password\"\r\n           type=\"password\"\r\n           class=\"form-control\"\r\n           name=\"password\"\r\n           #passwordField=\"ngModel\"\r\n           ngModel\r\n           [ngClass]=\"{'border-danger': !passwordField.valid && passwordField.touched}\"\r\n           required/>\r\n    <span class=\"small text-danger ml-2\"\r\n          *ngIf=\"passwordField.invalid && passwordField.touched\">Password is required</span>\r\n  </div>\r\n  <!-- form actions -->\r\n  <div>\r\n    <button type=\"submit\"\r\n            class=\"btn btn-royal btn-block\"\r\n            [disabled]=\"!f.valid\">Login</button>\r\n    <a class=\"btn btn-secondary btn-block\"\r\n       [routerLink]=\"['/register']\">Register</a>\r\n  </div>\r\n  <!-- /form actions -->\r\n</form>\r\n<!--/form-->"
+module.exports = "<p>\r\n  <span class=\"display-3\">Login</span>\r\n</p>\r\n<hr>\r\n<br>\r\n<!--form-->\r\n<form class=\"form\"\r\n      #f=\"ngForm\"\r\n      (ngSubmit)=\"login(f)\"\r\n      novalidate>\r\n  <div class=\"form-group\">\r\n    <input placeholder=\"User Name\"\r\n           type=\"text\"\r\n           class=\"form-control\"\r\n           name=\"username\"\r\n           #usernameField=\"ngModel\"\r\n           ngModel\r\n           [ngClass]=\"{'border-danger': !usernameField.valid && usernameField.touched}\"\r\n           required />\r\n    <span class=\"small text-danger ml-2\"\r\n          *ngIf=\"usernameField.invalid && usernameField.touched\">Username is required</span>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <input placeholder=\"Password\"\r\n           type=\"password\"\r\n           class=\"form-control\"\r\n           name=\"password\"\r\n           #passwordField=\"ngModel\"\r\n           ngModel\r\n           [ngClass]=\"{'border-danger': !passwordField.valid && passwordField.touched}\"\r\n           required/>\r\n    <span class=\"small text-danger ml-2\"\r\n          *ngIf=\"passwordField.invalid && passwordField.touched\">Password is required</span>\r\n  </div>\r\n  <div *ngIf=\"loginError\">\r\n    <div class=\"alert alert-danger text-center\">{{loginError}}</div>\r\n    </div>\r\n    <!-- form actions -->\r\n    <div>\r\n      <button type=\"submit\"\r\n              class=\"btn btn-royal btn-block\"\r\n              [disabled]=\"!f.valid\">Login</button>\r\n      <a class=\"btn btn-secondary btn-block\"\r\n         [routerLink]=\"['/register']\">Register</a>\r\n    </div>\r\n    <!-- /form actions -->\r\n</form>\r\n<!--/form-->"
 
 /***/ }),
 
@@ -626,11 +626,14 @@ var LoginComponent = (function () {
         this.userService = userService;
     }
     LoginComponent.prototype.login = function () {
-        this.username = this.loginForm.value.usernameField;
-        this.password = this.loginForm.value.passwordField;
+        this.username = this.loginForm.value.username;
+        this.password = this.loginForm.value.password;
         var user = this.userService.findUserByCredentials(this.username, this.password);
         if (user) {
             this.router.navigate(['/user', user._id]);
+        }
+        else {
+            this.loginError = 'Invalid Credentials';
         }
     };
     LoginComponent.prototype.ngOnInit = function () {
@@ -676,7 +679,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\">\r\n  <a class=\"navbar-brand\"\r\n     [routerLink]=\"['/user', this.userId]\">Profile</a>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link px-0\"\r\n         (click)=\"saveProfile()\"\r\n         title=\"Save Changes\">\r\n        <span class=\"fa fa-check fa-lg\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-outermost\">\r\n  <form #f=\"ngForm\" *ngIf=\"user\">\r\n    <!--User Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"username\"\r\n             class=\"font-weight-bold text-muted\">Username</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"username\"\r\n             placeholder=\"walice\"\r\n             name=\"username\"\r\n             [(ngModel)]=\"user.username\"\r\n             #usernameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.username || (!usernameField.valid && usernameField.touched)}\"\r\n             required>\r\n             <span *ngIf=\"usernameField.invalid && usernameField.touched\" class=\"text-danger ml-2\">Username is required</span>\r\n             <span *ngIf=\"profileErrors.username\" class=\"text-danger ml-2\">{{profileErrors.username}}</span>\r\n    </div>\r\n    <!--/User Name-->\r\n\r\n    <!--Email-->\r\n    <div class=\"form-group\">\r\n      <label for=\"email\"\r\n             class=\"font-weight-bold text-muted\">Email address</label>\r\n      <input type=\"email\"\r\n             class=\"form-control\"\r\n             id=\"email\"\r\n             name=\"email\"\r\n             placeholder=\"alice.wonderland@unicorn.com\"\r\n             [(ngModel)]=\"user.email\"\r\n             #emailField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.email}\">\r\n             <span *ngIf=\"profileErrors.email\" class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--/Email-->\r\n\r\n    <!--First Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"first-name\"\r\n             class=\"font-weight-bold text-muted\">First Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"first-name\"\r\n             name=\"firstName\"\r\n             placeholder=\"Alice\"\r\n             [(ngModel)]=\"user.firstName\"\r\n             #firstNameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.firstName || (!firstNameField.valid && firstNameField.touched)}\"\r\n             required>\r\n             <span *ngIf=\"firstNameField.invalid && firstNameField.touched\" class=\"text-danger ml-2\">First Name is required</span>\r\n             <span *ngIf=\"profileErrors.firstName\" class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--First Name-->\r\n\r\n    <!--Last Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"last-name\"\r\n             class=\"font-weight-bold text-muted\">Last Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"last-name\"\r\n             name=\"lastName\"\r\n             placeholder=\"Wonderland\"\r\n             [(ngModel)]=\"user.lastName\"\r\n             #lastNameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.lastName || (!lastNameField.valid && lastNameField.touched)}\"\r\n             required>\r\n             <span *ngIf=\"lastNameField.invalid && lastNameField.touched\" class=\"text-danger ml-2\">Last Name is required</span>\r\n             <span *ngIf=\"profileErrors.lastName\" class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--/Last Name-->\r\n\r\n    <!--Action Buttons-->\r\n    <div class=\"form-group\">\r\n      <a class=\"btn btn-royal btn-block\"\r\n         [routerLink]=\"['/user', userId, 'wesbite']\">Websites</a>\r\n      <a class=\"btn btn-danger btn-block\"\r\n         [routerLink]=\"['/login']\">Logout</a>\r\n    </div>\r\n    <!--/Action Buttons-->\r\n  </form>\r\n</div>"
+module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\">\r\n  <a class=\"navbar-brand\"\r\n     [routerLink]=\"['/user', this.userId]\">Profile</a>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <button class=\"btn btn-royal px-2\"\r\n              (click)=\"saveProfile()\"\r\n              title=\"Save Changes\">\r\n        <span class=\"fa fa-check fa-lg\"></span>\r\n      </button>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-outermost\">\r\n  <form #profileForm=\"ngForm\"\r\n        *ngIf=\"user\">\r\n    <!--User Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"username\"\r\n             class=\"font-weight-bold text-muted\">Username</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"username\"\r\n             placeholder=\"walice\"\r\n             name=\"username\"\r\n             [(ngModel)]=\"user.username\"\r\n             #usernameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.username || (!usernameField.valid && usernameField.touched)}\"\r\n             required>\r\n      <span *ngIf=\"usernameField.invalid && usernameField.touched\"\r\n            class=\"text-danger ml-2\">Username is required</span>\r\n      <span *ngIf=\"profileErrors.username\"\r\n            class=\"text-danger ml-2\">{{profileErrors.username}}</span>\r\n    </div>\r\n    <!--/User Name-->\r\n\r\n    <!--Email-->\r\n    <div class=\"form-group\">\r\n      <label for=\"email\"\r\n             class=\"font-weight-bold text-muted\">Email address</label>\r\n      <input type=\"email\"\r\n             class=\"form-control\"\r\n             id=\"email\"\r\n             name=\"email\"\r\n             placeholder=\"alice.wonderland@unicorn.com\"\r\n             [(ngModel)]=\"user.email\"\r\n             #emailField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.email}\">\r\n      <span *ngIf=\"profileErrors.email\"\r\n            class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--/Email-->\r\n\r\n    <!--First Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"first-name\"\r\n             class=\"font-weight-bold text-muted\">First Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"first-name\"\r\n             name=\"firstName\"\r\n             placeholder=\"Alice\"\r\n             [(ngModel)]=\"user.firstName\"\r\n             #firstNameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.firstName || (!firstNameField.valid && firstNameField.touched)}\"\r\n             required>\r\n      <span *ngIf=\"firstNameField.invalid && firstNameField.touched\"\r\n            class=\"text-danger ml-2\">First Name is required</span>\r\n      <span *ngIf=\"profileErrors.firstName\"\r\n            class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--First Name-->\r\n\r\n    <!--Last Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"last-name\"\r\n             class=\"font-weight-bold text-muted\">Last Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"last-name\"\r\n             name=\"lastName\"\r\n             placeholder=\"Wonderland\"\r\n             [(ngModel)]=\"user.lastName\"\r\n             #lastNameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.lastName || (!lastNameField.valid && lastNameField.touched)}\"\r\n             required>\r\n      <span *ngIf=\"lastNameField.invalid && lastNameField.touched\"\r\n            class=\"text-danger ml-2\">Last Name is required</span>\r\n      <span *ngIf=\"profileErrors.lastName\"\r\n            class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--/Last Name-->\r\n\r\n    <!--Action Buttons-->\r\n    <div class=\"form-group\">\r\n      <a class=\"btn btn-royal btn-block\"\r\n         [routerLink]=\"['/user', userId, 'website']\">Websites</a>\r\n      <a class=\"btn btn-danger btn-block\"\r\n         [routerLink]=\"['/login']\">Logout</a>\r\n    </div>\r\n    <!--/Action Buttons-->\r\n  </form>\r\n</div>"
 
 /***/ }),
 
@@ -698,7 +701,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -725,7 +727,7 @@ var ProfileComponent = (function () {
     };
     /** Save user profile details */
     ProfileComponent.prototype.saveProfile = function () {
-        if (!this.profileForm.valid) {
+        if (!this.profileForm.valid || this.profileForm.untouched) {
             return;
         }
         //#region: validate form
@@ -777,7 +779,7 @@ var ProfileComponent = (function () {
     return ProfileComponent;
 }());
 __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('profileForm'),
     __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */]) === "function" && _a || Object)
 ], ProfileComponent.prototype, "profileForm", void 0);
 ProfileComponent = __decorate([
@@ -953,7 +955,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/website/website-list/website-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link px-0\" [routerLink]=\"['user/:uid']\" title=\"Back to Profile\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n\r\n  <a class=\"navbar-brand\" href=\"\">Websites</a>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link px-0\" [routerLink]=\"['user/:uid/website/new']\" title=\"New Website\">\r\n        <span class=\"fa fa-plus fa-lg\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-outermost\">\r\n  <ul class=\"list-group list-group-flush\">\r\n    <li class=\"list-group-item\">\r\n      <a [routerLink]=\"['user/:uid/website/:wid/page']\">\r\n        <span>Address Book App</span>\r\n      </a>\r\n      <a [routerLink]=\"['user/:uid/website/:wid']\" class=\"btn btn-xs float-right link-royal\">\r\n        <span class=\"fa fa-gear\"></span>\r\n      </a>\r\n    </li>\r\n    <li class=\"list-group-item\">\r\n      <a [routerLink]=\"['user/:uid/website/:wid/page']\">\r\n        <span>Blogger</span>\r\n      </a>\r\n      <a [routerLink]=\"['user/:uid/website/:wid']\" class=\"btn btn-xs float-right link-royal\">\r\n        <span class=\"fa fa-gear\"></span>\r\n      </a>\r\n    </li>\r\n    <li class=\"list-group-item\">\r\n      <a [routerLink]=\"['user/:uid/website/:wid/page']\">\r\n        <span>Blog App</span>\r\n      </a>\r\n      <a [routerLink]=\"['user/:uid/website/:wid']\" class=\"btn btn-xs float-right link-royal\">\r\n        <span class=\"fa fa-gear\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</div>"
+module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['/user', userId]\"\r\n         title=\"Back to Profile\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n\r\n  <a class=\"navbar-brand\"\r\n     href=\"\">Websites</a>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['/user', userId,'website/new']\"\r\n         title=\"New Website\">\r\n        <span class=\"fa fa-plus fa-lg\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-outermost\">\r\n  <ul class=\"list-group list-group-flush\">\r\n\r\n    <li class=\"list-group-item\"\r\n        *ngFor=\"let thisWebsite of websites\">\r\n      <a [routerLink]=\"['/user',userId,'website', thisWebsite._id ,'page']\">\r\n        <span>{{thisWebsite.name}}</span>\r\n        <span class=\"small text-secondary font-italic d-sm-inline d-none ml-2\">{{thisWebsite.description}}</span>\r\n      </a>\r\n      <a [routerLink]=\"['/user', userId, 'website', thisWebsite._id]\"\r\n         class=\"btn btn-xs float-right link-royal\">\r\n        <span class=\"fa fa-gear\"></span>\r\n      </a>\r\n    </li>\r\n\r\n  </ul>\r\n</div>"
 
 /***/ }),
 
@@ -963,6 +965,8 @@ module.exports = "\r\n<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WebsiteListComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__ = __webpack_require__("../../../../../src/app/services/website.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -973,10 +977,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var WebsiteListComponent = (function () {
-    function WebsiteListComponent() {
+    function WebsiteListComponent(activatedRoute, websiteService) {
+        this.activatedRoute = activatedRoute;
+        this.websiteService = websiteService;
     }
     WebsiteListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // get userid parameter route
+        this.activatedRoute.params.subscribe(function (params) {
+            _this.userId = params['uid'];
+        });
+        this.websites = this.websiteService.findWebsitesByUser(this.userId);
     };
     return WebsiteListComponent;
 }());
@@ -986,9 +1000,10 @@ WebsiteListComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/website/website-list/website-list.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/website/website-list/website-list.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__["a" /* WebsiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__["a" /* WebsiteService */]) === "function" && _b || Object])
 ], WebsiteListComponent);
 
+var _a, _b;
 //# sourceMappingURL=website-list.component.js.map
 
 /***/ }),
@@ -1508,7 +1523,7 @@ var PageService = (function () {
         page._id = id.toString();
         page.websiteId = websiteId;
         this.pages.push(page);
-        return page;
+        return Object.assign({}, page);
     };
     /**
       * Find page by Id
@@ -1516,7 +1531,8 @@ var PageService = (function () {
       * @returns page corresponding to the given Id; null if id page doesn't exit
       */
     PageService.prototype.findPageById = function (pageId) {
-        return this.pages.find(function (p) { return p._id === pageId; });
+        var page = this.pages.find(function (p) { return p._id === pageId; });
+        return Object.assign({}, page);
     };
     /**
      * Get all pages in the website specified by website id
@@ -1524,7 +1540,8 @@ var PageService = (function () {
      * @returns {Page[]} list of pages in the website specified by the given id
      */
     PageService.prototype.findPageBywebsiteId = function (websiteId) {
-        return this.pages.filter(function (p) { return p.websiteId === websiteId; });
+        var page = this.pages.filter(function (p) { return p.websiteId === websiteId; });
+        return Object.assign({}, page);
     };
     /**
      * Update page by Id
@@ -1534,9 +1551,9 @@ var PageService = (function () {
      */
     PageService.prototype.updatePage = function (pageId, page) {
         var toUpdateIndex = this.pages.findIndex(function (p) { return p._id === pageId; });
-        if (toUpdateIndex > 0) {
+        if (toUpdateIndex > -1) {
             this.pages[toUpdateIndex] = page;
-            return page;
+            return Object.assign({}, page);
         }
         else {
             return null;
@@ -1678,7 +1695,7 @@ var UserService = (function () {
         }
         user._id = id.toString();
         this.users.push(user);
-        return user;
+        return Object.assign({}, user);
     };
     /**
      * Find user by user id
@@ -1686,7 +1703,8 @@ var UserService = (function () {
      * @returns user with the specifed id; null if id doesn't exist
      */
     UserService.prototype.findUserById = function (userId) {
-        return this.users.find(function (u) { return u._id === userId; });
+        var user = this.users.find(function (u) { return u._id === userId; });
+        return Object.assign({}, user);
     };
     /**
      * Find user by user name
@@ -1694,7 +1712,8 @@ var UserService = (function () {
      * @returns user with the specifed username; null if id doesn't exist
      */
     UserService.prototype.findUserByUsername = function (username) {
-        return this.users.find(function (u) { return u.username === username; });
+        var user = this.users.find(function (u) { return u.username === username; });
+        return Object.assign({}, user);
     };
     /**
      * Find user by credentials
@@ -1703,7 +1722,8 @@ var UserService = (function () {
      * @returns user with the specifed username; null if id doesn't exist
      */
     UserService.prototype.findUserByCredentials = function (username, password) {
-        return this.users.find(function (u) { return u.username === username && u.password === password; });
+        var user = this.users.find(function (u) { return u.username === username && u.password === password; });
+        return Object.assign({}, user);
     };
     /**
      * Update user by user id
@@ -1713,15 +1733,13 @@ var UserService = (function () {
      */
     UserService.prototype.updateUser = function (userId, user) {
         var toUpdateIndex = this.users.findIndex(function (u) { return u._id === userId; });
-        var toUpdate = this.users[toUpdateIndex];
-        if (toUpdate) {
-            for (var key in user) {
-                if (user.hasOwnProperty(key)) {
-                    toUpdate[key] = user[key];
-                }
-            }
+        if (toUpdateIndex > -1) {
+            this.users[toUpdateIndex] = user;
+            return Object.assign({}, user);
         }
-        return toUpdate;
+        else {
+            return null;
+        }
     };
     /**
      * Delete user by user id
@@ -1789,7 +1807,7 @@ var WebsiteService = (function () {
         }
         website._id = id.toString();
         this.websites.push(website);
-        return website;
+        return Object.assign({}, website);
     };
     /**
      * Find website by Id
@@ -1797,7 +1815,8 @@ var WebsiteService = (function () {
      * @returns Website corresponding to the given Id; null if id websites doesn't exit
      */
     WebsiteService.prototype.findWebsiteById = function (websiteId) {
-        return this.websites.find(function (u) { return u._id === websiteId; });
+        var website = this.websites.find(function (u) { return u._id === websiteId; });
+        return Object.assign({}, website);
     };
     /**
      * Get all websites created by a user
@@ -1805,7 +1824,8 @@ var WebsiteService = (function () {
      * @returns list of websites created by the specified user
      */
     WebsiteService.prototype.findWebsitesByUser = function (userId) {
-        return this.websites.filter(function (w) { return w.developerId === userId; });
+        var websites = this.websites.filter(function (w) { return w.developerId === userId; });
+        return websites.map(function (w) { return Object.assign({}, w); });
     };
     /**
      * Update website by Id
@@ -1817,7 +1837,7 @@ var WebsiteService = (function () {
         var toUpdateIndex = this.websites.findIndex(function (w) { return w._id === websiteId; });
         if (toUpdateIndex > 0) {
             this.websites[toUpdateIndex] = website;
-            return website;
+            return Object.assign({}, website);
         }
         else {
             return null;
@@ -1898,7 +1918,7 @@ var WidgetService = (function () {
         widget._id = id.toString();
         widget.pageId = pageId;
         this.widgets.push(widget);
-        return widget;
+        return Object.assign({}, widget);
     };
     /**
       * Find widget by Id
@@ -1906,7 +1926,8 @@ var WidgetService = (function () {
       * @returns widget corresponding to the given Id; null if id widget doesn't exit
       */
     WidgetService.prototype.findWidgetById = function (widgetId) {
-        return this.widgets.find(function (w) { return w._id === widgetId; });
+        var widget = this.widgets.find(function (w) { return w._id === widgetId; });
+        return Object.assign({}, widget);
     };
     /**
      * Update widget by Id
@@ -1918,7 +1939,7 @@ var WidgetService = (function () {
         var toUpdateIndex = this.widgets.findIndex(function (w) { return w._id === widgetId; });
         if (toUpdateIndex > 0) {
             this.widgets[toUpdateIndex] = widget;
-            return widget;
+            return Object.assign({}, widget);
         }
         else {
             return null;

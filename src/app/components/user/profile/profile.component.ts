@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../../model/model';
 import { UserService } from '../../../services/user.service.client';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +19,7 @@ export class ProfileComponent implements OnInit {
   };
 
   // user profile form
-  @ViewChild('f') profileForm: NgForm;
+  @ViewChild('profileForm') profileForm: NgForm;
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) { }
 
@@ -34,12 +33,11 @@ export class ProfileComponent implements OnInit {
     if (!this.user) {
       this.router.navigate(['/login']);
     }
-
   }
 
   /** Save user profile details */
   saveProfile() {
-    if (!this.profileForm.valid) {
+    if (!this.profileForm.valid || this.profileForm.untouched) {
       return;
     }
 
@@ -94,7 +92,4 @@ export class ProfileComponent implements OnInit {
     }
     return regEx.test(s);
   }
-
-
-
 }

@@ -29,7 +29,7 @@ export class PageService {
     page._id = id.toString();
     page.websiteId = websiteId;
     this.pages.push(page);
-    return page;
+    return Object.assign({}, page);
   }
 
   /**
@@ -38,7 +38,8 @@ export class PageService {
     * @returns page corresponding to the given Id; null if id page doesn't exit
     */
   findPageById(pageId: string): Page {
-    return this.pages.find(p => p._id === pageId);
+    const page = this.pages.find(p => p._id === pageId);
+    return Object.assign({}, page);
   }
 
   /**
@@ -47,7 +48,8 @@ export class PageService {
    * @returns {Page[]} list of pages in the website specified by the given id
    */
   findPageBywebsiteId(websiteId: string): Page[] {
-    return this.pages.filter(p => p.websiteId === websiteId);
+    const page = this.pages.filter(p => p.websiteId === websiteId);
+    return Object.assign({}, page);
   }
 
   /**
@@ -58,9 +60,9 @@ export class PageService {
    */
   updatePage(pageId: string, page: Page): Page {
     const toUpdateIndex = this.pages.findIndex(p => p._id === pageId);
-    if (toUpdateIndex > 0) {
+    if (toUpdateIndex > -1) {
       this.pages[toUpdateIndex] = page;
-      return page;
+      return Object.assign({}, page);
     } else {
       return null;
     }

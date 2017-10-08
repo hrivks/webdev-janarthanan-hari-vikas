@@ -37,7 +37,7 @@ export class UserService {
 
     user._id = id.toString();
     this.users.push(user);
-    return user;
+    return Object.assign({}, user);
   }
 
   /**
@@ -46,7 +46,8 @@ export class UserService {
    * @returns user with the specifed id; null if id doesn't exist
    */
   findUserById(userId: string): User {
-    return this.users.find(u => u._id === userId);
+    const user = this.users.find(u => u._id === userId);
+    return Object.assign({}, user);
   }
 
   /**
@@ -55,7 +56,8 @@ export class UserService {
    * @returns user with the specifed username; null if id doesn't exist
    */
   findUserByUsername(username: string): User {
-    return this.users.find(u => u.username === username);
+    const user = this.users.find(u => u.username === username);
+    return Object.assign({}, user);
   }
 
   /**
@@ -65,7 +67,8 @@ export class UserService {
    * @returns user with the specifed username; null if id doesn't exist
    */
   findUserByCredentials(username: string, password: string): User {
-    return this.users.find(u => u.username === username && u.password === password);
+    const user = this.users.find(u => u.username === username && u.password === password);
+    return Object.assign({}, user);
   }
 
   /**
@@ -76,15 +79,12 @@ export class UserService {
    */
   updateUser(userId: string, user: User): User {
     const toUpdateIndex = this.users.findIndex(u => u._id === userId);
-    const toUpdate = this.users[toUpdateIndex];
-    if (toUpdate) {
-      for (const key in user) {
-        if (user.hasOwnProperty(key)) {
-          toUpdate[key] = user[key];
-        }
-      }
+    if (toUpdateIndex > -1) {
+      this.users[toUpdateIndex] = user;
+      return Object.assign({}, user);
+    } else {
+      return null;
     }
-    return toUpdate;
   }
 
   /**

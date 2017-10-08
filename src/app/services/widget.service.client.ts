@@ -39,7 +39,7 @@ export class WidgetService {
     widget._id = id.toString();
     widget.pageId = pageId;
     this.widgets.push(widget);
-    return widget;
+    return Object.assign({}, widget);
   }
 
   /**
@@ -48,7 +48,8 @@ export class WidgetService {
     * @returns widget corresponding to the given Id; null if id widget doesn't exit
     */
     findWidgetById(widgetId: string): Widget {
-    return this.widgets.find(w => w._id === widgetId);
+    const widget = this.widgets.find(w => w._id === widgetId);
+    return Object.assign({}, widget);
   }
 
   /**
@@ -61,7 +62,7 @@ export class WidgetService {
     const toUpdateIndex = this.widgets.findIndex(w => w._id === widgetId);
     if (toUpdateIndex > 0) {
       this.widgets[toUpdateIndex] = widget;
-      return widget;
+      return Object.assign({}, widget);
     } else {
       return null;
     }

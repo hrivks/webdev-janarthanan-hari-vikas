@@ -5,18 +5,19 @@
 
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
-      <a class="nav-link px-0"
-         (click)="saveProfile()"
-         title="Save Changes">
+      <button class="btn btn-royal px-2"
+              (click)="saveProfile()"
+              title="Save Changes">
         <span class="fa fa-check fa-lg"></span>
-      </a>
+      </button>
     </li>
   </ul>
 </nav>
 <!--/Top Nav-->
 
 <div class="container hvj-outermost">
-  <form #f="ngForm" *ngIf="user">
+  <form #profileForm="ngForm"
+        *ngIf="user">
     <!--User Name-->
     <div class="form-group">
       <label for="username"
@@ -30,8 +31,10 @@
              #usernameField="ngModel"
              [ngClass]="{'border-danger': profileErrors.username || (!usernameField.valid && usernameField.touched)}"
              required>
-             <span *ngIf="usernameField.invalid && usernameField.touched" class="text-danger ml-2">Username is required</span>
-             <span *ngIf="profileErrors.username" class="text-danger ml-2">{{profileErrors.username}}</span>
+      <span *ngIf="usernameField.invalid && usernameField.touched"
+            class="text-danger ml-2">Username is required</span>
+      <span *ngIf="profileErrors.username"
+            class="text-danger ml-2">{{profileErrors.username}}</span>
     </div>
     <!--/User Name-->
 
@@ -47,7 +50,8 @@
              [(ngModel)]="user.email"
              #emailField="ngModel"
              [ngClass]="{'border-danger': profileErrors.email}">
-             <span *ngIf="profileErrors.email" class="text-danger ml-2"></span>
+      <span *ngIf="profileErrors.email"
+            class="text-danger ml-2"></span>
     </div>
     <!--/Email-->
 
@@ -64,8 +68,10 @@
              #firstNameField="ngModel"
              [ngClass]="{'border-danger': profileErrors.firstName || (!firstNameField.valid && firstNameField.touched)}"
              required>
-             <span *ngIf="firstNameField.invalid && firstNameField.touched" class="text-danger ml-2">First Name is required</span>
-             <span *ngIf="profileErrors.firstName" class="text-danger ml-2"></span>
+      <span *ngIf="firstNameField.invalid && firstNameField.touched"
+            class="text-danger ml-2">First Name is required</span>
+      <span *ngIf="profileErrors.firstName"
+            class="text-danger ml-2"></span>
     </div>
     <!--First Name-->
 
@@ -82,15 +88,17 @@
              #lastNameField="ngModel"
              [ngClass]="{'border-danger': profileErrors.lastName || (!lastNameField.valid && lastNameField.touched)}"
              required>
-             <span *ngIf="lastNameField.invalid && lastNameField.touched" class="text-danger ml-2">Last Name is required</span>
-             <span *ngIf="profileErrors.lastName" class="text-danger ml-2"></span>
+      <span *ngIf="lastNameField.invalid && lastNameField.touched"
+            class="text-danger ml-2">Last Name is required</span>
+      <span *ngIf="profileErrors.lastName"
+            class="text-danger ml-2"></span>
     </div>
     <!--/Last Name-->
 
     <!--Action Buttons-->
     <div class="form-group">
       <a class="btn btn-royal btn-block"
-         [routerLink]="['/user', userId, 'wesbite']">Websites</a>
+         [routerLink]="['/user', userId, 'website']">Websites</a>
       <a class="btn btn-danger btn-block"
          [routerLink]="['/login']">Logout</a>
     </div>

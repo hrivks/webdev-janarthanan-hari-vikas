@@ -32,7 +32,7 @@ export class WebsiteService {
 
     website._id = id.toString();
     this.websites.push(website);
-    return website;
+    return Object.assign({}, website);
   }
 
   /**
@@ -41,7 +41,8 @@ export class WebsiteService {
    * @returns Website corresponding to the given Id; null if id websites doesn't exit
    */
   findWebsiteById(websiteId: string): Website {
-    return this.websites.find(u => u._id === websiteId);
+    const website = this.websites.find(u => u._id === websiteId);
+    return Object.assign({}, website);
   }
 
   /**
@@ -50,7 +51,8 @@ export class WebsiteService {
    * @returns list of websites created by the specified user
    */
   findWebsitesByUser(userId: string): Website[] {
-    return this.websites.filter(w => w.developerId === userId);
+    const websites = this.websites.filter(w => w.developerId === userId);
+    return websites.map(w => Object.assign({}, w));
   }
 
   /**
@@ -63,7 +65,7 @@ export class WebsiteService {
     const toUpdateIndex = this.websites.findIndex(w => w._id === websiteId);
     if (toUpdateIndex > 0) {
       this.websites[toUpdateIndex] = website;
-      return website;
+      return Object.assign({}, website);
     } else {
       return null;
     }
@@ -82,5 +84,4 @@ export class WebsiteService {
     }
     return toDelete;
   }
-
 }

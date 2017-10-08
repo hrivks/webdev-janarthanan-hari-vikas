@@ -16,17 +16,20 @@ export class LoginComponent implements OnInit {
   // properties
   username: string;
   password: string;
-  error: 'Invalid Credentials';
+  loginError: string;
 
   constructor(private router: Router, private userService: UserService) { }
 
   login() {
-    this.username = this.loginForm.value.usernameField;
-    this.password = this.loginForm.value.passwordField;
+    this.username = this.loginForm.value.username;
+    this.password = this.loginForm.value.password;
     const user = this.userService.findUserByCredentials(this.username, this.password);
     if (user) {
       this.router.navigate(['/user', user._id]);
+    } else {
+      this.loginError = 'Invalid Credentials';
     }
+
   }
 
   ngOnInit() {

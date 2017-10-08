@@ -32,14 +32,17 @@
     <span class="small text-danger ml-2"
           *ngIf="passwordField.invalid && passwordField.touched">Password is required</span>
   </div>
-  <!-- form actions -->
-  <div>
-    <button type="submit"
-            class="btn btn-royal btn-block"
-            [disabled]="!f.valid">Login</button>
-    <a class="btn btn-secondary btn-block"
-       [routerLink]="['/register']">Register</a>
-  </div>
-  <!-- /form actions -->
+  <div *ngIf="loginError">
+    <div class="alert alert-danger text-center">{{loginError}}</div>
+    </div>
+    <!-- form actions -->
+    <div>
+      <button type="submit"
+              class="btn btn-royal btn-block"
+              [disabled]="!f.valid">Login</button>
+      <a class="btn btn-secondary btn-block"
+         [routerLink]="['/register']">Register</a>
+    </div>
+    <!-- /form actions -->
 </form>
 <!--/form-->
