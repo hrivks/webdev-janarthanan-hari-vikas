@@ -33,6 +33,7 @@ body.hvj{
   
   .hvj .link-royal {
     color: #236eaf !important;
+    cursor: pointer;
   }
   
   .hvj .link-royal:hover {

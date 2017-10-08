@@ -49,7 +49,7 @@ export class WidgetService {
     */
     findWidgetById(widgetId: string): Widget {
     const widget = this.widgets.find(w => w._id === widgetId);
-    return Object.assign({}, widget);
+    return widget ? Object.assign({}, widget) : null;
   }
 
   /**

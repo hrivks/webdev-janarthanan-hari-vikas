@@ -42,7 +42,7 @@ export class WebsiteService {
    */
   findWebsiteById(websiteId: string): Website {
     const website = this.websites.find(u => u._id === websiteId);
-    return Object.assign({}, website);
+    return website ? Object.assign({}, website) : null;
   }
 
   /**

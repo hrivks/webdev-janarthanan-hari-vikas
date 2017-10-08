@@ -47,7 +47,7 @@ export class UserService {
    */
   findUserById(userId: string): User {
     const user = this.users.find(u => u._id === userId);
-    return Object.assign({}, user);
+    return user ? Object.assign({}, user) : null;
   }
 
   /**
@@ -57,7 +57,7 @@ export class UserService {
    */
   findUserByUsername(username: string): User {
     const user = this.users.find(u => u.username === username);
-    return Object.assign({}, user);
+    return user ? Object.assign({}, user) : null;
   }
 
   /**
@@ -68,7 +68,7 @@ export class UserService {
    */
   findUserByCredentials(username: string, password: string): User {
     const user = this.users.find(u => u.username === username && u.password === password);
-    return Object.assign({}, user);
+    return user ? Object.assign({}, user) : null;
   }
 
   /**

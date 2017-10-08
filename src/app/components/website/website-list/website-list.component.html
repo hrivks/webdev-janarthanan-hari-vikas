@@ -1,5 +1,6 @@
 <!--Top Nav-->
-<nav class="navbar navbar-expand fixed-top navbar-dark bg-royal px-2">
+<nav class="navbar navbar-expand fixed-top navbar-dark bg-royal px-2"
+     [ngClass]="{'col-4 border border-left-0 border-top-0 border-bottom-0 border-secondary' : compactMode}">
   <ul class="navbar-nav mr-3">
     <li class="nav-item">
       <a class="nav-link px-0"
@@ -16,7 +17,7 @@
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
       <a class="nav-link px-0"
-         [routerLink]="['/user', userId,'website/new']"
+         [routerLink]="['/user', userId,'website','new']"
          title="New Website">
         <span class="fa fa-plus fa-lg"></span>
       </a>
@@ -25,18 +26,35 @@
 </nav>
 <!--/Top Nav-->
 
-<div class="container hvj-outermost">
+<div class="container website-list">
   <ul class="list-group list-group-flush">
 
     <li class="list-group-item"
         *ngFor="let thisWebsite of websites">
-      <a [routerLink]="['/user',userId,'website', thisWebsite._id ,'page']">
+      <a [routerLink]="['/user', userId,'website', thisWebsite._id, 'page']">
         <span>{{thisWebsite.name}}</span>
         <span class="small text-secondary font-italic d-sm-inline d-none ml-2">{{thisWebsite.description}}</span>
       </a>
       <a [routerLink]="['/user', userId, 'website', thisWebsite._id]"
          class="btn btn-xs float-right link-royal">
         <span class="fa fa-gear"></span>
+      </a>
+    </li>
+
+    <!-- No websites message -->
+    <li class="list-group-item"
+        *ngIf="websites.length == 0">
+      <span>
+        <em>No websites to show</em>
+      </span>
+    </li>
+
+    <li class="list-group-item"
+        *ngIf="websites.length == 0">
+      <a class="btn btn-xs link-royal"
+         [routerLink]="['/user', userId,'website','new']">
+        <i class="fa fa-plus fa-lg mr-2"></i>
+        <em class="text-secondary">Create new website</em>
       </a>
     </li>
 

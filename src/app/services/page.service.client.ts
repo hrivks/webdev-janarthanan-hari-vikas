@@ -39,7 +39,7 @@ export class PageService {
     */
   findPageById(pageId: string): Page {
     const page = this.pages.find(p => p._id === pageId);
-    return Object.assign({}, page);
+    return page ? Object.assign({}, page) : null;
   }
 
   /**
@@ -49,7 +49,7 @@ export class PageService {
    */
   findPageBywebsiteId(websiteId: string): Page[] {
     const page = this.pages.filter(p => p.websiteId === websiteId);
-    return Object.assign({}, page);
+    return page ? Object.assign({}, page) : null;
   }
 
   /**
