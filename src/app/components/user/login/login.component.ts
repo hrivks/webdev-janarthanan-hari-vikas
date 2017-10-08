@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) { }
 
   login() {
-    this.username = this.loginForm.value.username;
-    this.password = this.loginForm.value.password;
+    this.username = this.loginForm.value.usernameField;
+    this.password = this.loginForm.value.passwordField;
     const user = this.userService.findUserByCredentials(this.username, this.password);
     if (user) {
       this.router.navigate(['/user', user._id]);

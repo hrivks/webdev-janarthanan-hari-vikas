@@ -6,33 +6,37 @@
 <!--form-->
 <form class="form"
       #f="ngForm"
-      (ngSubmit)="login(f)" novalidate>
+      (ngSubmit)="login(f)"
+      novalidate>
   <div class="form-group">
     <input placeholder="User Name"
            type="text"
            class="form-control"
            name="username"
-           #username="ngModel"
+           #usernameField="ngModel"
            ngModel
-           [ngClass]="{'border-danger': !username.valid && username.touched}"
+           [ngClass]="{'border-danger': !usernameField.valid && usernameField.touched}"
            required />
-           <span class="small text-danger ml-2" [hidden]="username.valid || !username.touched">Username is required</span>
+    <span class="small text-danger ml-2"
+          *ngIf="usernameField.invalid && usernameField.touched">Username is required</span>
   </div>
   <div class="form-group">
     <input placeholder="Password"
            type="password"
            class="form-control"
            name="password"
-           #password="ngModel"
+           #passwordField="ngModel"
            ngModel
-           [ngClass]="{'border-danger': !password.valid && password.touched}"
+           [ngClass]="{'border-danger': !passwordField.valid && passwordField.touched}"
            required/>
-           <span class="small text-danger ml-2" [hidden]="password.valid || !password.touched">Password is required</span>
+    <span class="small text-danger ml-2"
+          *ngIf="passwordField.invalid && passwordField.touched">Password is required</span>
   </div>
   <!-- form actions -->
   <div>
     <button type="submit"
-            class="btn btn-royal btn-block" [disabled]="!f.valid">Login</button>
+            class="btn btn-royal btn-block"
+            [disabled]="!f.valid">Login</button>
     <a class="btn btn-secondary btn-block"
        [routerLink]="['/register']">Register</a>
   </div>

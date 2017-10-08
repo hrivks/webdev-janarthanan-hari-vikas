@@ -594,7 +594,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  <span class=\"display-3\">Login</span>\r\n</p>\r\n<hr>\r\n<br>\r\n<!--form-->\r\n<form class=\"form\"\r\n      #f=\"ngForm\"\r\n      (ngSubmit)=\"login(f)\" novalidate>\r\n  <div class=\"form-group\">\r\n    <input placeholder=\"User Name\"\r\n           type=\"text\"\r\n           class=\"form-control\"\r\n           name=\"username\"\r\n           #username=\"ngModel\"\r\n           ngModel\r\n           [ngClass]=\"{'border-danger': !username.valid && username.touched}\"\r\n           required />\r\n           <span class=\"small text-danger ml-2\" [hidden]=\"username.valid || !username.touched\">Username is required</span>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <input placeholder=\"Password\"\r\n           type=\"password\"\r\n           class=\"form-control\"\r\n           name=\"password\"\r\n           #password=\"ngModel\"\r\n           ngModel\r\n           [ngClass]=\"{'border-danger': !password.valid && password.touched}\"\r\n           required/>\r\n           <span class=\"small text-danger ml-2\" [hidden]=\"password.valid || !password.touched\">Password is required</span>\r\n  </div>\r\n  <!-- form actions -->\r\n  <div>\r\n    <button type=\"submit\"\r\n            class=\"btn btn-royal btn-block\" [disabled]=\"!f.valid\">Login</button>\r\n    <a class=\"btn btn-secondary btn-block\"\r\n       [routerLink]=\"['/register']\">Register</a>\r\n  </div>\r\n  <!-- /form actions -->\r\n</form>\r\n<!--/form-->"
+module.exports = "<p>\r\n  <span class=\"display-3\">Login</span>\r\n</p>\r\n<hr>\r\n<br>\r\n<!--form-->\r\n<form class=\"form\"\r\n      #f=\"ngForm\"\r\n      (ngSubmit)=\"login(f)\"\r\n      novalidate>\r\n  <div class=\"form-group\">\r\n    <input placeholder=\"User Name\"\r\n           type=\"text\"\r\n           class=\"form-control\"\r\n           name=\"username\"\r\n           #usernameField=\"ngModel\"\r\n           ngModel\r\n           [ngClass]=\"{'border-danger': !usernameField.valid && usernameField.touched}\"\r\n           required />\r\n    <span class=\"small text-danger ml-2\"\r\n          *ngIf=\"usernameField.invalid && usernameField.touched\">Username is required</span>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <input placeholder=\"Password\"\r\n           type=\"password\"\r\n           class=\"form-control\"\r\n           name=\"password\"\r\n           #passwordField=\"ngModel\"\r\n           ngModel\r\n           [ngClass]=\"{'border-danger': !passwordField.valid && passwordField.touched}\"\r\n           required/>\r\n    <span class=\"small text-danger ml-2\"\r\n          *ngIf=\"passwordField.invalid && passwordField.touched\">Password is required</span>\r\n  </div>\r\n  <!-- form actions -->\r\n  <div>\r\n    <button type=\"submit\"\r\n            class=\"btn btn-royal btn-block\"\r\n            [disabled]=\"!f.valid\">Login</button>\r\n    <a class=\"btn btn-secondary btn-block\"\r\n       [routerLink]=\"['/register']\">Register</a>\r\n  </div>\r\n  <!-- /form actions -->\r\n</form>\r\n<!--/form-->"
 
 /***/ }),
 
@@ -626,8 +626,8 @@ var LoginComponent = (function () {
         this.userService = userService;
     }
     LoginComponent.prototype.login = function () {
-        this.username = this.loginForm.value.username;
-        this.password = this.loginForm.value.password;
+        this.username = this.loginForm.value.usernameField;
+        this.password = this.loginForm.value.passwordField;
         var user = this.userService.findUserByCredentials(this.username, this.password);
         if (user) {
             this.router.navigate(['/user', user._id]);
@@ -676,7 +676,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\">\r\n  <a class=\"navbar-brand\"\r\n     [routerLink]=\"['/user', this.userId]\">Profile</a>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link px-0\"\r\n         (click)=\"saveProfile()\"\r\n         title=\"Save Changes\">\r\n        <span class=\"fa fa-check fa-lg\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-outermost\">\r\n  <form #f=\"ngForm\">\r\n    <!--User Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"username\"\r\n             class=\"font-weight-bold text-muted\">Username</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"username\"\r\n             placeholder=\"walice\"\r\n             name=\"username\"\r\n             [(ngModel)]=\"user.username\"\r\n             #username=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.username || (!username.valid && username.touched)}\"\r\n             required>\r\n             <span [hidden]=\"username.valid || !username.touched\" class=\"text-danger ml-2\">Username is required</span>\r\n             <span [hidden]=\"!profileErrors.username\" class=\"text-danger ml-2\">{{profileErrors.username}}</span>\r\n    </div>\r\n    <!--/User Name-->\r\n\r\n    <!--Email-->\r\n    <div class=\"form-group\">\r\n      <label for=\"email\"\r\n             class=\"font-weight-bold text-muted\">Email address</label>\r\n      <input type=\"email\"\r\n             class=\"form-control\"\r\n             id=\"email\"\r\n             name=\"email\"\r\n             placeholder=\"alice.wonderland@unicorn.com\"\r\n             [(ngModel)]=\"user.email\"\r\n             #email=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.email}\">\r\n             <span [hidden]=\"!profileErrors.email\" class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--/Email-->\r\n\r\n    <!--First Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"first-name\"\r\n             class=\"font-weight-bold text-muted\">First Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"first-name\"\r\n             name=\"firstName\"\r\n             placeholder=\"Alice\"\r\n             [(ngModel)]=\"user.firstName\"\r\n             #firstName=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.firstName || (!firstName.valid && firstName.touched)}\"\r\n             required>\r\n             <span [hidden]=\"firstName.valid || !firstName.touched\" class=\"text-danger ml-2\">First Name is required</span>\r\n             <span [hidden]=\"!profileErrors.firstName\" class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--First Name-->\r\n\r\n    <!--Last Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"last-name\"\r\n             class=\"font-weight-bold text-muted\">Last Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"last-name\"\r\n             name=\"lastName\"\r\n             placeholder=\"Wonderland\"\r\n             [(ngModel)]=\"user.lastName\"\r\n             #lastName=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.lastName || (!lastName.valid && lastName.touched)}\"\r\n             required>\r\n             <span [hidden]=\"lastName.valid || !lastName.touched\" class=\"text-danger ml-2\">Last Name is required</span>\r\n             <span [hidden]=\"!profileErrors.lastName\" class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--/Last Name-->\r\n\r\n    <!--Action Buttons-->\r\n    <div class=\"form-group\">\r\n      <a class=\"btn btn-royal btn-block\"\r\n         [routerLink]=\"['/user', userId, 'wesbite']\">Websites</a>\r\n      <a class=\"btn btn-danger btn-block\"\r\n         [routerLink]=\"['/login']\">Logout</a>\r\n    </div>\r\n    <!--/Action Buttons-->\r\n  </form>\r\n</div>"
+module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\">\r\n  <a class=\"navbar-brand\"\r\n     [routerLink]=\"['/user', this.userId]\">Profile</a>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link px-0\"\r\n         (click)=\"saveProfile()\"\r\n         title=\"Save Changes\">\r\n        <span class=\"fa fa-check fa-lg\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-outermost\">\r\n  <form #f=\"ngForm\" *ngIf=\"user\">\r\n    <!--User Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"username\"\r\n             class=\"font-weight-bold text-muted\">Username</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"username\"\r\n             placeholder=\"walice\"\r\n             name=\"username\"\r\n             [(ngModel)]=\"user.username\"\r\n             #usernameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.username || (!usernameField.valid && usernameField.touched)}\"\r\n             required>\r\n             <span *ngIf=\"usernameField.invalid && usernameField.touched\" class=\"text-danger ml-2\">Username is required</span>\r\n             <span *ngIf=\"profileErrors.username\" class=\"text-danger ml-2\">{{profileErrors.username}}</span>\r\n    </div>\r\n    <!--/User Name-->\r\n\r\n    <!--Email-->\r\n    <div class=\"form-group\">\r\n      <label for=\"email\"\r\n             class=\"font-weight-bold text-muted\">Email address</label>\r\n      <input type=\"email\"\r\n             class=\"form-control\"\r\n             id=\"email\"\r\n             name=\"email\"\r\n             placeholder=\"alice.wonderland@unicorn.com\"\r\n             [(ngModel)]=\"user.email\"\r\n             #emailField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.email}\">\r\n             <span *ngIf=\"profileErrors.email\" class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--/Email-->\r\n\r\n    <!--First Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"first-name\"\r\n             class=\"font-weight-bold text-muted\">First Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"first-name\"\r\n             name=\"firstName\"\r\n             placeholder=\"Alice\"\r\n             [(ngModel)]=\"user.firstName\"\r\n             #firstNameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.firstName || (!firstNameField.valid && firstNameField.touched)}\"\r\n             required>\r\n             <span *ngIf=\"firstNameField.invalid && firstNameField.touched\" class=\"text-danger ml-2\">First Name is required</span>\r\n             <span *ngIf=\"profileErrors.firstName\" class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--First Name-->\r\n\r\n    <!--Last Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"last-name\"\r\n             class=\"font-weight-bold text-muted\">Last Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"last-name\"\r\n             name=\"lastName\"\r\n             placeholder=\"Wonderland\"\r\n             [(ngModel)]=\"user.lastName\"\r\n             #lastNameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.lastName || (!lastNameField.valid && lastNameField.touched)}\"\r\n             required>\r\n             <span *ngIf=\"lastNameField.invalid && lastNameField.touched\" class=\"text-danger ml-2\">Last Name is required</span>\r\n             <span *ngIf=\"profileErrors.lastName\" class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--/Last Name-->\r\n\r\n    <!--Action Buttons-->\r\n    <div class=\"form-group\">\r\n      <a class=\"btn btn-royal btn-block\"\r\n         [routerLink]=\"['/user', userId, 'wesbite']\">Websites</a>\r\n      <a class=\"btn btn-danger btn-block\"\r\n         [routerLink]=\"['/login']\">Logout</a>\r\n    </div>\r\n    <!--/Action Buttons-->\r\n  </form>\r\n</div>"
 
 /***/ }),
 
@@ -702,23 +702,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ProfileComponent = (function () {
-    function ProfileComponent(userService, activatedRoute) {
-        this.userService = userService;
+    function ProfileComponent(activatedRoute, userService, router) {
         this.activatedRoute = activatedRoute;
+        this.userService = userService;
+        this.router = router;
         this.profileErrors = {
             hasError: false
         };
     }
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
+        // get userid parameter route
         this.activatedRoute.params.subscribe(function (params) {
             _this.userId = params['uid'];
         });
         this.user = this.userService.findUserById(this.userId);
+        if (!this.user) {
+            this.router.navigate(['/login']);
+        }
     };
+    /** Save user profile details */
     ProfileComponent.prototype.saveProfile = function () {
-        console.log('hi');
         if (!this.profileForm.valid) {
             return;
         }
@@ -752,7 +758,11 @@ var ProfileComponent = (function () {
             this.user = this.userService.updateUser(this.userId, this.user);
         }
     };
-    /** Test if the given string contains characters apart from alphabets */
+    /** Test if the given string contains characters apart from alphabets
+     * @param s the string to be tested
+     * @param allowDot true, if dot is allowed in the string
+     * @returns true, if the string contains invalid characters
+     */
     ProfileComponent.prototype.testInvalidString = function (s, allowDot) {
         if (allowDot === void 0) { allowDot = false; }
         var regEx;
@@ -776,10 +786,10 @@ ProfileComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/user/profile/profile.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/user/profile/profile.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _d || Object])
 ], ProfileComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=profile.component.js.map
 
 /***/ }),
@@ -805,7 +815,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  <span class=\"display-3\">Register</span>\r\n</p>\r\n<hr>\r\n<br>\r\n<!--form-->\r\n<div class=\"form\">\r\n  <div class=\"form-group\">\r\n    <input placeholder=\"User Name\" type=\"text\" class=\"form-control\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <input placeholder=\"Password\" type=\"password\" class=\"form-control\"/>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <input placeholder=\"Verify Password\" type=\"password\" class=\"form-control\"/>\r\n  </div>\r\n  <!-- form actions -->\r\n  <div>\r\n    <a class=\"btn btn-royal btn-block\" [routerLink]=\"['/user/:uid']\">Register</a>\r\n    <a class=\"btn btn-danger btn-block\" [routerLink]=\"['/login']\">Cancel</a>\r\n  </div>\r\n  <!-- /form actions -->\r\n</div>\r\n<!--/form-->"
+module.exports = "<p>\r\n  <span class=\"display-3\">Register</span>\r\n</p>\r\n<hr>\r\n<br>\r\n<!--form-->\r\n<form class=\"form\"\r\n      #registerForm=\"ngForm\">\r\n  <!-- User Name -->\r\n  <div class=\"form-group\">\r\n    <input placeholder=\"User Name\"\r\n           type=\"text\"\r\n           class=\"form-control\"\r\n           name=\"usernameField\"\r\n           [(ngModel)]=\"username\"\r\n           #usernameField=\"ngModel\"\r\n           [ngClass]=\"{'border-danger': registrationErrors.username || (!usernameField.valid && usernameField.touched)}\"\r\n           required />\r\n    <span *ngIf=\"usernameField.invalid && usernameField.touched\"\r\n          class=\"text-danger ml-2\">Username is required</span>\r\n    <span *ngIf=\"registrationErrors.username\"\r\n          class=\"text-danger ml-2\">{{registrationErrors.username}}</span>\r\n  </div>\r\n\r\n  <!-- Password -->\r\n  <div class=\"form-group\">\r\n    <input placeholder=\"Password\"\r\n           type=\"password\"\r\n           class=\"form-control\"\r\n           name=\"passwordField\"\r\n           [(ngModel)]=\"password\"\r\n           #passwordField=\"ngModel\"\r\n           [ngClass]=\"{'border-danger': (!passwordField.valid && passwordField.touched)}\"\r\n           required />\r\n    <span *ngIf=\"passwordField.invalid && passwordField.touched\"\r\n          class=\"text-danger ml-2\">Password is required</span>\r\n  </div>\r\n\r\n  <!-- Verify Password -->\r\n  <div class=\"form-group\">\r\n    <input placeholder=\"Verify Password\"\r\n           type=\"password\"\r\n           class=\"form-control\"\r\n           name=\"verifyPasswordField\"\r\n           [(ngModel)]=\"verifyPassword\"\r\n           #verifyPasswordField=\"ngModel\"\r\n           [ngClass]=\"{'border-danger': verifyPassword !== password && verifyPasswordField.touched}\"\r\n           required />\r\n    <span *ngIf=\"verifyPasswordField.invalid && verifyPasswordField.touched\"\r\n          class=\"text-danger ml-2\">Verify Password is required</span>\r\n    <span *ngIf=\"verifyPassword && verifyPassword !== password && verifyPasswordField.touched\"\r\n          class=\"text-danger ml-2\">Passwords do not match</span>\r\n  </div>\r\n\r\n  <!-- form actions -->\r\n  <div>\r\n    <button class=\"btn btn-royal btn-block\"\r\n            (click)=\"register()\"\r\n            [disabled]=\"registerForm.invalid || verifyPassword !== password\">Register</button>\r\n    <a class=\"btn btn-danger btn-block\"\r\n       [routerLink]=\"['/login']\">Cancel</a>\r\n  </div>\r\n  <!-- /form actions -->\r\n</form>\r\n<!--/form-->"
 
 /***/ }),
 
@@ -815,6 +825,9 @@ module.exports = "<p>\r\n  <span class=\"display-3\">Register</span>\r\n</p>\r\n
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_model__ = __webpack_require__("../../../../../src/app/model/model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -825,10 +838,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var RegisterComponent = (function () {
-    function RegisterComponent() {
+    function RegisterComponent(userService, router) {
+        this.userService = userService;
+        this.router = router;
+        this.registrationErrors = {};
     }
-    RegisterComponent.prototype.ngOnInit = function () {
+    RegisterComponent.prototype.ngOnInit = function () { };
+    RegisterComponent.prototype.register = function () {
+        var newUser = new __WEBPACK_IMPORTED_MODULE_1__model_model__["a" /* User */]();
+        newUser.username = this.username;
+        newUser.password = this.password;
+        newUser = this.userService.createUser(newUser);
+        this.router.navigate(['/user', newUser._id]);
     };
     return RegisterComponent;
 }());
@@ -838,9 +863,10 @@ RegisterComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/user/register/register.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/user/register/register.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */]) === "function" && _b || Object])
 ], RegisterComponent);
 
+var _a, _b;
 //# sourceMappingURL=register.component.js.map
 
 /***/ }),
@@ -1398,10 +1424,10 @@ WidgetListComponent = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export User */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return User; });
 /* unused harmony export Website */
 /* unused harmony export Page */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WidgetType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return WidgetType; });
 /* unused harmony export Widget */
 /** Models a User object */
 var User = (function () {
@@ -1842,19 +1868,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var WidgetService = (function () {
     function WidgetService() {
         this.widgets = [
-            { '_id': '123', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["a" /* WidgetType */].HEADING, 'pageId': '321', 'size': 2, 'text': 'GIZMODO' },
-            { '_id': '234', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["a" /* WidgetType */].HEADING, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
+            { '_id': '123', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["b" /* WidgetType */].HEADING, 'pageId': '321', 'size': 2, 'text': 'GIZMODO' },
+            { '_id': '234', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["b" /* WidgetType */].HEADING, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
             {
-                '_id': '345', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["a" /* WidgetType */].IMAGE, 'pageId': '321', 'width': '100%',
+                '_id': '345', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["b" /* WidgetType */].IMAGE, 'pageId': '321', 'width': '100%',
                 'url': 'http://lorempixel.com/400/200/'
             },
-            { '_id': '456', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["a" /* WidgetType */].HTML, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' },
-            { '_id': '567', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["a" /* WidgetType */].HEADING, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
+            { '_id': '456', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["b" /* WidgetType */].HTML, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' },
+            { '_id': '567', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["b" /* WidgetType */].HEADING, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
             {
-                '_id': '678', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["a" /* WidgetType */].YOUTUBE, 'pageId': '321', 'width': '100%',
+                '_id': '678', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["b" /* WidgetType */].YOUTUBE, 'pageId': '321', 'width': '100%',
                 'url': 'https://youtu.be/AM2Ivdi9c4E'
             },
-            { '_id': '789', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["a" /* WidgetType */].HTML, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' }
+            { '_id': '789', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["b" /* WidgetType */].HTML, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' }
         ];
     }
     /**

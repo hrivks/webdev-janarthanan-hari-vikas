@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../../../model/model';
 import { UserService } from '../../../services/user.service.client';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -18,20 +19,26 @@ export class ProfileComponent implements OnInit {
     hasError: false
   };
 
+  // user profile form
   @ViewChild('f') profileForm: NgForm;
 
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
+    // get userid parameter route
     this.activatedRoute.params.subscribe((params: any) => {
       this.userId = params['uid'];
     });
 
     this.user = this.userService.findUserById(this.userId);
+    if (!this.user) {
+      this.router.navigate(['/login']);
+    }
+
   }
 
+  /** Save user profile details */
   saveProfile() {
-    console.log('hi');
     if (!this.profileForm.valid) {
       return;
     }
@@ -73,7 +80,11 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  /** Test if the given string contains characters apart from alphabets */
+  /** Test if the given string contains characters apart from alphabets
+   * @param s the string to be tested
+   * @param allowDot true, if dot is allowed in the string
+   * @returns true, if the string contains invalid characters
+   */
   private testInvalidString(s: string, allowDot: boolean = false) {
     let regEx: RegExp;
     if (allowDot) {
