@@ -320,7 +320,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-edit/page-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <!-- Sidebar -->\r\n  <div class=\"col-4 hvj-landscape-only\">\r\n    <!--Top Nav-->\r\n    <nav\r\n      class=\"navbar navbar-expand fixed-top navbar-dark bg-royal col-4 hvj-nav-border-right px-2\">\r\n      <ul class=\"navbar-nav mr-3\">\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link px-0\" [routerLink]=\"['user/:uid/website/:wid/page']\" title=\"Pages\">\r\n            <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n          </a>\r\n        </li>\r\n      </ul>\r\n\r\n      <a class=\"navbar-brand\" href=\"\">Pages</a>\r\n\r\n      <ul class=\"navbar-nav ml-auto\">\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link px-0\" href=\"page-new.html\" title=\"New Page\">\r\n            <span class=\"fa fa-plus fa-lg\"></span>\r\n          </a>\r\n        </li>\r\n      </ul>\r\n    </nav><!--/Top Nav-->\r\n\r\n    <!--Sidebar Content-->\r\n    <div>\r\n      <ul class=\"list-group  list-group-flush\">\r\n        <li class=\"list-group-item\">\r\n          <a class=\"btn btn-xs\" [routerLink]=\"['user/:uid/website/:wid/page/:pid/widget']\">\r\n            <span>Blog Post</span>\r\n          </a>\r\n          <a [routerLink]=\"['user/:uid/website/:wid/page/:pid']\" class=\"btn btn-xs float-right link-royal\">\r\n            <span class=\"fa fa-gear\"></span>\r\n          </a>\r\n        </li>\r\n        <li class=\"list-group-item\">\r\n          <a class=\"btn btn-xs\" [routerLink]=\"['user/:uid/website/:wid/page/:pid/widget']\">\r\n            <span>Blogs</span>\r\n          </a>\r\n          <a [routerLink]=\"['user/:uid/website/:wid/page/:pid']\" class=\"btn btn-xs float-right link-royal\">\r\n            <span class=\"fa fa-gear\"></span>\r\n          </a>\r\n        </li>\r\n        <li class=\"list-group-item\">\r\n          <a class=\"btn btn-xs\" [routerLink]=\"['user/:uid/website/:wid/page/:pid/widget']\">\r\n            <span>Home</span>\r\n          </a>\r\n          <a [routerLink]=\"['user/:uid/website/:wid/page/:pid']\" class=\"btn btn-xs float-right link-royal\">\r\n            <span class=\"fa fa-gear\"></span>\r\n          </a>\r\n        </li>\r\n        <li class=\"list-group-item\">\r\n          <a class=\"btn btn-xs\" [routerLink]=\"['user/:uid/website/:wid/page/:pid/widget']\">\r\n            <span>About</span>\r\n          </a>\r\n          <a [routerLink]=\"['user/:uid/website/:wid/page/:pid']\" class=\"btn btn-xs float-right link-royal\">\r\n            <span class=\"fa fa-gear\"></span>\r\n          </a>\r\n        </li>\r\n        <li class=\"list-group-item\">\r\n          <a class=\"btn btn-xs\" [routerLink]=\"['user/:uid/website/:wid/page/:pid/widget']\">\r\n            <span>Contact Us</span>\r\n          </a>\r\n          <a [routerLink]=\"['user/:uid/website/:wid/page/:pid']\" class=\"btn btn-xs float-right link-royal\">\r\n            <span class=\"fa fa-gear\"></span>\r\n          </a>\r\n        </li>\r\n      </ul>\r\n    </div><!--/Sidebar Content-->\r\n  </div><!--/Sidebar-->\r\n\r\n  <div class=\"hvj-vertical-line col-4 hvj-landscape-only\"></div>\r\n  <!--Main content-->\r\n  <div class=\"col\">\r\n    <!--Top Nav-->\r\n    <nav\r\n      class=\"navbar navbar-expand fixed-top navbar-dark bg-royal ml-auto hvj-landscape-col-8 px-2\">\r\n      <ul class=\"navbar-nav mr-3 hvj-portrait-only\">\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link px-0\" [routerLink]=\"['user/:uid/website/:wid/page']\" title=\"Websites\">\r\n            <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n          </a>\r\n        </li>\r\n      </ul>\r\n\r\n      <a class=\"navbar-brand\" href=\"\">Edit Page</a>\r\n\r\n      <ul class=\"navbar-nav ml-auto\">\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link px-0\" [routerLink]=\"['user/:uid/website/:wid/page']\" title=\"Save Changes\">\r\n            <span class=\"fa fa-check fa-lg\"></span>\r\n          </a>\r\n        </li>\r\n      </ul>\r\n    </nav><!--/Top Nav-->\r\n\r\n    <!--content-->\r\n    <div>\r\n      <form>\r\n        <!--Page Name-->\r\n        <div class=\"form-group\">\r\n          <label for=\"pageName\" class=\"font-weight-bold text-muted\">Page Name</label>\r\n          <input type=\"text\" class=\"form-control\" id=\"pageName\" placeholder=\"Page Name\"\r\n                 value=\"Blog Post\">\r\n        </div><!--/Page Name-->\r\n\r\n        <!--Page Title-->\r\n        <div class=\"form-group\">\r\n          <label for=\"pageTitle\" class=\"font-weight-bold text-muted\">Page Title</label>\r\n          <input type=\"text\" class=\"form-control\" id=\"pageTitle\" placeholder=\"Page Title\">\r\n        </div><!--/Page Name-->\r\n        <a class=\"btn btn-danger btn-block\" [routerLink]=\"['user/:uid/website/:wid/page']\">Delete</a>\r\n      </form>\r\n    </div><!--/content-->\r\n  </div><!--/Main content-->\r\n</div>"
+module.exports = "<div class=\"row\">\r\n  <!-- Sidebar -->\r\n  <div class=\"col-4 hvj-landscape-only px-1\">\r\n    <app-page-list compactMode=\"true\"></app-page-list>\r\n  </div>\r\n  <!--/Sidebar-->\r\n\r\n  <div class=\"hvj-vertical-line col-4 hvj-landscape-only\"></div>\r\n  <!--Main content-->\r\n  <div class=\"col\">\r\n    <!--Top Nav-->\r\n    <nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal ml-auto hvj-landscape-col-8 px-2\">\r\n      <ul class=\"navbar-nav mr-3 hvj-portrait-only\">\r\n        <li class=\"nav-item\">\r\n          <!-- Back button -->\r\n          <a class=\"nav-link px-0\"\r\n             [routerLink]=\"['/user', userId, 'website', websiteId, 'page']\"\r\n             title=\"Pages\">\r\n            <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n          </a>\r\n          <!-- /Back button -->\r\n        </li>\r\n      </ul>\r\n\r\n      <a class=\"navbar-brand\"\r\n         href=\"\">Edit Page</a>\r\n\r\n      <ul class=\"navbar-nav ml-auto\">\r\n        <li class=\"nav-item\">\r\n          <!-- Action button -->\r\n          <a class=\"nav-link px-0\"\r\n             (click)=\"saveChanges()\"\r\n             title=\"Save Changes\">\r\n            <span class=\"fa fa-check fa-lg\"></span>\r\n          </a>\r\n          <!-- /Action button -->\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <!--/Top Nav-->\r\n\r\n    <!--content-->\r\n    <div>\r\n      <form #pageEditForm=\"ngForm\">\r\n        <!--Page Name-->\r\n        <div class=\"form-group\">\r\n          <label for=\"pageName\"\r\n                 class=\"font-weight-bold text-muted\">Page Name</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"pageName\"\r\n                 name=\"name\"\r\n                 placeholder=\"Name\"\r\n                 [(ngModel)]=\"page.name\"\r\n                 #nameField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': nameField.invalid && nameField.touched}\"\r\n                 required>\r\n          <span *ngIf=\"nameField.invalid && nameField.touched\"\r\n                class=\"text-danger ml-2\">Name is required</span>\r\n        </div>\r\n        <!--/page Name-->\r\n\r\n        <!--Page Title-->\r\n        <div class=\"form-group\">\r\n          <label for=\"pageTitle\"\r\n                 class=\"font-weight-bold text-muted\">Page Title</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"pageTitle\"\r\n                 name=\"title\"\r\n                 placeholder=\"Title\"\r\n                 [(ngModel)]=\"page.title\"\r\n                 #titleField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': titleField.invalid && titleField.touched}\">\r\n        </div>\r\n        <!--/page Title-->\r\n\r\n        <!--Page Description-->\r\n        <div class=\"form-group\">\r\n          <label for=\"pageDescription\"\r\n                 class=\"font-weight-bold text-muted\">Page Description</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"pageDescription\"\r\n                 name=\"description\"\r\n                 placeholder=\"Description\"\r\n                 [(ngModel)]=\"page.descrption\"\r\n                 #descriptionField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': descriptionField.invalid && descriptionField.touched}\">\r\n        </div>\r\n        <!--/page Description-->\r\n\r\n        <button class=\"btn btn-danger btn-block\"\r\n                (click)=\"showDeleteConfirmation = true\"\r\n                [hidden]=\"showDeleteConfirmation\">Delete</button>\r\n        <button class=\"btn btn-danger btn-block\"\r\n                [hidden]=\"!showDeleteConfirmation\"\r\n                (click)=\"deletePage()\">Are you sure?</button>\r\n      </form>\r\n    </div>\r\n    <!--/content-->\r\n  </div>\r\n  <!--/Main content-->\r\n</div>"
 
 /***/ }),
 
@@ -330,6 +330,10 @@ module.exports = "<div class=\"row\">\r\n  <!-- Sidebar -->\r\n  <div class=\"co
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageEditComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_page_service_client__ = __webpack_require__("../../../../../src/app/services/page.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -340,22 +344,65 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
 var PageEditComponent = (function () {
-    function PageEditComponent() {
+    function PageEditComponent(activatedRoute, router, pageService, interactionsService) {
+        this.activatedRoute = activatedRoute;
+        this.router = router;
+        this.pageService = pageService;
+        this.interactionsService = interactionsService;
     }
     PageEditComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.showDeleteConfirmation = false;
+        // get userid parameter route
+        this.activatedRoute.params.subscribe(function (params) {
+            _this.userId = params['uid'];
+            _this.websiteId = params['wid'];
+            _this.pageId = params['pid'];
+            _this.page = _this.pageService.findPageById(_this.pageId);
+        });
+    };
+    /**
+     * Save changes to page object
+     */
+    PageEditComponent.prototype.saveChanges = function () {
+        if (this.pageEditForm.invalid) {
+            // touch controls to highlight validation
+            this.pageEditForm.controls.name.markAsTouched({ onlySelf: true });
+        }
+        else {
+            this.pageService.updatePage(this.pageId, this.page);
+            console.log('Page saved successfully');
+            this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+        }
+    };
+    /**
+     * Delete current page
+     */
+    PageEditComponent.prototype.deletePage = function () {
+        this.pageService.deletePage(this.pageId);
+        this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
     };
     return PageEditComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('pageEditForm'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */]) === "function" && _a || Object)
+], PageEditComponent.prototype, "pageEditForm", void 0);
 PageEditComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-page-edit',
         template: __webpack_require__("../../../../../src/app/components/page/page-edit/page-edit.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/page/page-edit/page-edit.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_page_service_client__["a" /* PageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_page_service_client__["a" /* PageService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_interactions_service_client__["a" /* InteractionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_interactions_service_client__["a" /* InteractionsService */]) === "function" && _e || Object])
 ], PageEditComponent);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=page-edit.component.js.map
 
 /***/ }),
@@ -381,7 +428,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-list/page-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link px-0\" [routerLink]=\"['user/:uid']\" title=\"Back to Profile\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n\r\n  <a class=\"navbar-brand\" href=\"\">Pages</a>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\" [routerLink]=\"['user/:uid/website/:wid/page/new']\" title=\"New Page\">\r\n        <span class=\"fa fa-plus fa-lg\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-outermost\">\r\n  <ul class=\"list-group list-group-flush\">\r\n    <li class=\"list-group-item\">\r\n      <a [routerLink]=\"['user/:uid/website/:wid/page/:pid/widget']\">\r\n        <span>Blog Post</span>\r\n      </a>\r\n      <a [routerLink]=\"['user/:uid/website/:wid/page/:pid']\" class=\"btn btn-xs float-right link-royal\">\r\n        <span class=\"fa fa-gear\"></span>\r\n      </a>\r\n    </li>\r\n    <li class=\"list-group-item\">\r\n      <a [routerLink]=\"['user/:uid/website/:wid/page/:pid/widget']\">\r\n        <span>Blogs</span>\r\n      </a>\r\n      <a [routerLink]=\"['user/:uid/website/:wid/page/:pid']\" class=\"btn btn-xs float-right link-royal\">\r\n        <span class=\"fa fa-gear\"></span>\r\n      </a>\r\n    </li>\r\n    <li class=\"list-group-item\">\r\n      <a [routerLink]=\"['user/:uid/website/:wid/page/:pid/widget']\">\r\n        <span>Home</span>\r\n      </a>\r\n      <a [routerLink]=\"['user/:uid/website/:wid/page/:pid']\" class=\"btn btn-xs float-right link-royal\">\r\n        <span class=\"fa fa-gear\"></span>\r\n      </a>\r\n    </li>\r\n    <li class=\"list-group-item\">\r\n      <a [routerLink]=\"['user/:uid/website/:wid/page/:pid/widget']\">\r\n        <span>About</span>\r\n      </a>\r\n      <a [routerLink]=\"['user/:uid/website/:wid/page/:pid']\" class=\"btn btn-xs float-right link-royal\">\r\n        <span class=\"fa fa-gear\"></span>\r\n      </a>\r\n    </li>\r\n    <li class=\"list-group-item\">\r\n      <a [routerLink]=\"['user/:uid/website/:wid/page/:pid/widget']\">\r\n        <span>Contact Us</span>\r\n      </a>\r\n      <a [routerLink]=\"['user/:uid/website/:wid/page/:pid']\" class=\"btn btn-xs float-right link-royal\">\r\n        <span class=\"fa fa-gear\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</div>"
+module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\"\r\n     [ngClass]=\"{'col-4 border border-left-0 border-top-0 border-bottom-0 border-secondary' : compactMode}\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['/user', userId, 'website']\"\r\n         title=\"Back to Profile\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n/\r\n  <a class=\"navbar-brand\"\r\n     href=\"\">Pages</a>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['/user', userId,'website', websiteId, 'page' ,'new']\"\r\n         title=\"New Page\">\r\n        <span class=\"fa fa-plus fa-lg\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container website-list\">\r\n  <ul class=\"list-group list-group-flush\">\r\n\r\n    <li class=\"list-group-item\"\r\n        *ngFor=\"let thisPage of pages\">\r\n      <a [routerLink]=\"['/user', userId,'website', thisPage.websiteId, 'page', thisPage._id, 'widget']\">\r\n        <span>{{thisPage.name}}</span>\r\n        <span class=\"small text-secondary font-italic d-sm-inline d-none ml-2\">{{thisPage.description}}</span>\r\n      </a>\r\n      <a [routerLink]=\"['/user', userId,'website', thisPage.websiteId, 'page', thisPage._id]\"\r\n         class=\"btn btn-xs float-right link-royal\">\r\n        <span class=\"fa fa-gear\"></span>\r\n      </a>\r\n    </li>\r\n\r\n    <!-- No websites message -->\r\n    <li class=\"list-group-item\"\r\n        *ngIf=\"pages.length == 0\">\r\n      <span>\r\n        <em>No Pages to show</em>\r\n      </span>\r\n    </li>\r\n\r\n    <li class=\"list-group-item\"\r\n        *ngIf=\"pages.length == 0\">\r\n      <a class=\"btn btn-xs link-royal\"\r\n         [routerLink]=\"['/user', userId,'website', websiteId, 'page' ,'new']\">\r\n        <i class=\"fa fa-plus fa-lg mr-2\"></i>\r\n        <em class=\"text-secondary\">Create new Page</em>\r\n      </a>\r\n    </li>\r\n\r\n  </ul>\r\n</div>"
 
 /***/ }),
 
@@ -391,6 +438,9 @@ module.exports = "\r\n<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageListComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_page_service_client__ = __webpack_require__("../../../../../src/app/services/page.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -401,22 +451,48 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var PageListComponent = (function () {
-    function PageListComponent() {
+    function PageListComponent(activatedRoute, pageService, interactionsService) {
+        this.activatedRoute = activatedRoute;
+        this.pageService = pageService;
+        this.interactionsService = interactionsService;
     }
     PageListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // get userid parameter route
+        this.activatedRoute.params.subscribe(function (params) {
+            _this.userId = params['uid'];
+            _this.websiteId = params['wid'];
+        });
+        this.getPages();
+        // register for website change event
+        this.interactionsService.registerCallback('pageUpdated', function () { _this.getPages(); });
+    };
+    /**
+     * Get list of Pages for the current user
+     */
+    PageListComponent.prototype.getPages = function () {
+        this.pages = this.pageService.findPageBywebsiteId(this.websiteId);
     };
     return PageListComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Boolean)
+], PageListComponent.prototype, "compactMode", void 0);
 PageListComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-page-list',
         template: __webpack_require__("../../../../../src/app/components/page/page-list/page-list.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/page/page-list/page-list.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_page_service_client__["a" /* PageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_page_service_client__["a" /* PageService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_interactions_service_client__["a" /* InteractionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_interactions_service_client__["a" /* InteractionsService */]) === "function" && _c || Object])
 ], PageListComponent);
 
+var _a, _b, _c;
 //# sourceMappingURL=page-list.component.js.map
 
 /***/ }),
@@ -442,7 +518,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-new/page-new.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <!-- Sidebar -->\r\n  <div class=\"col-4 hvj-landscape-only px-1\">\r\n    <!--Top Nav-->\r\n    <nav\r\n      class=\"navbar navbar-expand fixed-top navbar-dark bg-royal col-4 hvj-nav-border-right px-2\">\r\n      <ul class=\"navbar-nav mr-2\">\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link px-0\" [routerLink]=\"['user/:uid/website/:wid/page']\" title=\"Pages\">\r\n            <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n          </a>\r\n        </li>\r\n      </ul>\r\n\r\n      <a class=\"navbar-brand\" href=\"\">Pages</a>\r\n\r\n      <ul class=\"navbar-nav ml-auto\">\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link px-0\" href=\"page-new.html\" title=\"New Page\">\r\n            <span class=\"fa fa-plus fa-lg\"></span>\r\n          </a>\r\n        </li>\r\n      </ul>\r\n    </nav><!--/Top Nav-->\r\n\r\n    <!--Sidebar Content-->\r\n    <div>\r\n      <ul class=\"list-group list-group-flush\">\r\n      <li class=\"list-group-item \">\r\n        <a [routerLink]=\"['user/:uid/website/:wid/page/:pid/widget']\">\r\n          <span>Blog Post</span>\r\n        </a>\r\n        <a [routerLink]=\"['user/:uid/website/:wid/page/:pid']\" class=\"btn btn-xs float-right link-royal\">\r\n          <span class=\"fa fa-gear\"></span>\r\n        </a>\r\n      </li>\r\n      <li class=\"list-group-item\">\r\n        <a [routerLink]=\"['user/:uid/website/:wid/page/:pid/widget']\">\r\n          <span>Blogs</span>\r\n        </a>\r\n        <a [routerLink]=\"['user/:uid/website/:wid/page/:pid']\" class=\"btn btn-xs float-right link-royal\">\r\n          <span class=\"fa fa-gear\"></span>\r\n        </a>\r\n      </li>\r\n      <li class=\"list-group-item\">\r\n        <a [routerLink]=\"['user/:uid/website/:wid/page/:pid/widget']\">\r\n          <span>Home</span>\r\n        </a>\r\n        <a [routerLink]=\"['user/:uid/website/:wid/page/:pid']\" class=\"btn btn-xs float-right link-royal\">\r\n          <span class=\"fa fa-gear\"></span>\r\n        </a>\r\n      </li>\r\n      <li class=\"list-group-item\">\r\n        <a [routerLink]=\"['user/:uid/website/:wid/page/:pid/widget']\">\r\n          <span>About</span>\r\n        </a>\r\n        <a [routerLink]=\"['user/:uid/website/:wid/page/:pid']\" class=\"btn btn-xs float-right link-royal\">\r\n          <span class=\"fa fa-gear\"></span>\r\n        </a>\r\n      </li>\r\n      <li class=\"list-group-item\">\r\n        <a [routerLink]=\"['user/:uid/website/:wid/page/:pid/widget']\">\r\n          <span>Contact Us</span>\r\n        </a>\r\n        <a [routerLink]=\"['user/:uid/website/:wid/page/:pid']\" class=\"btn btn-xs float-right link-royal\">\r\n          <span class=\"fa fa-gear\"></span>\r\n        </a>\r\n      </li>\r\n      </ul>\r\n    </div><!--/Sidebar Content-->\r\n  </div><!--/Sidebar-->\r\n\r\n  <div class=\"hvj-vertical-line col-4 hvj-landscape-only\"></div>\r\n  <!--Main content-->\r\n  <div class=\"col\">\r\n    <!--Top Nav-->\r\n    <nav\r\n      class=\"navbar navbar-expand fixed-top navbar-dark bg-royal ml-auto hvj-landscape-col-8 px-2\">\r\n      <ul class=\"navbar-nav mr-3 hvj-portrait-only\">\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link px-0\" [routerLink]=\"['user/:uid/website/:wid/page']\" title=\"Pages\">\r\n            <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n          </a>\r\n        </li>\r\n      </ul>\r\n\r\n      <a class=\"navbar-brand\" href=\"\">New Page</a>\r\n\r\n      <ul class=\"navbar-nav ml-auto\">\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link px-0\" [routerLink]=\"['user/:uid/website/:wid/page']\" title=\"Save Changes\">\r\n            <span class=\"fa fa-check fa-lg\"></span>\r\n          </a>\r\n        </li>\r\n      </ul>\r\n    </nav><!--/Top Nav-->\r\n\r\n    <!--content-->\r\n    <div>\r\n      <form>\r\n        <!--Page Name-->\r\n        <div class=\"form-group\">\r\n          <label for=\"pageName\" class=\"font-weight-bold text-muted\">Page Name</label>\r\n          <input type=\"text\" class=\"form-control\" id=\"pageName\" placeholder=\"Page Name\">\r\n        </div><!--/Page Name-->\r\n\r\n        <!--Page Title-->\r\n        <div class=\"form-group\">\r\n          <label for=\"pageTitle\" class=\"font-weight-bold text-muted\">Page Title</label>\r\n          <input type=\"text\" class=\"form-control\" id=\"pageTitle\" placeholder=\"Page Title\">\r\n        </div><!--/Page Title-->\r\n\r\n        <a class=\"btn btn-danger btn-block\" [routerLink]=\"['user/:uid/website/:wid/page']\">Delete</a>\r\n      </form>\r\n    </div><!--/content-->\r\n  </div><!--/Main content-->\r\n</div>"
+module.exports = "<div class=\"row\">\r\n    <!-- Sidebar -->\r\n    <div class=\"col-4 hvj-landscape-only px-1\">\r\n      <app-page-list compactMode=\"true\"></app-page-list>\r\n    </div>\r\n    <!--/Sidebar-->\r\n  \r\n    <div class=\"hvj-vertical-line col-4 hvj-landscape-only\"></div>\r\n    <!--Main content-->\r\n    <div class=\"col\">\r\n      <!--Top Nav-->\r\n      <nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal ml-auto hvj-landscape-col-8 px-2\">\r\n        <ul class=\"navbar-nav mr-3 hvj-portrait-only\">\r\n          <li class=\"nav-item\">\r\n            <!-- Back button -->\r\n            <a class=\"nav-link px-0\"\r\n               [routerLink]=\"['/user', userId, 'website', websiteId, 'page']\"\r\n               title=\"Pages\">\r\n              <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n            </a>\r\n            <!-- / Back button -->\r\n          </li>\r\n        </ul>\r\n  \r\n        <a class=\"navbar-brand\"\r\n           href=\"\">New Page</a>\r\n  \r\n        <ul class=\"navbar-nav ml-auto\">\r\n          <li class=\"nav-item\">\r\n            <!-- Action button -->\r\n            <a class=\"nav-link px-0\"\r\n               (click)=\"saveChanges()\"\r\n               title=\"Save Changes\">\r\n              <span class=\"fa fa-check fa-lg\"></span>\r\n            </a>\r\n            <!-- /Action button -->\r\n          </li>\r\n        </ul>\r\n      </nav>\r\n      <!--/Top Nav-->\r\n  \r\n      <!--content-->\r\n      <div>\r\n        <form #pageNewForm=\"ngForm\">\r\n          <!--Page Name-->\r\n          <div class=\"form-group\">\r\n            <label for=\"pageName\"\r\n                   class=\"font-weight-bold text-muted\">Page Name</label>\r\n            <input type=\"text\"\r\n                   class=\"form-control\"\r\n                   id=\"pageName\"\r\n                   name=\"name\"\r\n                   placeholder=\"Name\"\r\n                   [(ngModel)]=\"page.name\"\r\n                   #nameField=\"ngModel\"\r\n                   [ngClass]=\"{'border-danger': nameField.invalid && nameField.touched}\"\r\n                   required>\r\n            <span *ngIf=\"nameField.invalid && nameField.touched\"\r\n                  class=\"text-danger ml-2\">Name is required</span>\r\n          </div>\r\n          <!--/page Name-->\r\n  \r\n          <!--Page Title-->\r\n          <div class=\"form-group\">\r\n            <label for=\"pageTitle\"\r\n                   class=\"font-weight-bold text-muted\">Page Title</label>\r\n            <input type=\"text\"\r\n                   class=\"form-control\"\r\n                   id=\"pageTitle\"\r\n                   name=\"title\"\r\n                   placeholder=\"Title\"\r\n                   [(ngModel)]=\"page.title\"\r\n                   #titleField=\"ngModel\"\r\n                   [ngClass]=\"{'border-danger': titleField.invalid && titleField.touched}\">\r\n          </div>\r\n          <!--/page Title-->\r\n  \r\n          <!--Page Description-->\r\n          <div class=\"form-group\">\r\n            <label for=\"pageDescription\"\r\n                   class=\"font-weight-bold text-muted\">Page Description</label>\r\n            <input type=\"text\"\r\n                   class=\"form-control\"\r\n                   id=\"pageDescription\"\r\n                   name=\"description\"\r\n                   placeholder=\"Description\"\r\n                   [(ngModel)]=\"page.descrption\"\r\n                   #descriptionField=\"ngModel\"\r\n                   [ngClass]=\"{'border-danger': descriptionField.invalid && descriptionField.touched}\">\r\n          </div>\r\n          <!--/page Description-->\r\n  \r\n          <a class=\"btn btn-danger btn-block\"\r\n            [routerLink]=\"['/user', userId, 'website', websiteId, 'page']\">\r\n            Cancel\r\n          </a>\r\n        </form>\r\n      </div>\r\n      <!--/content-->\r\n    </div>\r\n    <!--/Main content-->\r\n  </div>"
 
 /***/ }),
 
@@ -452,6 +528,11 @@ module.exports = "<div class=\"row\">\r\n  <!-- Sidebar -->\r\n  <div class=\"co
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageNewComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_model__ = __webpack_require__("../../../../../src/app/model/model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_page_service_client__ = __webpack_require__("../../../../../src/app/services/page.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -462,22 +543,58 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
+
 var PageNewComponent = (function () {
-    function PageNewComponent() {
+    function PageNewComponent(activatedRoute, router, pageService, interactionsService) {
+        this.activatedRoute = activatedRoute;
+        this.router = router;
+        this.pageService = pageService;
+        this.interactionsService = interactionsService;
     }
     PageNewComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.showDeleteConfirmation = false;
+        // get userid parameter route
+        this.activatedRoute.params.subscribe(function (params) {
+            _this.userId = params['uid'];
+            _this.websiteId = params['wid'];
+        });
+        this.page = new __WEBPACK_IMPORTED_MODULE_3__model_model__["a" /* Page */]();
+    };
+    /**
+     * Save changes to page object
+     */
+    PageNewComponent.prototype.saveChanges = function () {
+        if (this.pageNewForm.invalid) {
+            // touch controls to highlight validation
+            this.pageNewForm.controls.name.markAsTouched({ onlySelf: true });
+        }
+        else {
+            this.pageService.createPage(this.websiteId, this.page);
+            console.log('Page saved successfully');
+            this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+        }
     };
     return PageNewComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('pageNewForm'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */]) === "function" && _a || Object)
+], PageNewComponent.prototype, "pageNewForm", void 0);
 PageNewComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-page-new',
         template: __webpack_require__("../../../../../src/app/components/page/page-new/page-new.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/page/page-new/page-new.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_page_service_client__["a" /* PageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_page_service_client__["a" /* PageService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__services_interactions_service_client__["a" /* InteractionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_interactions_service_client__["a" /* InteractionsService */]) === "function" && _e || Object])
 ], PageNewComponent);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=page-new.component.js.map
 
 /***/ }),
@@ -853,7 +970,7 @@ var RegisterComponent = (function () {
     }
     RegisterComponent.prototype.ngOnInit = function () { };
     RegisterComponent.prototype.register = function () {
-        var newUser = new __WEBPACK_IMPORTED_MODULE_1__model_model__["a" /* User */]();
+        var newUser = new __WEBPACK_IMPORTED_MODULE_1__model_model__["b" /* User */]();
         newUser.username = this.username;
         newUser.password = this.password;
         newUser = this.userService.createUser(newUser);
@@ -908,8 +1025,9 @@ module.exports = "<div class=\"row\">\r\n  <!-- Sidebar -->\r\n  <div class=\"co
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_website_service_client__ = __webpack_require__("../../../../../src/app/services/website.service.client.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_model__ = __webpack_require__("../../../../../src/app/model/model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_website_service_client__ = __webpack_require__("../../../../../src/app/services/website.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -919,6 +1037,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -938,8 +1057,12 @@ var WebsiteEditComponent = (function () {
         this.activatedRoute.params.subscribe(function (params) {
             _this.userId = params['uid'];
             _this.websiteId = params['wid'];
+            _this.website = _this.websiteService.findWebsiteById(_this.websiteId);
+            if (!_this.website) {
+                console.log('Website with Id ' + _this.websiteId + ' does not exist');
+                _this.website = new __WEBPACK_IMPORTED_MODULE_3__model_model__["c" /* Website */]();
+            }
         });
-        this.website = this.websiteService.findWebsiteById(this.websiteId);
     };
     /**
      * Save changes to website object
@@ -971,7 +1094,7 @@ WebsiteEditComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/website/website-edit/website-edit.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/website/website-edit/website-edit.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_website_service_client__["a" /* WebsiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_website_service_client__["a" /* WebsiteService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_interactions_service_client__["a" /* InteractionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_interactions_service_client__["a" /* InteractionsService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_website_service_client__["a" /* WebsiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_website_service_client__["a" /* WebsiteService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__services_interactions_service_client__["a" /* InteractionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_interactions_service_client__["a" /* InteractionsService */]) === "function" && _e || Object])
 ], WebsiteEditComponent);
 
 var _a, _b, _c, _d, _e;
@@ -1132,9 +1255,12 @@ var WebsiteNewComponent = (function () {
         this.activatedRoute.params.subscribe(function (params) {
             _this.userId = params['uid'];
         });
-        this.website = new __WEBPACK_IMPORTED_MODULE_3__model_model__["b" /* Website */]();
+        this.website = new __WEBPACK_IMPORTED_MODULE_3__model_model__["c" /* Website */]();
         this.website.developerId = this.userId;
     };
+    /**
+     * create new page object
+     */
     WebsiteNewComponent.prototype.saveChanges = function () {
         if (this.websiteNewForm.invalid) {
             // touch controls to highlight validation
@@ -1536,10 +1662,10 @@ WidgetListComponent = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return User; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Website; });
-/* unused harmony export Page */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return WidgetType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return User; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return Website; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Page; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return WidgetType; });
 /* unused harmony export Widget */
 /** Models a User object */
 var User = (function () {
@@ -1661,7 +1787,10 @@ var PageService = (function () {
         this.pages = [
             { '_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem' },
             { '_id': '432', 'name': 'Post 2', 'websiteId': '456', 'description': 'Lorem' },
-            { '_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem' }
+            { '_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem' },
+            { '_id': '555', 'name': 'Post 4', 'websiteId': '789', 'description': 'Lorem' },
+            { '_id': '666', 'name': 'Post 5', 'websiteId': '789', 'description': 'Lorem Epsum 2' },
+            { '_id': '777', 'name': 'Post 6', 'websiteId': '789', 'description': 'Lorem Epsum' }
         ];
     }
     /**
@@ -1696,8 +1825,8 @@ var PageService = (function () {
      * @returns {Page[]} list of pages in the website specified by the given id
      */
     PageService.prototype.findPageBywebsiteId = function (websiteId) {
-        var page = this.pages.filter(function (p) { return p.websiteId === websiteId; });
-        return page ? Object.assign({}, page) : null;
+        var pages = this.pages.filter(function (p) { return p.websiteId === websiteId; });
+        return pages;
     };
     /**
      * Update page by Id
@@ -2044,19 +2173,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var WidgetService = (function () {
     function WidgetService() {
         this.widgets = [
-            { '_id': '123', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["c" /* WidgetType */].HEADING, 'pageId': '321', 'size': 2, 'text': 'GIZMODO' },
-            { '_id': '234', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["c" /* WidgetType */].HEADING, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
+            { '_id': '123', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["d" /* WidgetType */].HEADING, 'pageId': '321', 'size': 2, 'text': 'GIZMODO' },
+            { '_id': '234', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["d" /* WidgetType */].HEADING, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
             {
-                '_id': '345', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["c" /* WidgetType */].IMAGE, 'pageId': '321', 'width': '100%',
+                '_id': '345', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["d" /* WidgetType */].IMAGE, 'pageId': '321', 'width': '100%',
                 'url': 'http://lorempixel.com/400/200/'
             },
-            { '_id': '456', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["c" /* WidgetType */].HTML, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' },
-            { '_id': '567', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["c" /* WidgetType */].HEADING, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
+            { '_id': '456', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["d" /* WidgetType */].HTML, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' },
+            { '_id': '567', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["d" /* WidgetType */].HEADING, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
             {
-                '_id': '678', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["c" /* WidgetType */].YOUTUBE, 'pageId': '321', 'width': '100%',
+                '_id': '678', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["d" /* WidgetType */].YOUTUBE, 'pageId': '321', 'width': '100%',
                 'url': 'https://youtu.be/AM2Ivdi9c4E'
             },
-            { '_id': '789', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["c" /* WidgetType */].HTML, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' }
+            { '_id': '789', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["d" /* WidgetType */].HTML, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' }
         ];
     }
     /**

@@ -18,7 +18,7 @@ export class Website implements IAppEntity {
     _id: string;
     name: string;
     developerId: string;
-    description: string;
+    description?: string;
 }
 
 /** Models a page in a website */
@@ -26,7 +26,8 @@ export class Page implements IAppEntity {
     _id: string;
     name: string;
     websiteId: string;
-    description: string;
+    title?: string;
+    description?: string;
 }
 
 /** Types of supported widgets */

@@ -1,117 +1,102 @@
 <div class="row">
-  <!-- Sidebar -->
-  <div class="col-4 hvj-landscape-only px-1">
-    <!--Top Nav-->
-    <nav
-      class="navbar navbar-expand fixed-top navbar-dark bg-royal col-4 hvj-nav-border-right px-2">
-      <ul class="navbar-nav mr-2">
-        <li class="nav-item">
-          <a class="nav-link px-0" [routerLink]="['user/:uid/website/:wid/page']" title="Pages">
-            <span class="fa fa-chevron-left fa-lg"></span>
+    <!-- Sidebar -->
+    <div class="col-4 hvj-landscape-only px-1">
+      <app-page-list compactMode="true"></app-page-list>
+    </div>
+    <!--/Sidebar-->
+  
+    <div class="hvj-vertical-line col-4 hvj-landscape-only"></div>
+    <!--Main content-->
+    <div class="col">
+      <!--Top Nav-->
+      <nav class="navbar navbar-expand fixed-top navbar-dark bg-royal ml-auto hvj-landscape-col-8 px-2">
+        <ul class="navbar-nav mr-3 hvj-portrait-only">
+          <li class="nav-item">
+            <!-- Back button -->
+            <a class="nav-link px-0"
+               [routerLink]="['/user', userId, 'website', websiteId, 'page']"
+               title="Pages">
+              <span class="fa fa-chevron-left fa-lg"></span>
+            </a>
+            <!-- / Back button -->
+          </li>
+        </ul>
+  
+        <a class="navbar-brand"
+           href="">New Page</a>
+  
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <!-- Action button -->
+            <a class="nav-link px-0"
+               (click)="saveChanges()"
+               title="Save Changes">
+              <span class="fa fa-check fa-lg"></span>
+            </a>
+            <!-- /Action button -->
+          </li>
+        </ul>
+      </nav>
+      <!--/Top Nav-->
+  
+      <!--content-->
+      <div>
+        <form #pageNewForm="ngForm">
+          <!--Page Name-->
+          <div class="form-group">
+            <label for="pageName"
+                   class="font-weight-bold text-muted">Page Name</label>
+            <input type="text"
+                   class="form-control"
+                   id="pageName"
+                   name="name"
+                   placeholder="Name"
+                   [(ngModel)]="page.name"
+                   #nameField="ngModel"
+                   [ngClass]="{'border-danger': nameField.invalid && nameField.touched}"
+                   required>
+            <span *ngIf="nameField.invalid && nameField.touched"
+                  class="text-danger ml-2">Name is required</span>
+          </div>
+          <!--/page Name-->
+  
+          <!--Page Title-->
+          <div class="form-group">
+            <label for="pageTitle"
+                   class="font-weight-bold text-muted">Page Title</label>
+            <input type="text"
+                   class="form-control"
+                   id="pageTitle"
+                   name="title"
+                   placeholder="Title"
+                   [(ngModel)]="page.title"
+                   #titleField="ngModel"
+                   [ngClass]="{'border-danger': titleField.invalid && titleField.touched}">
+          </div>
+          <!--/page Title-->
+  
+          <!--Page Description-->
+          <div class="form-group">
+            <label for="pageDescription"
+                   class="font-weight-bold text-muted">Page Description</label>
+            <input type="text"
+                   class="form-control"
+                   id="pageDescription"
+                   name="description"
+                   placeholder="Description"
+                   [(ngModel)]="page.descrption"
+                   #descriptionField="ngModel"
+                   [ngClass]="{'border-danger': descriptionField.invalid && descriptionField.touched}">
+          </div>
+          <!--/page Description-->
+  
+          <a class="btn btn-danger btn-block"
+            [routerLink]="['/user', userId, 'website', websiteId, 'page']">
+            Cancel
           </a>
-        </li>
-      </ul>
-
-      <a class="navbar-brand" href="">Pages</a>
-
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link px-0" href="page-new.html" title="New Page">
-            <span class="fa fa-plus fa-lg"></span>
-          </a>
-        </li>
-      </ul>
-    </nav><!--/Top Nav-->
-
-    <!--Sidebar Content-->
-    <div>
-      <ul class="list-group list-group-flush">
-      <li class="list-group-item ">
-        <a [routerLink]="['user/:uid/website/:wid/page/:pid/widget']">
-          <span>Blog Post</span>
-        </a>
-        <a [routerLink]="['user/:uid/website/:wid/page/:pid']" class="btn btn-xs float-right link-royal">
-          <span class="fa fa-gear"></span>
-        </a>
-      </li>
-      <li class="list-group-item">
-        <a [routerLink]="['user/:uid/website/:wid/page/:pid/widget']">
-          <span>Blogs</span>
-        </a>
-        <a [routerLink]="['user/:uid/website/:wid/page/:pid']" class="btn btn-xs float-right link-royal">
-          <span class="fa fa-gear"></span>
-        </a>
-      </li>
-      <li class="list-group-item">
-        <a [routerLink]="['user/:uid/website/:wid/page/:pid/widget']">
-          <span>Home</span>
-        </a>
-        <a [routerLink]="['user/:uid/website/:wid/page/:pid']" class="btn btn-xs float-right link-royal">
-          <span class="fa fa-gear"></span>
-        </a>
-      </li>
-      <li class="list-group-item">
-        <a [routerLink]="['user/:uid/website/:wid/page/:pid/widget']">
-          <span>About</span>
-        </a>
-        <a [routerLink]="['user/:uid/website/:wid/page/:pid']" class="btn btn-xs float-right link-royal">
-          <span class="fa fa-gear"></span>
-        </a>
-      </li>
-      <li class="list-group-item">
-        <a [routerLink]="['user/:uid/website/:wid/page/:pid/widget']">
-          <span>Contact Us</span>
-        </a>
-        <a [routerLink]="['user/:uid/website/:wid/page/:pid']" class="btn btn-xs float-right link-royal">
-          <span class="fa fa-gear"></span>
-        </a>
-      </li>
-      </ul>
-    </div><!--/Sidebar Content-->
-  </div><!--/Sidebar-->
-
-  <div class="hvj-vertical-line col-4 hvj-landscape-only"></div>
-  <!--Main content-->
-  <div class="col">
-    <!--Top Nav-->
-    <nav
-      class="navbar navbar-expand fixed-top navbar-dark bg-royal ml-auto hvj-landscape-col-8 px-2">
-      <ul class="navbar-nav mr-3 hvj-portrait-only">
-        <li class="nav-item">
-          <a class="nav-link px-0" [routerLink]="['user/:uid/website/:wid/page']" title="Pages">
-            <span class="fa fa-chevron-left fa-lg"></span>
-          </a>
-        </li>
-      </ul>
-
-      <a class="navbar-brand" href="">New Page</a>
-
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link px-0" [routerLink]="['user/:uid/website/:wid/page']" title="Save Changes">
-            <span class="fa fa-check fa-lg"></span>
-          </a>
-        </li>
-      </ul>
-    </nav><!--/Top Nav-->
-
-    <!--content-->
-    <div>
-      <form>
-        <!--Page Name-->
-        <div class="form-group">
-          <label for="pageName" class="font-weight-bold text-muted">Page Name</label>
-          <input type="text" class="form-control" id="pageName" placeholder="Page Name">
-        </div><!--/Page Name-->
-
-        <!--Page Title-->
-        <div class="form-group">
-          <label for="pageTitle" class="font-weight-bold text-muted">Page Title</label>
-          <input type="text" class="form-control" id="pageTitle" placeholder="Page Title">
-        </div><!--/Page Title-->
-
-        <a class="btn btn-danger btn-block" [routerLink]="['user/:uid/website/:wid/page']">Delete</a>
-      </form>
-    </div><!--/content-->
-  </div><!--/Main content-->
-</div>
+        </form>
+      </div>
+      <!--/content-->
+    </div>
+    <!--/Main content-->
+  </div>

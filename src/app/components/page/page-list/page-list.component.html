@@ -1,19 +1,24 @@
-
 <!--Top Nav-->
-<nav class="navbar navbar-expand fixed-top navbar-dark bg-royal px-2">
+<nav class="navbar navbar-expand fixed-top navbar-dark bg-royal px-2"
+     [ngClass]="{'col-4 border border-left-0 border-top-0 border-bottom-0 border-secondary' : compactMode}">
   <ul class="navbar-nav mr-3">
     <li class="nav-item">
-      <a class="nav-link px-0" [routerLink]="['user/:uid']" title="Back to Profile">
+      <a class="nav-link px-0"
+         [routerLink]="['/user', userId, 'website']"
+         title="Back to Profile">
         <span class="fa fa-chevron-left fa-lg"></span>
       </a>
     </li>
   </ul>
-
-  <a class="navbar-brand" href="">Pages</a>
+/
+  <a class="navbar-brand"
+     href="">Pages</a>
 
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
-      <a class="nav-link" [routerLink]="['user/:uid/website/:wid/page/new']" title="New Page">
+      <a class="nav-link px-0"
+         [routerLink]="['/user', userId,'website', websiteId, 'page' ,'new']"
+         title="New Page">
         <span class="fa fa-plus fa-lg"></span>
       </a>
     </li>
@@ -21,47 +26,37 @@
 </nav>
 <!--/Top Nav-->
 
-<div class="container hvj-outermost">
+<div class="container website-list">
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">
-      <a [routerLink]="['user/:uid/website/:wid/page/:pid/widget']">
-        <span>Blog Post</span>
+
+    <li class="list-group-item"
+        *ngFor="let thisPage of pages">
+      <a [routerLink]="['/user', userId,'website', thisPage.websiteId, 'page', thisPage._id, 'widget']">
+        <span>{{thisPage.name}}</span>
+        <span class="small text-secondary font-italic d-sm-inline d-none ml-2">{{thisPage.description}}</span>
       </a>
-      <a [routerLink]="['user/:uid/website/:wid/page/:pid']" class="btn btn-xs float-right link-royal">
+      <a [routerLink]="['/user', userId,'website', thisPage.websiteId, 'page', thisPage._id]"
+         class="btn btn-xs float-right link-royal">
         <span class="fa fa-gear"></span>
       </a>
     </li>
-    <li class="list-group-item">
-      <a [routerLink]="['user/:uid/website/:wid/page/:pid/widget']">
-        <span>Blogs</span>
-      </a>
-      <a [routerLink]="['user/:uid/website/:wid/page/:pid']" class="btn btn-xs float-right link-royal">
-        <span class="fa fa-gear"></span>
+
+    <!-- No websites message -->
+    <li class="list-group-item"
+        *ngIf="pages.length == 0">
+      <span>
+        <em>No Pages to show</em>
+      </span>
+    </li>
+
+    <li class="list-group-item"
+        *ngIf="pages.length == 0">
+      <a class="btn btn-xs link-royal"
+         [routerLink]="['/user', userId,'website', websiteId, 'page' ,'new']">
+        <i class="fa fa-plus fa-lg mr-2"></i>
+        <em class="text-secondary">Create new Page</em>
       </a>
     </li>
-    <li class="list-group-item">
-      <a [routerLink]="['user/:uid/website/:wid/page/:pid/widget']">
-        <span>Home</span>
-      </a>
-      <a [routerLink]="['user/:uid/website/:wid/page/:pid']" class="btn btn-xs float-right link-royal">
-        <span class="fa fa-gear"></span>
-      </a>
-    </li>
-    <li class="list-group-item">
-      <a [routerLink]="['user/:uid/website/:wid/page/:pid/widget']">
-        <span>About</span>
-      </a>
-      <a [routerLink]="['user/:uid/website/:wid/page/:pid']" class="btn btn-xs float-right link-royal">
-        <span class="fa fa-gear"></span>
-      </a>
-    </li>
-    <li class="list-group-item">
-      <a [routerLink]="['user/:uid/website/:wid/page/:pid/widget']">
-        <span>Contact Us</span>
-      </a>
-      <a [routerLink]="['user/:uid/website/:wid/page/:pid']" class="btn btn-xs float-right link-royal">
-        <span class="fa fa-gear"></span>
-      </a>
-    </li>
+
   </ul>
 </div>

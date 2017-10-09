@@ -9,7 +9,10 @@ export class PageService {
   pages: Page[] = [
     { '_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem' },
     { '_id': '432', 'name': 'Post 2', 'websiteId': '456', 'description': 'Lorem' },
-    { '_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem' }
+    { '_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem' },
+    { '_id': '555', 'name': 'Post 4', 'websiteId': '789', 'description': 'Lorem' },
+    { '_id': '666', 'name': 'Post 5', 'websiteId': '789', 'description': 'Lorem Epsum 2' },
+    { '_id': '777', 'name': 'Post 6', 'websiteId': '789', 'description': 'Lorem Epsum' }
   ];
 
   /**
@@ -48,8 +51,8 @@ export class PageService {
    * @returns {Page[]} list of pages in the website specified by the given id
    */
   findPageBywebsiteId(websiteId: string): Page[] {
-    const page = this.pages.filter(p => p.websiteId === websiteId);
-    return page ? Object.assign({}, page) : null;
+    const pages = this.pages.filter(p => p.websiteId === websiteId);
+    return pages;
   }
 
   /**

@@ -31,7 +31,9 @@ export class WebsiteNewComponent implements OnInit {
     this.website.developerId = this.userId;
   }
 
-
+  /**
+   * create new page object
+   */
   saveChanges() {
     if (this.websiteNewForm.invalid) {
       // touch controls to highlight validation

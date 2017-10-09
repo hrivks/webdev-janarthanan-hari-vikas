@@ -30,9 +30,12 @@ export class WebsiteEditComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: any) => {
       this.userId = params['uid'];
       this.websiteId = params['wid'];
+      this.website = this.websiteService.findWebsiteById(this.websiteId);
+      if (!this.website) {
+        console.log('Website with Id ' + this.websiteId + ' does not exist');
+        this.website = new Website();
+      }
     });
-
-    this.website = this.websiteService.findWebsiteById(this.websiteId);
   }
 
   /**
