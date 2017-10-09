@@ -44,6 +44,8 @@
              [(ngModel)]="widget.name"
              #nameField="ngModel"
              [ngClass]="{'border-danger': nameField.invalid && nameField.touched}">
+      <span *ngIf="nameField.invalid && nameField.touched"
+            class="text-danger ml-2">Name is required</span>
     </div>
     <!--/Widget Name-->
 
@@ -103,6 +105,7 @@
     </div>
     <!--/Widget upload-->
     <button class="btn btn-royal btn-block">Upload Image</button>
+    
     <button class="btn btn-danger btn-block"
             (click)="deleteWidget()">Delete</button>
   </form>

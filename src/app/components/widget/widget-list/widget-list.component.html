@@ -27,31 +27,30 @@
 
 <div class="container hvj-outermost">
   <ul class="list-group">
-    <li class="list-group-item border-0 px-1">
-      <div class="hvj-widget hvj-widget-heading">
-        <h2>GIZMODO</h2>
+    <li class="list-group-item border-0 px-1" *ngFor="let thisWidget of widgets">
+      <div class="hvj-widget" [ngSwitch]="thisWidget.widgetType">
+          <div *ngSwitchCase="widgetType.Heading">
+              <app-widget-header [widget]="thisWidget"></app-widget-header>
+            </div>
+          
+            <div *ngSwitchCase="widgetType.Image">
+              <app-widget-image [widget]="thisWidget"></app-widget-image>
+            </div>
+          
+            <div *ngSwitchCase="widgetType.HTML">
+                <app-widget-html [widget]="thisWidget"></app-widget-html>
+              </div>
+          
+            <div *ngSwitchCase="widgetType.YouTube">
+              <app-widget-youtube [widget]="thisWidget"></app-widget-youtube>
+            </div>
       </div>
-      <div class="hvj-widget-actions btn-group ml-auto">
-        <a class="btn btn-xs mr-1 link-royal"
-           href="widget-heading.html"
-           title="Edit Heading">
-          <span class="fa fa-gear"></span>
-        </a>
-        <a class="btn btn-xs link-royal"
-           title="More Options">
-          <span class="fa fa-bars"></span>
-        </a>
-      </div>
-    </li>
 
-    <li class="list-group-item border-0 px-1">
-      <div class="hvj-widget hvj-widget-heading">
-        <h4>Bootstrap 4 Beta here!</h4>
-      </div>
+      <!-- Widget Action buttons -->
       <div class="hvj-widget-actions btn-group ml-auto">
         <a class="btn btn-xs mr-1 link-royal"
-           href="widget-heading.html"
-           title="Edit Heading">
+           [routerLink]="[thisWidget._id]"
+           title="Edit">
           <span class="fa fa-gear"></span>
         </a>
         <a class="btn btn-xs link-royal"
@@ -59,86 +58,8 @@
           <span class="fa fa-bars"></span>
         </a>
       </div>
+      <!-- /Widget Action buttons -->
     </li>
-
-    <li class="list-group-item border-0 px-1">
-      <div class="hvj-widget hvj-widget-image">
-        <img src="http://blog.getbootstrap.com/img/2017/bootstrap-4-beta.png"
-             class="img-fluid" />
-      </div>
-      <div class="hvj-widget-actions btn-group ml-auto">
-        <a class="btn btn-xs mr-1 link-royal"
-           href="widget-image.html"
-           title="Edit Image">
-          <span class="fa fa-gear"></span>
-        </a>
-        <a class="btn btn-xs link-royal"
-           title="More Options">
-          <span class="fa fa-bars"></span>
-        </a>
-      </div>
-    </li>
-
-    <li class="list-group-item border-0 px-1">
-      <div class="hvj-widget hvj-widget-html">
-        <p>
-          Long story short, shipping a beta means we’re done breaking all your stuff until our next major version (v5). We’re not perfect,
-          but we’ll be doing our best to keep all the classes, features, and docs URLs as they appear now in this release.
-          We can always add more things, but we cannot take away.
-          <a href="http://blog.getbootstrap.com/2017/08/10/bootstrap-4-beta/"
-             target="_blank">Its about time!</a>
-        </p>
-      </div>
-      <div class="hvj-widget-actions btn-group ml-auto">
-        <a class="btn btn-xs mr-1 link-royal"
-           href="widget-image.html"
-           title="Edit Image">
-          <span class="fa fa-gear"></span>
-        </a>
-        <a class="btn btn-xs link-royal"
-           title="More Options">
-          <span class="fa fa-bars"></span>
-        </a>
-      </div>
-    </li>
-
-    <li class="list-group-item border-0 px-1">
-      <div class="hvj-widget hvj-widget-heading">
-        <h4>What's new in Bootstrap 4?</h4>
-      </div>
-      <div class="hvj-widget-actions btn-group ml-auto">
-        <a class="btn btn-xs mr-1 link-royal"
-           href="widget-heading.html"
-           title="Edit Heading">
-          <span class="fa fa-gear"></span>
-        </a>
-        <a class="btn btn-xs link-royal"
-           title="More Options">
-          <span class="fa fa-bars"></span>
-        </a>
-      </div>
-    </li>
-
-    <li class="list-group-item border-0 px-1">
-      <div class="hvj-widget hvj-widget-youtube">
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item"
-                  src="https://www.youtube.com/embed/N8GksI_-iIM"
-                  frameborder="0"
-                  allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="hvj-widget-actions btn-group ml-auto">
-        <a class="btn btn-xs mr-1 link-royal"
-           href="widget-youtube.html"
-           title="Edit Youtube">
-          <span class="fa fa-gear"></span>
-        </a>
-        <a class="btn btn-xs link-royal"
-           title="More Options">
-          <span class="fa fa-bars"></span>
-        </a>
-      </div>
-    </li>
+    
   </ul>
 </div>

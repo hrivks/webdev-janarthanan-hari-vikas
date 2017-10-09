@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Widget } from '../../../model/model';
+import { Widget, WidgetType } from '../../../model/model';
 import { WidgetService } from '../../../services/widget.service.client';
 
 @Component({
@@ -15,8 +15,8 @@ export class WidgetEditComponent implements OnInit {
   widget: Widget;
 
   constructor(private activatedRoute: ActivatedRoute,
-     private router: Router,
-    private widgetService: WidgetService ) { }
+    private router: Router,
+    private widgetService: WidgetService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {

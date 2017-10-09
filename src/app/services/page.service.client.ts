@@ -52,7 +52,7 @@ export class PageService {
    */
   findPageBywebsiteId(websiteId: string): Page[] {
     const pages = this.pages.filter(p => p.websiteId === websiteId);
-    return pages;
+    return pages.map(p => Object.assign({}, p));
   }
 
   /**

@@ -17,7 +17,7 @@ export class WidgetService {
     { '_id': '567', 'widgetType': WidgetType.Heading, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
     {
       '_id': '678', 'widgetType': WidgetType.YouTube, 'pageId': '321', 'width': '100%',
-      'url': 'https://youtu.be/AM2Ivdi9c4E'
+      'url': 'https://www.youtube.com/embed/AM2Ivdi9c4E'
     },
     { '_id': '789', 'widgetType': WidgetType.HTML, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' }
   ];
@@ -44,13 +44,23 @@ export class WidgetService {
 
   /**
     * Find widget by Id
-    * @param widgetId id of the page
+    * @param widgetId id of the widget
     * @returns widget corresponding to the given Id; null if id widget doesn't exit
     */
     findWidgetById(widgetId: string): Widget {
     const widget = this.widgets.find(w => w._id === widgetId);
     return widget ? Object.assign({}, widget) : null;
   }
+
+  /**
+    * Find widget by Page Id
+    * @param pageId id of the page
+    * @returns widgets corresponding to the given Id; null if id widget doesn't exit
+    */
+    findWidgetsByPageId(pageId: string): Widget[] {
+      const widgets = this.widgets.filter(w => w.pageId === pageId);
+      return widgets.map(w => Object.assign({}, w));
+    }
 
   /**
    * Update widget by Id

@@ -5,16 +5,16 @@ import { Widget } from '../../../../model/model';
 import { WidgetService } from '../../../../services/widget.service.client';
 
 @Component({
-  selector: 'app-widget-header-edit',
-  templateUrl: './widget-header.component.html',
-  styleUrls: ['./widget-header.component.css']
+  selector: 'app-widget-html-edit',
+  templateUrl: './widget-html.component.html',
+  styleUrls: ['./widget-html.component.css']
 })
-export class WidgetHeaderEditComponent implements OnInit {
+export class WidgetHtmlEditComponent implements OnInit {
 
   // properties
   widgetId: string;
   widget: Widget;
-  @ViewChild('widgetHeaderEditForm') widgetHeaderEditForm: NgForm;
+  @ViewChild('widgetHtmlEditForm') widgetHtmlEditForm: NgForm;
 
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -31,10 +31,10 @@ export class WidgetHeaderEditComponent implements OnInit {
    * Save changes to widget
    */
   saveChanges() {
-    if (this.widgetHeaderEditForm.invalid) {
+    if (this.widgetHtmlEditForm.invalid) {
       // touch controls to trigger validation messages
-      this.widgetHeaderEditForm.controls.name.markAsTouched({ onlySelf: true});
-      this.widgetHeaderEditForm.controls.text.markAsTouched({ onlySelf: true});
+      this.widgetHtmlEditForm.controls.name.markAsTouched({ onlySelf: true});
+      this.widgetHtmlEditForm.controls.text.markAsTouched({ onlySelf: true});
     } else {
       this.widgetService.updateWidget(this.widgetId, this.widget);
       this.router.navigate(['../'], { relativeTo: this.activatedRoute });
@@ -48,4 +48,5 @@ export class WidgetHeaderEditComponent implements OnInit {
     this.widgetService.deleteWidget(this.widgetId);
     this.router.navigate(['../'], { relativeTo: this.activatedRoute });
   }
+
 }

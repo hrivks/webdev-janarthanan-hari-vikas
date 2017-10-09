@@ -9,7 +9,7 @@ import { WidgetService } from '../../../../services/widget.service.client';
   templateUrl: './widget-image.component.html',
   styleUrls: ['./widget-image.component.css']
 })
-export class WidgetImageComponent implements OnInit {
+export class WidgetImageEditComponent implements OnInit {
 
   // properties
   widgetId: string;
