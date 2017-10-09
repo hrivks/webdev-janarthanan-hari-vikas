@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Widget } from '../../../model/model';
+import { WidgetService } from '../../../services/widget.service.client';
 
 @Component({
   selector: 'app-widget-edit',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WidgetEditComponent implements OnInit {
 
-  constructor() { }
+  // properties
+  widget: Widget;
+
+  constructor(private activatedRoute: ActivatedRoute,
+     private router: Router,
+    private widgetService: WidgetService ) { }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe((params: any) => {
+      const widgetId = params['wgid'];
+      this.widget = this.widgetService.findWidgetById(widgetId);
+    });
   }
 
 }

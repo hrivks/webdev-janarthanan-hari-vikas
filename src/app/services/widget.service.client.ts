@@ -7,16 +7,16 @@ export class WidgetService {
   constructor() { }
 
   widgets: Widget[] = [
-    { '_id': '123', 'widgetType': WidgetType.HEADING, 'pageId': '321', 'size': 2, 'text': 'GIZMODO' },
-    { '_id': '234', 'widgetType': WidgetType.HEADING, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
+    { '_id': '123', 'widgetType': WidgetType.Heading, 'pageId': '321', 'size': 2, 'text': 'GIZMODO' },
+    { '_id': '234', 'widgetType': WidgetType.Heading, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
     {
-      '_id': '345', 'widgetType': WidgetType.IMAGE, 'pageId': '321', 'width': '100%',
+      '_id': '345', 'widgetType': WidgetType.Image, 'pageId': '321', 'width': '100%',
       'url': 'http://lorempixel.com/400/200/'
     },
     { '_id': '456', 'widgetType': WidgetType.HTML, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' },
-    { '_id': '567', 'widgetType': WidgetType.HEADING, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
+    { '_id': '567', 'widgetType': WidgetType.Heading, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
     {
-      '_id': '678', 'widgetType': WidgetType.YOUTUBE, 'pageId': '321', 'width': '100%',
+      '_id': '678', 'widgetType': WidgetType.YouTube, 'pageId': '321', 'width': '100%',
       'url': 'https://youtu.be/AM2Ivdi9c4E'
     },
     { '_id': '789', 'widgetType': WidgetType.HTML, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' }
@@ -28,7 +28,7 @@ export class WidgetService {
    * @param widget widget object created
    * @returns the created widget object
    */
-  createPage(pageId: string, widget: Widget): Widget {
+  createWidget(pageId: string, widget: Widget): Widget {
     let id = Math.floor(Math.random() * 10000);
 
     // ensure generated ID is unique
@@ -73,7 +73,7 @@ export class WidgetService {
    * @param widgetId Id of the widget to delete
    * @returns widget that was deleted, null if the id doesn't exist
    */
-  deletePage(widgetId: string): Widget {
+  deleteWidget(widgetId: string): Widget {
     const toDeleteIndex = this.widgets.findIndex(u => u._id === widgetId);
     const toDelete = this.widgets[toDeleteIndex];
     if (toDelete) {

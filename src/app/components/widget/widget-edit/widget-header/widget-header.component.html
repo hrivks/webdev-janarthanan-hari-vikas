@@ -1,47 +1,84 @@
 <!--Top Nav-->
-<nav
-class="navbar navbar-expand fixed-top navbar-dark bg-royal px-2">
-<ul class="navbar-nav mr-3">
-  <li class="nav-item">
-    <a class="nav-link px-0" [routerLink]="['user/:uid/website/:wid/page/:pid/widget']" title="Widgets">
-      <span class="fa fa-chevron-left fa-lg"></span>
-    </a>
-  </li>
-</ul>
+<nav class="navbar navbar-expand fixed-top navbar-dark bg-royal px-2">
+  <ul class="navbar-nav mr-3">
+    <li class="nav-item">
+      <a class="nav-link px-0"
+         [routerLink]="['../']"
+         title="Widgets">
+        <span class="fa fa-chevron-left fa-lg"></span>
+      </a>
+    </li>
+  </ul>
 
-<a class="navbar-brand" href="">Widget Edit</a>
+  <a class="navbar-brand"
+     href="">Widget Edit : Header</a>
 
-<ul class="navbar-nav ml-auto">
-  <li class="nav-item">
-    <a class="nav-link px-0" [routerLink]="['user/:uid/website/:wid/page/:pid/widget']" title="Save Changes">
-      <span class="fa fa-check fa-lg"></span>
-    </a>
-  </li>
-</ul>
-</nav><!--/Top Nav-->
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a class="nav-link px-0"
+         (click)="saveChanges()"
+         title="Save Changes">
+        <span class="fa fa-check fa-lg"></span>
+      </a>
+    </li>
+  </ul>
+</nav>
+<!--/Top Nav-->
 
 <!--content-->
-<div>
-<form>
-  <!--Widget Name-->
-  <div class="form-group">
-    <label for="widget-name" class="font-weight-bold text-muted">Name</label>
-    <input type="text" class="form-control" id="widget-name" placeholder="Name">
-  </div><!--/Widget Name-->
+<div class="container widget-header-edit">
+  <form #widgetHeaderEditForm="ngForm">
+    <!--Widget Name-->
+    <div class="form-group">
+      <label for="widget-name"
+             class="font-weight-bold text-muted">Name</label>
+      <input type="text"
+             class="form-control"
+             id="widgetName"
+             name="name"
+             placeholder="Name"
+             [(ngModel)]="widget.name"
+             #nameField="ngModel"
+             [ngClass]="{'border-danger': nameField.invalid && nameField.touched}"
+             required>
+      <span *ngIf="nameField.invalid && nameField.touched"
+            class="text-danger ml-2">Name is required</span>
+    </div>
+    <!--/Widget Name-->
 
-  <!--Widget Heading Title-->
-  <div class="form-group">
-    <label for="widget-heading-text" class="font-weight-bold text-muted">Text</label>
-    <input type="text" class="form-control" id="widget-heading-text" placeholder="Text">
-  </div><!--/Widget Heading Title-->
+    <!--Widget Heading Text-->
+    <div class="form-group">
+      <label for="widget-heading-text"
+             class="font-weight-bold text-muted">Text</label>
+      <input type="text"
+             class="form-control"
+             id="widget-heading-text"
+             name="text"
+             placeholder="Text"
+             [(ngModel)]="widget.text"
+             #textField="ngModel"
+             required>
+      <span *ngIf="textField.invalid && textField.touched"
+            class="text-danger ml-2">Text is required</span>
+    </div>
+    <!--/Widget Heading Text-->
 
-  <!--Widget Heading Size-->
-  <div class="form-group">
-    <label for="widget-heading-size" class="font-weight-bold text-muted">Size</label>
-    <input type="number" class="form-control" id="widget-heading-size" placeholder="Size">
-  </div><!--/Widget Heading Size-->
+    <!--Widget Heading Size-->
+    <div class="form-group">
+      <label for="widget-heading-size"
+             class="font-weight-bold text-muted">Size</label>
+      <input type="number"
+             class="form-control"
+             id="widget-heading-size"
+             name="size"
+             placeholder="Size"
+             [(ngModel)]="widget.size"
+             ngModel>
+    </div>
+    <!--/Widget Heading Size-->
 
-  <a class="btn btn-danger btn-block" [routerLink]="['user/:uid/website/:wid/page/:pid/widget']">Delete</a>
-</form>
-</div><!--/content-->
-
+    <button class="btn btn-danger btn-block"
+            (click)="deleteWidget()">Delete</button>
+  </form>
+</div>
+<!--/content-->
