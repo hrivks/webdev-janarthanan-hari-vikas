@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Widget } from '../../../../model/model';
 
 @Component({
@@ -16,7 +16,9 @@ export class WidgetYoutubeComponent implements OnInit {
   constructor(public sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.widget.url);
+    if (this.widget.url) {
+      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.widget.url);
+    }
   }
 
 }

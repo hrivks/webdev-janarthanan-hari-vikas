@@ -1,3 +1,6 @@
 <div class="hvj-widget-html">
- <div [innerHtml]= "widget.text"></div>
+    <div *ngIf="widget.text"
+         [innerHtml]="widget.text"></div>
+    <p *ngIf="!widget.text"
+       class="small font-italic text-secondary"> No content</p>
 </div>

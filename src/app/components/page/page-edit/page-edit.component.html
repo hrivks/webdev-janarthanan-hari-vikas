@@ -14,7 +14,7 @@
         <li class="nav-item">
           <!-- Back button -->
           <a class="nav-link px-0"
-             [routerLink]="['/user', userId, 'website', websiteId, 'page']"
+             [routerLink]="['../']"
              title="Pages">
             <span class="fa fa-chevron-left fa-lg"></span>
           </a>
@@ -90,12 +90,31 @@
         </div>
         <!--/page Description-->
 
-        <button class="btn btn-danger btn-block"
-                (click)="showDeleteConfirmation = true"
-                [hidden]="showDeleteConfirmation">Delete</button>
-        <button class="btn btn-danger btn-block"
-                [hidden]="!showDeleteConfirmation"
-                (click)="deletePage()">Are you sure?</button>
+        <!-- Form buttons -->
+        <div class="row no-gutters">
+          <div class="col-12 col-sm-9 mr-1">
+            <!-- Save button -->
+            <button class="btn btn-success btn-block mr-1 mb-2"
+                    title="Save Changes"
+                    (click)="saveChanges()">
+              <i class="fa fa-check"></i>
+            </button>
+          </div>
+          <div class="col">
+            <!-- Delete button -->
+            <button class="btn btn-danger btn-block"
+                    title="Delete Page"
+                    (click)="showDeleteConfirmation = true"
+                    [hidden]="showDeleteConfirmation">
+              <i class="fa fa-trash"></i>
+            </button>
+            <button class="btn btn-danger btn-block mt-0"
+                    title="Delete Page"
+                    [hidden]="!showDeleteConfirmation"
+                    (click)="deletePage()">sure?</button>
+          </div>
+        </div>
+
       </form>
     </div>
     <!--/content-->

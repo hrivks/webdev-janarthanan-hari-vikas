@@ -33,11 +33,15 @@ export class WidgetHeaderEditComponent implements OnInit {
   saveChanges() {
     if (this.widgetHeaderEditForm.invalid) {
       // touch controls to trigger validation messages
-      this.widgetHeaderEditForm.controls.name.markAsTouched({ onlySelf: true});
-      this.widgetHeaderEditForm.controls.text.markAsTouched({ onlySelf: true});
+      this.widgetHeaderEditForm.controls.name.markAsTouched({ onlySelf: true });
+      this.widgetHeaderEditForm.controls.text.markAsTouched({ onlySelf: true });
     } else {
-      this.widgetService.updateWidget(this.widgetId, this.widget);
-      this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+      this.widget = this.widgetService.updateWidget(this.widgetId, this.widget);
+      if (this.widget) {
+        this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+      } else {
+        console.log('Widget update failed');
+      }
     }
   }
 

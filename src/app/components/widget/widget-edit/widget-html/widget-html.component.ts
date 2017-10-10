@@ -36,8 +36,12 @@ export class WidgetHtmlEditComponent implements OnInit {
       this.widgetHtmlEditForm.controls.name.markAsTouched({ onlySelf: true});
       this.widgetHtmlEditForm.controls.text.markAsTouched({ onlySelf: true});
     } else {
-      this.widgetService.updateWidget(this.widgetId, this.widget);
-      this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+      this.widget = this.widgetService.updateWidget(this.widgetId, this.widget);
+      if (this.widget) {
+        this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+      } else {
+        console.log('Widget update failed');
+      }
     }
   }
 

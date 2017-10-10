@@ -1,8 +1,11 @@
 <div class="hvj-widget-youtube">
-  <div class="embed-responsive embed-responsive-16by9">
+  <div class="embed-responsive embed-responsive-16by9"
+       *ngIf="safeUrl">
     <iframe class="embed-responsive-item"
-            [width]="widget.width"
+            [style.width]="widget.width ? widget.width : '100%'"
             [src]="safeUrl"
             allowfullscreen></iframe>
   </div>
+  <p *ngIf="!widget.url"
+     class="small font-italics text-secondary">No URL specified</p>
 </div>

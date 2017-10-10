@@ -30,7 +30,7 @@
 <!--/Top Nav-->
 
 <!--content-->
-<div class="container widget-image-edit">
+<div class="container hvj-widget-image-edit">
   <form #widgetImageEditForm="ngForm">
     <!--Widget Name-->
     <div class="form-group">
@@ -42,10 +42,7 @@
              name="name"
              placeholder="Name"
              [(ngModel)]="widget.name"
-             #nameField="ngModel"
-             [ngClass]="{'border-danger': nameField.invalid && nameField.touched}">
-      <span *ngIf="nameField.invalid && nameField.touched"
-            class="text-danger ml-2">Name is required</span>
+             #nameField="ngModel">
     </div>
     <!--/Widget Name-->
 
@@ -104,10 +101,35 @@
              placeholder="Upload">
     </div>
     <!--/Widget upload-->
-    <button class="btn btn-royal btn-block">Upload Image</button>
-    
-    <button class="btn btn-danger btn-block"
-            (click)="deleteWidget()">Delete</button>
+    <div class="form-group">
+      <button class="btn btn-royal btn-block">Upload Image</button>
+    </div>
+
+    <!-- Form buttons -->
+    <div class="row no-gutters">
+      <div class="col-12 col-sm-9 mr-1">
+        <!-- Save button -->
+        <button class="btn btn-success btn-block mr-1 mb-2"
+                title="Save Widget"
+                (click)="saveChanges()">
+          <i class="fa fa-check"></i>
+        </button>
+      </div>
+      <div class="col">
+        <!-- Delete button -->
+        <button class="btn btn-danger btn-block"
+                title="Delete Widget"
+                (click)="showDeleteConfirmation = true"
+                [hidden]="showDeleteConfirmation">
+          <i class="fa fa-trash"></i>
+        </button>
+        <button class="btn btn-danger btn-block mt-0"
+                title="Delete Widget"
+                [hidden]="!showDeleteConfirmation"
+                (click)="deleteWidget()">sure?</button>
+      </div>
+    </div>
+
   </form>
 </div>
 <!--/content-->

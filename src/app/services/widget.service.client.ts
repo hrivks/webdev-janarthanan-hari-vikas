@@ -70,7 +70,7 @@ export class WidgetService {
    */
   updateWidget(widgetId: string, widget: Widget): Widget {
     const toUpdateIndex = this.widgets.findIndex(w => w._id === widgetId);
-    if (toUpdateIndex > 0) {
+    if (toUpdateIndex > -1) {
       this.widgets[toUpdateIndex] = widget;
       return Object.assign({}, widget);
     } else {

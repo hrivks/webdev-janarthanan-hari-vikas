@@ -1,102 +1,119 @@
 <div class="row">
-    <!-- Sidebar -->
-    <div class="col-4 hvj-landscape-only px-1">
-      <app-page-list compactMode="true"></app-page-list>
-    </div>
-    <!--/Sidebar-->
-  
-    <div class="hvj-vertical-line col-4 hvj-landscape-only"></div>
-    <!--Main content-->
-    <div class="col">
-      <!--Top Nav-->
-      <nav class="navbar navbar-expand fixed-top navbar-dark bg-royal ml-auto hvj-landscape-col-8 px-2">
-        <ul class="navbar-nav mr-3 hvj-portrait-only">
-          <li class="nav-item">
-            <!-- Back button -->
-            <a class="nav-link px-0"
-               [routerLink]="['/user', userId, 'website', websiteId, 'page']"
-               title="Pages">
-              <span class="fa fa-chevron-left fa-lg"></span>
-            </a>
-            <!-- / Back button -->
-          </li>
-        </ul>
-  
-        <a class="navbar-brand"
-           href="">New Page</a>
-  
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <!-- Action button -->
-            <a class="nav-link px-0"
-               (click)="saveChanges()"
-               title="Save Changes">
-              <span class="fa fa-check fa-lg"></span>
-            </a>
-            <!-- /Action button -->
-          </li>
-        </ul>
-      </nav>
-      <!--/Top Nav-->
-  
-      <!--content-->
-      <div>
-        <form #pageNewForm="ngForm">
-          <!--Page Name-->
-          <div class="form-group">
-            <label for="pageName"
-                   class="font-weight-bold text-muted">Page Name</label>
-            <input type="text"
-                   class="form-control"
-                   id="pageName"
-                   name="name"
-                   placeholder="Name"
-                   [(ngModel)]="page.name"
-                   #nameField="ngModel"
-                   [ngClass]="{'border-danger': nameField.invalid && nameField.touched}"
-                   required>
-            <span *ngIf="nameField.invalid && nameField.touched"
-                  class="text-danger ml-2">Name is required</span>
-          </div>
-          <!--/page Name-->
-  
-          <!--Page Title-->
-          <div class="form-group">
-            <label for="pageTitle"
-                   class="font-weight-bold text-muted">Page Title</label>
-            <input type="text"
-                   class="form-control"
-                   id="pageTitle"
-                   name="title"
-                   placeholder="Title"
-                   [(ngModel)]="page.title"
-                   #titleField="ngModel"
-                   [ngClass]="{'border-danger': titleField.invalid && titleField.touched}">
-          </div>
-          <!--/page Title-->
-  
-          <!--Page Description-->
-          <div class="form-group">
-            <label for="pageDescription"
-                   class="font-weight-bold text-muted">Page Description</label>
-            <input type="text"
-                   class="form-control"
-                   id="pageDescription"
-                   name="description"
-                   placeholder="Description"
-                   [(ngModel)]="page.descrption"
-                   #descriptionField="ngModel"
-                   [ngClass]="{'border-danger': descriptionField.invalid && descriptionField.touched}">
-          </div>
-          <!--/page Description-->
-  
-          <a class="btn btn-danger btn-block"
-            [routerLink]="['/user', userId, 'website', websiteId, 'page']">
-            Cancel
-          </a>
-        </form>
-      </div>
-      <!--/content-->
-    </div>
-    <!--/Main content-->
+  <!-- Sidebar -->
+  <div class="col-4 hvj-landscape-only px-1">
+    <app-page-list compactMode="true"></app-page-list>
   </div>
+  <!--/Sidebar-->
+
+  <div class="hvj-vertical-line col-4 hvj-landscape-only"></div>
+  <!--Main content-->
+  <div class="col">
+    <!--Top Nav-->
+    <nav class="navbar navbar-expand fixed-top navbar-dark bg-royal ml-auto hvj-landscape-col-8 px-2">
+      <ul class="navbar-nav mr-3 hvj-portrait-only">
+        <li class="nav-item">
+          <!-- Back button -->
+          <a class="nav-link px-0"
+             [routerLink]="['/..']"
+             title="Pages">
+            <span class="fa fa-chevron-left fa-lg"></span>
+          </a>
+          <!-- / Back button -->
+        </li>
+      </ul>
+
+      <a class="navbar-brand"
+         href="">New Page</a>
+
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <!-- Action button -->
+          <a class="nav-link px-0"
+             (click)="saveChanges()"
+             title="Save Changes">
+            <span class="fa fa-check fa-lg"></span>
+          </a>
+          <!-- /Action button -->
+        </li>
+      </ul>
+    </nav>
+    <!--/Top Nav-->
+
+    <!--content-->
+    <div>
+      <form #pageNewForm="ngForm">
+        <!--Page Name-->
+        <div class="form-group">
+          <label for="pageName"
+                 class="font-weight-bold text-muted">Page Name</label>
+          <input type="text"
+                 class="form-control"
+                 id="pageName"
+                 name="name"
+                 placeholder="Name"
+                 [(ngModel)]="page.name"
+                 #nameField="ngModel"
+                 [ngClass]="{'border-danger': nameField.invalid && nameField.touched}"
+                 required>
+          <span *ngIf="nameField.invalid && nameField.touched"
+                class="text-danger ml-2">Name is required</span>
+        </div>
+        <!--/page Name-->
+
+        <!--Page Title-->
+        <div class="form-group">
+          <label for="pageTitle"
+                 class="font-weight-bold text-muted">Page Title</label>
+          <input type="text"
+                 class="form-control"
+                 id="pageTitle"
+                 name="title"
+                 placeholder="Title"
+                 [(ngModel)]="page.title"
+                 #titleField="ngModel"
+                 [ngClass]="{'border-danger': titleField.invalid && titleField.touched}">
+        </div>
+        <!--/page Title-->
+
+        <!--Page Description-->
+        <div class="form-group">
+          <label for="pageDescription"
+                 class="font-weight-bold text-muted">Page Description</label>
+          <input type="text"
+                 class="form-control"
+                 id="pageDescription"
+                 name="description"
+                 placeholder="Description"
+                 [(ngModel)]="page.descrption"
+                 #descriptionField="ngModel"
+                 [ngClass]="{'border-danger': descriptionField.invalid && descriptionField.touched}">
+        </div>
+        <!--/page Description-->
+
+        <!-- Form buttons -->
+        <div class="row no-gutters">
+          <div class="col-12 col-sm-9 mr-1">
+            <!-- Save button -->
+            <button class="btn btn-success btn-block mr-1 mb-2"
+                    title="Create Page"
+                    (click)="saveChanges()">
+              <i class="fa fa-check"></i>
+            </button>
+          </div>
+          <div class="col">
+            <!-- Cancel button -->
+            <a class="btn btn-danger btn-block"
+               title="Cancel"
+               [routerLink]="['../']">
+              <i class="fa fa-times"></i>
+            </a>
+
+          </div>
+        </div>
+
+      </form>
+    </div>
+    <!--/content-->
+  </div>
+  <!--/Main content-->
+</div>

@@ -3,11 +3,13 @@
      [ngClass]="{'col-4 border border-left-0 border-top-0 border-bottom-0 border-secondary' : compactMode}">
   <ul class="navbar-nav mr-3">
     <li class="nav-item">
+      <!-- Back button -->
       <a class="nav-link px-0"
-         [routerLink]="['/user', userId]"
-         title="Back to Profile">
+         [routerLink]="[ '../']"
+         title="Back">
         <span class="fa fa-chevron-left fa-lg"></span>
       </a>
+      <!-- /Back button -->
     </li>
   </ul>
 
@@ -16,22 +18,24 @@
 
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
+      <!-- Action button -->
       <a class="nav-link px-0"
-         [routerLink]="['/user', userId,'website','new']"
+         [routerLink]="['/user', userId, 'website', 'new']"
          title="New Website">
         <span class="fa fa-plus fa-lg"></span>
       </a>
+      <!-- /Action button -->
     </li>
   </ul>
 </nav>
 <!--/Top Nav-->
 
-<div class="container website-list">
+<div class="container hvj-website-list">
   <ul class="list-group list-group-flush">
 
     <li class="list-group-item"
         *ngFor="let thisWebsite of websites">
-      <a [routerLink]="['/user', userId,'website', thisWebsite._id, 'page']">
+      <a [routerLink]="['/user', userId, 'website', thisWebsite._id, 'page']">
         <span>{{thisWebsite.name}}</span>
         <span class="small text-secondary font-italic d-sm-inline d-none ml-2">{{thisWebsite.description}}</span>
       </a>
@@ -52,7 +56,7 @@
     <li class="list-group-item"
         *ngIf="websites.length == 0">
       <a class="btn btn-xs link-royal"
-         [routerLink]="['/user', userId,'website','new']">
+         [routerLink]="['new']">
         <i class="fa fa-plus fa-lg mr-2"></i>
         <em class="text-secondary">Create new website</em>
       </a>

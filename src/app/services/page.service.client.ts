@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Page } from '../model/model';
+import { WidgetService } from './widget.service.client';
 
 @Injectable()
 export class PageService {
 
-  constructor() { }
+  constructor(private widgetService: WidgetService) { }
 
   pages: Page[] = [
     { '_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem' },
@@ -79,7 +80,15 @@ export class PageService {
   deletePage(pageId: string): Page {
     const toDeleteIndex = this.pages.findIndex(u => u._id === pageId);
     const toDelete = this.pages[toDeleteIndex];
+
     if (toDelete) {
+
+      // delete all widgets in the page
+      const widgetsToDelete = this.widgetService.findWidgetsByPageId(pageId);
+      widgetsToDelete.forEach(w => {
+        this.widgetService.deleteWidget(w._id);
+      });
+
       this.pages.splice(toDeleteIndex, 1);
     }
     return toDelete;

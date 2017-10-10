@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Website } from '../model/model';
+import { PageService } from './page.service.client';
 
 @Injectable()
 export class WebsiteService {
 
-  constructor() { }
+  constructor(private pageService: PageService) { }
 
   websites: Website[] = [
     { '_id': '123', 'name': 'Facebook', 'developerId': '456', 'description': 'Lorem' },
@@ -63,7 +64,7 @@ export class WebsiteService {
    */
   updateWebsite(websiteId: string, website: Website): Website {
     const toUpdateIndex = this.websites.findIndex(w => w._id === websiteId);
-    if (toUpdateIndex > 0) {
+    if (toUpdateIndex > -1) {
       this.websites[toUpdateIndex] = website;
       return Object.assign({}, website);
     } else {
@@ -80,6 +81,13 @@ export class WebsiteService {
     const toDeleteIndex = this.websites.findIndex(u => u._id === websiteId);
     const toDelete = this.websites[toDeleteIndex];
     if (toDelete) {
+
+      // delete pages in website
+      const pagesToDelete = this.pageService.findPageBywebsiteId(websiteId);
+      pagesToDelete.forEach(p => {
+        this.pageService.deletePage(p._id);
+      });
+
       this.websites.splice(toDeleteIndex, 1);
     }
     return toDelete;

@@ -1,18 +1,18 @@
-<div [(ngSwitch)]="widget.widgetType">
+<div class="hvj-widget-edit" [(ngSwitch)]="widget.widgetType">
 
-  <div *ngSwitchCase="'Heading'">
+  <div *ngSwitchCase="widgetType.Heading">
     <app-widget-header-edit></app-widget-header-edit>
   </div>
 
-  <div *ngSwitchCase="'Image'">
+  <div *ngSwitchCase="widgetType.Image">
     <app-widget-image-edit></app-widget-image-edit>
   </div>
 
-  <div *ngSwitchCase="'HTML'">
+  <div *ngSwitchCase="widgetType.HTML">
       <app-widget-html-edit></app-widget-html-edit>
     </div>
 
-  <div *ngSwitchCase="'YouTube'">
+  <div *ngSwitchCase="widgetType.YouTube">
     <app-widget-youtube-edit></app-widget-youtube-edit>
   </div>
 

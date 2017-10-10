@@ -39,9 +39,14 @@ export class WebsiteNewComponent implements OnInit {
       // touch controls to highlight validation
       this.websiteNewForm.controls.name.markAsTouched({ onlySelf: true });
     } else {
-      this.websiteService.createWebsite(this.userId, this.website);
-      console.log('website created successfully');
-      this.router.navigate(['/user', this.userId, 'website']);
+      this.website = this.websiteService.createWebsite(this.userId, this.website);
+      if (this.website) {
+        console.log('website created successfully');
+        this.router.navigate(['/user', this.userId, 'website']);
+      } else {
+        console.log('website creation unsuccessful');
+      }
+
     }
   }
 

@@ -4,13 +4,13 @@
   <ul class="navbar-nav mr-3">
     <li class="nav-item">
       <a class="nav-link px-0"
-         [routerLink]="['/user', userId, 'website']"
-         title="Back to Profile">
+         [routerLink]="[ compactMode ? '../' : '../../']"
+         title="Back">
         <span class="fa fa-chevron-left fa-lg"></span>
       </a>
     </li>
   </ul>
-/
+
   <a class="navbar-brand"
      href="">Pages</a>
 
@@ -26,7 +26,7 @@
 </nav>
 <!--/Top Nav-->
 
-<div class="container website-list">
+<div class="container hvj-website-list">
   <ul class="list-group list-group-flush">
 
     <li class="list-group-item"
@@ -52,7 +52,7 @@
     <li class="list-group-item"
         *ngIf="pages.length == 0">
       <a class="btn btn-xs link-royal"
-         [routerLink]="['/user', userId,'website', websiteId, 'page' ,'new']">
+         [routerLink]="['new']">
         <i class="fa fa-plus fa-lg mr-2"></i>
         <em class="text-secondary">Create new Page</em>
       </a>

@@ -1,5 +1,8 @@
 <div class="hvj-widget-image">
-  <img [style.width]="widget.width"
-       [alt]="widget.text"
+  <img *ngIf="widget.url"
+       [style.width]="widget.width"
+       [alt]="widget.text ? widget.text : ''"
        [src]="widget.url" />
+  <p *ngIf="!widget.url && !widget.text"
+     class="small font-italics text-secondary">No image specified</p>
 </div>

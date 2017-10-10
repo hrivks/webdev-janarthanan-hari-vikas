@@ -2,11 +2,13 @@
 <nav class="navbar navbar-expand fixed-top navbar-dark bg-royal px-2">
   <ul class="navbar-nav mr-3">
     <li class="nav-item">
+      <!-- Back button -->
       <a class="nav-link px-0"
          [routerLink]="['../']"
          title="Widgets">
         <span class="fa fa-chevron-left fa-lg"></span>
       </a>
+      <!-- /Back button -->
     </li>
   </ul>
 
@@ -26,7 +28,7 @@
 <!--/Top Nav-->
 
 <!--content-->
-<div class="container widget-header-edit">
+<div class="container hvj-widget-header-edit">
   <form #widgetHeaderEditForm="ngForm">
     <!--Widget Name-->
     <div class="form-group">
@@ -38,11 +40,7 @@
              name="name"
              placeholder="Name"
              [(ngModel)]="widget.name"
-             #nameField="ngModel"
-             [ngClass]="{'border-danger': nameField.invalid && nameField.touched}"
-             required>
-      <span *ngIf="nameField.invalid && nameField.touched"
-            class="text-danger ml-2">Name is required</span>
+             #nameField="ngModel">
     </div>
     <!--/Widget Name-->
 
@@ -77,8 +75,31 @@
     </div>
     <!--/Widget Heading Size-->
 
-    <button class="btn btn-danger btn-block"
-            (click)="deleteWidget()">Delete</button>
+    <!-- Form buttons -->
+    <div class="row no-gutters">
+      <div class="col-12 col-sm-9 mr-1">
+        <!-- Save button -->
+        <button class="btn btn-success btn-block mr-1 mb-2"
+                title="Save Widget"
+                (click)="saveChanges()">
+          <i class="fa fa-check"></i>
+        </button>
+      </div>
+      <div class="col">
+        <!-- Delete button -->
+        <button class="btn btn-danger btn-block"
+                title="Delete Widget"
+                (click)="showDeleteConfirmation = true"
+                [hidden]="showDeleteConfirmation">
+          <i class="fa fa-trash"></i>
+        </button>
+        <button class="btn btn-danger btn-block mt-0"
+                title="Delete Widget"
+                [hidden]="!showDeleteConfirmation"
+                (click)="deleteWidget()">sure?</button>
+      </div>
+    </div>
+    
   </form>
 </div>
 <!--/content-->

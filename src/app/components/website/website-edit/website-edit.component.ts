@@ -46,15 +46,22 @@ export class WebsiteEditComponent implements OnInit {
       // touch controls to highlight validation
       this.websiteEditForm.controls.name.markAsTouched({ onlySelf: true });
     } else {
-      this.websiteService.updateWebsite(this.websiteId, this.website);
-      console.log('website saved successfully');
-      this.router.navigate(['/user', this.userId, 'website']);
+      this.website = this.websiteService.updateWebsite(this.websiteId, this.website);
+      if (this.website) {
+        console.log('website saved successfully');
+        this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+      } else {
+        console.log('error saving website');
+      }
     }
   }
 
+  /**
+   * Delete current website
+   */
   deleteWebsite() {
     this.websiteService.deleteWebsite(this.websiteId);
-    this.router.navigate(['/user', this.userId, 'website']);
+    this.router.navigate(['../'], { relativeTo: this.activatedRoute });
   }
 
 }

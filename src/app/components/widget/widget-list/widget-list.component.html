@@ -2,11 +2,13 @@
 <nav class="navbar navbar-expand fixed-top navbar-dark bg-royal px-2">
   <ul class="navbar-nav mr-3">
     <li class="nav-item">
+      <!-- Back button -->
       <a class="nav-link px-0"
-         [routerLink]="['../']"
+         [routerLink]="['../../']"
          title="Pages">
         <span class="fa fa-chevron-left fa-lg"></span>
       </a>
+      <!-- /Back button -->
     </li>
   </ul>
 
@@ -15,35 +17,39 @@
 
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
+      <!-- Action button -->
       <a class="nav-link px-0"
          [routerLink]="['new']"
          title="Add Widget">
         <span class="fa fa-plus fa-lg"></span>
       </a>
+      <!-- /Action button -->
     </li>
   </ul>
 </nav>
 <!--/Top Nav-->
 
-<div class="container hvj-outermost">
+<div class="container hvj-widget-list">
   <ul class="list-group">
-    <li class="list-group-item border-0 px-1" *ngFor="let thisWidget of widgets">
-      <div class="hvj-widget" [ngSwitch]="thisWidget.widgetType">
-          <div *ngSwitchCase="widgetType.Heading">
-              <app-widget-header [widget]="thisWidget"></app-widget-header>
-            </div>
-          
-            <div *ngSwitchCase="widgetType.Image">
-              <app-widget-image [widget]="thisWidget"></app-widget-image>
-            </div>
-          
-            <div *ngSwitchCase="widgetType.HTML">
-                <app-widget-html [widget]="thisWidget"></app-widget-html>
-              </div>
-          
-            <div *ngSwitchCase="widgetType.YouTube">
-              <app-widget-youtube [widget]="thisWidget"></app-widget-youtube>
-            </div>
+    <li class="list-group-item border-0 px-1"
+        *ngFor="let thisWidget of widgets">
+      <div class="hvj-widget"
+           [ngSwitch]="thisWidget.widgetType">
+        <div *ngSwitchCase="widgetType.Heading">
+          <app-widget-header [widget]="thisWidget"></app-widget-header>
+        </div>
+
+        <div *ngSwitchCase="widgetType.Image">
+          <app-widget-image [widget]="thisWidget"></app-widget-image>
+        </div>
+
+        <div *ngSwitchCase="widgetType.HTML">
+          <app-widget-html [widget]="thisWidget"></app-widget-html>
+        </div>
+
+        <div *ngSwitchCase="widgetType.YouTube">
+          <app-widget-youtube [widget]="thisWidget"></app-widget-youtube>
+        </div>
       </div>
 
       <!-- Widget Action buttons -->
@@ -60,6 +66,23 @@
       </div>
       <!-- /Widget Action buttons -->
     </li>
-    
+
+    <!-- list empty message -->
+    <li class="list-group-item border-0 px-1"
+        *ngIf="widgets.length == 0">
+      <span>
+        <em>No widgets to show</em>
+      </span>
+    </li>
+
+    <li class="list-group-item border-0 px-1"
+        *ngIf="widgets.length == 0">
+      <a class="btn btn-xs link-royal"
+         [routerLink]="['new']">
+        <i class="fa fa-plus fa-lg mr-2"></i>
+        <em class="text-secondary">Create new widget</em>
+      </a>
+    </li>
+
   </ul>
 </div>

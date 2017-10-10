@@ -37,11 +37,16 @@ export class WidgetChooserComponent implements OnInit {
    * Create widget of specified type
    * @param type Type of widget to create
    */
-  createWidget(type: WidgetType) {
+  createWidget(type: string) {
     let newWidget = new Widget();
-    newWidget.widgetType = type;
+    newWidget.widgetType = WidgetType[type];
     newWidget = this.widgetService.createWidget(this.pageId, newWidget);
-    this.router.navigate(['../' + newWidget._id], { relativeTo: this.activatedRoute});
+    if (newWidget) {
+      console.log('widget creation successful');
+      this.router.navigate(['../' + newWidget._id], { relativeTo: this.activatedRoute });
+    } else {
+      console.log('widget creation failed');
+    }
   }
 
 }

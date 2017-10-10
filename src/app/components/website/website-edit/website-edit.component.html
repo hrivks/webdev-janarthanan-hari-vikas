@@ -12,11 +12,13 @@
     <nav class="navbar navbar-expand fixed-top navbar-dark bg-royal ml-auto hvj-landscape-col-8 px-2">
       <ul class="navbar-nav mr-3 hvj-portrait-only">
         <li class="nav-item">
+          <!-- Back button -->
           <a class="nav-link px-0"
-             [routerLink]="['/user', userId, 'website']"
+             [routerLink]="['../']"
              title="Websites">
             <span class="fa fa-chevron-left fa-lg"></span>
           </a>
+          <!-- /Back button -->
         </li>
       </ul>
 
@@ -25,18 +27,20 @@
 
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
+          <!-- Action button -->
           <a class="nav-link px-0"
              (click)="saveChanges()"
              title="Save Changes">
             <span class="fa fa-check fa-lg"></span>
           </a>
+          <!-- /Action button -->
         </li>
       </ul>
     </nav>
     <!--/Top Nav-->
 
     <!--content-->
-    <div>
+    <div class="hvj-website-edit">
       <form #websiteEditForm="ngForm">
         <!--Website Name-->
         <div class="form-group">
@@ -69,11 +73,31 @@
         </div>
         <!--/Website Description-->
 
-        <button class="btn btn-danger btn-block"
-                (click)="showDeleteConfirmation = true"
-                [hidden]="showDeleteConfirmation">Delete</button>
-        <button class="btn btn-danger btn-block" [hidden]="!showDeleteConfirmation"
-                (click)="deleteWebsite()">Are you sure?</button>
+        <!-- Form buttons -->
+        <div class="row no-gutters">
+          <div class="col-12 col-sm-9 mr-1">
+            <!-- Save button -->
+            <button class="btn btn-success btn-block mr-1 mb-2"
+                    title="Save Changes"
+                    (click)="saveChanges()">
+              <i class="fa fa-check"></i>
+            </button>
+          </div>
+          <div class="col">
+            <!-- Delete button -->
+            <button class="btn btn-danger btn-block"
+                    title="Delete website"
+                    (click)="showDeleteConfirmation = true"
+                    [hidden]="showDeleteConfirmation">
+              <i class="fa fa-trash"></i>
+            </button>
+            <button class="btn btn-danger btn-block mt-0"
+                    title="Delete Website"
+                    [hidden]="!showDeleteConfirmation"
+                    (click)="deleteWebsite()">sure?</button>
+          </div>
+        </div>
+        
       </form>
     </div>
     <!--/content-->

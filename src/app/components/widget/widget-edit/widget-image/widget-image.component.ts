@@ -36,8 +36,12 @@ export class WidgetImageEditComponent implements OnInit {
       this.widgetImageEditForm.controls.name.markAsTouched({ onlySelf: true});
       this.widgetImageEditForm.controls.url.markAsTouched({ onlySelf: true});
     } else {
-      this.widgetService.updateWidget(this.widgetId, this.widget);
-      this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+      this.widget = this.widgetService.updateWidget(this.widgetId, this.widget);
+      if (this.widget) {
+        this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+      } else {
+        console.log('Widget update failed');
+      }
     }
   }
 

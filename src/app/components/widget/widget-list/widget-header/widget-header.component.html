@@ -1,3 +1,5 @@
 <div class="hvj-widget-heading">
   <div [ngClass]="widget.size ? 'h' + widget.size : 'h2'">{{widget.text}}</div>
+  <p *ngIf="!widget.text"
+     class="small font-italic text-secondary"> No content</p>
 </div>
