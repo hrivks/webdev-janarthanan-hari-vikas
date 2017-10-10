@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../../model/model';
 import { UserService } from '../../../services/user.service.client';
+import { AuthService } from '../../../services/auth.service.client';
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +22,10 @@ export class ProfileComponent implements OnInit {
   // user profile form
   @ViewChild('profileForm') profileForm: NgForm;
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private userService: UserService,
+    private authService: AuthService) { }
 
   ngOnInit() {
     // get userid parameter route
@@ -33,6 +37,13 @@ export class ProfileComponent implements OnInit {
     if (!this.user) {
       this.router.navigate(['/login']);
     }
+  }
+
+  /**
+   * Logout user
+   */
+  logout() {
+    this.authService.logout();
   }
 
   /** Save user profile details */

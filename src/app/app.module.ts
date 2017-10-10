@@ -14,6 +14,7 @@ import { WebsiteService } from './services/website.service.client';
 import { PageService } from './services/page.service.client';
 import { WidgetService } from './services/widget.service.client';
 import { InteractionsService } from './services/interactions.service.client';
+import { AuthService } from './services/auth.service.client';
 // App Components
 // user components
 import { LoginComponent } from './components/user/login/login.component';
@@ -41,6 +42,7 @@ import { WidgetHeaderComponent } from './components/widget/widget-list/widget-he
 import { WidgetImageComponent } from './components/widget/widget-list/widget-image/widget-image.component';
 import { WidgetYoutubeComponent } from './components/widget/widget-list/widget-youtube/widget-youtube.component';
 import { WidgetHtmlComponent } from './components/widget/widget-list/widget-html/widget-html.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
 
 @NgModule({
   // Declare components here
@@ -67,7 +69,8 @@ import { WidgetHtmlComponent } from './components/widget/widget-list/widget-html
     WidgetHeaderComponent,
     WidgetImageComponent,
     WidgetYoutubeComponent,
-    WidgetHtmlComponent
+    WidgetHtmlComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,7 @@ import { WidgetHtmlComponent } from './components/widget/widget-list/widget-html
     Routing
   ],
   // Client Side services here
-  providers: [TestService, UserService, WebsiteService, PageService, WidgetService, InteractionsService],
+  providers: [TestService, UserService, WebsiteService, PageService, WidgetService, AuthService, InteractionsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

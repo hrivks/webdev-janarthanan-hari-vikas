@@ -101,9 +101,12 @@
     <div class="form-group">
       <a class="btn btn-royal btn-block"
          [routerLink]="['website']">Websites</a>
-      <a class="btn btn-danger btn-block"
-         [routerLink]="['/login']">Logout</a>
+      <button class="btn btn-danger btn-block"
+         (click)="logout()">Logout</button>
     </div>
     <!--/Action Buttons-->
   </form>
 </div>
+
+<!-- Page Footer -->
+<app-footer></app-footer>

@@ -4,7 +4,6 @@ import { User } from '../model/model';
 @Injectable()
 export class UserService {
 
-  constructor() { }
   // list of users
   users: User[] = [
     { _id: '123', username: 'alice', password: 'alice', firstName: 'Alice', lastName: 'Wonder' },
@@ -21,6 +20,8 @@ export class UserService {
     'updateUser': this.updateUser,
     'deleteUser': this.deleteUser
   };
+
+  constructor() { }
 
   /**
    * Create a new user

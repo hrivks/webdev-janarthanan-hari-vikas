@@ -1,0 +1,14 @@
+<!-- Footer -->
+<nav *ngIf="loggedInUser"
+     class="navbar navbar-expand bg-faded border-faded fixed-bottom hvj-footer px-0">
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a class="nav-link link-royal"
+         [routerLink]="['/user', loggedInUser._id]"
+         title="My Profile">
+        <span class="fa fa-user fa-lg"></span>
+      </a>
+    </li>
+  </ul>
+</nav>
+<!-- /Footer -->

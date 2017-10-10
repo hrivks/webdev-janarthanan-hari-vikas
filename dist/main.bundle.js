@@ -35,6 +35,13 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
+/***/ "../../../../../src/app/app.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<router-outlet></router-outlet>"
+
+/***/ }),
+
 /***/ "../../../../../src/app/app.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -57,7 +64,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-root',
-        template: "<router-outlet></router-outlet>",
+        template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.css")]
     })
 ], AppComponent);
@@ -85,26 +92,28 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_page_service_client__ = __webpack_require__("../../../../../src/app/services/page.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_widget_service_client__ = __webpack_require__("../../../../../src/app/services/widget.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_user_login_login_component__ = __webpack_require__("../../../../../src/app/components/user/login/login.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_user_profile_profile_component__ = __webpack_require__("../../../../../src/app/components/user/profile/profile.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_user_register_register_component__ = __webpack_require__("../../../../../src/app/components/user/register/register.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_website_website_new_website_new_component__ = __webpack_require__("../../../../../src/app/components/website/website-new/website-new.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_website_website_edit_website_edit_component__ = __webpack_require__("../../../../../src/app/components/website/website-edit/website-edit.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_website_website_list_website_list_component__ = __webpack_require__("../../../../../src/app/components/website/website-list/website-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_page_page_new_page_new_component__ = __webpack_require__("../../../../../src/app/components/page/page-new/page-new.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_page_page_edit_page_edit_component__ = __webpack_require__("../../../../../src/app/components/page/page-edit/page-edit.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_page_page_list_page_list_component__ = __webpack_require__("../../../../../src/app/components/page/page-list/page-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_widget_widget_chooser_widget_chooser_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-chooser/widget-chooser.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_widget_widget_edit_widget_edit_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-edit.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_widget_widget_edit_widget_header_widget_header_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-header/widget-header.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_widget_widget_edit_widget_image_widget_image_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-image/widget-image.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_widget_widget_edit_widget_youtube_widget_youtube_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-youtube/widget-youtube.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_widget_widget_edit_widget_html_widget_html_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-html/widget-html.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_widget_widget_list_widget_list_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_widget_widget_list_widget_header_widget_header_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-header/widget-header.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_widget_widget_list_widget_image_widget_image_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-image/widget-image.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__components_widget_widget_list_widget_youtube_widget_youtube_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-youtube/widget-youtube.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__components_widget_widget_list_widget_html_widget_html_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-html/widget-html.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_auth_service_client__ = __webpack_require__("../../../../../src/app/services/auth.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_user_login_login_component__ = __webpack_require__("../../../../../src/app/components/user/login/login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_user_profile_profile_component__ = __webpack_require__("../../../../../src/app/components/user/profile/profile.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_user_register_register_component__ = __webpack_require__("../../../../../src/app/components/user/register/register.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_website_website_new_website_new_component__ = __webpack_require__("../../../../../src/app/components/website/website-new/website-new.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_website_website_edit_website_edit_component__ = __webpack_require__("../../../../../src/app/components/website/website-edit/website-edit.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_website_website_list_website_list_component__ = __webpack_require__("../../../../../src/app/components/website/website-list/website-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_page_page_new_page_new_component__ = __webpack_require__("../../../../../src/app/components/page/page-new/page-new.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_page_page_edit_page_edit_component__ = __webpack_require__("../../../../../src/app/components/page/page-edit/page-edit.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_page_page_list_page_list_component__ = __webpack_require__("../../../../../src/app/components/page/page-list/page-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_widget_widget_chooser_widget_chooser_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-chooser/widget-chooser.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_widget_widget_edit_widget_edit_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-edit.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_widget_widget_edit_widget_header_widget_header_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-header/widget-header.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_widget_widget_edit_widget_image_widget_image_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-image/widget-image.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_widget_widget_edit_widget_youtube_widget_youtube_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-youtube/widget-youtube.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_widget_widget_edit_widget_html_widget_html_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-html/widget-html.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_widget_widget_list_widget_list_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_widget_widget_list_widget_header_widget_header_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-header/widget-header.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__components_widget_widget_list_widget_image_widget_image_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-image/widget-image.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__components_widget_widget_list_widget_youtube_widget_youtube_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-youtube/widget-youtube.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__components_widget_widget_list_widget_html_widget_html_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-html/widget-html.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__components_shared_footer_footer_component__ = __webpack_require__("../../../../../src/app/components/shared/footer/footer.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -121,6 +130,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 // App services
+
 
 
 
@@ -153,6 +163,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var AppModule = (function () {
     function AppModule() {
     }
@@ -165,26 +176,27 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */],
             __WEBPACK_IMPORTED_MODULE_3__components_home_home_component__["a" /* HomeComponent */],
             __WEBPACK_IMPORTED_MODULE_4__components_test_test_component__["a" /* TestComponent */],
-            __WEBPACK_IMPORTED_MODULE_14__components_user_login_login_component__["a" /* LoginComponent */],
-            __WEBPACK_IMPORTED_MODULE_15__components_user_profile_profile_component__["a" /* ProfileComponent */],
-            __WEBPACK_IMPORTED_MODULE_16__components_user_register_register_component__["a" /* RegisterComponent */],
-            __WEBPACK_IMPORTED_MODULE_17__components_website_website_new_website_new_component__["a" /* WebsiteNewComponent */],
-            __WEBPACK_IMPORTED_MODULE_18__components_website_website_edit_website_edit_component__["a" /* WebsiteEditComponent */],
-            __WEBPACK_IMPORTED_MODULE_19__components_website_website_list_website_list_component__["a" /* WebsiteListComponent */],
-            __WEBPACK_IMPORTED_MODULE_20__components_page_page_new_page_new_component__["a" /* PageNewComponent */],
-            __WEBPACK_IMPORTED_MODULE_21__components_page_page_edit_page_edit_component__["a" /* PageEditComponent */],
-            __WEBPACK_IMPORTED_MODULE_22__components_page_page_list_page_list_component__["a" /* PageListComponent */],
-            __WEBPACK_IMPORTED_MODULE_23__components_widget_widget_chooser_widget_chooser_component__["a" /* WidgetChooserComponent */],
-            __WEBPACK_IMPORTED_MODULE_24__components_widget_widget_edit_widget_edit_component__["a" /* WidgetEditComponent */],
-            __WEBPACK_IMPORTED_MODULE_25__components_widget_widget_edit_widget_header_widget_header_component__["a" /* WidgetHeaderEditComponent */],
-            __WEBPACK_IMPORTED_MODULE_26__components_widget_widget_edit_widget_image_widget_image_component__["a" /* WidgetImageEditComponent */],
-            __WEBPACK_IMPORTED_MODULE_27__components_widget_widget_edit_widget_youtube_widget_youtube_component__["a" /* WidgetYoutubeEditComponent */],
-            __WEBPACK_IMPORTED_MODULE_28__components_widget_widget_edit_widget_html_widget_html_component__["a" /* WidgetHtmlEditComponent */],
-            __WEBPACK_IMPORTED_MODULE_29__components_widget_widget_list_widget_list_component__["a" /* WidgetListComponent */],
-            __WEBPACK_IMPORTED_MODULE_30__components_widget_widget_list_widget_header_widget_header_component__["a" /* WidgetHeaderComponent */],
-            __WEBPACK_IMPORTED_MODULE_31__components_widget_widget_list_widget_image_widget_image_component__["a" /* WidgetImageComponent */],
-            __WEBPACK_IMPORTED_MODULE_32__components_widget_widget_list_widget_youtube_widget_youtube_component__["a" /* WidgetYoutubeComponent */],
-            __WEBPACK_IMPORTED_MODULE_33__components_widget_widget_list_widget_html_widget_html_component__["a" /* WidgetHtmlComponent */]
+            __WEBPACK_IMPORTED_MODULE_15__components_user_login_login_component__["a" /* LoginComponent */],
+            __WEBPACK_IMPORTED_MODULE_16__components_user_profile_profile_component__["a" /* ProfileComponent */],
+            __WEBPACK_IMPORTED_MODULE_17__components_user_register_register_component__["a" /* RegisterComponent */],
+            __WEBPACK_IMPORTED_MODULE_18__components_website_website_new_website_new_component__["a" /* WebsiteNewComponent */],
+            __WEBPACK_IMPORTED_MODULE_19__components_website_website_edit_website_edit_component__["a" /* WebsiteEditComponent */],
+            __WEBPACK_IMPORTED_MODULE_20__components_website_website_list_website_list_component__["a" /* WebsiteListComponent */],
+            __WEBPACK_IMPORTED_MODULE_21__components_page_page_new_page_new_component__["a" /* PageNewComponent */],
+            __WEBPACK_IMPORTED_MODULE_22__components_page_page_edit_page_edit_component__["a" /* PageEditComponent */],
+            __WEBPACK_IMPORTED_MODULE_23__components_page_page_list_page_list_component__["a" /* PageListComponent */],
+            __WEBPACK_IMPORTED_MODULE_24__components_widget_widget_chooser_widget_chooser_component__["a" /* WidgetChooserComponent */],
+            __WEBPACK_IMPORTED_MODULE_25__components_widget_widget_edit_widget_edit_component__["a" /* WidgetEditComponent */],
+            __WEBPACK_IMPORTED_MODULE_26__components_widget_widget_edit_widget_header_widget_header_component__["a" /* WidgetHeaderEditComponent */],
+            __WEBPACK_IMPORTED_MODULE_27__components_widget_widget_edit_widget_image_widget_image_component__["a" /* WidgetImageEditComponent */],
+            __WEBPACK_IMPORTED_MODULE_28__components_widget_widget_edit_widget_youtube_widget_youtube_component__["a" /* WidgetYoutubeEditComponent */],
+            __WEBPACK_IMPORTED_MODULE_29__components_widget_widget_edit_widget_html_widget_html_component__["a" /* WidgetHtmlEditComponent */],
+            __WEBPACK_IMPORTED_MODULE_30__components_widget_widget_list_widget_list_component__["a" /* WidgetListComponent */],
+            __WEBPACK_IMPORTED_MODULE_31__components_widget_widget_list_widget_header_widget_header_component__["a" /* WidgetHeaderComponent */],
+            __WEBPACK_IMPORTED_MODULE_32__components_widget_widget_list_widget_image_widget_image_component__["a" /* WidgetImageComponent */],
+            __WEBPACK_IMPORTED_MODULE_33__components_widget_widget_list_widget_youtube_widget_youtube_component__["a" /* WidgetYoutubeComponent */],
+            __WEBPACK_IMPORTED_MODULE_34__components_widget_widget_list_widget_html_widget_html_component__["a" /* WidgetHtmlComponent */],
+            __WEBPACK_IMPORTED_MODULE_35__components_shared_footer_footer_component__["a" /* FooterComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -193,7 +205,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_5__app_routing__["a" /* Routing */]
         ],
         // Client Side services here
-        providers: [__WEBPACK_IMPORTED_MODULE_8__services_test_service_client__["a" /* TestService */], __WEBPACK_IMPORTED_MODULE_9__services_user_service_client__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_10__services_website_service_client__["a" /* WebsiteService */], __WEBPACK_IMPORTED_MODULE_11__services_page_service_client__["a" /* PageService */], __WEBPACK_IMPORTED_MODULE_12__services_widget_service_client__["a" /* WidgetService */], __WEBPACK_IMPORTED_MODULE_13__services_interactions_service_client__["a" /* InteractionsService */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_8__services_test_service_client__["a" /* TestService */], __WEBPACK_IMPORTED_MODULE_9__services_user_service_client__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_10__services_website_service_client__["a" /* WebsiteService */], __WEBPACK_IMPORTED_MODULE_11__services_page_service_client__["a" /* PageService */], __WEBPACK_IMPORTED_MODULE_12__services_widget_service_client__["a" /* WidgetService */], __WEBPACK_IMPORTED_MODULE_14__services_auth_service_client__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_13__services_interactions_service_client__["a" /* InteractionsService */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
@@ -341,7 +353,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-edit/page-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <!-- Sidebar -->\r\n  <div class=\"col-4 hvj-landscape-only px-1\">\r\n    <app-page-list compactMode=\"true\"></app-page-list>\r\n  </div>\r\n  <!--/Sidebar-->\r\n\r\n  <div class=\"hvj-vertical-line col-4 hvj-landscape-only\"></div>\r\n  <!--Main content-->\r\n  <div class=\"col\">\r\n    <!--Top Nav-->\r\n    <nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal ml-auto hvj-landscape-col-8 px-2\">\r\n      <ul class=\"navbar-nav mr-3 hvj-portrait-only\">\r\n        <li class=\"nav-item\">\r\n          <!-- Back button -->\r\n          <a class=\"nav-link px-0\"\r\n             [routerLink]=\"['../']\"\r\n             title=\"Pages\">\r\n            <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n          </a>\r\n          <!-- /Back button -->\r\n        </li>\r\n      </ul>\r\n\r\n      <a class=\"navbar-brand\"\r\n         href=\"\">Edit Page</a>\r\n\r\n      <ul class=\"navbar-nav ml-auto\">\r\n        <li class=\"nav-item\">\r\n          <!-- Action button -->\r\n          <a class=\"nav-link px-0\"\r\n             (click)=\"saveChanges()\"\r\n             title=\"Save Changes\">\r\n            <span class=\"fa fa-check fa-lg\"></span>\r\n          </a>\r\n          <!-- /Action button -->\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <!--/Top Nav-->\r\n\r\n    <!--content-->\r\n    <div>\r\n      <form #pageEditForm=\"ngForm\">\r\n        <!--Page Name-->\r\n        <div class=\"form-group\">\r\n          <label for=\"pageName\"\r\n                 class=\"font-weight-bold text-muted\">Page Name</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"pageName\"\r\n                 name=\"name\"\r\n                 placeholder=\"Name\"\r\n                 [(ngModel)]=\"page.name\"\r\n                 #nameField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': nameField.invalid && nameField.touched}\"\r\n                 required>\r\n          <span *ngIf=\"nameField.invalid && nameField.touched\"\r\n                class=\"text-danger ml-2\">Name is required</span>\r\n        </div>\r\n        <!--/page Name-->\r\n\r\n        <!--Page Title-->\r\n        <div class=\"form-group\">\r\n          <label for=\"pageTitle\"\r\n                 class=\"font-weight-bold text-muted\">Page Title</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"pageTitle\"\r\n                 name=\"title\"\r\n                 placeholder=\"Title\"\r\n                 [(ngModel)]=\"page.title\"\r\n                 #titleField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': titleField.invalid && titleField.touched}\">\r\n        </div>\r\n        <!--/page Title-->\r\n\r\n        <!--Page Description-->\r\n        <div class=\"form-group\">\r\n          <label for=\"pageDescription\"\r\n                 class=\"font-weight-bold text-muted\">Page Description</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"pageDescription\"\r\n                 name=\"description\"\r\n                 placeholder=\"Description\"\r\n                 [(ngModel)]=\"page.descrption\"\r\n                 #descriptionField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': descriptionField.invalid && descriptionField.touched}\">\r\n        </div>\r\n        <!--/page Description-->\r\n\r\n        <!-- Form buttons -->\r\n        <div class=\"row no-gutters\">\r\n          <div class=\"col-12 col-sm-9 mr-1\">\r\n            <!-- Save button -->\r\n            <button class=\"btn btn-success btn-block mr-1 mb-2\"\r\n                    title=\"Save Changes\"\r\n                    (click)=\"saveChanges()\">\r\n              <i class=\"fa fa-check\"></i>\r\n            </button>\r\n          </div>\r\n          <div class=\"col\">\r\n            <!-- Delete button -->\r\n            <button class=\"btn btn-danger btn-block\"\r\n                    title=\"Delete Page\"\r\n                    (click)=\"showDeleteConfirmation = true\"\r\n                    [hidden]=\"showDeleteConfirmation\">\r\n              <i class=\"fa fa-trash\"></i>\r\n            </button>\r\n            <button class=\"btn btn-danger btn-block mt-0\"\r\n                    title=\"Delete Page\"\r\n                    [hidden]=\"!showDeleteConfirmation\"\r\n                    (click)=\"deletePage()\">sure?</button>\r\n          </div>\r\n        </div>\r\n\r\n      </form>\r\n    </div>\r\n    <!--/content-->\r\n  </div>\r\n  <!--/Main content-->\r\n</div>"
+module.exports = "<div class=\"row\">\r\n  <!-- Sidebar -->\r\n  <div class=\"col-4 hvj-landscape-only px-1\">\r\n    <app-page-list compactMode=\"true\"></app-page-list>\r\n  </div>\r\n  <!--/Sidebar-->\r\n\r\n  <div class=\"hvj-vertical-line col-4 hvj-landscape-only\"></div>\r\n  <!--Main content-->\r\n  <div class=\"col\">\r\n    <!--Top Nav-->\r\n    <nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal ml-auto hvj-landscape-col-8 px-2\">\r\n      <ul class=\"navbar-nav mr-3 hvj-portrait-only\">\r\n        <li class=\"nav-item\">\r\n          <!-- Back button -->\r\n          <a class=\"nav-link px-0\"\r\n             [routerLink]=\"['../']\"\r\n             title=\"Pages\">\r\n            <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n          </a>\r\n          <!-- /Back button -->\r\n        </li>\r\n      </ul>\r\n\r\n      <a class=\"navbar-brand\"\r\n         href=\"\">Edit Page</a>\r\n\r\n      <ul class=\"navbar-nav ml-auto\">\r\n        <li class=\"nav-item\">\r\n          <!-- Action button -->\r\n          <a class=\"nav-link px-0\"\r\n             (click)=\"saveChanges()\"\r\n             title=\"Save Changes\">\r\n            <span class=\"fa fa-check fa-lg\"></span>\r\n          </a>\r\n          <!-- /Action button -->\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <!--/Top Nav-->\r\n\r\n    <!--content-->\r\n    <div>\r\n      <form #pageEditForm=\"ngForm\">\r\n        <!--Page Name-->\r\n        <div class=\"form-group\">\r\n          <label for=\"pageName\"\r\n                 class=\"font-weight-bold text-muted\">Page Name</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"pageName\"\r\n                 name=\"name\"\r\n                 placeholder=\"Name\"\r\n                 [(ngModel)]=\"page.name\"\r\n                 #nameField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': nameField.invalid && nameField.touched}\"\r\n                 required>\r\n          <span *ngIf=\"nameField.invalid && nameField.touched\"\r\n                class=\"text-danger ml-2\">Name is required</span>\r\n        </div>\r\n        <!--/page Name-->\r\n\r\n        <!--Page Title-->\r\n        <div class=\"form-group\">\r\n          <label for=\"pageTitle\"\r\n                 class=\"font-weight-bold text-muted\">Page Title</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"pageTitle\"\r\n                 name=\"title\"\r\n                 placeholder=\"Title\"\r\n                 [(ngModel)]=\"page.title\"\r\n                 #titleField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': titleField.invalid && titleField.touched}\">\r\n        </div>\r\n        <!--/page Title-->\r\n\r\n        <!--Page Description-->\r\n        <div class=\"form-group\">\r\n          <label for=\"pageDescription\"\r\n                 class=\"font-weight-bold text-muted\">Page Description</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"pageDescription\"\r\n                 name=\"description\"\r\n                 placeholder=\"Description\"\r\n                 [(ngModel)]=\"page.descrption\"\r\n                 #descriptionField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': descriptionField.invalid && descriptionField.touched}\">\r\n        </div>\r\n        <!--/page Description-->\r\n\r\n        <!-- Form buttons -->\r\n        <div class=\"row no-gutters\">\r\n          <div class=\"col-12 col-sm-9 mr-1\">\r\n            <!-- Save button -->\r\n            <button class=\"btn btn-success btn-block mr-1 mb-2\"\r\n                    title=\"Save Changes\"\r\n                    (click)=\"saveChanges()\">\r\n              <i class=\"fa fa-check\"></i>\r\n            </button>\r\n          </div>\r\n          <div class=\"col\">\r\n            <!-- Delete button -->\r\n            <button class=\"btn btn-danger btn-block\"\r\n                    title=\"Delete Page\"\r\n                    (click)=\"showDeleteConfirmation = true\"\r\n                    [hidden]=\"showDeleteConfirmation\">\r\n              <i class=\"fa fa-trash\"></i>\r\n            </button>\r\n            <button class=\"btn btn-danger btn-block mt-0\"\r\n                    title=\"Delete Page\"\r\n                    [hidden]=\"!showDeleteConfirmation\"\r\n                    (click)=\"deletePage()\">sure?</button>\r\n          </div>\r\n        </div>\r\n\r\n      </form>\r\n    </div>\r\n    <!--/content-->\r\n  </div>\r\n  <!--/Main content-->\r\n</div>\r\n\r\n<!-- Page Footer -->\r\n<app-footer></app-footer>\r\n"
 
 /***/ }),
 
@@ -449,7 +461,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-list/page-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\"\r\n     [ngClass]=\"{'col-4 border border-left-0 border-top-0 border-bottom-0 border-secondary' : compactMode}\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"[ compactMode ? '../' : '../../']\"\r\n         title=\"Back\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n\r\n  <a class=\"navbar-brand\"\r\n     href=\"\">Pages</a>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['/user', userId,'website', websiteId, 'page' ,'new']\"\r\n         title=\"New Page\">\r\n        <span class=\"fa fa-plus fa-lg\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-website-list\">\r\n  <ul class=\"list-group list-group-flush\">\r\n\r\n    <li class=\"list-group-item\"\r\n        *ngFor=\"let thisPage of pages\">\r\n      <a [routerLink]=\"['/user', userId,'website', thisPage.websiteId, 'page', thisPage._id, 'widget']\">\r\n        <span>{{thisPage.name}}</span>\r\n        <span class=\"small text-secondary font-italic d-sm-inline d-none ml-2\">{{thisPage.description}}</span>\r\n      </a>\r\n      <a [routerLink]=\"['/user', userId,'website', thisPage.websiteId, 'page', thisPage._id]\"\r\n         class=\"btn btn-xs float-right link-royal\">\r\n        <span class=\"fa fa-gear\"></span>\r\n      </a>\r\n    </li>\r\n\r\n    <!-- No websites message -->\r\n    <li class=\"list-group-item\"\r\n        *ngIf=\"pages.length == 0\">\r\n      <span>\r\n        <em>No Pages to show</em>\r\n      </span>\r\n    </li>\r\n\r\n    <li class=\"list-group-item\"\r\n        *ngIf=\"pages.length == 0\">\r\n      <a class=\"btn btn-xs link-royal\"\r\n         [routerLink]=\"['new']\">\r\n        <i class=\"fa fa-plus fa-lg mr-2\"></i>\r\n        <em class=\"text-secondary\">Create new Page</em>\r\n      </a>\r\n    </li>\r\n\r\n  </ul>\r\n</div>"
+module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\"\r\n     [ngClass]=\"{'col-4 border border-left-0 border-top-0 border-bottom-0 border-secondary' : compactMode}\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"[ compactMode ? '../' : '../../']\"\r\n         title=\"Back\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n\r\n  <a class=\"navbar-brand\"\r\n     href=\"\">Pages</a>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['/user', userId,'website', websiteId, 'page' ,'new']\"\r\n         title=\"New Page\">\r\n        <span class=\"fa fa-plus fa-lg\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-website-list\">\r\n  <ul class=\"list-group list-group-flush\">\r\n\r\n    <li class=\"list-group-item\"\r\n        *ngFor=\"let thisPage of pages\">\r\n      <a [routerLink]=\"['/user', userId,'website', thisPage.websiteId, 'page', thisPage._id, 'widget']\">\r\n        <span>{{thisPage.name}}</span>\r\n        <span class=\"small text-secondary font-italic d-sm-inline d-none ml-2\">{{thisPage.description}}</span>\r\n      </a>\r\n      <a [routerLink]=\"['/user', userId,'website', thisPage.websiteId, 'page', thisPage._id]\"\r\n         class=\"btn btn-xs float-right link-royal\">\r\n        <span class=\"fa fa-gear\"></span>\r\n      </a>\r\n    </li>\r\n\r\n    <!-- No websites message -->\r\n    <li class=\"list-group-item\"\r\n        *ngIf=\"pages.length == 0\">\r\n      <span>\r\n        <em>No Pages to show</em>\r\n      </span>\r\n    </li>\r\n\r\n    <li class=\"list-group-item\"\r\n        *ngIf=\"pages.length == 0\">\r\n      <a class=\"btn btn-xs link-royal\"\r\n         [routerLink]=\"['new']\">\r\n        <i class=\"fa fa-plus fa-lg mr-2\"></i>\r\n        <em class=\"text-secondary\">Create new Page</em>\r\n      </a>\r\n    </li>\r\n\r\n  </ul>\r\n</div>\r\n\r\n<!-- Page Footer -->\r\n<app-footer></app-footer>\r\n"
 
 /***/ }),
 
@@ -539,7 +551,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-new/page-new.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <!-- Sidebar -->\r\n  <div class=\"col-4 hvj-landscape-only px-1\">\r\n    <app-page-list compactMode=\"true\"></app-page-list>\r\n  </div>\r\n  <!--/Sidebar-->\r\n\r\n  <div class=\"hvj-vertical-line col-4 hvj-landscape-only\"></div>\r\n  <!--Main content-->\r\n  <div class=\"col\">\r\n    <!--Top Nav-->\r\n    <nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal ml-auto hvj-landscape-col-8 px-2\">\r\n      <ul class=\"navbar-nav mr-3 hvj-portrait-only\">\r\n        <li class=\"nav-item\">\r\n          <!-- Back button -->\r\n          <a class=\"nav-link px-0\"\r\n             [routerLink]=\"['/..']\"\r\n             title=\"Pages\">\r\n            <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n          </a>\r\n          <!-- / Back button -->\r\n        </li>\r\n      </ul>\r\n\r\n      <a class=\"navbar-brand\"\r\n         href=\"\">New Page</a>\r\n\r\n      <ul class=\"navbar-nav ml-auto\">\r\n        <li class=\"nav-item\">\r\n          <!-- Action button -->\r\n          <a class=\"nav-link px-0\"\r\n             (click)=\"saveChanges()\"\r\n             title=\"Save Changes\">\r\n            <span class=\"fa fa-check fa-lg\"></span>\r\n          </a>\r\n          <!-- /Action button -->\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <!--/Top Nav-->\r\n\r\n    <!--content-->\r\n    <div>\r\n      <form #pageNewForm=\"ngForm\">\r\n        <!--Page Name-->\r\n        <div class=\"form-group\">\r\n          <label for=\"pageName\"\r\n                 class=\"font-weight-bold text-muted\">Page Name</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"pageName\"\r\n                 name=\"name\"\r\n                 placeholder=\"Name\"\r\n                 [(ngModel)]=\"page.name\"\r\n                 #nameField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': nameField.invalid && nameField.touched}\"\r\n                 required>\r\n          <span *ngIf=\"nameField.invalid && nameField.touched\"\r\n                class=\"text-danger ml-2\">Name is required</span>\r\n        </div>\r\n        <!--/page Name-->\r\n\r\n        <!--Page Title-->\r\n        <div class=\"form-group\">\r\n          <label for=\"pageTitle\"\r\n                 class=\"font-weight-bold text-muted\">Page Title</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"pageTitle\"\r\n                 name=\"title\"\r\n                 placeholder=\"Title\"\r\n                 [(ngModel)]=\"page.title\"\r\n                 #titleField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': titleField.invalid && titleField.touched}\">\r\n        </div>\r\n        <!--/page Title-->\r\n\r\n        <!--Page Description-->\r\n        <div class=\"form-group\">\r\n          <label for=\"pageDescription\"\r\n                 class=\"font-weight-bold text-muted\">Page Description</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"pageDescription\"\r\n                 name=\"description\"\r\n                 placeholder=\"Description\"\r\n                 [(ngModel)]=\"page.descrption\"\r\n                 #descriptionField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': descriptionField.invalid && descriptionField.touched}\">\r\n        </div>\r\n        <!--/page Description-->\r\n\r\n        <!-- Form buttons -->\r\n        <div class=\"row no-gutters\">\r\n          <div class=\"col-12 col-sm-9 mr-1\">\r\n            <!-- Save button -->\r\n            <button class=\"btn btn-success btn-block mr-1 mb-2\"\r\n                    title=\"Create Page\"\r\n                    (click)=\"saveChanges()\">\r\n              <i class=\"fa fa-check\"></i>\r\n            </button>\r\n          </div>\r\n          <div class=\"col\">\r\n            <!-- Cancel button -->\r\n            <a class=\"btn btn-danger btn-block\"\r\n               title=\"Cancel\"\r\n               [routerLink]=\"['../']\">\r\n              <i class=\"fa fa-times\"></i>\r\n            </a>\r\n\r\n          </div>\r\n        </div>\r\n\r\n      </form>\r\n    </div>\r\n    <!--/content-->\r\n  </div>\r\n  <!--/Main content-->\r\n</div>"
+module.exports = "<div class=\"row\">\r\n  <!-- Sidebar -->\r\n  <div class=\"col-4 hvj-landscape-only px-1\">\r\n    <app-page-list compactMode=\"true\"></app-page-list>\r\n  </div>\r\n  <!--/Sidebar-->\r\n\r\n  <div class=\"hvj-vertical-line col-4 hvj-landscape-only\"></div>\r\n  <!--Main content-->\r\n  <div class=\"col\">\r\n    <!--Top Nav-->\r\n    <nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal ml-auto hvj-landscape-col-8 px-2\">\r\n      <ul class=\"navbar-nav mr-3 hvj-portrait-only\">\r\n        <li class=\"nav-item\">\r\n          <!-- Back button -->\r\n          <a class=\"nav-link px-0\"\r\n             [routerLink]=\"['/..']\"\r\n             title=\"Pages\">\r\n            <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n          </a>\r\n          <!-- / Back button -->\r\n        </li>\r\n      </ul>\r\n\r\n      <a class=\"navbar-brand\"\r\n         href=\"\">New Page</a>\r\n\r\n      <ul class=\"navbar-nav ml-auto\">\r\n        <li class=\"nav-item\">\r\n          <!-- Action button -->\r\n          <a class=\"nav-link px-0\"\r\n             (click)=\"saveChanges()\"\r\n             title=\"Save Changes\">\r\n            <span class=\"fa fa-check fa-lg\"></span>\r\n          </a>\r\n          <!-- /Action button -->\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <!--/Top Nav-->\r\n\r\n    <!--content-->\r\n    <div>\r\n      <form #pageNewForm=\"ngForm\">\r\n        <!--Page Name-->\r\n        <div class=\"form-group\">\r\n          <label for=\"pageName\"\r\n                 class=\"font-weight-bold text-muted\">Page Name</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"pageName\"\r\n                 name=\"name\"\r\n                 placeholder=\"Name\"\r\n                 [(ngModel)]=\"page.name\"\r\n                 #nameField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': nameField.invalid && nameField.touched}\"\r\n                 required>\r\n          <span *ngIf=\"nameField.invalid && nameField.touched\"\r\n                class=\"text-danger ml-2\">Name is required</span>\r\n        </div>\r\n        <!--/page Name-->\r\n\r\n        <!--Page Title-->\r\n        <div class=\"form-group\">\r\n          <label for=\"pageTitle\"\r\n                 class=\"font-weight-bold text-muted\">Page Title</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"pageTitle\"\r\n                 name=\"title\"\r\n                 placeholder=\"Title\"\r\n                 [(ngModel)]=\"page.title\"\r\n                 #titleField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': titleField.invalid && titleField.touched}\">\r\n        </div>\r\n        <!--/page Title-->\r\n\r\n        <!--Page Description-->\r\n        <div class=\"form-group\">\r\n          <label for=\"pageDescription\"\r\n                 class=\"font-weight-bold text-muted\">Page Description</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"pageDescription\"\r\n                 name=\"description\"\r\n                 placeholder=\"Description\"\r\n                 [(ngModel)]=\"page.descrption\"\r\n                 #descriptionField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': descriptionField.invalid && descriptionField.touched}\">\r\n        </div>\r\n        <!--/page Description-->\r\n\r\n        <!-- Form buttons -->\r\n        <div class=\"row no-gutters\">\r\n          <div class=\"col-12 col-sm-9 mr-1\">\r\n            <!-- Save button -->\r\n            <button class=\"btn btn-success btn-block mr-1 mb-2\"\r\n                    title=\"Create Page\"\r\n                    (click)=\"saveChanges()\">\r\n              <i class=\"fa fa-check\"></i>\r\n            </button>\r\n          </div>\r\n          <div class=\"col\">\r\n            <!-- Cancel button -->\r\n            <a class=\"btn btn-danger btn-block\"\r\n               title=\"Cancel\"\r\n               [routerLink]=\"['../']\">\r\n              <i class=\"fa fa-times\"></i>\r\n            </a>\r\n\r\n          </div>\r\n        </div>\r\n\r\n      </form>\r\n    </div>\r\n    <!--/content-->\r\n  </div>\r\n  <!--/Main content-->\r\n</div>\r\n\r\n<!-- Page Footer -->\r\n<app-footer></app-footer>\r\n"
 
 /***/ }),
 
@@ -617,6 +629,72 @@ PageNewComponent = __decorate([
 
 var _a, _b, _c, _d, _e;
 //# sourceMappingURL=page-new.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/shared/footer/footer.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/shared/footer/footer.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<!-- Footer -->\n<nav *ngIf=\"loggedInUser\"\n     class=\"navbar navbar-expand bg-faded border-faded fixed-bottom hvj-footer px-0\">\n  <ul class=\"navbar-nav ml-auto\">\n    <li class=\"nav-item\">\n      <a class=\"nav-link link-royal\"\n         [routerLink]=\"['/user', loggedInUser._id]\"\n         title=\"My Profile\">\n        <span class=\"fa fa-user fa-lg\"></span>\n      </a>\n    </li>\n  </ul>\n</nav>\n<!-- /Footer -->"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/shared/footer/footer.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FooterComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service_client__ = __webpack_require__("../../../../../src/app/services/auth.service.client.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var FooterComponent = (function () {
+    function FooterComponent(authService) {
+        this.authService = authService;
+    }
+    FooterComponent.prototype.ngOnInit = function () {
+        this.loggedInUser = this.authService.getLoggedInUser();
+    };
+    return FooterComponent;
+}());
+FooterComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-footer',
+        template: __webpack_require__("../../../../../src/app/components/shared/footer/footer.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/shared/footer/footer.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service_client__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_auth_service_client__["a" /* AuthService */]) === "function" && _a || Object])
+], FooterComponent);
+
+var _a;
+//# sourceMappingURL=footer.component.js.map
 
 /***/ }),
 
@@ -747,6 +825,7 @@ module.exports = "<div class=\"container\">\r\n  \r\n<p>\r\n  <span class=\"disp
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_auth_service_client__ = __webpack_require__("../../../../../src/app/services/auth.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -760,15 +839,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = (function () {
-    function LoginComponent(router, userService) {
+    function LoginComponent(router, userService, authService) {
         this.router = router;
         this.userService = userService;
+        this.authService = authService;
     }
     LoginComponent.prototype.login = function () {
         this.username = this.loginForm.value.username;
         this.password = this.loginForm.value.password;
-        var user = this.userService.findUserByCredentials(this.username, this.password);
+        var user = this.authService.login(this.username, this.password);
         if (user) {
             this.router.navigate(['/user', user._id]);
         }
@@ -790,10 +871,10 @@ LoginComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/user/login/login.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/user/login/login.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_auth_service_client__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_auth_service_client__["a" /* AuthService */]) === "function" && _d || Object])
 ], LoginComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=login.component.js.map
 
 /***/ }),
@@ -819,7 +900,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\">\r\n  <a class=\"navbar-brand\"\r\n     [routerLink]=\"[this.userId]\">Profile</a>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <button class=\"btn btn-royal px-2\"\r\n              (click)=\"saveProfile()\"\r\n              title=\"Save Changes\">\r\n        <span class=\"fa fa-check fa-lg\"></span>\r\n      </button>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container\">\r\n  <form #profileForm=\"ngForm\"\r\n        *ngIf=\"user\">\r\n    <!--User Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"username\"\r\n             class=\"font-weight-bold text-muted\">Username</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"username\"\r\n             placeholder=\"walice\"\r\n             name=\"username\"\r\n             [(ngModel)]=\"user.username\"\r\n             #usernameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.username || (!usernameField.valid && usernameField.touched)}\"\r\n             required>\r\n      <span *ngIf=\"usernameField.invalid && usernameField.touched\"\r\n            class=\"text-danger ml-2\">Username is required</span>\r\n      <span *ngIf=\"profileErrors.username\"\r\n            class=\"text-danger ml-2\">{{profileErrors.username}}</span>\r\n    </div>\r\n    <!--/User Name-->\r\n\r\n    <!--Email-->\r\n    <div class=\"form-group\">\r\n      <label for=\"email\"\r\n             class=\"font-weight-bold text-muted\">Email address</label>\r\n      <input type=\"email\"\r\n             class=\"form-control\"\r\n             id=\"email\"\r\n             name=\"email\"\r\n             placeholder=\"alice.wonderland@unicorn.com\"\r\n             [(ngModel)]=\"user.email\"\r\n             #emailField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.email}\">\r\n      <span *ngIf=\"profileErrors.email\"\r\n            class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--/Email-->\r\n\r\n    <!--First Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"first-name\"\r\n             class=\"font-weight-bold text-muted\">First Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"first-name\"\r\n             name=\"firstName\"\r\n             placeholder=\"Alice\"\r\n             [(ngModel)]=\"user.firstName\"\r\n             #firstNameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.firstName || (!firstNameField.valid && firstNameField.touched)}\"\r\n             required>\r\n      <span *ngIf=\"firstNameField.invalid && firstNameField.touched\"\r\n            class=\"text-danger ml-2\">First Name is required</span>\r\n      <span *ngIf=\"profileErrors.firstName\"\r\n            class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--First Name-->\r\n\r\n    <!--Last Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"last-name\"\r\n             class=\"font-weight-bold text-muted\">Last Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"last-name\"\r\n             name=\"lastName\"\r\n             placeholder=\"Wonderland\"\r\n             [(ngModel)]=\"user.lastName\"\r\n             #lastNameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.lastName || (!lastNameField.valid && lastNameField.touched)}\"\r\n             required>\r\n      <span *ngIf=\"lastNameField.invalid && lastNameField.touched\"\r\n            class=\"text-danger ml-2\">Last Name is required</span>\r\n      <span *ngIf=\"profileErrors.lastName\"\r\n            class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--/Last Name-->\r\n\r\n    <!--Action Buttons-->\r\n    <div class=\"form-group\">\r\n      <a class=\"btn btn-royal btn-block\"\r\n         [routerLink]=\"['website']\">Websites</a>\r\n      <a class=\"btn btn-danger btn-block\"\r\n         [routerLink]=\"['/login']\">Logout</a>\r\n    </div>\r\n    <!--/Action Buttons-->\r\n  </form>\r\n</div>"
+module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\">\r\n  <a class=\"navbar-brand\"\r\n     [routerLink]=\"[this.userId]\">Profile</a>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <button class=\"btn btn-royal px-2\"\r\n              (click)=\"saveProfile()\"\r\n              title=\"Save Changes\">\r\n        <span class=\"fa fa-check fa-lg\"></span>\r\n      </button>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container\">\r\n  <form #profileForm=\"ngForm\"\r\n        *ngIf=\"user\">\r\n    <!--User Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"username\"\r\n             class=\"font-weight-bold text-muted\">Username</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"username\"\r\n             placeholder=\"walice\"\r\n             name=\"username\"\r\n             [(ngModel)]=\"user.username\"\r\n             #usernameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.username || (!usernameField.valid && usernameField.touched)}\"\r\n             required>\r\n      <span *ngIf=\"usernameField.invalid && usernameField.touched\"\r\n            class=\"text-danger ml-2\">Username is required</span>\r\n      <span *ngIf=\"profileErrors.username\"\r\n            class=\"text-danger ml-2\">{{profileErrors.username}}</span>\r\n    </div>\r\n    <!--/User Name-->\r\n\r\n    <!--Email-->\r\n    <div class=\"form-group\">\r\n      <label for=\"email\"\r\n             class=\"font-weight-bold text-muted\">Email address</label>\r\n      <input type=\"email\"\r\n             class=\"form-control\"\r\n             id=\"email\"\r\n             name=\"email\"\r\n             placeholder=\"alice.wonderland@unicorn.com\"\r\n             [(ngModel)]=\"user.email\"\r\n             #emailField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.email}\">\r\n      <span *ngIf=\"profileErrors.email\"\r\n            class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--/Email-->\r\n\r\n    <!--First Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"first-name\"\r\n             class=\"font-weight-bold text-muted\">First Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"first-name\"\r\n             name=\"firstName\"\r\n             placeholder=\"Alice\"\r\n             [(ngModel)]=\"user.firstName\"\r\n             #firstNameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.firstName || (!firstNameField.valid && firstNameField.touched)}\"\r\n             required>\r\n      <span *ngIf=\"firstNameField.invalid && firstNameField.touched\"\r\n            class=\"text-danger ml-2\">First Name is required</span>\r\n      <span *ngIf=\"profileErrors.firstName\"\r\n            class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--First Name-->\r\n\r\n    <!--Last Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"last-name\"\r\n             class=\"font-weight-bold text-muted\">Last Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"last-name\"\r\n             name=\"lastName\"\r\n             placeholder=\"Wonderland\"\r\n             [(ngModel)]=\"user.lastName\"\r\n             #lastNameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.lastName || (!lastNameField.valid && lastNameField.touched)}\"\r\n             required>\r\n      <span *ngIf=\"lastNameField.invalid && lastNameField.touched\"\r\n            class=\"text-danger ml-2\">Last Name is required</span>\r\n      <span *ngIf=\"profileErrors.lastName\"\r\n            class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--/Last Name-->\r\n\r\n    <!--Action Buttons-->\r\n    <div class=\"form-group\">\r\n      <a class=\"btn btn-royal btn-block\"\r\n         [routerLink]=\"['website']\">Websites</a>\r\n      <button class=\"btn btn-danger btn-block\"\r\n         (click)=\"logout()\">Logout</button>\r\n    </div>\r\n    <!--/Action Buttons-->\r\n  </form>\r\n</div>\r\n\r\n<!-- Page Footer -->\r\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -832,6 +913,7 @@ module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_auth_service_client__ = __webpack_require__("../../../../../src/app/services/auth.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -845,11 +927,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ProfileComponent = (function () {
-    function ProfileComponent(activatedRoute, userService, router) {
+    function ProfileComponent(activatedRoute, router, userService, authService) {
         this.activatedRoute = activatedRoute;
-        this.userService = userService;
         this.router = router;
+        this.userService = userService;
+        this.authService = authService;
         this.profileErrors = {
             hasError: false
         };
@@ -864,6 +948,12 @@ var ProfileComponent = (function () {
         if (!this.user) {
             this.router.navigate(['/login']);
         }
+    };
+    /**
+     * Logout user
+     */
+    ProfileComponent.prototype.logout = function () {
+        this.authService.logout();
     };
     /** Save user profile details */
     ProfileComponent.prototype.saveProfile = function () {
@@ -928,10 +1018,10 @@ ProfileComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/user/profile/profile.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/user/profile/profile.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_auth_service_client__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_auth_service_client__["a" /* AuthService */]) === "function" && _e || Object])
 ], ProfileComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=profile.component.js.map
 
 /***/ }),
@@ -1034,7 +1124,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/website/website-edit/website-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <!-- Sidebar -->\r\n  <div class=\"col-4 hvj-landscape-only px-1\">\r\n    <app-website-list compactMode=\"true\"></app-website-list>\r\n  </div>\r\n  <!--/Sidebar-->\r\n\r\n  <div class=\"hvj-vertical-line col-4 hvj-landscape-only\"></div>\r\n  <!--Main content-->\r\n  <div class=\"col\">\r\n    <!--Top Nav-->\r\n    <nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal ml-auto hvj-landscape-col-8 px-2\">\r\n      <ul class=\"navbar-nav mr-3 hvj-portrait-only\">\r\n        <li class=\"nav-item\">\r\n          <!-- Back button -->\r\n          <a class=\"nav-link px-0\"\r\n             [routerLink]=\"['../']\"\r\n             title=\"Websites\">\r\n            <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n          </a>\r\n          <!-- /Back button -->\r\n        </li>\r\n      </ul>\r\n\r\n      <a class=\"navbar-brand\"\r\n         href=\"\">Edit Website</a>\r\n\r\n      <ul class=\"navbar-nav ml-auto\">\r\n        <li class=\"nav-item\">\r\n          <!-- Action button -->\r\n          <a class=\"nav-link px-0\"\r\n             (click)=\"saveChanges()\"\r\n             title=\"Save Changes\">\r\n            <span class=\"fa fa-check fa-lg\"></span>\r\n          </a>\r\n          <!-- /Action button -->\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <!--/Top Nav-->\r\n\r\n    <!--content-->\r\n    <div class=\"hvj-website-edit\">\r\n      <form #websiteEditForm=\"ngForm\">\r\n        <!--Website Name-->\r\n        <div class=\"form-group\">\r\n          <label for=\"websiteName\"\r\n                 class=\"font-weight-bold text-muted\">Website Name</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"websiteName\"\r\n                 name=\"name\"\r\n                 placeholder=\"Name\"\r\n                 [(ngModel)]=\"website.name\"\r\n                 #nameField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': nameField.invalid && nameField.touched}\"\r\n                 required>\r\n          <span *ngIf=\"nameField.invalid && nameField.touched\"\r\n                class=\"text-danger ml-2\">Name is required</span>\r\n        </div>\r\n        <!--/Website Name-->\r\n\r\n        <!--Website Description-->\r\n        <div class=\"form-group\">\r\n          <label for=\"websiteDescription\"\r\n                 class=\"font-weight-bold text-muted\">Website Name</label>\r\n          <textarea class=\"form-control\"\r\n                    id=\"websiteDescription\"\r\n                    name=\"description\"\r\n                    [(ngModel)]=\"website.description\"\r\n                    rows=\"6\">{{website.description}}\r\n          </textarea>\r\n        </div>\r\n        <!--/Website Description-->\r\n\r\n        <!-- Form buttons -->\r\n        <div class=\"row no-gutters\">\r\n          <div class=\"col-12 col-sm-9 mr-1\">\r\n            <!-- Save button -->\r\n            <button class=\"btn btn-success btn-block mr-1 mb-2\"\r\n                    title=\"Save Changes\"\r\n                    (click)=\"saveChanges()\">\r\n              <i class=\"fa fa-check\"></i>\r\n            </button>\r\n          </div>\r\n          <div class=\"col\">\r\n            <!-- Delete button -->\r\n            <button class=\"btn btn-danger btn-block\"\r\n                    title=\"Delete website\"\r\n                    (click)=\"showDeleteConfirmation = true\"\r\n                    [hidden]=\"showDeleteConfirmation\">\r\n              <i class=\"fa fa-trash\"></i>\r\n            </button>\r\n            <button class=\"btn btn-danger btn-block mt-0\"\r\n                    title=\"Delete Website\"\r\n                    [hidden]=\"!showDeleteConfirmation\"\r\n                    (click)=\"deleteWebsite()\">sure?</button>\r\n          </div>\r\n        </div>\r\n        \r\n      </form>\r\n    </div>\r\n    <!--/content-->\r\n  </div>\r\n  <!--/Main content-->\r\n</div>"
+module.exports = "<div class=\"row\">\r\n  <!-- Sidebar -->\r\n  <div class=\"col-4 hvj-landscape-only px-1\">\r\n    <app-website-list compactMode=\"true\"></app-website-list>\r\n  </div>\r\n  <!--/Sidebar-->\r\n\r\n  <div class=\"hvj-vertical-line col-4 hvj-landscape-only\"></div>\r\n  <!--Main content-->\r\n  <div class=\"col\">\r\n    <!--Top Nav-->\r\n    <nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal ml-auto hvj-landscape-col-8 px-2\">\r\n      <ul class=\"navbar-nav mr-3 hvj-portrait-only\">\r\n        <li class=\"nav-item\">\r\n          <!-- Back button -->\r\n          <a class=\"nav-link px-0\"\r\n             [routerLink]=\"['../']\"\r\n             title=\"Websites\">\r\n            <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n          </a>\r\n          <!-- /Back button -->\r\n        </li>\r\n      </ul>\r\n\r\n      <a class=\"navbar-brand\"\r\n         href=\"\">Edit Website</a>\r\n\r\n      <ul class=\"navbar-nav ml-auto\">\r\n        <li class=\"nav-item\">\r\n          <!-- Action button -->\r\n          <a class=\"nav-link px-0\"\r\n             (click)=\"saveChanges()\"\r\n             title=\"Save Changes\">\r\n            <span class=\"fa fa-check fa-lg\"></span>\r\n          </a>\r\n          <!-- /Action button -->\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <!--/Top Nav-->\r\n\r\n    <!--content-->\r\n    <div class=\"hvj-website-edit\">\r\n      <form #websiteEditForm=\"ngForm\">\r\n        <!--Website Name-->\r\n        <div class=\"form-group\">\r\n          <label for=\"websiteName\"\r\n                 class=\"font-weight-bold text-muted\">Website Name</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"websiteName\"\r\n                 name=\"name\"\r\n                 placeholder=\"Name\"\r\n                 [(ngModel)]=\"website.name\"\r\n                 #nameField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': nameField.invalid && nameField.touched}\"\r\n                 required>\r\n          <span *ngIf=\"nameField.invalid && nameField.touched\"\r\n                class=\"text-danger ml-2\">Name is required</span>\r\n        </div>\r\n        <!--/Website Name-->\r\n\r\n        <!--Website Description-->\r\n        <div class=\"form-group\">\r\n          <label for=\"websiteDescription\"\r\n                 class=\"font-weight-bold text-muted\">Website Name</label>\r\n          <textarea class=\"form-control\"\r\n                    id=\"websiteDescription\"\r\n                    name=\"description\"\r\n                    [(ngModel)]=\"website.description\"\r\n                    rows=\"6\">{{website.description}}\r\n          </textarea>\r\n        </div>\r\n        <!--/Website Description-->\r\n\r\n        <!-- Form buttons -->\r\n        <div class=\"row no-gutters\">\r\n          <div class=\"col-12 col-sm-9 mr-1\">\r\n            <!-- Save button -->\r\n            <button class=\"btn btn-success btn-block mr-1 mb-2\"\r\n                    title=\"Save Changes\"\r\n                    (click)=\"saveChanges()\">\r\n              <i class=\"fa fa-check\"></i>\r\n            </button>\r\n          </div>\r\n          <div class=\"col\">\r\n            <!-- Delete button -->\r\n            <button class=\"btn btn-danger btn-block\"\r\n                    title=\"Delete website\"\r\n                    (click)=\"showDeleteConfirmation = true\"\r\n                    [hidden]=\"showDeleteConfirmation\">\r\n              <i class=\"fa fa-trash\"></i>\r\n            </button>\r\n            <button class=\"btn btn-danger btn-block mt-0\"\r\n                    title=\"Delete Website\"\r\n                    [hidden]=\"!showDeleteConfirmation\"\r\n                    (click)=\"deleteWebsite()\">sure?</button>\r\n          </div>\r\n        </div>\r\n        \r\n      </form>\r\n    </div>\r\n    <!--/content-->\r\n  </div>\r\n  <!--/Main content-->\r\n</div>\r\n\r\n<!-- Page Footer -->\r\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -1152,7 +1242,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/website/website-list/website-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\"\r\n     [ngClass]=\"{'col-4 border border-left-0 border-top-0 border-bottom-0 border-secondary' : compactMode}\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <!-- Back button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"[ '../']\"\r\n         title=\"Back\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n      <!-- /Back button -->\r\n    </li>\r\n  </ul>\r\n\r\n  <a class=\"navbar-brand\"\r\n     href=\"\">Websites</a>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['/user', userId, 'website', 'new']\"\r\n         title=\"New Website\">\r\n        <span class=\"fa fa-plus fa-lg\"></span>\r\n      </a>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-website-list\">\r\n  <ul class=\"list-group list-group-flush\">\r\n\r\n    <li class=\"list-group-item\"\r\n        *ngFor=\"let thisWebsite of websites\">\r\n      <a [routerLink]=\"['/user', userId, 'website', thisWebsite._id, 'page']\">\r\n        <span>{{thisWebsite.name}}</span>\r\n        <span class=\"small text-secondary font-italic d-sm-inline d-none ml-2\">{{thisWebsite.description}}</span>\r\n      </a>\r\n      <a [routerLink]=\"['/user', userId, 'website', thisWebsite._id]\"\r\n         class=\"btn btn-xs float-right link-royal\">\r\n        <span class=\"fa fa-gear\"></span>\r\n      </a>\r\n    </li>\r\n\r\n    <!-- No websites message -->\r\n    <li class=\"list-group-item\"\r\n        *ngIf=\"websites.length == 0\">\r\n      <span>\r\n        <em>No websites to show</em>\r\n      </span>\r\n    </li>\r\n\r\n    <li class=\"list-group-item\"\r\n        *ngIf=\"websites.length == 0\">\r\n      <a class=\"btn btn-xs link-royal\"\r\n         [routerLink]=\"['new']\">\r\n        <i class=\"fa fa-plus fa-lg mr-2\"></i>\r\n        <em class=\"text-secondary\">Create new website</em>\r\n      </a>\r\n    </li>\r\n\r\n  </ul>\r\n</div>"
+module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\"\r\n     [ngClass]=\"{'col-4 border border-left-0 border-top-0 border-bottom-0 border-secondary' : compactMode}\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <!-- Back button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"[ '../']\"\r\n         title=\"Back\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n      <!-- /Back button -->\r\n    </li>\r\n  </ul>\r\n\r\n  <a class=\"navbar-brand\"\r\n     href=\"\">Websites</a>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['/user', userId, 'website', 'new']\"\r\n         title=\"New Website\">\r\n        <span class=\"fa fa-plus fa-lg\"></span>\r\n      </a>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-website-list\">\r\n  <ul class=\"list-group list-group-flush\">\r\n\r\n    <li class=\"list-group-item\"\r\n        *ngFor=\"let thisWebsite of websites\">\r\n      <a [routerLink]=\"['/user', userId, 'website', thisWebsite._id, 'page']\">\r\n        <span>{{thisWebsite.name}}</span>\r\n        <span class=\"small text-secondary font-italic d-sm-inline d-none ml-2\">{{thisWebsite.description}}</span>\r\n      </a>\r\n      <a [routerLink]=\"['/user', userId, 'website', thisWebsite._id]\"\r\n         class=\"btn btn-xs float-right link-royal\">\r\n        <span class=\"fa fa-gear\"></span>\r\n      </a>\r\n    </li>\r\n\r\n    <!-- No websites message -->\r\n    <li class=\"list-group-item\"\r\n        *ngIf=\"websites.length == 0\">\r\n      <span>\r\n        <em>No websites to show</em>\r\n      </span>\r\n    </li>\r\n\r\n    <li class=\"list-group-item\"\r\n        *ngIf=\"websites.length == 0\">\r\n      <a class=\"btn btn-xs link-royal\"\r\n         [routerLink]=\"['new']\">\r\n        <i class=\"fa fa-plus fa-lg mr-2\"></i>\r\n        <em class=\"text-secondary\">Create new website</em>\r\n      </a>\r\n    </li>\r\n\r\n  </ul>\r\n</div>\r\n\r\n<!-- Page Footer -->\r\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -1241,7 +1331,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/website/website-new/website-new.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <!-- Sidebar -->\r\n  <div class=\"col-4 hvj-landscape-only px-1\">\r\n    <app-website-list compactMode=\"true\"></app-website-list>\r\n  </div>\r\n  <!--/Sidebar-->\r\n\r\n  <div class=\"hvj-vertical-line col-4 hvj-landscape-only\"></div>\r\n  <!--Main content-->\r\n  <div class=\"col\">\r\n    <!--Top Nav-->\r\n    <nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal ml-auto hvj-landscape-col-8 px-2\">\r\n      <ul class=\"navbar-nav mr-3 hvj-portrait-only\">\r\n        <li class=\"nav-item\">\r\n          <!-- Back button -->\r\n          <a class=\"nav-link px-0\"\r\n             [routerLink]=\"['../']\"\r\n             title=\"Websites\">\r\n            <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n          </a>\r\n          <!-- /Back button -->\r\n        </li>\r\n      </ul>\r\n\r\n      <a class=\"navbar-brand\"\r\n         href=\"\">New Website</a>\r\n\r\n      <ul class=\"navbar-nav ml-auto\">\r\n        <li class=\"nav-item\">\r\n          <!-- Action button -->\r\n          <a class=\"nav-link px-0\"\r\n             (click)=\"saveChanges()\"\r\n             title=\"Create Website\">\r\n            <span class=\"fa fa-check fa-lg\"></span>\r\n          </a>\r\n          <!-- /Action button -->\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <!--/Top Nav-->\r\n\r\n    <!--content-->\r\n    <div class=\"hvj-website-new\">\r\n      <form #websiteNewForm=\"ngForm\">\r\n        <!--Website Name-->\r\n        <div class=\"form-group\">\r\n          <label for=\"websiteName\"\r\n                 class=\"font-weight-bold text-muted\">Website Name</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"websiteName\"\r\n                 name=\"name\"\r\n                 placeholder=\"Name\"\r\n                 [(ngModel)]=\"website.name\"\r\n                 #nameField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': nameField.invalid && nameField.touched}\"\r\n                 required>\r\n          <span *ngIf=\"nameField.invalid && nameField.touched\"\r\n                class=\"text-danger ml-2\">Name is required</span>\r\n        </div>\r\n        <!--/Website Name-->\r\n\r\n        <!--Website Description-->\r\n        <div class=\"form-group\">\r\n          <label for=\"websiteDescription\"\r\n                 class=\"font-weight-bold text-muted\">Website Name</label>\r\n          <textarea class=\"form-control\"\r\n                    id=\"websiteDescription\"\r\n                    name=\"description\"\r\n                    [(ngModel)]=\"website.description\"\r\n                    rows=\"6\">{{website.description}}\r\n            </textarea>\r\n        </div>\r\n        <!--/Website Description-->\r\n\r\n        <!-- Form buttons -->\r\n        <div class=\"row no-gutters\">\r\n          <div class=\"col-12 col-sm-9 mr-1\">\r\n            <!-- Save button -->\r\n            <button class=\"btn btn-success btn-block mr-1 mb-2\"\r\n                    title=\"Create Website\"\r\n                    (click)=\"saveChanges()\">\r\n              <i class=\"fa fa-check\"></i>\r\n            </button>\r\n          </div>\r\n          <div class=\"col\">\r\n            <!-- Delete button -->\r\n            <a class=\"btn btn-block btn-danger\"\r\n               title=\"Cancel\"\r\n               [routerLink]=\"['../']\">\r\n              <i class=\"fa fa-times\"></i>\r\n            </a>\r\n          </div>\r\n        </div>\r\n\r\n      </form>\r\n    </div>\r\n    <!--/content-->\r\n  </div>\r\n  <!--/Main content-->\r\n</div>"
+module.exports = "<div class=\"row\">\r\n  <!-- Sidebar -->\r\n  <div class=\"col-4 hvj-landscape-only px-1\">\r\n    <app-website-list compactMode=\"true\"></app-website-list>\r\n  </div>\r\n  <!--/Sidebar-->\r\n\r\n  <div class=\"hvj-vertical-line col-4 hvj-landscape-only\"></div>\r\n  <!--Main content-->\r\n  <div class=\"col\">\r\n    <!--Top Nav-->\r\n    <nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal ml-auto hvj-landscape-col-8 px-2\">\r\n      <ul class=\"navbar-nav mr-3 hvj-portrait-only\">\r\n        <li class=\"nav-item\">\r\n          <!-- Back button -->\r\n          <a class=\"nav-link px-0\"\r\n             [routerLink]=\"['../']\"\r\n             title=\"Websites\">\r\n            <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n          </a>\r\n          <!-- /Back button -->\r\n        </li>\r\n      </ul>\r\n\r\n      <a class=\"navbar-brand\"\r\n         href=\"\">New Website</a>\r\n\r\n      <ul class=\"navbar-nav ml-auto\">\r\n        <li class=\"nav-item\">\r\n          <!-- Action button -->\r\n          <a class=\"nav-link px-0\"\r\n             (click)=\"saveChanges()\"\r\n             title=\"Create Website\">\r\n            <span class=\"fa fa-check fa-lg\"></span>\r\n          </a>\r\n          <!-- /Action button -->\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <!--/Top Nav-->\r\n\r\n    <!--content-->\r\n    <div class=\"hvj-website-new\">\r\n      <form #websiteNewForm=\"ngForm\">\r\n        <!--Website Name-->\r\n        <div class=\"form-group\">\r\n          <label for=\"websiteName\"\r\n                 class=\"font-weight-bold text-muted\">Website Name</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"websiteName\"\r\n                 name=\"name\"\r\n                 placeholder=\"Name\"\r\n                 [(ngModel)]=\"website.name\"\r\n                 #nameField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': nameField.invalid && nameField.touched}\"\r\n                 required>\r\n          <span *ngIf=\"nameField.invalid && nameField.touched\"\r\n                class=\"text-danger ml-2\">Name is required</span>\r\n        </div>\r\n        <!--/Website Name-->\r\n\r\n        <!--Website Description-->\r\n        <div class=\"form-group\">\r\n          <label for=\"websiteDescription\"\r\n                 class=\"font-weight-bold text-muted\">Website Name</label>\r\n          <textarea class=\"form-control\"\r\n                    id=\"websiteDescription\"\r\n                    name=\"description\"\r\n                    [(ngModel)]=\"website.description\"\r\n                    rows=\"6\">{{website.description}}\r\n            </textarea>\r\n        </div>\r\n        <!--/Website Description-->\r\n\r\n        <!-- Form buttons -->\r\n        <div class=\"row no-gutters\">\r\n          <div class=\"col-12 col-sm-9 mr-1\">\r\n            <!-- Save button -->\r\n            <button class=\"btn btn-success btn-block mr-1 mb-2\"\r\n                    title=\"Create Website\"\r\n                    (click)=\"saveChanges()\">\r\n              <i class=\"fa fa-check\"></i>\r\n            </button>\r\n          </div>\r\n          <div class=\"col\">\r\n            <!-- Delete button -->\r\n            <a class=\"btn btn-block btn-danger\"\r\n               title=\"Cancel\"\r\n               [routerLink]=\"['../']\">\r\n              <i class=\"fa fa-times\"></i>\r\n            </a>\r\n          </div>\r\n        </div>\r\n\r\n      </form>\r\n    </div>\r\n    <!--/content-->\r\n  </div>\r\n  <!--/Main content-->\r\n</div>\r\n\r\n<!-- Page Footer -->\r\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -1347,7 +1437,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-chooser/widget-chooser.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <!-- Back button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['../']\"\r\n         title=\"Back to Widget List\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n      <!-- /Back button -->\r\n    </li>\r\n  </ul>\r\n\r\n  <a class=\"navbar-brand mr-auto\"\r\n     href=\"\">Choose Widget</a>\r\n\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-widget-chooser\">\r\n  \r\n  <ul class=\"list-group list-group-flush\">\r\n    \r\n    <li class=\"list-group-item\" *ngFor=\"let thisWidget of widgetTypes\">\r\n      <a class=\"btn btn-xs link-royal\"\r\n         (click)=\"createWidget(thisWidget)\">\r\n        <span>{{thisWidget}}</span>\r\n      </a>\r\n    </li>\r\n\r\n  </ul>\r\n\r\n</div>"
+module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <!-- Back button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['../']\"\r\n         title=\"Back to Widget List\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n      <!-- /Back button -->\r\n    </li>\r\n  </ul>\r\n\r\n  <a class=\"navbar-brand mr-auto\"\r\n     href=\"\">Choose Widget</a>\r\n\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-widget-chooser\">\r\n  \r\n  <ul class=\"list-group list-group-flush\">\r\n    \r\n    <li class=\"list-group-item\" *ngFor=\"let thisWidget of widgetTypes\">\r\n      <a class=\"btn btn-xs link-royal\"\r\n         (click)=\"createWidget(thisWidget)\">\r\n        <span>{{thisWidget}}</span>\r\n      </a>\r\n    </li>\r\n\r\n  </ul>\r\n\r\n</div>\r\n\r\n<!-- Page Footer -->\r\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -1445,7 +1535,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-widget-edit\" [(ngSwitch)]=\"widget.widgetType\">\r\n\r\n  <div *ngSwitchCase=\"widgetType.Heading\">\r\n    <app-widget-header-edit></app-widget-header-edit>\r\n  </div>\r\n\r\n  <div *ngSwitchCase=\"widgetType.Image\">\r\n    <app-widget-image-edit></app-widget-image-edit>\r\n  </div>\r\n\r\n  <div *ngSwitchCase=\"widgetType.HTML\">\r\n      <app-widget-html-edit></app-widget-html-edit>\r\n    </div>\r\n\r\n  <div *ngSwitchCase=\"widgetType.YouTube\">\r\n    <app-widget-youtube-edit></app-widget-youtube-edit>\r\n  </div>\r\n\r\n</div>"
+module.exports = "<div class=\"hvj-widget-edit\" [(ngSwitch)]=\"widget.widgetType\">\r\n\r\n  <div *ngSwitchCase=\"widgetType.Heading\">\r\n    <app-widget-header-edit></app-widget-header-edit>\r\n  </div>\r\n\r\n  <div *ngSwitchCase=\"widgetType.Image\">\r\n    <app-widget-image-edit></app-widget-image-edit>\r\n  </div>\r\n\r\n  <div *ngSwitchCase=\"widgetType.HTML\">\r\n      <app-widget-html-edit></app-widget-html-edit>\r\n    </div>\r\n\r\n  <div *ngSwitchCase=\"widgetType.YouTube\">\r\n    <app-widget-youtube-edit></app-widget-youtube-edit>\r\n  </div>\r\n\r\n</div>\r\n\r\n<!-- Page Footer -->\r\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -2150,7 +2240,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <!-- Back button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['../../']\"\r\n         title=\"Pages\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n      <!-- /Back button -->\r\n    </li>\r\n  </ul>\r\n\r\n  <a class=\"navbar-brand\"\r\n     href=\"\">Widgets</a>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['new']\"\r\n         title=\"Add Widget\">\r\n        <span class=\"fa fa-plus fa-lg\"></span>\r\n      </a>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-widget-list\">\r\n  <ul class=\"list-group\">\r\n    <li class=\"list-group-item border-0 px-1\"\r\n        *ngFor=\"let thisWidget of widgets\">\r\n      <div class=\"hvj-widget\"\r\n           [ngSwitch]=\"thisWidget.widgetType\">\r\n        <div *ngSwitchCase=\"widgetType.Heading\">\r\n          <app-widget-header [widget]=\"thisWidget\"></app-widget-header>\r\n        </div>\r\n\r\n        <div *ngSwitchCase=\"widgetType.Image\">\r\n          <app-widget-image [widget]=\"thisWidget\"></app-widget-image>\r\n        </div>\r\n\r\n        <div *ngSwitchCase=\"widgetType.HTML\">\r\n          <app-widget-html [widget]=\"thisWidget\"></app-widget-html>\r\n        </div>\r\n\r\n        <div *ngSwitchCase=\"widgetType.YouTube\">\r\n          <app-widget-youtube [widget]=\"thisWidget\"></app-widget-youtube>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- Widget Action buttons -->\r\n      <div class=\"hvj-widget-actions btn-group ml-auto\">\r\n        <a class=\"btn btn-xs mr-1 link-royal\"\r\n           [routerLink]=\"[thisWidget._id]\"\r\n           title=\"Edit\">\r\n          <span class=\"fa fa-gear\"></span>\r\n        </a>\r\n        <a class=\"btn btn-xs link-royal\"\r\n           title=\"More Options\">\r\n          <span class=\"fa fa-bars\"></span>\r\n        </a>\r\n      </div>\r\n      <!-- /Widget Action buttons -->\r\n    </li>\r\n\r\n    <!-- list empty message -->\r\n    <li class=\"list-group-item border-0 px-1\"\r\n        *ngIf=\"widgets.length == 0\">\r\n      <span>\r\n        <em>No widgets to show</em>\r\n      </span>\r\n    </li>\r\n\r\n    <li class=\"list-group-item border-0 px-1\"\r\n        *ngIf=\"widgets.length == 0\">\r\n      <a class=\"btn btn-xs link-royal\"\r\n         [routerLink]=\"['new']\">\r\n        <i class=\"fa fa-plus fa-lg mr-2\"></i>\r\n        <em class=\"text-secondary\">Create new widget</em>\r\n      </a>\r\n    </li>\r\n\r\n  </ul>\r\n</div>"
+module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <!-- Back button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['../../']\"\r\n         title=\"Pages\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n      <!-- /Back button -->\r\n    </li>\r\n  </ul>\r\n\r\n  <a class=\"navbar-brand\"\r\n     href=\"\">Widgets</a>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['new']\"\r\n         title=\"Add Widget\">\r\n        <span class=\"fa fa-plus fa-lg\"></span>\r\n      </a>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-widget-list\">\r\n  <ul class=\"list-group\">\r\n    <li class=\"list-group-item border-0 px-1\"\r\n        *ngFor=\"let thisWidget of widgets\">\r\n      <div class=\"hvj-widget\"\r\n           [ngSwitch]=\"thisWidget.widgetType\">\r\n        <div *ngSwitchCase=\"widgetType.Heading\">\r\n          <app-widget-header [widget]=\"thisWidget\"></app-widget-header>\r\n        </div>\r\n\r\n        <div *ngSwitchCase=\"widgetType.Image\">\r\n          <app-widget-image [widget]=\"thisWidget\"></app-widget-image>\r\n        </div>\r\n\r\n        <div *ngSwitchCase=\"widgetType.HTML\">\r\n          <app-widget-html [widget]=\"thisWidget\"></app-widget-html>\r\n        </div>\r\n\r\n        <div *ngSwitchCase=\"widgetType.YouTube\">\r\n          <app-widget-youtube [widget]=\"thisWidget\"></app-widget-youtube>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- Widget Action buttons -->\r\n      <div class=\"hvj-widget-actions btn-group ml-auto\">\r\n        <a class=\"btn btn-xs mr-1 link-royal\"\r\n           [routerLink]=\"[thisWidget._id]\"\r\n           title=\"Edit\">\r\n          <span class=\"fa fa-gear\"></span>\r\n        </a>\r\n        <a class=\"btn btn-xs link-royal\"\r\n           title=\"More Options\">\r\n          <span class=\"fa fa-bars\"></span>\r\n        </a>\r\n      </div>\r\n      <!-- /Widget Action buttons -->\r\n    </li>\r\n\r\n    <!-- list empty message -->\r\n    <li class=\"list-group-item border-0 px-1\"\r\n        *ngIf=\"widgets.length == 0\">\r\n      <span>\r\n        <em>No widgets to show</em>\r\n      </span>\r\n    </li>\r\n\r\n    <li class=\"list-group-item border-0 px-1\"\r\n        *ngIf=\"widgets.length == 0\">\r\n      <a class=\"btn btn-xs link-royal\"\r\n         [routerLink]=\"['new']\">\r\n        <i class=\"fa fa-plus fa-lg mr-2\"></i>\r\n        <em class=\"text-secondary\">Create new widget</em>\r\n      </a>\r\n    </li>\r\n\r\n  </ul>\r\n</div>\r\n\r\n<!-- Page Footer -->\r\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -2327,6 +2417,76 @@ var Widget = (function () {
 }());
 
 //# sourceMappingURL=model.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/auth.service.client.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AuthService = (function () {
+    function AuthService(router, userService) {
+        this.router = router;
+        this.userService = userService;
+    }
+    /**
+     * Check if user is logged in
+     * @returns logged in user object; null, if user is not logged in
+     */
+    AuthService.prototype.getLoggedInUser = function () {
+        this.loggedInUser = this.loggedInUser || JSON.parse(localStorage.getItem('loggedInUser'));
+        if (this.loggedInUser) {
+            return Object.assign({}, this.loggedInUser);
+        }
+        else {
+            this.router.navigate(['/login']);
+        }
+    };
+    /**
+     * Login user
+     * @param username username
+     * @param password password
+     */
+    AuthService.prototype.login = function (username, password) {
+        this.loggedInUser = this.userService.findUserByCredentials(username, password);
+        if (this.loggedInUser) {
+            localStorage.setItem('loggedInUser', JSON.stringify(this.loggedInUser));
+        }
+        return Object.assign({}, this.loggedInUser);
+    };
+    /**
+     * Logout user
+     */
+    AuthService.prototype.logout = function () {
+        this.loggedInUser = null;
+        localStorage.removeItem('loggedInUser');
+        this.router.navigate(['/login']);
+    };
+    return AuthService;
+}());
+AuthService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */]) === "function" && _b || Object])
+], AuthService);
+
+var _a, _b;
+//# sourceMappingURL=auth.service.client.js.map
 
 /***/ }),
 
