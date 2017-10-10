@@ -8,6 +8,12 @@ export class AuthService {
   // properties
   loggedInUser: User;
 
+  api = {
+    'getLoggedInUser': this.getLoggedInUser,
+    'login': this.login,
+    'logout': this.logout
+  };
+
   constructor(private router: Router, private userService: UserService) { }
 
   /**

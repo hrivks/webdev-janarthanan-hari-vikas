@@ -16,6 +16,14 @@ export class PageService {
     { '_id': '777', 'name': 'Post 6', 'websiteId': '789', 'description': 'Lorem Epsum' }
   ];
 
+  api = {
+    'createPage': this.createPage,
+    'findPageById': this.findPageById,
+    'findPageBywebsiteId': this.findPageBywebsiteId,
+    'updatePage': this.updatePage,
+    'deletePage': this.deletePage
+  };
+
   /**
    * Create a new page
    * @param userId id of the user who created the page

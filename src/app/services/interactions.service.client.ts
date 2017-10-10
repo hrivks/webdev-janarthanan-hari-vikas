@@ -6,6 +6,11 @@ export class InteractionsService {
   // properties
   private callbacks = new Map<string, (() => void)[]>();
 
+  api = {
+    'registerCallback': this.registerCallback,
+    'fireCallback': this.fireCallback
+  };
+
   constructor() { }
 
   /**

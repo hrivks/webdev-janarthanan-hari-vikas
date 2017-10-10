@@ -17,6 +17,14 @@ export class WebsiteService {
     { '_id': '789', 'name': 'Chess', 'developerId': '234', 'description': 'Lorem' }
   ];
 
+  api = {
+    'createWebsite': this.createWebsite,
+    'findWebsiteById': this.findWebsiteById,
+    'findWebsitesByUser': this.findWebsitesByUser,
+    'updateWebsite': this.updateWebsite,
+    'deleteWebsite': this.deleteWebsite
+  };
+
   /**
    * Create a new website
    * @param userId id of the user who created the website

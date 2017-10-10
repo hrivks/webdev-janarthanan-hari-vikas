@@ -22,6 +22,14 @@ export class WidgetService {
     { '_id': '789', 'widgetType': WidgetType.HTML, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' }
   ];
 
+  api = {
+    'createWidget': this.createWidget,
+    'findWidgetById': this.findWidgetById,
+    'findWidgetsByPageId': this.findWidgetsByPageId,
+    'updateWidget': this.updateWidget,
+    'deleteWidget': this.deleteWidget
+  };
+
   /**
    * Create a new widget
    * @param pageId id of the page in which the widget is to be added
@@ -47,7 +55,7 @@ export class WidgetService {
     * @param widgetId id of the widget
     * @returns widget corresponding to the given Id; null if id widget doesn't exit
     */
-    findWidgetById(widgetId: string): Widget {
+  findWidgetById(widgetId: string): Widget {
     const widget = this.widgets.find(w => w._id === widgetId);
     return widget ? Object.assign({}, widget) : null;
   }
@@ -57,10 +65,10 @@ export class WidgetService {
     * @param pageId id of the page
     * @returns widgets corresponding to the given Id; null if id widget doesn't exit
     */
-    findWidgetsByPageId(pageId: string): Widget[] {
-      const widgets = this.widgets.filter(w => w.pageId === pageId);
-      return widgets.map(w => Object.assign({}, w));
-    }
+  findWidgetsByPageId(pageId: string): Widget[] {
+    const widgets = this.widgets.filter(w => w.pageId === pageId);
+    return widgets.map(w => Object.assign({}, w));
+  }
 
   /**
    * Update widget by Id

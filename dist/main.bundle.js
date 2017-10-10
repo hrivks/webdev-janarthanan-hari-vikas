@@ -2444,6 +2444,11 @@ var AuthService = (function () {
     function AuthService(router, userService) {
         this.router = router;
         this.userService = userService;
+        this.api = {
+            'getLoggedInUser': this.getLoggedInUser,
+            'login': this.login,
+            'logout': this.logout
+        };
     }
     /**
      * Check if user is logged in
@@ -2510,6 +2515,10 @@ var InteractionsService = (function () {
     function InteractionsService() {
         // properties
         this.callbacks = new Map();
+        this.api = {
+            'registerCallback': this.registerCallback,
+            'fireCallback': this.fireCallback
+        };
     }
     /**
      * Register callback for a specific event
@@ -2578,6 +2587,13 @@ var PageService = (function () {
             { '_id': '666', 'name': 'Post 5', 'websiteId': '789', 'description': 'Lorem Epsum 2' },
             { '_id': '777', 'name': 'Post 6', 'websiteId': '789', 'description': 'Lorem Epsum' }
         ];
+        this.api = {
+            'createPage': this.createPage,
+            'findPageById': this.findPageById,
+            'findPageBywebsiteId': this.findPageBywebsiteId,
+            'updatePage': this.updatePage,
+            'deletePage': this.deletePage
+        };
     }
     /**
      * Create a new page
@@ -2873,6 +2889,13 @@ var WebsiteService = (function () {
             { '_id': '678', 'name': 'Checkers', 'developerId': '123', 'description': 'Lorem' },
             { '_id': '789', 'name': 'Chess', 'developerId': '234', 'description': 'Lorem' }
         ];
+        this.api = {
+            'createWebsite': this.createWebsite,
+            'findWebsiteById': this.findWebsiteById,
+            'findWebsitesByUser': this.findWebsitesByUser,
+            'updateWebsite': this.updateWebsite,
+            'deleteWebsite': this.deleteWebsite
+        };
     }
     /**
      * Create a new website
@@ -2990,6 +3013,13 @@ var WidgetService = (function () {
             },
             { '_id': '789', 'widgetType': __WEBPACK_IMPORTED_MODULE_1__model_model__["e" /* WidgetType */].HTML, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' }
         ];
+        this.api = {
+            'createWidget': this.createWidget,
+            'findWidgetById': this.findWidgetById,
+            'findWidgetsByPageId': this.findWidgetsByPageId,
+            'updateWidget': this.updateWidget,
+            'deleteWidget': this.deleteWidget
+        };
     }
     /**
      * Create a new widget
