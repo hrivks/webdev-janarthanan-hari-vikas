@@ -40,11 +40,14 @@ export class WebsiteNewComponent implements OnInit {
       this.websiteNewForm.controls.name.markAsTouched({ onlySelf: true });
     } else {
       this.website = this.websiteService.createWebsite(this.userId, this.website);
+
       if (this.website) {
         console.log('website created successfully');
-        this.router.navigate(['/user', this.userId, 'website']);
+        this.interactionsService.showAlert('Website created successfully', 'success', true);
+        this.router.navigate(['../'], { relativeTo: this.activatedRoute });
       } else {
-        console.log('website creation unsuccessful');
+        console.log('error creating website');
+        this.interactionsService.showAlert('Website creation failed', 'danger');
       }
 
     }

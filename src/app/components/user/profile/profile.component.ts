@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../../model/model';
 import { UserService } from '../../../services/user.service.client';
 import { AuthService } from '../../../services/auth.service.client';
+import { InteractionsService } from '../../../services/interactions.service.client';
 
 @Component({
   selector: 'app-profile',
@@ -25,7 +26,8 @@ export class ProfileComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private interactionsService: InteractionsService) { }
 
   ngOnInit() {
     // get userid parameter route
@@ -85,7 +87,14 @@ export class ProfileComponent implements OnInit {
 
     //#endregion
     if (!this.profileErrors.hasError) {
-      this.user = this.userService.updateUser(this.userId, this.user);
+      const updatedUser = this.userService.updateUser(this.userId, this.user);
+
+      if (updatedUser) {
+        this.user = updatedUser;
+        this.interactionsService.showAlert('Profile updated successfully', 'success', true);
+      } else {
+        this.interactionsService.showAlert('Profile update failed', 'danger', true);
+      }
     }
   }
 

@@ -43,6 +43,7 @@ import { WidgetImageComponent } from './components/widget/widget-list/widget-ima
 import { WidgetYoutubeComponent } from './components/widget/widget-list/widget-youtube/widget-youtube.component';
 import { WidgetHtmlComponent } from './components/widget/widget-list/widget-html/widget-html.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
+import { AlertComponent } from './components/shared/alert/alert.component';
 
 @NgModule({
   // Declare components here
@@ -70,7 +71,8 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     WidgetImageComponent,
     WidgetYoutubeComponent,
     WidgetHtmlComponent,
-    FooterComponent
+    FooterComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

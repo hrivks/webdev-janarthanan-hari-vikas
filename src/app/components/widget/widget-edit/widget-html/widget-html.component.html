@@ -1,5 +1,5 @@
 <!--Top Nav-->
-<nav class="navbar navbar-expand fixed-top navbar-dark bg-royal px-2">
+<nav class="navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3">
   <ul class="navbar-nav mr-3">
     <li class="nav-item">
       <!-- Back button -->
@@ -50,15 +50,17 @@
     <div class="form-group">
       <label for="widget-heading-text"
              class="font-weight-bold text-muted">Text</label>
-      <input type="text"
-             class="form-control"
-             id="widget-heading-text"
-             name="text"
-             placeholder="Text"
-             [(ngModel)]="widget.text"
-             #textField="ngModel"
-             [ngClass]="{'border-danger': textField.invalid && textField.touched}"
-             required>
+      <textarea type="text"
+                class="form-control"
+                id="widget-heading-text"
+                name="text"
+                placeholder="Html"
+                rows=5
+                [(ngModel)]="widget.text"
+                #textField="ngModel"
+                [ngClass]="{'border-danger': textField.invalid && textField.touched}"
+                required>
+      </textarea>
       <span *ngIf="textField.invalid && textField.touched"
             class="text-danger ml-2">Text is required</span>
     </div>

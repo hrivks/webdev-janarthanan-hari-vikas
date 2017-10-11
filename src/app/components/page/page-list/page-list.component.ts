@@ -17,6 +17,7 @@ export class PageListComponent implements OnInit {
   websiteId: string;
   pages: Page[];
   constructor(private activatedRoute: ActivatedRoute,
+    private router: Router,
     private pageService: PageService,
     private interactionsService: InteractionsService) { }
 
@@ -38,6 +39,12 @@ export class PageListComponent implements OnInit {
    * Get list of Pages for the current user
    */
   getPages() {
-    this.pages = this.pageService.findPageBywebsiteId(this.websiteId);
+    const pages = this.pageService.findPageBywebsiteId(this.websiteId);
+    if (pages) {
+      this.pages = pages;
+    } else {
+      this.interactionsService.showAlert('Website with Id ' + this.websiteId + ' does not exist', 'danger', true);
+      this.router.navigate(['../']);
+    }
   }
 }

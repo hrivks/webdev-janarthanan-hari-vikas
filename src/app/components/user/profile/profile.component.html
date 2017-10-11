@@ -1,16 +1,16 @@
 <!--Top Nav-->
-<nav class="navbar navbar-expand fixed-top navbar-dark bg-royal px-2">
+<nav class="navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3">
   <a class="navbar-brand"
      [routerLink]="[this.userId]">Profile</a>
 
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
       <!-- Action button -->
-      <button class="btn btn-royal px-2"
-              (click)="saveProfile()"
-              title="Save Changes">
+      <a class="nav-link px-0"
+         (click)="saveProfile()"
+         title="Save Changes">
         <span class="fa fa-check fa-lg"></span>
-      </button>
+      </a>
       <!-- /Action button -->
     </li>
   </ul>
@@ -102,7 +102,7 @@
       <a class="btn btn-royal btn-block"
          [routerLink]="['website']">Websites</a>
       <button class="btn btn-danger btn-block"
-         (click)="logout()">Logout</button>
+              (click)="logout()">Logout</button>
     </div>
     <!--/Action Buttons-->
   </form>

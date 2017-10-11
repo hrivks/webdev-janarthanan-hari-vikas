@@ -45,7 +45,8 @@ export class PageNewComponent implements OnInit {
       this.pageNewForm.controls.name.markAsTouched({ onlySelf: true });
     } else {
       this.pageService.createPage(this.websiteId, this.page);
-      console.log('Page saved successfully');
+      console.log('Page created successfully');
+      this.interactionsService.showAlert('Page created successfully', 'success', true);
       this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
     }
   }

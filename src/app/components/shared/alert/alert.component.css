@@ -1,0 +1,8 @@
+.hvj-app-alert {
+    position: fixed;
+    z-index: 200;
+}
+
+.hvj-app-alert .alert {
+    box-shadow: 0 0 24px -7px black;
+}

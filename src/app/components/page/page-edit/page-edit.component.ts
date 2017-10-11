@@ -32,7 +32,13 @@ export class PageEditComponent implements OnInit {
       this.userId = params['uid'];
       this.websiteId = params['wid'];
       this.pageId = params['pid'];
-      this.page = this.pageService.findPageById(this.pageId);
+      const page = this.pageService.findPageById(this.pageId);
+      if (page) {
+        this.page = page;
+      } else {
+        this.interactionsService.showAlert('Page with Id ' + this.pageId + ' does not exist', 'danger', true);
+        this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+      }
     });
   }
 
@@ -46,6 +52,7 @@ export class PageEditComponent implements OnInit {
     } else {
       this.pageService.updatePage(this.pageId, this.page);
       console.log('Page saved successfully');
+      this.interactionsService.showAlert('Page saved successfully', 'success', true);
       this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
     }
   }
@@ -54,8 +61,13 @@ export class PageEditComponent implements OnInit {
    * Delete current page
    */
   deletePage() {
-    this.pageService.deletePage(this.pageId);
-    this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+    const deletedPage = this.pageService.deletePage(this.pageId);
+    if (deletedPage) {
+      this.interactionsService.showAlert('Page deleted successfully', 'success', true);
+      this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+    } else {
+      this.interactionsService.showAlert('Page deletion unsuccessful', 'danger');
+    }
   }
 
 }

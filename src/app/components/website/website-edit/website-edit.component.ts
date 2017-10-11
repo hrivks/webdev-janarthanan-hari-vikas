@@ -30,10 +30,14 @@ export class WebsiteEditComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: any) => {
       this.userId = params['uid'];
       this.websiteId = params['wid'];
-      this.website = this.websiteService.findWebsiteById(this.websiteId);
-      if (!this.website) {
+      const website = this.websiteService.findWebsiteById(this.websiteId);
+      if (website) {
+        this.website = website;
+      } else {
         console.log('Website with Id ' + this.websiteId + ' does not exist');
         this.website = new Website();
+        this.interactionsService.showAlert('Website with Id ' + this.websiteId + ' does not exist', 'danger', true);
+        this.router.navigate(['../'], { relativeTo: this.activatedRoute });
       }
     });
   }
@@ -49,9 +53,11 @@ export class WebsiteEditComponent implements OnInit {
       this.website = this.websiteService.updateWebsite(this.websiteId, this.website);
       if (this.website) {
         console.log('website saved successfully');
+        this.interactionsService.showAlert('Website saved successfully', 'success', true);
         this.router.navigate(['../'], { relativeTo: this.activatedRoute });
       } else {
         console.log('error saving website');
+        this.interactionsService.showAlert('Website update failed', 'danger');
       }
     }
   }
@@ -60,8 +66,15 @@ export class WebsiteEditComponent implements OnInit {
    * Delete current website
    */
   deleteWebsite() {
-    this.websiteService.deleteWebsite(this.websiteId);
-    this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+    const deletedWebsite = this.websiteService.deleteWebsite(this.websiteId);
+
+    if (deletedWebsite) {
+      this.interactionsService.showAlert('Website deleted successfully', 'success', true);
+      this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+    } else {
+      this.interactionsService.showAlert('Website deletion failed', 'danger');
+    }
+
   }
 
 }

@@ -1,41 +1,41 @@
 <div class="container">
-  
-<p>
-  <span class="display-3">Login</span>
-</p>
-<hr>
-<br>
-<!--form-->
-<form class="form"
-      #f="ngForm"
-      (ngSubmit)="login(f)"
-      novalidate>
-  <div class="form-group">
-    <input placeholder="User Name"
-           type="text"
-           class="form-control"
-           name="username"
-           #usernameField="ngModel"
-           ngModel
-           [ngClass]="{'border-danger': !usernameField.valid && usernameField.touched}"
-           required />
-    <span class="small text-danger ml-2"
-          *ngIf="usernameField.invalid && usernameField.touched">Username is required</span>
-  </div>
-  <div class="form-group">
-    <input placeholder="Password"
-           type="password"
-           class="form-control"
-           name="password"
-           #passwordField="ngModel"
-           ngModel
-           [ngClass]="{'border-danger': !passwordField.valid && passwordField.touched}"
-           required/>
-    <span class="small text-danger ml-2"
-          *ngIf="passwordField.invalid && passwordField.touched">Password is required</span>
-  </div>
-  <div *ngIf="loginError">
-    <div class="alert alert-danger text-center">{{loginError}}</div>
+
+  <p>
+    <span class="display-3">Login</span>
+  </p>
+  <hr>
+  <br>
+  <!--form-->
+  <form class="form"
+        #f="ngForm"
+        (ngSubmit)="login(f)"
+        novalidate>
+    <div class="form-group">
+      <input placeholder="User Name"
+             type="text"
+             class="form-control"
+             name="username"
+             #usernameField="ngModel"
+             ngModel
+             [ngClass]="{'border-danger': !usernameField.valid && usernameField.touched}"
+             required />
+      <span class="small text-danger ml-2"
+            *ngIf="usernameField.invalid && usernameField.touched">Username is required</span>
+    </div>
+    <div class="form-group">
+      <input placeholder="Password"
+             type="password"
+             class="form-control"
+             name="password"
+             #passwordField="ngModel"
+             ngModel
+             [ngClass]="{'border-danger': !passwordField.valid && passwordField.touched}"
+             required/>
+      <span class="small text-danger ml-2"
+            *ngIf="passwordField.invalid && passwordField.touched">Password is required</span>
+    </div>
+    <div *ngIf="loginError">
+      <div class="alert alert-danger text-center">{{loginError}}</div>
     </div>
     <!-- form actions -->
     <div>
@@ -46,7 +46,7 @@
          [routerLink]="['/register']">Register</a>
     </div>
     <!-- /form actions -->
-</form>
-<!--/form-->
+  </form>
+  <!--/form-->
 
 </div>

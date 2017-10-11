@@ -1,0 +1,18 @@
+<div class="hvj-app-alert w-100">
+  <div class="w-75 m-auto">
+    <div class="alert fade show"
+         [hidden]="!alertVisible"
+         [ngClass]="'alert-' + (alertType ? alertType : 'danger')"
+         role="alert">
+      <button type="button"
+              class="close"
+              (click)="alertVisible = false">
+        <small>
+          <i class="fa fa-times"
+             aria-hidden="true"></i>
+        </small>
+      </button>
+      {{alertText}}
+    </div>
+  </div>
+</div>
