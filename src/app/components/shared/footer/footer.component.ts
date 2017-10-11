@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../../model/model';
 import { AuthService } from '../../../services/auth.service.client';
 
@@ -10,12 +10,13 @@ import { AuthService } from '../../../services/auth.service.client';
 export class FooterComponent implements OnInit {
 
   // properties
-  loggedInUser: User;
+  // loggedInUser: User;
+  @Input() loggedInUserId: string;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.loggedInUser = this.authService.getLoggedInUser();
+    //this.loggedInUser = this.authService.getLoggedInUser();
   }
 
 }
