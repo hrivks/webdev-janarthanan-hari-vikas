@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InteractionsService } from '../../../services/interactions.service.client';
+import { AppConstants } from '../../../app.constant';
+import { AlertData } from '../../../model/ui-model';
 
 @Component({
   selector: 'app-alert',
@@ -17,14 +19,14 @@ export class AlertComponent implements OnInit {
 
   ngOnInit() {
     this.alertVisible = false;
-    this.interactionsService.registerAlertCallback((d) => { this.showAlert(d); });
+    this.interactionsService.registerCallback(AppConstants.EVENTS.showAlert, (d) => { this.showAlert(d); });
   }
 
   /**
    * show alert on page
    * @param data alert data
    */
-  showAlert(data: { text: string, type?: string, autoClose?: boolean }) {
+  showAlert(data: AlertData) {
     if (data.text) {
       this.alertText = data.text;
       this.alertType = data.type;

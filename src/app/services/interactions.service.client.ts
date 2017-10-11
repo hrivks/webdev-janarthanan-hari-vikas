@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
+import { AppConstants } from '../app.constant';
 
 @Injectable()
 export class InteractionsService {
 
   // properties
+  // event callback mapping; key: event name, value: array of registered callbacks
   private callbacks = new Map<string, ((data?: any) => void)[]>();
+
+  // queued fire callback requests; key: event, value: array of data objects sent
+  private queue = new Map<string, any[]>();
 
   api = {
     'registerCallback': this.registerCallback,
-    'fireCallback': this.fireCallback
+    'invoke': this.invoke
   };
 
   constructor() { }
@@ -19,26 +24,41 @@ export class InteractionsService {
    * @param callback callback function to be invoked with the event occurs
    */
   registerCallback(name: string, callback: (data?: any) => void) {
+    // create callback array if it doest not already exist
     if (!this.callbacks[name]) {
       this.callbacks[name] = [];
     }
     this.callbacks[name].push(callback);
 
+    // fire any requests already received
+    if (this.queue[name]) {
+      this.queue[name].forEach(q => {
+        this.invoke(name, q);
+      });
+      this.queue[name] = [];
+    }
   }
 
   /**
    * Invoke all registered callback for the specified event
    * @param name name of the event
    */
-  fireCallback(name: string, data?: any) {
+  invoke(name: string, data?: any) {
+    // invoke callbacks if exist
     if (this.callbacks[name]) {
-      this.callbacks[name].forEach(element => {
+      this.callbacks[name].forEach(c => {
         try {
-          element(data);
+          c(data);
         } catch (ex) {
           console.log('Error invoking callback function for event ' + name);
         }
       });
+    } else {
+      // enqueue request
+      if (!this.queue[name]) {
+        this.queue[name] = [];
+      }
+      this.queue[name].push(data);
     }
   }
 
@@ -49,15 +69,7 @@ export class InteractionsService {
    * @param autoClose auto close after a delay
    */
   showAlert(text: string, type?: string, autoClose?: boolean) {
-    this.fireCallback('showAlert', { text: text, type: type, autoClose: autoClose });
-  }
-
-  /**
-   * Register callback to show alert
-   * @param callback callback to invoke for showing alert
-   */
-  registerAlertCallback(callback: (d?) => void) {
-    this.registerCallback('showAlert', callback);
+    this.invoke(AppConstants.EVENTS.showAlert, { text: text, type: type, autoClose: autoClose });
   }
 
 }

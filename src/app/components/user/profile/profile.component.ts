@@ -5,6 +5,7 @@ import { User } from '../../../model/model';
 import { UserService } from '../../../services/user.service.client';
 import { AuthService } from '../../../services/auth.service.client';
 import { InteractionsService } from '../../../services/interactions.service.client';
+import { AppConstants } from '../../../app.constant';
 
 @Component({
   selector: 'app-profile',

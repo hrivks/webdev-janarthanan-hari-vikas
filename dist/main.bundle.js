@@ -51,6 +51,8 @@ module.exports = "<app-alert></app-alert>\r\n\r\n<router-outlet></router-outlet>
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service_client__ = __webpack_require__("../../../../../src/app/services/auth.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_constant__ = __webpack_require__("../../../../../src/app/app.constant.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -64,13 +66,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var AppComponent = (function () {
-    function AppComponent(router, activatedRoute, title, authService) {
+    function AppComponent(router, activatedRoute, title, authService, interactionsService) {
         var _this = this;
         this.router = router;
         this.activatedRoute = activatedRoute;
         this.title = title;
         this.authService = authService;
+        this.interactionsService = interactionsService;
         // set title on route change
         router.events.subscribe(function (event) {
             if (event instanceof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* NavigationEnd */]) {
@@ -83,7 +88,10 @@ var AppComponent = (function () {
                 else {
                     _this.loggedInUserId = null;
                 }
+                // set page title
                 title.setTitle(_this.activatedRoute.snapshot.firstChild.data.title || 'webdev-hari-vikas-janarthanan');
+                // clear dynamic footer links set by previous page
+                _this.interactionsService.invoke(__WEBPACK_IMPORTED_MODULE_5__app_constant__["a" /* AppConstants */].EVENTS.clearFooterLink);
             }
         });
     }
@@ -95,11 +103,32 @@ AppComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* Title */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* Title */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_auth_service_client__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_auth_service_client__["a" /* AuthService */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* Title */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* Title */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_auth_service_client__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_auth_service_client__["a" /* AuthService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_interactions_service_client__["a" /* InteractionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_interactions_service_client__["a" /* InteractionsService */]) === "function" && _e || Object])
 ], AppComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/app.constant.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppConstants; });
+var AppConstants = (function () {
+    function AppConstants() {
+    }
+    return AppConstants;
+}());
+
+AppConstants.EVENTS = {
+    addFooterLink: 'addFooterLink',
+    clearFooterLink: 'clearFooterLink',
+    showAlert: 'showAlert',
+    showLoader: 'showLoader'
+};
+//# sourceMappingURL=app.constant.js.map
 
 /***/ }),
 
@@ -116,13 +145,13 @@ var _a, _b, _c, _d;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_routing__ = __webpack_require__("../../../../../src/app/app.routing.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_test_service_client__ = __webpack_require__("../../../../../src/app/services/test.service.client.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_website_service_client__ = __webpack_require__("../../../../../src/app/services/website.service.client.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_page_service_client__ = __webpack_require__("../../../../../src/app/services/page.service.client.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_widget_service_client__ = __webpack_require__("../../../../../src/app/services/widget.service.client.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_auth_service_client__ = __webpack_require__("../../../../../src/app/services/auth.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_website_service_client__ = __webpack_require__("../../../../../src/app/services/website.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_page_service_client__ = __webpack_require__("../../../../../src/app/services/page.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_widget_service_client__ = __webpack_require__("../../../../../src/app/services/widget.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_auth_service_client__ = __webpack_require__("../../../../../src/app/services/auth.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_test_service_client__ = __webpack_require__("../../../../../src/app/services/test.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_user_login_login_component__ = __webpack_require__("../../../../../src/app/components/user/login/login.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_user_profile_profile_component__ = __webpack_require__("../../../../../src/app/components/user/profile/profile.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_user_register_register_component__ = __webpack_require__("../../../../../src/app/components/user/register/register.component.ts");
@@ -159,15 +188,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
-// App services
-
+// #region App services
 
 
 
 
 
-// App Components
+
+
+// #endregion
+// #region App Components
 // user components
 
 
@@ -196,6 +226,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+// #endregion
 var AppModule = (function () {
     function AppModule() {
     }
@@ -238,7 +269,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_5__app_routing__["a" /* Routing */]
         ],
         // Client Side services here
-        providers: [__WEBPACK_IMPORTED_MODULE_8__services_test_service_client__["a" /* TestService */], __WEBPACK_IMPORTED_MODULE_9__services_user_service_client__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_10__services_website_service_client__["a" /* WebsiteService */], __WEBPACK_IMPORTED_MODULE_11__services_page_service_client__["a" /* PageService */], __WEBPACK_IMPORTED_MODULE_12__services_widget_service_client__["a" /* WidgetService */], __WEBPACK_IMPORTED_MODULE_14__services_auth_service_client__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_13__services_interactions_service_client__["a" /* InteractionsService */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_14__services_test_service_client__["a" /* TestService */], __WEBPACK_IMPORTED_MODULE_8__services_user_service_client__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_9__services_website_service_client__["a" /* WebsiteService */], __WEBPACK_IMPORTED_MODULE_10__services_page_service_client__["a" /* PageService */], __WEBPACK_IMPORTED_MODULE_11__services_widget_service_client__["a" /* WidgetService */], __WEBPACK_IMPORTED_MODULE_13__services_auth_service_client__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_12__services_interactions_service_client__["a" /* InteractionsService */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
@@ -696,7 +727,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".hvj-app-alert {\r\n    position: fixed;\r\n    z-index: 200;\r\n}\r\n\r\n.hvj-app-alert .alert {\r\n    box-shadow: 0 0 24px -7px black;\r\n}", ""]);
+exports.push([module.i, ".hvj-app-alert {\r\n    position: fixed;\r\n    z-index: 200;\r\n    bottom: 100px;\r\n}\r\n\r\n.hvj-app-alert .alert {\r\n    box-shadow: 0 0 24px -7px black;\r\n}", ""]);
 
 // exports
 
@@ -720,6 +751,7 @@ module.exports = "<div class=\"hvj-app-alert w-100\">\r\n  <div class=\"w-75 m-a
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AlertComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_constant__ = __webpack_require__("../../../../../src/app/app.constant.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -731,6 +763,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var AlertComponent = (function () {
     function AlertComponent(interactionsService) {
         this.interactionsService = interactionsService;
@@ -738,7 +771,7 @@ var AlertComponent = (function () {
     AlertComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.alertVisible = false;
-        this.interactionsService.registerAlertCallback(function (d) { _this.showAlert(d); });
+        this.interactionsService.registerCallback(__WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].EVENTS.showAlert, function (d) { _this.showAlert(d); });
     };
     /**
      * show alert on page
@@ -794,7 +827,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/shared/footer/footer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Footer -->\r\n<nav *ngIf=\"loggedInUserId\"\r\n     class=\"navbar navbar-expand bg-faded border-faded fixed-bottom hvj-footer px-3\">\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link link-royal\"\r\n         [routerLink]=\"['/user', loggedInUserId]\"\r\n         title=\"My Profile\">\r\n        <span class=\"fa fa-user fa-lg\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!-- /Footer -->"
+module.exports = "<!-- Footer -->\r\n<nav *ngIf=\"loggedInUserId\"\r\n     class=\"navbar navbar-expand bg-faded border-faded fixed-bottom hvj-footer px-3\">\r\n\r\n  <!-- Dynamic links -->\r\n  <ul class=\"navbar-nav\">\r\n    <li class=\"nav-item mx-2\"\r\n        *ngFor=\"let l of links\">\r\n      <a class=\"nav-link link-royal\"\r\n         [attr.href]=\"l.link\"\r\n         (click)=\"linkClicked(l)\">\r\n        <i *ngIf=\"l.icon\"\r\n           class=\"fa\"\r\n           [ngClass]=\"l.icon\"></i>\r\n        {{l.text}}\r\n      </a>\r\n    </li>\r\n  </ul>\r\n  <!-- /Dynamic links -->\r\n\r\n  <!-- Static links -->\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link link-royal\"\r\n         [routerLink]=\"['/user', loggedInUserId]\"\r\n         title=\"My Profile\">\r\n        <span class=\"fa fa-user fa-lg\"></span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n  <!-- /Static links -->\r\n\r\n</nav>\r\n<!-- /Footer -->"
 
 /***/ }),
 
@@ -804,7 +837,10 @@ module.exports = "<!-- Footer -->\r\n<nav *ngIf=\"loggedInUserId\"\r\n     class
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FooterComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service_client__ = __webpack_require__("../../../../../src/app/services/auth.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service_client__ = __webpack_require__("../../../../../src/app/services/auth.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_constant__ = __webpack_require__("../../../../../src/app/app.constant.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -816,12 +852,49 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
+
 var FooterComponent = (function () {
-    function FooterComponent(authService) {
+    function FooterComponent(router, authService, interactionsService) {
+        this.router = router;
         this.authService = authService;
+        this.interactionsService = interactionsService;
     }
     FooterComponent.prototype.ngOnInit = function () {
-        //this.loggedInUser = this.authService.getLoggedInUser();
+        var _this = this;
+        this.links = [];
+        // register callback for adding links to footer dynamically
+        this.interactionsService.registerCallback(__WEBPACK_IMPORTED_MODULE_4__app_constant__["a" /* AppConstants */].EVENTS.addFooterLink, function (link) { _this.addLink(link); });
+        this.interactionsService.registerCallback(__WEBPACK_IMPORTED_MODULE_4__app_constant__["a" /* AppConstants */].EVENTS.clearFooterLink, function (link) { _this.clearLinks(); });
+    };
+    /**
+     * Add a link to footer
+     * @param link link object to add
+     */
+    FooterComponent.prototype.addLink = function (link) {
+        console.log(link);
+        if (link.icon || link.text) {
+            this.links.push(link);
+        }
+    };
+    /**
+     * Clear all links
+     */
+    FooterComponent.prototype.clearLinks = function () {
+        this.links = [];
+    };
+    /**
+     * On link click
+     * @param link link object associated with the clicke link
+     */
+    FooterComponent.prototype.linkClicked = function (link) {
+        if (link.onClick) {
+            link.onClick();
+        }
+        else if (link.routerLink) {
+            this.router.navigate(link.routerLink);
+        }
     };
     return FooterComponent;
 }());
@@ -835,10 +908,10 @@ FooterComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/shared/footer/footer.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/shared/footer/footer.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service_client__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_auth_service_client__["a" /* AuthService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_auth_service_client__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_auth_service_client__["a" /* AuthService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_interactions_service_client__["a" /* InteractionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_interactions_service_client__["a" /* InteractionsService */]) === "function" && _c || Object])
 ], FooterComponent);
 
-var _a;
+var _a, _b, _c;
 //# sourceMappingURL=footer.component.js.map
 
 /***/ }),
@@ -2490,6 +2563,8 @@ module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_model__ = __webpack_require__("../../../../../src/app/model/model.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_widget_service_client__ = __webpack_require__("../../../../../src/app/services/widget.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_constant__ = __webpack_require__("../../../../../src/app/app.constant.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2503,11 +2578,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var WidgetListComponent = (function () {
-    function WidgetListComponent(activatedRoute, router, widgetService) {
+    function WidgetListComponent(activatedRoute, router, widgetService, interactionsService) {
         this.activatedRoute = activatedRoute;
         this.router = router;
         this.widgetService = widgetService;
+        this.interactionsService = interactionsService;
         // properties
         this.widgetType = __WEBPACK_IMPORTED_MODULE_2__model_model__["e" /* WidgetType */];
     }
@@ -2516,6 +2594,9 @@ var WidgetListComponent = (function () {
         this.activatedRoute.params.subscribe(function (params) {
             var pageId = params['pid'];
             _this.widgets = _this.widgetService.findWidgetsByPageId(pageId);
+            // add page specific links to footer
+            _this.interactionsService.invoke(__WEBPACK_IMPORTED_MODULE_5__app_constant__["a" /* AppConstants */].EVENTS.addFooterLink, { icon: 'fa-play fa-lg' });
+            _this.interactionsService.invoke(__WEBPACK_IMPORTED_MODULE_5__app_constant__["a" /* AppConstants */].EVENTS.addFooterLink, { icon: 'fa-eye fa-lg' });
         });
     };
     return WidgetListComponent;
@@ -2526,10 +2607,10 @@ WidgetListComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-list.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/widget/widget-list/widget-list.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_widget_service_client__["a" /* WidgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_widget_service_client__["a" /* WidgetService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_widget_service_client__["a" /* WidgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_widget_service_client__["a" /* WidgetService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_interactions_service_client__["a" /* InteractionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_interactions_service_client__["a" /* InteractionsService */]) === "function" && _d || Object])
 ], WidgetListComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=widget-list.component.js.map
 
 /***/ }),
@@ -2738,6 +2819,7 @@ var _a, _b;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InteractionsService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_constant__ = __webpack_require__("../../../../../src/app/app.constant.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2748,13 +2830,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var InteractionsService = (function () {
     function InteractionsService() {
         // properties
+        // event callback mapping; key: event name, value: array of registered callbacks
         this.callbacks = new Map();
+        // queued fire callback requests; key: event, value: array of data objects sent
+        this.queue = new Map();
         this.api = {
             'registerCallback': this.registerCallback,
-            'fireCallback': this.fireCallback
+            'invoke': this.invoke
         };
     }
     /**
@@ -2763,25 +2849,42 @@ var InteractionsService = (function () {
      * @param callback callback function to be invoked with the event occurs
      */
     InteractionsService.prototype.registerCallback = function (name, callback) {
+        var _this = this;
+        // create callback array if it doest not already exist
         if (!this.callbacks[name]) {
             this.callbacks[name] = [];
         }
         this.callbacks[name].push(callback);
+        // fire any requests already received
+        if (this.queue[name]) {
+            this.queue[name].forEach(function (q) {
+                _this.invoke(name, q);
+            });
+            this.queue[name] = [];
+        }
     };
     /**
      * Invoke all registered callback for the specified event
      * @param name name of the event
      */
-    InteractionsService.prototype.fireCallback = function (name, data) {
+    InteractionsService.prototype.invoke = function (name, data) {
+        // invoke callbacks if exist
         if (this.callbacks[name]) {
-            this.callbacks[name].forEach(function (element) {
+            this.callbacks[name].forEach(function (c) {
                 try {
-                    element(data);
+                    c(data);
                 }
                 catch (ex) {
                     console.log('Error invoking callback function for event ' + name);
                 }
             });
+        }
+        else {
+            // enqueue request
+            if (!this.queue[name]) {
+                this.queue[name] = [];
+            }
+            this.queue[name].push(data);
         }
     };
     /**
@@ -2791,14 +2894,7 @@ var InteractionsService = (function () {
      * @param autoClose auto close after a delay
      */
     InteractionsService.prototype.showAlert = function (text, type, autoClose) {
-        this.fireCallback('showAlert', { text: text, type: type, autoClose: autoClose });
-    };
-    /**
-     * Register callback to show alert
-     * @param callback callback to invoke for showing alert
-     */
-    InteractionsService.prototype.registerAlertCallback = function (callback) {
-        this.registerCallback('showAlert', callback);
+        this.invoke(__WEBPACK_IMPORTED_MODULE_1__app_constant__["a" /* AppConstants */].EVENTS.showAlert, { text: text, type: type, autoClose: autoClose });
     };
     return InteractionsService;
 }());

@@ -7,15 +7,18 @@ import { TestComponent } from './components/test/test.component';
 import { Routing } from './app.routing';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { TestService } from './services/test.service.client';
-// App services
+
+// #region App services
 import { UserService } from './services/user.service.client';
 import { WebsiteService } from './services/website.service.client';
 import { PageService } from './services/page.service.client';
 import { WidgetService } from './services/widget.service.client';
 import { InteractionsService } from './services/interactions.service.client';
 import { AuthService } from './services/auth.service.client';
-// App Components
+import { TestService } from './services/test.service.client';
+// #endregion
+
+// #region App Components
 // user components
 import { LoginComponent } from './components/user/login/login.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
@@ -44,6 +47,8 @@ import { WidgetYoutubeComponent } from './components/widget/widget-list/widget-y
 import { WidgetHtmlComponent } from './components/widget/widget-list/widget-html/widget-html.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { AlertComponent } from './components/shared/alert/alert.component';
+
+// #endregion
 
 @NgModule({
   // Declare components here
