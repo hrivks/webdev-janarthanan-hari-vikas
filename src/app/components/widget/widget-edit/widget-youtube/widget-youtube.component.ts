@@ -20,7 +20,7 @@ export class WidgetYoutubeEditComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private widgetService: WidgetService,
-    private interactionsService: InteractionsService) { 
+    private interactionsService: InteractionsService) {
       this.showDeleteConfirmation = false;
     }
 
