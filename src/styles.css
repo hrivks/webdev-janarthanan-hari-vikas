@@ -3,6 +3,10 @@ body.hvj{
     overflow-x: hidden;
   }
   
+  .hvj nav {
+    z-index: 1001;
+  }
+
   .hvj .bg-faded {
     background: #ededed;
   }

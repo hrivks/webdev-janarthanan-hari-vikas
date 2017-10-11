@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-alert></app-alert>\r\n\r\n<router-outlet></router-outlet>\r\n\r\n<app-footer *ngIf=\"loggedInUserId\" [loggedInUserId]=\"loggedInUserId\"></app-footer>"
+module.exports = "<app-loader></app-loader>\r\n\r\n<app-alert></app-alert>\r\n\r\n<router-outlet></router-outlet>\r\n\r\n<app-footer *ngIf=\"loggedInUserId\" [loggedInUserId]=\"loggedInUserId\"></app-footer>"
 
 /***/ }),
 
@@ -83,7 +83,8 @@ var AppComponent = (function () {
                 var requireLogin = !_this.activatedRoute.snapshot.firstChild.data.skipAuth;
                 if (requireLogin) {
                     // get logged in user
-                    _this.loggedInUserId = _this.authService.getLoggedInUser()._id;
+                    var loggedInUser = _this.authService.getLoggedInUser();
+                    _this.loggedInUserId = loggedInUser ? loggedInUser._id : null;
                 }
                 else {
                     _this.loggedInUserId = null;
@@ -174,6 +175,7 @@ AppConstants.EVENTS = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__components_widget_widget_list_widget_html_widget_html_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-html/widget-html.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__components_shared_footer_footer_component__ = __webpack_require__("../../../../../src/app/components/shared/footer/footer.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__components_shared_alert_alert_component__ = __webpack_require__("../../../../../src/app/components/shared/alert/alert.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__components_shared_loader_loader_component__ = __webpack_require__("../../../../../src/app/components/shared/loader/loader.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -224,6 +226,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+// shared components
+
 
 
 // #endregion
@@ -260,7 +264,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_33__components_widget_widget_list_widget_youtube_widget_youtube_component__["a" /* WidgetYoutubeComponent */],
             __WEBPACK_IMPORTED_MODULE_34__components_widget_widget_list_widget_html_widget_html_component__["a" /* WidgetHtmlComponent */],
             __WEBPACK_IMPORTED_MODULE_35__components_shared_footer_footer_component__["a" /* FooterComponent */],
-            __WEBPACK_IMPORTED_MODULE_36__components_shared_alert_alert_component__["a" /* AlertComponent */]
+            __WEBPACK_IMPORTED_MODULE_36__components_shared_alert_alert_component__["a" /* AlertComponent */],
+            __WEBPACK_IMPORTED_MODULE_37__components_shared_loader_loader_component__["a" /* LoaderComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -727,7 +732,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".hvj-app-alert {\r\n    position: fixed;\r\n    z-index: 200;\r\n    bottom: 100px;\r\n}\r\n\r\n.hvj-app-alert .alert {\r\n    box-shadow: 0 0 24px -7px black;\r\n}", ""]);
+exports.push([module.i, ".hvj-app-alert {\r\n    position: fixed;\r\n    z-index: 200;\r\n    /* bottom: 100px; */\r\n}\r\n\r\n.hvj-app-alert .alert {\r\n    box-shadow: 0 0 24px -7px black;\r\n}", ""]);
 
 // exports
 
@@ -740,7 +745,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/shared/alert/alert.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-app-alert w-100\">\r\n  <div class=\"w-75 m-auto\">\r\n    <div class=\"alert fade show\"\r\n         [hidden]=\"!alertVisible\"\r\n         [ngClass]=\"'alert-' + (alertType ? alertType : 'danger')\"\r\n         role=\"alert\">\r\n      <button type=\"button\"\r\n              class=\"close\"\r\n              (click)=\"alertVisible = false\">\r\n        <small>\r\n          <i class=\"fa fa-times\"\r\n             aria-hidden=\"true\"></i>\r\n        </small>\r\n      </button>\r\n      {{alertText}}\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"hvj-app-alert w-100\">\n  <div class=\"w-75 m-auto\">\n    <div class=\"alert fade show\"\n         [hidden]=\"!alertVisible\"\n         [ngClass]=\"'alert-' + (alertType ? alertType : 'danger')\"\n         role=\"alert\">\n      <button type=\"button\"\n              class=\"close\"\n              (click)=\"alertVisible = false\">\n        <small>\n          <i class=\"fa fa-times\"\n             aria-hidden=\"true\"></i>\n        </small>\n      </button>\n      {{alertText}}\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -916,6 +921,83 @@ var _a, _b, _c;
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/shared/loader/loader.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".hvj-loading .hvj-loading-mask {\r\n    opacity: 0.6;\r\n    z-index: 1000;\r\n}\r\n\r\n.hvj-loading .hvj-img-loader {\r\n    position: fixed;\r\n    z-index: 1001;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/shared/loader/loader.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"hvj-loading\"\n     [hidden]=\"!show\">\n  <div class=\"modal-backdrop bg-light hvj-loading-mask\">\n  </div>\n  <p class=\"mt-5 text-center w-100 hvj-img-loader\">\n    <img class=\"mt-5\"\n         src=\"../../../../assets/loader.gif\">\n  </p>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/shared/loader/loader.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoaderComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_constant__ = __webpack_require__("../../../../../src/app/app.constant.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var LoaderComponent = (function () {
+    function LoaderComponent(interactionsService) {
+        this.interactionsService = interactionsService;
+    }
+    LoaderComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.show = false;
+        this.interactionsService.registerCallback(__WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].EVENTS.showLoader, function (show) { _this.showLoader(show); });
+    };
+    /**
+     * Show / Hide loading screen
+     * @param show true to show; false to hide
+     */
+    LoaderComponent.prototype.showLoader = function (show) {
+        this.show = show;
+    };
+    return LoaderComponent;
+}());
+LoaderComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-loader',
+        template: __webpack_require__("../../../../../src/app/components/shared/loader/loader.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/shared/loader/loader.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_interactions_service_client__["a" /* InteractionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_interactions_service_client__["a" /* InteractionsService */]) === "function" && _a || Object])
+], LoaderComponent);
+
+var _a;
+//# sourceMappingURL=loader.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/test/test.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -937,7 +1019,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/test/test.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"container\">\r\n\r\n  <h1>Test</h1>\r\n\r\n  <div *ngIf=\"alertMessage\"\r\n       class=\"alert alert-danger\">\r\n    \"Failed to create\"\r\n  </div>\r\n\r\n  <div *ngIf=\"successMessage\"\r\n       class=\"alert alert-success\">\r\n    \"Succesfully created/deleted\"\r\n  </div>\r\n\r\n  <table class=\"table\">\r\n    <thead>\r\n    <tr>\r\n      <th>Test Message</th>\r\n      <th>&nbsp;</th>\r\n    </tr>\r\n\r\n\r\n    <tr>\r\n      <td>\r\n        <input [(ngModel)]=\"message\"\r\n               placeholder=\"message\"\r\n               class=\"form-control\"/>\r\n      </td>\r\n\r\n\r\n      <td>\r\n        <button (click)=\"createMessage()\"\r\n                class=\"btn btn-primary pull-right\">\r\n          <span class=\"glyphicon glyphicon-plus\"></span>\r\n        </button>\r\n      </td>\r\n    </tr>\r\n    </thead>\r\n\r\n\r\n    <tbody>\r\n    <tr *ngFor=\"let message of messages\">\r\n      <td>\r\n        {{message.message}}\r\n      </td>\r\n      <td>\r\n        <button (click)=\"deleteMessage(message._id)\"\r\n                class=\"btn btn-danger pull-right\">\r\n          <span class=\"glyphicon glyphicon-remove\"></span>\r\n        </button>\r\n      </td>\r\n    </tr>\r\n    </tbody>\r\n  </table>\r\n\r\n</div>\r\n\r\n\r\n"
+module.exports = "\r\n<div class=\"container\">\r\n\r\n\r\n<div class=\"btn btn-royal\" (click)=\"testIt()\">Test</div>\r\n\r\n\r\n</div>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -948,6 +1030,7 @@ module.exports = "\r\n<div class=\"container\">\r\n\r\n  <h1>Test</h1>\r\n\r\n  
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TestComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_test_service_client__ = __webpack_require__("../../../../../src/app/services/test.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -959,39 +1042,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var TestComponent = (function () {
-    function TestComponent(_testService) {
+    function TestComponent(_testService, interactionsService) {
         this._testService = _testService;
+        this.interactionsService = interactionsService;
         this.alertMessage = false;
         this.successMessage = false;
         this.messages = [];
     }
     TestComponent.prototype.ngOnInit = function () {
-        this.findAllMessages();
     };
-    TestComponent.prototype.findAllMessages = function () {
-        var _this = this;
-        return this._testService.findAllMessages()
-            .subscribe(function (data) {
-            _this.messages = data;
-        });
-    };
-    TestComponent.prototype.createMessage = function () {
-        var _this = this;
-        return this._testService.createMessage(this.message)
-            .subscribe(function (data) {
-            _this.successMessage = true;
-            _this.ngOnInit();
-            _this.message = null;
-        });
-    };
-    TestComponent.prototype.deleteMessage = function (messageId) {
-        var _this = this;
-        return this._testService.deleteMessage(messageId)
-            .subscribe(function (data) {
-            _this.successMessage = true;
-            _this.ngOnInit();
-        });
+    TestComponent.prototype.testIt = function () {
     };
     return TestComponent;
 }());
@@ -1001,10 +1063,10 @@ TestComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/test/test.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/test/test.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_test_service_client__["a" /* TestService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_test_service_client__["a" /* TestService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_test_service_client__["a" /* TestService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_test_service_client__["a" /* TestService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_interactions_service_client__["a" /* InteractionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_interactions_service_client__["a" /* InteractionsService */]) === "function" && _b || Object])
 ], TestComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=test.component.js.map
 
 /***/ }),
@@ -1075,13 +1137,11 @@ var LoginComponent = (function () {
         var user = this.authService.login(this.username, this.password);
         if (user) {
             this.router.navigate(['/user', user._id]);
+            return true;
         }
         else {
             this.loginError = 'Invalid Credentials';
         }
-    };
-    LoginComponent.prototype.test = function () {
-        this.interactionsService.showAlert("hi", "success", true);
     };
     return LoginComponent;
 }());
@@ -1161,12 +1221,12 @@ var ProfileComponent = (function () {
         this.userService = userService;
         this.authService = authService;
         this.interactionsService = interactionsService;
-        this.profileErrors = {
-            hasError: false
-        };
     }
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.profileErrors = {
+            hasError: false
+        };
         // get userid parameter route
         this.activatedRoute.params.subscribe(function (params) {
             _this.userId = params['uid'];
@@ -1990,7 +2050,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-html/widget-html.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <!-- Back button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['../']\"\r\n         title=\"Widgets\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n      <!-- /Back button -->\r\n    </li>\r\n  </ul>\r\n\r\n  <a class=\"navbar-brand\"\r\n     href=\"\">Widget Edit : Html</a>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <a class=\"nav-link px-0\"\r\n         (click)=\"saveChanges()\"\r\n         title=\"Save Changes\">\r\n        <span class=\"fa fa-check fa-lg\"></span>\r\n      </a>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<!--content-->\r\n<div class=\"container hvj-widget-header-edit\">\r\n  <form #widgetHtmlEditForm=\"ngForm\">\r\n    <!--Widget Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"widget-name\"\r\n             class=\"font-weight-bold text-muted\">Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"widgetName\"\r\n             name=\"name\"\r\n             placeholder=\"Name\"\r\n             [(ngModel)]=\"widget.name\"\r\n             #nameField=\"ngModel\">\r\n    </div>\r\n    <!--/Widget Name-->\r\n\r\n    <!--Widget Heading Text-->\r\n    <div class=\"form-group\">\r\n      <label for=\"widget-heading-text\"\r\n             class=\"font-weight-bold text-muted\">Text</label>\r\n      <textarea type=\"text\"\r\n                class=\"form-control\"\r\n                id=\"widget-heading-text\"\r\n                name=\"text\"\r\n                placeholder=\"Html\"\r\n                rows=5\r\n                [(ngModel)]=\"widget.text\"\r\n                #textField=\"ngModel\"\r\n                [ngClass]=\"{'border-danger': textField.invalid && textField.touched}\"\r\n                required>\r\n      </textarea>\r\n      <span *ngIf=\"textField.invalid && textField.touched\"\r\n            class=\"text-danger ml-2\">Text is required</span>\r\n    </div>\r\n    <!--/Widget Heading Text-->\r\n\r\n    <!-- Form buttons -->\r\n    <div class=\"row no-gutters\">\r\n      <div class=\"col-12 col-sm-9 mr-1\">\r\n        <!-- Save button -->\r\n        <button class=\"btn btn-success btn-block mr-1 mb-2\"\r\n                title=\"Save Widget\"\r\n                (click)=\"saveChanges()\">\r\n          <i class=\"fa fa-check\"></i>\r\n        </button>\r\n      </div>\r\n      <div class=\"col\">\r\n        <!-- Delete button -->\r\n        <button class=\"btn btn-danger btn-block\"\r\n                title=\"Delete Widget\"\r\n                (click)=\"showDeleteConfirmation = true\"\r\n                [hidden]=\"showDeleteConfirmation\">\r\n          <i class=\"fa fa-trash\"></i>\r\n        </button>\r\n        <button class=\"btn btn-danger btn-block mt-0\"\r\n                title=\"Delete Widget\"\r\n                [hidden]=\"!showDeleteConfirmation\"\r\n                (click)=\"deleteWidget()\">sure?</button>\r\n      </div>\r\n    </div>\r\n\r\n  </form>\r\n</div>\r\n<!--/content-->"
+module.exports = "<!--Top Nav-->\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\n  <ul class=\"navbar-nav mr-3\">\n    <li class=\"nav-item\">\n      <!-- Back button -->\n      <a class=\"nav-link px-0\"\n         [routerLink]=\"['../']\"\n         title=\"Widgets\">\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\n      </a>\n      <!-- /Back button -->\n    </li>\n  </ul>\n\n  <a class=\"navbar-brand\"\n     href=\"\">Widget Edit : Html</a>\n\n  <ul class=\"navbar-nav ml-auto\">\n    <li class=\"nav-item\">\n      <!-- Action button -->\n      <a class=\"nav-link px-0\"\n         (click)=\"saveChanges()\"\n         title=\"Save Changes\">\n        <span class=\"fa fa-check fa-lg\"></span>\n      </a>\n      <!-- /Action button -->\n    </li>\n  </ul>\n</nav>\n<!--/Top Nav-->\n\n<!--content-->\n<div class=\"container hvj-widget-header-edit\">\n  <form #widgetHtmlEditForm=\"ngForm\">\n    <!--Widget Name-->\n    <div class=\"form-group\">\n      <label for=\"widget-name\"\n             class=\"font-weight-bold text-muted\">Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"widgetName\"\n             name=\"name\"\n             placeholder=\"Name\"\n             [(ngModel)]=\"widget.name\"\n             #nameField=\"ngModel\">\n    </div>\n    <!--/Widget Name-->\n\n    <!--Widget Heading Text-->\n    <div class=\"form-group\">\n      <label for=\"widget-heading-text\"\n             class=\"font-weight-bold text-muted\">Text</label>\n      <textarea type=\"text\"\n                class=\"form-control\"\n                id=\"widget-heading-text\"\n                name=\"text\"\n                placeholder=\"Html\"\n                rows=5\n                [(ngModel)]=\"widget.text\"\n                #textField=\"ngModel\"\n                [ngClass]=\"{'border-danger': textField.invalid && textField.touched}\"\n                required>\n      </textarea>\n      <span *ngIf=\"textField.invalid && textField.touched\"\n            class=\"text-danger ml-2\">Text is required</span>\n    </div>\n    <!--/Widget Heading Text-->\n\n    <!-- Form buttons -->\n    <div class=\"row no-gutters\">\n      <div class=\"col-12 col-sm-9 mr-1\">\n        <!-- Save button -->\n        <button class=\"btn btn-success btn-block mr-1 mb-2\"\n                title=\"Save Widget\"\n                (click)=\"saveChanges()\">\n          <i class=\"fa fa-check\"></i>\n        </button>\n      </div>\n      <div class=\"col\">\n        <!-- Delete button -->\n        <button class=\"btn btn-danger btn-block\"\n                title=\"Delete Widget\"\n                (click)=\"showDeleteConfirmation = true\"\n                [hidden]=\"showDeleteConfirmation\">\n          <i class=\"fa fa-trash\"></i>\n        </button>\n        <button class=\"btn btn-danger btn-block mt-0\"\n                title=\"Delete Widget\"\n                [hidden]=\"!showDeleteConfirmation\"\n                (click)=\"deleteWidget()\">sure?</button>\n      </div>\n    </div>\n\n  </form>\n</div>\n<!--/content-->"
 
 /***/ }),
 
@@ -2347,7 +2407,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-header/widget-header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-widget-heading\">\r\n  <div [ngClass]=\"widget.size ? 'h' + widget.size : 'h2'\">{{widget.text}}</div>\r\n  <p *ngIf=\"!widget.text\"\r\n     class=\"small font-italic text-secondary\"> No content</p>\r\n</div>"
+module.exports = "<div class=\"hvj-widget-heading\">\n  <div [ngClass]=\"widget.size ? 'h' + widget.size : 'h2'\">{{widget.text}}</div>\n  <p *ngIf=\"!widget.text\"\n     class=\"small font-italic text-secondary\"> No content</p>\n</div>"
 
 /***/ }),
 
@@ -2414,7 +2474,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-html/widget-html.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-widget-html\">\r\n    <div *ngIf=\"widget.text\"\r\n         [innerHtml]=\"widget.text\"></div>\r\n    <p *ngIf=\"!widget.text\"\r\n       class=\"small font-italic text-secondary\"> No content</p>\r\n</div>"
+module.exports = "<div class=\"hvj-widget-html\">\n    <div *ngIf=\"widget.text\"\n         [innerHtml]=\"widget.text\"></div>\n    <p *ngIf=\"!widget.text\"\n       class=\"small font-italic text-secondary\"> No content</p>\n</div>"
 
 /***/ }),
 
@@ -2482,7 +2542,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-image/widget-image.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-widget-image\">\r\n  <img *ngIf=\"widget.url\"\r\n       [style.width]=\"widget.width\"\r\n       [alt]=\"widget.text ? widget.text : ''\"\r\n       [src]=\"widget.url\" />\r\n  <p *ngIf=\"!widget.url && !widget.text\"\r\n     class=\"small font-italics text-secondary\">No image specified</p>\r\n</div>"
+module.exports = "<div class=\"hvj-widget-image\">\n  <img *ngIf=\"widget.url\"\n       [style.width]=\"widget.width\"\n       [alt]=\"widget.text ? widget.text : ''\"\n       [src]=\"widget.url\" />\n  <p *ngIf=\"!widget.url && !widget.text\"\n     class=\"small font-italics text-secondary\">No image specified</p>\n</div>"
 
 /***/ }),
 
@@ -2636,7 +2696,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-youtube/widget-youtube.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-widget-youtube\">\r\n  <div class=\"embed-responsive embed-responsive-16by9\"\r\n       *ngIf=\"safeUrl\">\r\n    <iframe class=\"embed-responsive-item\"\r\n            [style.width]=\"widget.width ? widget.width : '100%'\"\r\n            [src]=\"safeUrl\"\r\n            allowfullscreen></iframe>\r\n  </div>\r\n  <p *ngIf=\"!widget.url\"\r\n     class=\"small font-italics text-secondary\">No URL specified</p>\r\n</div>"
+module.exports = "<div class=\"hvj-widget-youtube\">\n  <div class=\"embed-responsive embed-responsive-16by9\"\n       *ngIf=\"safeUrl\">\n    <iframe class=\"embed-responsive-item\"\n            [style.width]=\"widget.width ? widget.width : '100%'\"\n            [src]=\"safeUrl\"\n            allowfullscreen></iframe>\n  </div>\n  <p *ngIf=\"!widget.url\"\n     class=\"small font-italics text-secondary\">No URL specified</p>\n</div>"
 
 /***/ }),
 
@@ -2785,13 +2845,17 @@ var AuthService = (function () {
      * Login user
      * @param username username
      * @param password password
+     * @returns logged in user; null if login fails
      */
     AuthService.prototype.login = function (username, password) {
         this.loggedInUser = this.userService.findUserByCredentials(username, password);
         if (this.loggedInUser) {
             localStorage.setItem('loggedInUser', JSON.stringify(this.loggedInUser));
+            return Object.assign({}, this.loggedInUser);
         }
-        return Object.assign({}, this.loggedInUser);
+        else {
+            return null;
+        }
     };
     /**
      * Logout user
@@ -2895,6 +2959,13 @@ var InteractionsService = (function () {
      */
     InteractionsService.prototype.showAlert = function (text, type, autoClose) {
         this.invoke(__WEBPACK_IMPORTED_MODULE_1__app_constant__["a" /* AppConstants */].EVENTS.showAlert, { text: text, type: type, autoClose: autoClose });
+    };
+    /**
+     * Show / hide loading screen
+     * @param show true, to show; false, to hide
+     */
+    InteractionsService.prototype.showLoader = function (show) {
+        this.invoke(__WEBPACK_IMPORTED_MODULE_1__app_constant__["a" /* AppConstants */].EVENTS.showLoader, show);
     };
     return InteractionsService;
 }());

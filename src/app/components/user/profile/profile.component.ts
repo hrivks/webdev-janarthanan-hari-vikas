@@ -17,9 +17,7 @@ export class ProfileComponent implements OnInit {
   // properties
   userId: string;
   user: User;
-  profileErrors: any = {
-    hasError: false
-  };
+  profileErrors: any;
 
   // user profile form
   @ViewChild('profileForm') profileForm: NgForm;
@@ -31,6 +29,11 @@ export class ProfileComponent implements OnInit {
     private interactionsService: InteractionsService) { }
 
   ngOnInit() {
+
+    this.profileErrors = {
+      hasError: false
+    };
+
     // get userid parameter route
     this.activatedRoute.params.subscribe((params: any) => {
       this.userId = params['uid'];
@@ -87,6 +90,7 @@ export class ProfileComponent implements OnInit {
     }
 
     //#endregion
+
     if (!this.profileErrors.hasError) {
       const updatedUser = this.userService.updateUser(this.userId, this.user);
 

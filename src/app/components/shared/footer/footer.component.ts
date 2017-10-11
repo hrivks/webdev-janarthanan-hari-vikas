@@ -13,7 +13,6 @@ import { FooterLink } from '../../../model/ui-model';
 export class FooterComponent implements OnInit {
 
   // properties
-  // loggedInUser: User;
   @Input() loggedInUserId: string;
   private links: FooterLink[];
 

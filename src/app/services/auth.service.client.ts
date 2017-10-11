@@ -33,13 +33,17 @@ export class AuthService {
    * Login user
    * @param username username
    * @param password password
+   * @returns logged in user; null if login fails
    */
   login(username: string, password: string) {
     this.loggedInUser = this.userService.findUserByCredentials(username, password);
     if (this.loggedInUser) {
       localStorage.setItem('loggedInUser', JSON.stringify(this.loggedInUser));
+      return Object.assign({}, this.loggedInUser);
+    } else {
+      return null;
     }
-    return Object.assign({}, this.loggedInUser);
+
   }
 
   /**

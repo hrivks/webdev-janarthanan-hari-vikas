@@ -34,15 +34,11 @@ export class LoginComponent implements OnInit {
     const user = this.authService.login(this.username, this.password);
     if (user) {
       this.router.navigate(['/user', user._id]);
+      return true;
     } else {
       this.loginError = 'Invalid Credentials';
     }
 
-  }
-
-
-  test() {
-    this.interactionsService.showAlert("hi", "success", true);
   }
 
 }

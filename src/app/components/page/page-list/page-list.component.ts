@@ -16,11 +16,11 @@ export class PageListComponent implements OnInit {
   userId: string;
   websiteId: string;
   pages: Page[];
+
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private pageService: PageService,
     private interactionsService: InteractionsService) { }
-
 
   ngOnInit() {
     // get userid parameter route

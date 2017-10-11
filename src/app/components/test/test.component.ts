@@ -1,6 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import {TestService} from '../../services/test.service.client';
-
+import { TestService } from '../../services/test.service.client';
+import { InteractionsService } from '../../services/interactions.service.client';
+import { AppConstants } from '../../app.constant';
 
 
 @Component({
@@ -10,7 +11,7 @@ import {TestService} from '../../services/test.service.client';
 })
 export class TestComponent implements OnInit {
 
-  constructor(private _testService: TestService) { }
+  constructor(private _testService: TestService, private interactionsService: InteractionsService) { }
 
 
   alertMessage: Boolean = false;
@@ -18,34 +19,11 @@ export class TestComponent implements OnInit {
   message: String;
   messages: any[] = [];
   ngOnInit() {
-    this.findAllMessages();
+
   }
-  findAllMessages() {
-    return this._testService.findAllMessages()
-      .subscribe(
-        (data: any) => {
-          this.messages = data;
-        }
-      );
-  }
-  createMessage() {
-    return this._testService.createMessage(this.message)
-      .subscribe(
-        (data: any) => {
-          this.successMessage = true;
-          this.ngOnInit();
-          this.message = null;
-        }
-      );
-  }
-  deleteMessage(messageId) {
-    return this._testService.deleteMessage(messageId)
-      .subscribe(
-        (data: any) => {
-          this.successMessage = true;
-          this.ngOnInit();
-        }
-      );
+
+  testIt() {
+    
   }
 
 }

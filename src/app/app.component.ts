@@ -29,7 +29,8 @@ export class AppComponent {
         const requireLogin = !this.activatedRoute.snapshot.firstChild.data.skipAuth;
         if (requireLogin) {
           // get logged in user
-          this.loggedInUserId = this.authService.getLoggedInUser()._id;
+          const loggedInUser = this.authService.getLoggedInUser();
+          this.loggedInUserId = loggedInUser ? loggedInUser._id : null;
         } else {
           this.loggedInUserId = null;
         }
