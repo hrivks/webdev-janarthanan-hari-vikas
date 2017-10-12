@@ -1,7 +1,6 @@
 <!--Top Nav-->
 <nav class="navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3">
-  <a class="navbar-brand"
-     [routerLink]="[this.userId]">Profile</a>
+  <span class="navbar-brand">Profile</span>
 
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
@@ -68,8 +67,7 @@
              placeholder="Alice"
              [(ngModel)]="user.firstName"
              #firstNameField="ngModel"
-             [ngClass]="{'border-danger': profileErrors.firstName || (!firstNameField.valid && firstNameField.touched)}"
-             required>
+             [ngClass]="{'border-danger': profileErrors.firstName || (!firstNameField.valid && firstNameField.touched)}">
       <span *ngIf="firstNameField.invalid && firstNameField.touched"
             class="text-danger ml-2">First Name is required</span>
       <span *ngIf="profileErrors.firstName"
@@ -88,8 +86,7 @@
              placeholder="Wonderland"
              [(ngModel)]="user.lastName"
              #lastNameField="ngModel"
-             [ngClass]="{'border-danger': profileErrors.lastName || (!lastNameField.valid && lastNameField.touched)}"
-             required>
+             [ngClass]="{'border-danger': profileErrors.lastName || (!lastNameField.valid && lastNameField.touched)}">
       <span *ngIf="lastNameField.invalid && lastNameField.touched"
             class="text-danger ml-2">Last Name is required</span>
       <span *ngIf="profileErrors.lastName"

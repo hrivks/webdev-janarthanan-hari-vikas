@@ -7,8 +7,8 @@
   <br>
   <!--form-->
   <form class="form"
-        #f="ngForm"
-        (ngSubmit)="login(f)"
+        #loginForm="ngForm"
+        (ngSubmit)="login()"
         novalidate>
     <div class="form-group">
       <input placeholder="User Name"
@@ -16,7 +16,7 @@
              class="form-control"
              name="username"
              #usernameField="ngModel"
-             ngModel
+             [(ngModel)]="username"
              [ngClass]="{'border-danger': !usernameField.valid && usernameField.touched}"
              required />
       <span class="small text-danger ml-2"
@@ -28,7 +28,7 @@
              class="form-control"
              name="password"
              #passwordField="ngModel"
-             ngModel
+             [(ngModel)]="password"
              [ngClass]="{'border-danger': !passwordField.valid && passwordField.touched}"
              required/>
       <span class="small text-danger ml-2"
@@ -41,7 +41,7 @@
     <div>
       <button type="submit"
               class="btn btn-royal btn-block"
-              [disabled]="!f.valid">Login</button>
+              [disabled]="!loginForm.valid">Login</button>
       <a class="btn btn-secondary btn-block"
          [routerLink]="['/register']">Register</a>
     </div>

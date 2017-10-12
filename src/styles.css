@@ -22,16 +22,20 @@ body.hvj{
   .hvj .fg-royal {
     color: #236eaf !important;
   }
+
+  .hvj .btn:not(:disabled) {
+    cursor: pointer;
+  }
   
   .hvj .btn-royal {
-    background-color: #236eaf !important;
-    border-color: #236eaf !important;
+    background-color: #236eaf;
+    border-color: #236eaf;
     color: #fff;
   }
   
-  .hvj .btn-royal:hover {
-    background-color: #1A5688 !important;
-    border-color: #1A5688 !important;
+  .hvj .btn-royal:hover:not(:disabled) {
+    background-color: #1A5688;
+    border-color: #1A5688;
     color: #fff;
   }
   

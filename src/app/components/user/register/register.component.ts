@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from '../../../model/model';
 import { UserService } from '../../../services/user.service.client';
-import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service.client';
+
 
 
 @Component({
@@ -18,7 +20,9 @@ export class RegisterComponent implements OnInit {
   verifyPassword: string;
   registrationErrors: any = {};
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService,
+    private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit() { }
 
@@ -28,6 +32,12 @@ export class RegisterComponent implements OnInit {
     newUser.password = this.password;
 
     newUser = this.userService.createUser(newUser);
-    this.router.navigate(['/user', newUser._id]);
+    if (newUser) {
+      const loggedInUser = this.authService.login(newUser.username, newUser.password);
+      if (loggedInUser) {
+        this.router.navigate(['/user', loggedInUser._id]);
+      }
+    }
+
   }
 }

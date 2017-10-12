@@ -6,6 +6,7 @@
       <br>
       <!--form-->
       <form class="form"
+            (ngSubmit)="register()"
             #registerForm="ngForm">
             <!-- User Name -->
             <div class="form-group">
@@ -15,7 +16,7 @@
                          name="usernameField"
                          [(ngModel)]="username"
                          #usernameField="ngModel"
-                         [ngClass]="{'border-danger': registrationErrors.username || (!usernameField.valid && usernameField.touched)}"            
+                         [ngClass]="{'border-danger': registrationErrors.username || (!usernameField.valid && usernameField.touched)}"
                          required />
                   <span *ngIf="usernameField.invalid && usernameField.touched"
                         class="text-danger ml-2">Username is required</span>
@@ -55,8 +56,8 @@
 
             <!-- form actions -->
             <div>
-                  <button class="btn btn-royal btn-block"
-                          (click)="register()"
+                  <button type="submit"
+                          class="btn btn-royal btn-block"
                           [disabled]="registerForm.invalid || verifyPassword !== password">Register</button>
                   <a class="btn btn-danger btn-block"
                      [routerLink]="['/login']">Cancel</a>
