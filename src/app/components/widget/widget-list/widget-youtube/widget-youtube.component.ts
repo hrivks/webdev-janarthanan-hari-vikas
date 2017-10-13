@@ -17,6 +17,12 @@ export class WidgetYoutubeComponent implements OnInit {
 
   ngOnInit() {
     if (this.widget.url) {
+      if (this.widget.url.indexOf('/embed/') === -1) {
+        let videoId = this.widget.url.split('/').filter((e) => e.length > 0).reverse()[0];
+        // in case of direct YouTube url, get the id from query string
+        videoId = videoId.split('v=').reverse()[0];
+        this.widget.url = 'https://www.youtube.com/embed/' + videoId;
+      }
       this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.widget.url);
     }
   }

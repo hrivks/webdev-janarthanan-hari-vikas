@@ -361,7 +361,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"container\">\r\n\r\n  <h1>\r\n    Angular 4 MEAN stack app\r\n  </h1>\r\n\r\n\r\n  <h3>\r\n    App works\r\n  </h3>\r\n\r\n\r\n  <h4>\r\n    <a href=\"test\">Test MongoDB</a>\r\n  </h4>\r\n\r\n  <h4>\r\n      <a href=\"/login\">Assignment 3</a>\r\n  </h4>\r\n</div>\r\n\r\n"
+module.exports = "\r\n<div class=\"container\">\r\n\r\n  <h1>\r\n    Angular 4 MEAN stack app\r\n  </h1>\r\n\r\n\r\n  <h3>\r\n    App works\r\n  </h3>\r\n\r\n\r\n  <h4>\r\n    <a href=\"test\">Test MongoDB</a>\r\n  </h4>\r\n\r\n  <h4>\r\n      <a [routerLink]=\"['/login']\">Assignment 3</a>\r\n  </h4>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -2732,6 +2732,12 @@ var WidgetYoutubeComponent = (function () {
     }
     WidgetYoutubeComponent.prototype.ngOnInit = function () {
         if (this.widget.url) {
+            if (this.widget.url.indexOf('/embed/') === -1) {
+                var videoId = this.widget.url.split('/').filter(function (e) { return e.length > 0; }).reverse()[0];
+                // in case of direct YouTube url, get the id from query string
+                videoId = videoId.split('v=').reverse()[0];
+                this.widget.url = 'https://www.youtube.com/embed/' + videoId;
+            }
             this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.widget.url);
         }
     };
