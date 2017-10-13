@@ -19,13 +19,13 @@ app.use(function(req, res, next) {
   next();
 });
 
-const port = process.env.PORT || '3100';
-app.set('port', port);
-
 // Redirect all other routes to index.html and let angular deal with it
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
+
+const port = process.env.PORT || '3100';
+app.set('port', port);
 
 app.listen(port , () => console.log('Running on port : ' + port));
 
