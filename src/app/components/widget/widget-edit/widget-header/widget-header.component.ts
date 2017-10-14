@@ -33,6 +33,12 @@ export class WidgetHeaderEditComponent implements OnInit {
       this.widgetHeaderEditForm.controls.name.markAsTouched({ onlySelf: true });
       this.widgetHeaderEditForm.controls.text.markAsTouched({ onlySelf: true });
     } else {
+
+      if (this.widget.size && (this.widget.size > 6 || this.widget.size < 1)) {
+        this.widgetHeaderEditForm.controls.size.setErrors({ 'invalid': true });
+        return;
+      }
+
       const updatedWidget = this.widgetService.updateWidget(this.widget._id, this.widget);
       if (updatedWidget) {
         this.interactionsService.showAlert('Widget updated successfully', 'success', true);

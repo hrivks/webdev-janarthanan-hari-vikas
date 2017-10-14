@@ -32,7 +32,6 @@ export class FooterComponent implements OnInit {
    * @param link link object to add
    */
   addLink(link: FooterLink) {
-    console.log(link);
     if (link.icon || link.text) {
       this.links.push(link);
     }

@@ -68,9 +68,13 @@
              class="form-control"
              id="widget-heading-size"
              name="size"
+             max="6"
+             min="1"
              placeholder="Size"
              [(ngModel)]="widget.size"
-             ngModel>
+             #sizeField="ngModel">
+      <span *ngIf="sizeField.invalid"
+            class="text-danger ml-2">Size must be between 1 and 6</span>
     </div>
     <!--/Widget Heading Size-->
 

@@ -54,7 +54,7 @@ export class ProfileComponent implements OnInit {
 
   /** Save user profile details */
   saveProfile() {
-    if (!this.profileForm.valid || this.profileForm.untouched) {
+    if (!this.profileForm.valid || this.profileForm.pristine) {
       return;
     }
 

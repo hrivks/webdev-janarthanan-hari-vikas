@@ -18,6 +18,7 @@
 
 <div class="container">
   <form #profileForm="ngForm"
+        (ngSubmit)="saveProfile()"
         *ngIf="user">
     <!--User Name-->
     <div class="form-group">
@@ -98,6 +99,8 @@
     <div class="form-group">
       <a class="btn btn-royal btn-block"
          [routerLink]="['website']">Websites</a>
+      <button type="submit"
+              class="btn btn-success btn-block d-none">Save Changes</button>
       <button class="btn btn-danger btn-block"
               (click)="logout()">Logout</button>
     </div>
