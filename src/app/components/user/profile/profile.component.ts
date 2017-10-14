@@ -67,7 +67,7 @@ export class ProfileComponent implements OnInit {
     // username validation
 
     const userExists = this.userService.findUserByUsername(this.user.username);
-    if (userExists._id !== this.user._id) {
+    if (userExists && userExists._id !== this.user._id) {
       this.profileErrors.username = 'Username already exists. Please try another username';
       this.profileErrors.hasError = true;
     } else if (this.testInvalidString(this.user.username, true)) {
