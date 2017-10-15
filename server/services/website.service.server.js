@@ -2,6 +2,7 @@
 // Module Route Root: '/api/website' and '/api/user/:userId/website'
 const router = require('express').Router();
 const Website = require('../models/website.model.js');
+const PageService = require('./page.service.server');
 
 
 /** Exported objects */
@@ -170,9 +171,9 @@ const exp = {
         const toDelete = websites[toDeleteIndex];
         if (toDelete) {
             // delete pages in website
-            const pagesToDelete = pageService.findPageBywebsiteId(websiteId);
+            const pagesToDelete = PageService.api.findPageBywebsiteId(websiteId);
             pagesToDelete.forEach(p => {
-                pageService.deletePage(p._id);
+                PageService.api.deletePage(p._id);
             });
 
             websites.splice(toDeleteIndex, 1);
@@ -192,7 +193,7 @@ const exp = {
         findWebsiteById: findWebsiteById,
         updateWebsite: updateWebsite,
         deleteWebsite: deleteWebsite
-    }
+    };
 
 })(router);
 

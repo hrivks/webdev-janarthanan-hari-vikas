@@ -26,6 +26,10 @@ class Website {
         if (!website.developerId) {
             errors.push('Developer Id is required');
         }
+
+        if (errors.length > 0) {
+            throw errors;
+        }
     }
 }
 
