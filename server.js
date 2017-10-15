@@ -1,7 +1,8 @@
+//#region imports
 const express = require('express');
 const path = require('path');
-const http = require('http');
 const bodyParser = require('body-parser');
+//#endregion
 
 const app = express();
 
@@ -19,14 +20,18 @@ app.use(function(req, res, next) {
   next();
 });
 
+//#region: routes
+
+app.use('/api', require('./server/app.js'));
+
 // Redirect all other routes to index.html and let angular deal with it
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
+//#endregion: routes
+
 const port = process.env.PORT || '3100';
 app.set('port', port);
 
 app.listen(port , () => console.log('Running on port : ' + port));
-
-
