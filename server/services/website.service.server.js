@@ -54,7 +54,7 @@ const exp = {
         let id = Math.floor(Math.random() * 10000);
 
         // ensure generated ID is unique
-        while (findWebsiteById(id.toString())) {
+        while (websites.find(u => u._id === id)) {
             id++;
         }
 

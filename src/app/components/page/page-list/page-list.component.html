@@ -27,7 +27,8 @@
 <!--/Top Nav-->
 
 <div class="container hvj-website-list">
-  <ul class="list-group list-group-flush">
+  <ul class="list-group list-group-flush"
+      *ngIf="pages">
 
     <li class="list-group-item"
         *ngFor="let thisPage of pages">
@@ -60,6 +61,3 @@
 
   </ul>
 </div>
-
-
-

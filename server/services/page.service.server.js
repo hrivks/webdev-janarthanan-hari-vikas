@@ -53,7 +53,7 @@ const exp = {
         let id = Math.floor(Math.random() * 10000);
 
         // ensure generated ID is unique
-        while (findPageById(id.toString())) {
+        while (pages.find(p => p._id === id)) {
             id++;
         }
 
@@ -107,7 +107,12 @@ const exp = {
      * @returns page corresponding to the given Id; null if id page doesn't exit
      */
     function findPageById(pageId) {
-        return pages.find(p => p._id === pageId);
+        const page = pages.find(p => p._id === pageId);
+        if(page) {
+            return page;
+        } else {
+            throw ['Page with Id ' + pageId + 'does not exist'];
+        }
     }
 
     //#endregion: Find page by id

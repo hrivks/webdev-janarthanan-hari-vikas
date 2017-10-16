@@ -49,7 +49,7 @@ const exp = {
         var id = Math.floor(Math.random() * 10000);
 
         // ensure generated ID is unique
-        while (findUserById(id.toString())) {
+        while (users.find(u => u._id === id)) {
             id++;
         }
 

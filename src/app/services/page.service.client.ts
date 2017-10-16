@@ -1,104 +1,79 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Rx';
 import { Page } from '../model/model';
-import { WidgetService } from './widget.service.client';
+import { AppConstants } from '../app.constant';
 
 @Injectable()
 export class PageService {
 
-  constructor(private widgetService: WidgetService) { }
-
-  pages: Page[] = [
-    { '_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem' },
-    { '_id': '432', 'name': 'Post 2', 'websiteId': '456', 'description': 'Lorem' },
-    { '_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem' },
-    { '_id': '555', 'name': 'Post 4', 'websiteId': '789', 'description': 'Lorem' },
-    { '_id': '666', 'name': 'Post 5', 'websiteId': '789', 'description': 'Lorem Epsum 2' },
-    { '_id': '777', 'name': 'Post 6', 'websiteId': '789', 'description': 'Lorem Epsum' }
-  ];
-
   api = {
     'createPage': this.createPage,
     'findPageById': this.findPageById,
-    'findPageBywebsiteId': this.findPageBywebsiteId,
+    'findPageBywebsiteId': this.findPagesBywebsiteId,
     'updatePage': this.updatePage,
     'deletePage': this.deletePage
   };
+
+  endpoint = {
+    'createPage': AppConstants.ENDPOINT.baseUrl + '/website/{websiteId}/page',
+    'findPagesBywebsiteId': AppConstants.ENDPOINT.baseUrl + '/website/{websiteId}/page',
+    'findPageById': AppConstants.ENDPOINT.baseUrl + '/page/{pageId}',
+    'updatePage': AppConstants.ENDPOINT.baseUrl + '/page/{pageId}',
+    'deletePage': AppConstants.ENDPOINT.baseUrl + '/page/{pageId}'
+  };
+
+  constructor(private http: HttpClient) { }
 
   /**
    * Create a new page
    * @param userId id of the user who created the page
    * @param page page object created by the user
-   * @returns the created page object
+   * @returns Observable that resolves to the created page object
    */
-  createPage(websiteId: string, page: Page): Page {
-    let id = Math.floor(Math.random() * 10000);
-
-    // ensure generated ID is unique
-    while (this.findPageById(id.toString())) {
-      id++;
-    }
-
-    page._id = id.toString();
-    page.websiteId = websiteId;
-    this.pages.push(page);
-    return Object.assign({}, page);
+  createPage(websiteId: string, page: Page): Observable<Page> {
+    const url = this.endpoint.createPage.replace('{websiteId}', websiteId);
+    return this.http.post<Page>(url, page);
   }
 
   /**
     * Find page by Id
     * @param pageId id of the page
-    * @returns page corresponding to the given Id; null if id page doesn't exit
+    * @returns Observable that resolves to page corresponding to the given Id; null if id page doesn't exit
     */
-  findPageById(pageId: string): Page {
-    const page = this.pages.find(p => p._id === pageId);
-    return page ? Object.assign({}, page) : null;
+  findPageById(pageId: string): Observable<Page> {
+    const url = this.endpoint.findPageById.replace('{pageId}', pageId);
+    return this.http.get<Page>(url);
   }
 
   /**
    * Get all pages in the website specified by website id
    * @param websiteId id of the website
-   * @returns {Page[]} list of pages in the website specified by the given id
+   * @returns Observable that resolves to list of pages in the website specified by the given id
    */
-  findPageBywebsiteId(websiteId: string): Page[] {
-    const pages = this.pages.filter(p => p.websiteId === websiteId);
-    return pages.map(p => Object.assign({}, p));
+  findPagesBywebsiteId(websiteId: string): Observable<Page[]> {
+    const url = this.endpoint.findPagesBywebsiteId.replace('{websiteId}', websiteId);
+    return this.http.get<Page[]>(url);
   }
 
   /**
    * Update page by Id
    * @param pageId Id of the page to update
    * @param page updated page object
-   * @returns the updated page object
+   * @returns Observable that resolves to the updated page object
    */
-  updatePage(pageId: string, page: Page): Page {
-    const toUpdateIndex = this.pages.findIndex(p => p._id === pageId);
-    if (toUpdateIndex > -1) {
-      this.pages[toUpdateIndex] = page;
-      return Object.assign({}, page);
-    } else {
-      return null;
-    }
+  updatePage(pageId: string, page: Page): Observable<Page> {
+    const url = this.endpoint.updatePage.replace('{pageId}', pageId);
+    return this.http.put<Page>(url, page);
   }
 
   /**
    * Delete page by Id
    * @param pageId Id of the page to delete
-   * @returns page that was deleted, null if the id doesn't exist
+   * @returns Observable that resolves to page that was deleted, null if the id doesn't exist
    */
-  deletePage(pageId: string): Page {
-    const toDeleteIndex = this.pages.findIndex(u => u._id === pageId);
-    const toDelete = this.pages[toDeleteIndex];
-
-    if (toDelete) {
-
-      // delete all widgets in the page
-      const widgetsToDelete = this.widgetService.findWidgetsByPageId(pageId);
-      widgetsToDelete.forEach(w => {
-        this.widgetService.deleteWidget(w._id);
-      });
-
-      this.pages.splice(toDeleteIndex, 1);
-    }
-    return toDelete;
+  deletePage(pageId: string): Observable<Page> {
+    const url = this.endpoint.deletePage.replace('{pageId}', pageId);
+    return this.http.delete<Page>(url);
   }
 }

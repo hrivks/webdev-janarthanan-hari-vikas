@@ -56,9 +56,9 @@ export class WebsiteListComponent implements OnInit {
         this.websites = websites;
       },
       (err) => {
+        console.error('Error getting website list. ', err);
         const errMessage = JSON.parse(err.error);
         this.interactionsService.showAlert('Oops! Can\'t load website list. ' + errMessage);
-        console.error('Error getting website list. ', err);
       }
       );
   }
