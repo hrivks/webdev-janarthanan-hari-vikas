@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Rx';
 import { User } from '../model/model';
 import { UserService } from '../services/user.service.client';
 
@@ -35,15 +36,24 @@ export class AuthService {
    * @param password password
    * @returns logged in user; null if login fails
    */
-  login(username: string, password: string) {
-    this.loggedInUser = this.userService.findUserByCredentials(username, password);
-    if (this.loggedInUser) {
-      localStorage.setItem('loggedInUser', JSON.stringify(this.loggedInUser));
-      return Object.assign({}, this.loggedInUser);
-    } else {
-      return null;
-    }
+  login(username: string, password: string): Observable<User> {
+    const obs = new Observable<User>((observer) => {
 
+      this.userService.findUserByCredentials(username, password)
+        .subscribe(
+        (data) => {
+          this.loggedInUser = data;
+          localStorage.setItem('loggedInUser', JSON.stringify(this.loggedInUser));
+          observer.next(Object.assign({}, this.loggedInUser));
+          observer.complete();
+        },
+        (err) => {
+          observer.error(err);
+        });
+
+    });
+
+    return obs;
   }
 
   /**

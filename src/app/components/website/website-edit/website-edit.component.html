@@ -40,7 +40,8 @@
 
     <!--content-->
     <div class="hvj-website-edit">
-      <form #websiteEditForm="ngForm">
+      <form #websiteEditForm="ngForm"
+            *ngIf="website">
         <!--Website Name-->
         <div class="form-group">
           <label for="websiteName"
@@ -96,12 +97,10 @@
                     (click)="deleteWebsite()">sure?</button>
           </div>
         </div>
-        
+
       </form>
     </div>
     <!--/content-->
   </div>
   <!--/Main content-->
 </div>
-
-

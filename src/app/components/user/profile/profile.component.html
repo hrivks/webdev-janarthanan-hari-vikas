@@ -43,7 +43,7 @@
     <!--Email-->
     <div class="form-group">
       <label for="email"
-             class="font-weight-bold text-muted">Email address</label>
+             class="font-weight-bold text-muted">Email</label>
       <input type="email"
              class="form-control"
              id="email"
@@ -72,7 +72,7 @@
       <span *ngIf="firstNameField.invalid && firstNameField.touched"
             class="text-danger ml-2">First Name is required</span>
       <span *ngIf="profileErrors.firstName"
-            class="text-danger ml-2"></span>
+            class="text-danger ml-2">{{profileErrors.firstName}}</span>
     </div>
     <!--First Name-->
 
@@ -91,7 +91,7 @@
       <span *ngIf="lastNameField.invalid && lastNameField.touched"
             class="text-danger ml-2">Last Name is required</span>
       <span *ngIf="profileErrors.lastName"
-            class="text-danger ml-2"></span>
+            class="text-danger ml-2">{{profileErrors.lastName}}</span>
     </div>
     <!--/Last Name-->
 

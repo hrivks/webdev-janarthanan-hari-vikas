@@ -39,16 +39,23 @@ export class WebsiteNewComponent implements OnInit {
       // touch controls to highlight validation
       this.websiteNewForm.controls.name.markAsTouched({ onlySelf: true });
     } else {
-      this.website = this.websiteService.createWebsite(this.userId, this.website);
-
-      if (this.website) {
-        console.log('website created successfully');
-        this.interactionsService.showAlert('Website created successfully', 'success', true);
-        this.router.navigate(['../'], { relativeTo: this.activatedRoute });
-      } else {
-        console.log('error creating website');
-        this.interactionsService.showAlert('Website creation failed', 'danger');
-      }
+      this.websiteService.createWebsite(this.userId, this.website)
+        .subscribe(
+        (newWebsite) => {
+          this.website = newWebsite;
+          if (this.website) {
+            this.interactionsService.showAlert('Website created successfully', 'success', true);
+            this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+          } else {
+            this.interactionsService.showAlert('Uh ho! Website creation failed', 'danger');
+          }
+        },
+        (err) => {
+          const errMessage = JSON.parse(err.error);
+          this.interactionsService.showAlert('Uh ho! Website creation failed. ' + errMessage, 'danger');
+          console.error('Website creation failed. ', err);
+        }
+        );
 
     }
   }

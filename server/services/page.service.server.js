@@ -1,6 +1,6 @@
 // Provides CRUD for Page model
 // Module Route Root: '/api/page' and '/api/website/:websiteId/page'
-const router = require('express').Router();
+const router = require('express').Router({mergeParams: true});
 const Page = require('../models/page.model.js');
 const WidgetService = require('./widget.service.server');
 
@@ -169,9 +169,9 @@ const exp = {
         if (toDeleteIndex > -1) {
 
             // delete all widgets in the page
-            const widgetsToDelete = widgetService.api.findWidgetsByPageId(pageId);
+            const widgetsToDelete = WidgetService.api.findWidgetsByPageId(pageId);
             widgetsToDelete.forEach(w => {
-                widgetService.api.deleteWidget(w._id);
+                WidgetService.api.deleteWidget(w._id);
             });
 
             pages.splice(toDeleteIndex, 1);

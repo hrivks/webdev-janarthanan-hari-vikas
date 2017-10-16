@@ -24,5 +24,3 @@ router.use('/widget', require('./services/widget.service.server.js').router);
 //#endregion
 
 module.exports = router;
-
-

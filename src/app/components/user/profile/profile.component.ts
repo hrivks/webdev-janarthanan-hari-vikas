@@ -39,10 +39,21 @@ export class ProfileComponent implements OnInit {
       this.userId = params['uid'];
     });
 
-    this.user = this.userService.findUserById(this.userId);
-    if (!this.user) {
-      this.router.navigate(['/login']);
-    }
+    this.userService.findUserById(this.userId)
+      .subscribe(
+      (user) => {
+        if (user) {
+          this.user = user;
+        } else {
+          this.interactionsService.showAlert('Login required', 'danger', true);
+          this.router.navigate(['/login']);
+        }
+      },
+      (err) => {
+        this.interactionsService.showAlert('Error retrieving user with Id ' + this.userId);
+        console.error('Error retrieving user with Id ' + this.userId, err);
+      }
+      );
   }
 
   /**
@@ -64,17 +75,6 @@ export class ProfileComponent implements OnInit {
       hasError: false
     };
 
-    // username validation
-
-    const userExists = this.userService.findUserByUsername(this.user.username);
-    if (userExists && userExists._id !== this.user._id) {
-      this.profileErrors.username = 'Username already exists. Please try another username';
-      this.profileErrors.hasError = true;
-    } else if (this.testInvalidString(this.user.username, true)) {
-      this.profileErrors.username = 'Invalid username. Only alphabets and . allowed';
-      this.profileErrors.hasError = true;
-    }
-
     // first name validation
 
     if (this.testInvalidString(this.user.firstName)) {
@@ -89,17 +89,31 @@ export class ProfileComponent implements OnInit {
       this.profileErrors.hasError = true;
     }
 
+    // username validation
+    if (this.testInvalidString(this.user.username, true)) {
+      this.profileErrors.username = 'Invalid username. Only alphabets and . allowed';
+      this.profileErrors.hasError = true;
+    }
+
     //#endregion
 
     if (!this.profileErrors.hasError) {
-      const updatedUser = this.userService.updateUser(this.userId, this.user);
-
-      if (updatedUser) {
-        this.user = updatedUser;
-        this.interactionsService.showAlert('Profile updated successfully', 'success', true);
-      } else {
-        this.interactionsService.showAlert('Profile update failed', 'danger', true);
-      }
+      this.userService.updateUser(this.userId, this.user)
+        .subscribe(
+        (updatedUser) => {
+          if (updatedUser) {
+            this.user = updatedUser;
+            this.interactionsService.showAlert('Profile updated successfully', 'success', true);
+          } else {
+            this.interactionsService.showAlert('Profile update failed');
+          }
+        },
+        (err) => {
+          const errMessage = JSON.parse(err.error);
+          this.interactionsService.showAlert('Profile update failed. ' + errMessage);
+          console.error('Profile update failed', err);
+        }
+        );
     }
   }
 

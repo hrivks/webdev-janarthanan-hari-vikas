@@ -30,15 +30,24 @@ export class WebsiteEditComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: any) => {
       this.userId = params['uid'];
       this.websiteId = params['wid'];
-      const website = this.websiteService.findWebsiteById(this.websiteId);
-      if (website) {
-        this.website = website;
-      } else {
-        console.log('Website with Id ' + this.websiteId + ' does not exist');
-        this.website = new Website();
-        this.interactionsService.showAlert('Website with Id ' + this.websiteId + ' does not exist', 'danger', true);
-        this.router.navigate(['../'], { relativeTo: this.activatedRoute });
-      }
+      this.websiteService.findWebsiteById(this.websiteId)
+        .subscribe(
+        (website) => {
+          if (website) {
+            this.website = website;
+          } else {
+            console.log('Website with Id ' + this.websiteId + ' does not exist');
+            this.interactionsService.showAlert('Website with Id ' + this.websiteId + ' does not exist', 'danger', true);
+            this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+          }
+        },
+        (err) => {
+          const errMessage = JSON.parse(err.error);
+          this.interactionsService.showAlert('Error getting Website with Id ' + this.websiteId + '. ' + errMessage);
+          this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+        }
+        );
+
     });
   }
 
@@ -50,15 +59,24 @@ export class WebsiteEditComponent implements OnInit {
       // touch controls to highlight validation
       this.websiteEditForm.controls.name.markAsTouched({ onlySelf: true });
     } else {
-      this.website = this.websiteService.updateWebsite(this.websiteId, this.website);
-      if (this.website) {
-        console.log('website saved successfully');
-        this.interactionsService.showAlert('Website saved successfully', 'success', true);
-        this.router.navigate(['../'], { relativeTo: this.activatedRoute });
-      } else {
-        console.log('error saving website');
-        this.interactionsService.showAlert('Website update failed', 'danger');
-      }
+      this.websiteService.updateWebsite(this.websiteId, this.website)
+        .subscribe(
+        (updatedWebsite) => {
+          if (updatedWebsite) {
+            this.interactionsService.showAlert('Website saved successfully', 'success', true);
+            this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+          } else {
+            console.log('error saving website');
+            this.interactionsService.showAlert('Oh! Snap! Website update failed. Try again', 'danger');
+          }
+        },
+        (err) => {
+          const errMessage = JSON.parse(err.error);
+          this.interactionsService.showAlert('Error saving changes. ' + errMessage);
+          console.error('Error saving website.', err);
+        }
+        );
+
     }
   }
 
@@ -66,14 +84,22 @@ export class WebsiteEditComponent implements OnInit {
    * Delete current website
    */
   deleteWebsite() {
-    const deletedWebsite = this.websiteService.deleteWebsite(this.websiteId);
-
-    if (deletedWebsite) {
-      this.interactionsService.showAlert('Website deleted successfully', 'success', true);
-      this.router.navigate(['../'], { relativeTo: this.activatedRoute });
-    } else {
-      this.interactionsService.showAlert('Website deletion failed', 'danger');
-    }
+    this.websiteService.deleteWebsite(this.websiteId)
+      .subscribe(
+      (deletedWebsite) => {
+        if (deletedWebsite) {
+          this.interactionsService.showAlert('Website deleted successfully', 'success', true);
+          this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+        } else {
+          this.interactionsService.showAlert('Website deletion failed. Refresh page and try again', 'danger');
+        }
+      },
+      (err) => {
+        const errMessage = JSON.parse(err.error);
+        this.interactionsService.showAlert('Website deletion failed. ' + errMessage, 'danger');
+        console.error('Website deletion failed. ', err);
+      }
+      );
 
   }
 

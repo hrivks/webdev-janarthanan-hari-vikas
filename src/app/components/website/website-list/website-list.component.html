@@ -30,7 +30,8 @@
 <!--/Top Nav-->
 
 <div class="container hvj-website-list">
-  <ul class="list-group list-group-flush">
+  <ul class="list-group list-group-flush"
+      *ngIf="websites">
 
     <li class="list-group-item"
         *ngFor="let thisWebsite of websites">
@@ -63,5 +64,3 @@
 
   </ul>
 </div>
-
-

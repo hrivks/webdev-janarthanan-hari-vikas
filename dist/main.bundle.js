@@ -129,6 +129,10 @@ AppConstants.EVENTS = {
     showAlert: 'showAlert',
     showLoader: 'showLoader'
 };
+AppConstants.ENDPOINT = {
+    // baseUrl: '/api', // for prod
+    baseUrl: 'http://localhost:3100/api' // for local
+};
 //# sourceMappingURL=app.constant.js.map
 
 /***/ }),
@@ -144,7 +148,7 @@ AppConstants.EVENTS = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_home_home_component__ = __webpack_require__("../../../../../src/app/components/home/home.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_test_test_component__ = __webpack_require__("../../../../../src/app/components/test/test.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_routing__ = __webpack_require__("../../../../../src/app/app.routing.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_website_service_client__ = __webpack_require__("../../../../../src/app/services/website.service.client.ts");
@@ -269,7 +273,7 @@ AppModule = __decorate([
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_http__["b" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_common_http__["b" /* HttpClientModule */],
             __WEBPACK_IMPORTED_MODULE_7__angular_forms__["a" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_5__app_routing__["a" /* Routing */]
         ],
@@ -1131,19 +1135,20 @@ var LoginComponent = (function () {
     LoginComponent.prototype.ngOnInit = function () {
     };
     LoginComponent.prototype.login = function () {
-        var user = this.authService.login(this.username, this.password);
-        if (user) {
-            this.router.navigate(['/user', user._id]);
-            return true;
-        }
-        else {
-            this.loginError = 'Invalid Credentials';
-        }
+        var _this = this;
+        this.authService.login(this.username, this.password)
+            .subscribe(function (user) {
+            _this.router.navigate(['/user', user._id]);
+        }, function (err) {
+            var errMessage = JSON.parse(err.error);
+            _this.loginError = 'Error. ' + errMessage;
+            console.error('Error occured during login.', err);
+        });
     };
     return LoginComponent;
 }());
 __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('loginForm'),
     __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */]) === "function" && _a || Object)
 ], LoginComponent.prototype, "loginForm", void 0);
 LoginComponent = __decorate([
@@ -1181,7 +1186,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\r\n  <span class=\"navbar-brand\">Profile</span>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <a class=\"nav-link px-0\"\r\n         (click)=\"saveProfile()\"\r\n         title=\"Save Changes\">\r\n        <span class=\"fa fa-check fa-lg\"></span>\r\n      </a>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container\">\r\n  <form #profileForm=\"ngForm\"\r\n        (ngSubmit)=\"saveProfile()\"\r\n        *ngIf=\"user\">\r\n    <!--User Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"username\"\r\n             class=\"font-weight-bold text-muted\">Username</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"username\"\r\n             placeholder=\"walice\"\r\n             name=\"username\"\r\n             [(ngModel)]=\"user.username\"\r\n             #usernameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.username || (!usernameField.valid && usernameField.touched)}\"\r\n             required>\r\n      <span *ngIf=\"usernameField.invalid && usernameField.touched\"\r\n            class=\"text-danger ml-2\">Username is required</span>\r\n      <span *ngIf=\"profileErrors.username\"\r\n            class=\"text-danger ml-2\">{{profileErrors.username}}</span>\r\n    </div>\r\n    <!--/User Name-->\r\n\r\n    <!--Email-->\r\n    <div class=\"form-group\">\r\n      <label for=\"email\"\r\n             class=\"font-weight-bold text-muted\">Email address</label>\r\n      <input type=\"email\"\r\n             class=\"form-control\"\r\n             id=\"email\"\r\n             name=\"email\"\r\n             placeholder=\"alice.wonderland@unicorn.com\"\r\n             [(ngModel)]=\"user.email\"\r\n             #emailField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.email}\">\r\n      <span *ngIf=\"profileErrors.email\"\r\n            class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--/Email-->\r\n\r\n    <!--First Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"first-name\"\r\n             class=\"font-weight-bold text-muted\">First Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"first-name\"\r\n             name=\"firstName\"\r\n             placeholder=\"Alice\"\r\n             [(ngModel)]=\"user.firstName\"\r\n             #firstNameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.firstName || (!firstNameField.valid && firstNameField.touched)}\">\r\n      <span *ngIf=\"firstNameField.invalid && firstNameField.touched\"\r\n            class=\"text-danger ml-2\">First Name is required</span>\r\n      <span *ngIf=\"profileErrors.firstName\"\r\n            class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--First Name-->\r\n\r\n    <!--Last Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"last-name\"\r\n             class=\"font-weight-bold text-muted\">Last Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"last-name\"\r\n             name=\"lastName\"\r\n             placeholder=\"Wonderland\"\r\n             [(ngModel)]=\"user.lastName\"\r\n             #lastNameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.lastName || (!lastNameField.valid && lastNameField.touched)}\">\r\n      <span *ngIf=\"lastNameField.invalid && lastNameField.touched\"\r\n            class=\"text-danger ml-2\">Last Name is required</span>\r\n      <span *ngIf=\"profileErrors.lastName\"\r\n            class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--/Last Name-->\r\n\r\n    <!--Action Buttons-->\r\n    <div class=\"form-group\">\r\n      <a class=\"btn btn-royal btn-block\"\r\n         [routerLink]=\"['website']\">Websites</a>\r\n      <button type=\"submit\"\r\n              class=\"btn btn-success btn-block d-none\">Save Changes</button>\r\n      <button class=\"btn btn-danger btn-block\"\r\n              (click)=\"logout()\">Logout</button>\r\n    </div>\r\n    <!--/Action Buttons-->\r\n  </form>\r\n</div>"
+module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\r\n  <span class=\"navbar-brand\">Profile</span>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <a class=\"nav-link px-0\"\r\n         (click)=\"saveProfile()\"\r\n         title=\"Save Changes\">\r\n        <span class=\"fa fa-check fa-lg\"></span>\r\n      </a>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container\">\r\n  <form #profileForm=\"ngForm\"\r\n        (ngSubmit)=\"saveProfile()\"\r\n        *ngIf=\"user\">\r\n    <!--User Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"username\"\r\n             class=\"font-weight-bold text-muted\">Username</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"username\"\r\n             placeholder=\"walice\"\r\n             name=\"username\"\r\n             [(ngModel)]=\"user.username\"\r\n             #usernameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.username || (!usernameField.valid && usernameField.touched)}\"\r\n             required>\r\n      <span *ngIf=\"usernameField.invalid && usernameField.touched\"\r\n            class=\"text-danger ml-2\">Username is required</span>\r\n      <span *ngIf=\"profileErrors.username\"\r\n            class=\"text-danger ml-2\">{{profileErrors.username}}</span>\r\n    </div>\r\n    <!--/User Name-->\r\n\r\n    <!--Email-->\r\n    <div class=\"form-group\">\r\n      <label for=\"email\"\r\n             class=\"font-weight-bold text-muted\">Email</label>\r\n      <input type=\"email\"\r\n             class=\"form-control\"\r\n             id=\"email\"\r\n             name=\"email\"\r\n             placeholder=\"alice.wonderland@unicorn.com\"\r\n             [(ngModel)]=\"user.email\"\r\n             #emailField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.email}\">\r\n      <span *ngIf=\"profileErrors.email\"\r\n            class=\"text-danger ml-2\"></span>\r\n    </div>\r\n    <!--/Email-->\r\n\r\n    <!--First Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"first-name\"\r\n             class=\"font-weight-bold text-muted\">First Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"first-name\"\r\n             name=\"firstName\"\r\n             placeholder=\"Alice\"\r\n             [(ngModel)]=\"user.firstName\"\r\n             #firstNameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.firstName || (!firstNameField.valid && firstNameField.touched)}\">\r\n      <span *ngIf=\"firstNameField.invalid && firstNameField.touched\"\r\n            class=\"text-danger ml-2\">First Name is required</span>\r\n      <span *ngIf=\"profileErrors.firstName\"\r\n            class=\"text-danger ml-2\">{{profileErrors.firstName}}</span>\r\n    </div>\r\n    <!--First Name-->\r\n\r\n    <!--Last Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"last-name\"\r\n             class=\"font-weight-bold text-muted\">Last Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"last-name\"\r\n             name=\"lastName\"\r\n             placeholder=\"Wonderland\"\r\n             [(ngModel)]=\"user.lastName\"\r\n             #lastNameField=\"ngModel\"\r\n             [ngClass]=\"{'border-danger': profileErrors.lastName || (!lastNameField.valid && lastNameField.touched)}\">\r\n      <span *ngIf=\"lastNameField.invalid && lastNameField.touched\"\r\n            class=\"text-danger ml-2\">Last Name is required</span>\r\n      <span *ngIf=\"profileErrors.lastName\"\r\n            class=\"text-danger ml-2\">{{profileErrors.lastName}}</span>\r\n    </div>\r\n    <!--/Last Name-->\r\n\r\n    <!--Action Buttons-->\r\n    <div class=\"form-group\">\r\n      <a class=\"btn btn-royal btn-block\"\r\n         [routerLink]=\"['website']\">Websites</a>\r\n      <button type=\"submit\"\r\n              class=\"btn btn-success btn-block d-none\">Save Changes</button>\r\n      <button class=\"btn btn-danger btn-block\"\r\n              (click)=\"logout()\">Logout</button>\r\n    </div>\r\n    <!--/Action Buttons-->\r\n  </form>\r\n</div>"
 
 /***/ }),
 
@@ -1228,10 +1233,19 @@ var ProfileComponent = (function () {
         this.activatedRoute.params.subscribe(function (params) {
             _this.userId = params['uid'];
         });
-        this.user = this.userService.findUserById(this.userId);
-        if (!this.user) {
-            this.router.navigate(['/login']);
-        }
+        this.userService.findUserById(this.userId)
+            .subscribe(function (user) {
+            if (user) {
+                _this.user = user;
+            }
+            else {
+                _this.interactionsService.showAlert('Login required', 'danger', true);
+                _this.router.navigate(['/login']);
+            }
+        }, function (err) {
+            _this.interactionsService.showAlert('Error retrieving user with Id ' + _this.userId);
+            console.error('Error retrieving user with Id ' + _this.userId, err);
+        });
     };
     /**
      * Logout user
@@ -1241,6 +1255,7 @@ var ProfileComponent = (function () {
     };
     /** Save user profile details */
     ProfileComponent.prototype.saveProfile = function () {
+        var _this = this;
         if (!this.profileForm.valid || this.profileForm.pristine) {
             return;
         }
@@ -1249,16 +1264,6 @@ var ProfileComponent = (function () {
         this.profileErrors = {
             hasError: false
         };
-        // username validation
-        var userExists = this.userService.findUserByUsername(this.user.username);
-        if (userExists && userExists._id !== this.user._id) {
-            this.profileErrors.username = 'Username already exists. Please try another username';
-            this.profileErrors.hasError = true;
-        }
-        else if (this.testInvalidString(this.user.username, true)) {
-            this.profileErrors.username = 'Invalid username. Only alphabets and . allowed';
-            this.profileErrors.hasError = true;
-        }
         // first name validation
         if (this.testInvalidString(this.user.firstName)) {
             this.profileErrors.firstName = 'Invalid Name. Only alphabets allowed';
@@ -1269,16 +1274,27 @@ var ProfileComponent = (function () {
             this.profileErrors.lastName = 'Invalid Name. Only alphabets allowed';
             this.profileErrors.hasError = true;
         }
+        // username validation
+        if (this.testInvalidString(this.user.username, true)) {
+            this.profileErrors.username = 'Invalid username. Only alphabets and . allowed';
+            this.profileErrors.hasError = true;
+        }
         //#endregion
         if (!this.profileErrors.hasError) {
-            var updatedUser = this.userService.updateUser(this.userId, this.user);
-            if (updatedUser) {
-                this.user = updatedUser;
-                this.interactionsService.showAlert('Profile updated successfully', 'success', true);
-            }
-            else {
-                this.interactionsService.showAlert('Profile update failed', 'danger', true);
-            }
+            this.userService.updateUser(this.userId, this.user)
+                .subscribe(function (updatedUser) {
+                if (updatedUser) {
+                    _this.user = updatedUser;
+                    _this.interactionsService.showAlert('Profile updated successfully', 'success', true);
+                }
+                else {
+                    _this.interactionsService.showAlert('Profile update failed');
+                }
+            }, function (err) {
+                var errMessage = JSON.parse(err.error);
+                _this.interactionsService.showAlert('Profile update failed. ' + errMessage);
+                console.error('Profile update failed', err);
+            });
         }
     };
     /** Test if the given string contains characters apart from alphabets
@@ -1352,6 +1368,7 @@ module.exports = "<div class=\"container\">\r\n      <p>\r\n            <span cl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_model__ = __webpack_require__("../../../../../src/app/model/model.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_auth_service_client__ = __webpack_require__("../../../../../src/app/services/auth.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1366,25 +1383,43 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var RegisterComponent = (function () {
-    function RegisterComponent(userService, router, authService) {
+    function RegisterComponent(userService, router, authService, interactionsService) {
         this.userService = userService;
         this.router = router;
         this.authService = authService;
+        this.interactionsService = interactionsService;
         this.registrationErrors = {};
     }
-    RegisterComponent.prototype.ngOnInit = function () { };
+    RegisterComponent.prototype.ngOnInit = function () {
+    };
     RegisterComponent.prototype.register = function () {
+        var _this = this;
         var newUser = new __WEBPACK_IMPORTED_MODULE_2__model_model__["b" /* User */]();
         newUser.username = this.username;
         newUser.password = this.password;
-        newUser = this.userService.createUser(newUser);
-        if (newUser) {
-            var loggedInUser = this.authService.login(newUser.username, newUser.password);
-            if (loggedInUser) {
-                this.router.navigate(['/user', loggedInUser._id]);
-            }
-        }
+        // create new user
+        this.userService.createUser(newUser)
+            .subscribe(function (registeredUser) {
+            // automatically login new user
+            _this.authService.login(registeredUser.username, registeredUser.password)
+                .subscribe(function (user) {
+                if (user) {
+                    _this.router.navigate(['/user', user._id]);
+                }
+                else {
+                    _this.interactionsService.showAlert('Login post registration unsuccessfuly');
+                    console.error('Login post registration unsuccessfuly', user);
+                }
+            }, function (err) {
+                _this.interactionsService.showAlert('Error logging in post registration');
+                console.error('Error logging in post registration', err);
+            });
+        }, function (err) {
+            _this.interactionsService.showAlert('Error registering user. Please try again.');
+            console.error('Error registering user', err);
+        });
     };
     return RegisterComponent;
 }());
@@ -1394,10 +1429,10 @@ RegisterComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/user/register/register.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/user/register/register.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_auth_service_client__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_auth_service_client__["a" /* AuthService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_auth_service_client__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_auth_service_client__["a" /* AuthService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__services_interactions_service_client__["a" /* InteractionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_interactions_service_client__["a" /* InteractionsService */]) === "function" && _d || Object])
 ], RegisterComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=register.component.js.map
 
 /***/ }),
@@ -1423,7 +1458,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/website/website-edit/website-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <!-- Sidebar -->\r\n  <div class=\"col-4 hvj-landscape-only px-1\">\r\n    <app-website-list compactMode=\"true\"></app-website-list>\r\n  </div>\r\n  <!--/Sidebar-->\r\n\r\n  <div class=\"hvj-vertical-line col-4 hvj-landscape-only\"></div>\r\n  <!--Main content-->\r\n  <div class=\"col\">\r\n    <!--Top Nav-->\r\n    <nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal ml-auto hvj-landscape-col-8 px-2 px-sm-3\">\r\n      <ul class=\"navbar-nav mr-3 hvj-portrait-only\">\r\n        <li class=\"nav-item\">\r\n          <!-- Back button -->\r\n          <a class=\"nav-link px-0\"\r\n             [routerLink]=\"['../']\"\r\n             title=\"Websites\">\r\n            <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n          </a>\r\n          <!-- /Back button -->\r\n        </li>\r\n      </ul>\r\n\r\n      <span class=\"navbar-brand\">Edit Website</span>\r\n\r\n      <ul class=\"navbar-nav ml-auto\">\r\n        <li class=\"nav-item\">\r\n          <!-- Action button -->\r\n          <a class=\"nav-link px-0\"\r\n             (click)=\"saveChanges()\"\r\n             title=\"Save Changes\">\r\n            <span class=\"fa fa-check fa-lg\"></span>\r\n          </a>\r\n          <!-- /Action button -->\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <!--/Top Nav-->\r\n\r\n    <!--content-->\r\n    <div class=\"hvj-website-edit\">\r\n      <form #websiteEditForm=\"ngForm\">\r\n        <!--Website Name-->\r\n        <div class=\"form-group\">\r\n          <label for=\"websiteName\"\r\n                 class=\"font-weight-bold text-muted\">Website Name</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"websiteName\"\r\n                 name=\"name\"\r\n                 placeholder=\"Name\"\r\n                 [(ngModel)]=\"website.name\"\r\n                 #nameField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': nameField.invalid && nameField.touched}\"\r\n                 required>\r\n          <span *ngIf=\"nameField.invalid && nameField.touched\"\r\n                class=\"text-danger ml-2\">Name is required</span>\r\n        </div>\r\n        <!--/Website Name-->\r\n\r\n        <!--Website Description-->\r\n        <div class=\"form-group\">\r\n          <label for=\"websiteDescription\"\r\n                 class=\"font-weight-bold text-muted\">Website Name</label>\r\n          <textarea class=\"form-control\"\r\n                    id=\"websiteDescription\"\r\n                    name=\"description\"\r\n                    [(ngModel)]=\"website.description\"\r\n                    rows=\"6\">{{website.description}}\r\n          </textarea>\r\n        </div>\r\n        <!--/Website Description-->\r\n\r\n        <!-- Form buttons -->\r\n        <div class=\"row no-gutters\">\r\n          <div class=\"col-12 col-sm-9 mr-1\">\r\n            <!-- Save button -->\r\n            <button class=\"btn btn-success btn-block mr-1 mb-2\"\r\n                    title=\"Save Changes\"\r\n                    (click)=\"saveChanges()\">\r\n              <i class=\"fa fa-check\"></i>\r\n            </button>\r\n          </div>\r\n          <div class=\"col\">\r\n            <!-- Delete button -->\r\n            <button class=\"btn btn-danger btn-block\"\r\n                    title=\"Delete website\"\r\n                    (click)=\"showDeleteConfirmation = true\"\r\n                    [hidden]=\"showDeleteConfirmation\">\r\n              <i class=\"fa fa-trash\"></i>\r\n            </button>\r\n            <button class=\"btn btn-danger btn-block mt-0\"\r\n                    title=\"Delete Website\"\r\n                    [hidden]=\"!showDeleteConfirmation\"\r\n                    (click)=\"deleteWebsite()\">sure?</button>\r\n          </div>\r\n        </div>\r\n        \r\n      </form>\r\n    </div>\r\n    <!--/content-->\r\n  </div>\r\n  <!--/Main content-->\r\n</div>\r\n\r\n\r\n"
+module.exports = "<div class=\"row\">\r\n  <!-- Sidebar -->\r\n  <div class=\"col-4 hvj-landscape-only px-1\">\r\n    <app-website-list compactMode=\"true\"></app-website-list>\r\n  </div>\r\n  <!--/Sidebar-->\r\n\r\n  <div class=\"hvj-vertical-line col-4 hvj-landscape-only\"></div>\r\n  <!--Main content-->\r\n  <div class=\"col\">\r\n    <!--Top Nav-->\r\n    <nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal ml-auto hvj-landscape-col-8 px-2 px-sm-3\">\r\n      <ul class=\"navbar-nav mr-3 hvj-portrait-only\">\r\n        <li class=\"nav-item\">\r\n          <!-- Back button -->\r\n          <a class=\"nav-link px-0\"\r\n             [routerLink]=\"['../']\"\r\n             title=\"Websites\">\r\n            <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n          </a>\r\n          <!-- /Back button -->\r\n        </li>\r\n      </ul>\r\n\r\n      <span class=\"navbar-brand\">Edit Website</span>\r\n\r\n      <ul class=\"navbar-nav ml-auto\">\r\n        <li class=\"nav-item\">\r\n          <!-- Action button -->\r\n          <a class=\"nav-link px-0\"\r\n             (click)=\"saveChanges()\"\r\n             title=\"Save Changes\">\r\n            <span class=\"fa fa-check fa-lg\"></span>\r\n          </a>\r\n          <!-- /Action button -->\r\n        </li>\r\n      </ul>\r\n    </nav>\r\n    <!--/Top Nav-->\r\n\r\n    <!--content-->\r\n    <div class=\"hvj-website-edit\">\r\n      <form #websiteEditForm=\"ngForm\"\r\n            *ngIf=\"website\">\r\n        <!--Website Name-->\r\n        <div class=\"form-group\">\r\n          <label for=\"websiteName\"\r\n                 class=\"font-weight-bold text-muted\">Website Name</label>\r\n          <input type=\"text\"\r\n                 class=\"form-control\"\r\n                 id=\"websiteName\"\r\n                 name=\"name\"\r\n                 placeholder=\"Name\"\r\n                 [(ngModel)]=\"website.name\"\r\n                 #nameField=\"ngModel\"\r\n                 [ngClass]=\"{'border-danger': nameField.invalid && nameField.touched}\"\r\n                 required>\r\n          <span *ngIf=\"nameField.invalid && nameField.touched\"\r\n                class=\"text-danger ml-2\">Name is required</span>\r\n        </div>\r\n        <!--/Website Name-->\r\n\r\n        <!--Website Description-->\r\n        <div class=\"form-group\">\r\n          <label for=\"websiteDescription\"\r\n                 class=\"font-weight-bold text-muted\">Website Name</label>\r\n          <textarea class=\"form-control\"\r\n                    id=\"websiteDescription\"\r\n                    name=\"description\"\r\n                    [(ngModel)]=\"website.description\"\r\n                    rows=\"6\">{{website.description}}\r\n          </textarea>\r\n        </div>\r\n        <!--/Website Description-->\r\n\r\n        <!-- Form buttons -->\r\n        <div class=\"row no-gutters\">\r\n          <div class=\"col-12 col-sm-9 mr-1\">\r\n            <!-- Save button -->\r\n            <button class=\"btn btn-success btn-block mr-1 mb-2\"\r\n                    title=\"Save Changes\"\r\n                    (click)=\"saveChanges()\">\r\n              <i class=\"fa fa-check\"></i>\r\n            </button>\r\n          </div>\r\n          <div class=\"col\">\r\n            <!-- Delete button -->\r\n            <button class=\"btn btn-danger btn-block\"\r\n                    title=\"Delete website\"\r\n                    (click)=\"showDeleteConfirmation = true\"\r\n                    [hidden]=\"showDeleteConfirmation\">\r\n              <i class=\"fa fa-trash\"></i>\r\n            </button>\r\n            <button class=\"btn btn-danger btn-block mt-0\"\r\n                    title=\"Delete Website\"\r\n                    [hidden]=\"!showDeleteConfirmation\"\r\n                    (click)=\"deleteWebsite()\">sure?</button>\r\n          </div>\r\n        </div>\r\n\r\n      </form>\r\n    </div>\r\n    <!--/content-->\r\n  </div>\r\n  <!--/Main content-->\r\n</div>"
 
 /***/ }),
 
@@ -1435,9 +1470,8 @@ module.exports = "<div class=\"row\">\r\n  <!-- Sidebar -->\r\n  <div class=\"co
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_model__ = __webpack_require__("../../../../../src/app/model/model.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_website_service_client__ = __webpack_require__("../../../../../src/app/services/website.service.client.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_website_service_client__ = __webpack_require__("../../../../../src/app/services/website.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1447,7 +1481,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -1467,51 +1500,69 @@ var WebsiteEditComponent = (function () {
         this.activatedRoute.params.subscribe(function (params) {
             _this.userId = params['uid'];
             _this.websiteId = params['wid'];
-            var website = _this.websiteService.findWebsiteById(_this.websiteId);
-            if (website) {
-                _this.website = website;
-            }
-            else {
-                console.log('Website with Id ' + _this.websiteId + ' does not exist');
-                _this.website = new __WEBPACK_IMPORTED_MODULE_3__model_model__["c" /* Website */]();
-                _this.interactionsService.showAlert('Website with Id ' + _this.websiteId + ' does not exist', 'danger', true);
+            _this.websiteService.findWebsiteById(_this.websiteId)
+                .subscribe(function (website) {
+                if (website) {
+                    _this.website = website;
+                }
+                else {
+                    console.log('Website with Id ' + _this.websiteId + ' does not exist');
+                    _this.interactionsService.showAlert('Website with Id ' + _this.websiteId + ' does not exist', 'danger', true);
+                    _this.router.navigate(['../'], { relativeTo: _this.activatedRoute });
+                }
+            }, function (err) {
+                var errMessage = JSON.parse(err.error);
+                _this.interactionsService.showAlert('Error getting Website with Id ' + _this.websiteId + '. ' + errMessage);
                 _this.router.navigate(['../'], { relativeTo: _this.activatedRoute });
-            }
+            });
         });
     };
     /**
      * Save changes to website object
      */
     WebsiteEditComponent.prototype.saveChanges = function () {
+        var _this = this;
         if (this.websiteEditForm.invalid) {
             // touch controls to highlight validation
             this.websiteEditForm.controls.name.markAsTouched({ onlySelf: true });
         }
         else {
-            this.website = this.websiteService.updateWebsite(this.websiteId, this.website);
-            if (this.website) {
-                console.log('website saved successfully');
-                this.interactionsService.showAlert('Website saved successfully', 'success', true);
-                this.router.navigate(['../'], { relativeTo: this.activatedRoute });
-            }
-            else {
-                console.log('error saving website');
-                this.interactionsService.showAlert('Website update failed', 'danger');
-            }
+            this.websiteService.updateWebsite(this.websiteId, this.website)
+                .subscribe(function (updatedWebsite) {
+                if (updatedWebsite) {
+                    _this.interactionsService.showAlert('Website saved successfully', 'success', true);
+                    _this.router.navigate(['../'], { relativeTo: _this.activatedRoute });
+                }
+                else {
+                    console.log('error saving website');
+                    _this.interactionsService.showAlert('Oh! Snap! Website update failed. Try again', 'danger');
+                }
+            }, function (err) {
+                var errMessage = JSON.parse(err.error);
+                _this.interactionsService.showAlert('Error saving changes. ' + errMessage);
+                console.error('Error saving website.', err);
+            });
         }
     };
     /**
      * Delete current website
      */
     WebsiteEditComponent.prototype.deleteWebsite = function () {
-        var deletedWebsite = this.websiteService.deleteWebsite(this.websiteId);
-        if (deletedWebsite) {
-            this.interactionsService.showAlert('Website deleted successfully', 'success', true);
-            this.router.navigate(['../'], { relativeTo: this.activatedRoute });
-        }
-        else {
-            this.interactionsService.showAlert('Website deletion failed', 'danger');
-        }
+        var _this = this;
+        this.websiteService.deleteWebsite(this.websiteId)
+            .subscribe(function (deletedWebsite) {
+            if (deletedWebsite) {
+                _this.interactionsService.showAlert('Website deleted successfully', 'success', true);
+                _this.router.navigate(['../'], { relativeTo: _this.activatedRoute });
+            }
+            else {
+                _this.interactionsService.showAlert('Website deletion failed. Refresh page and try again', 'danger');
+            }
+        }, function (err) {
+            var errMessage = JSON.parse(err.error);
+            _this.interactionsService.showAlert('Website deletion failed. ' + errMessage, 'danger');
+            console.error('Website deletion failed. ', err);
+        });
     };
     return WebsiteEditComponent;
 }());
@@ -1525,7 +1576,7 @@ WebsiteEditComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/website/website-edit/website-edit.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/website/website-edit/website-edit.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_website_service_client__["a" /* WebsiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_website_service_client__["a" /* WebsiteService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__services_interactions_service_client__["a" /* InteractionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_interactions_service_client__["a" /* InteractionsService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_website_service_client__["a" /* WebsiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_website_service_client__["a" /* WebsiteService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_interactions_service_client__["a" /* InteractionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_interactions_service_client__["a" /* InteractionsService */]) === "function" && _e || Object])
 ], WebsiteEditComponent);
 
 var _a, _b, _c, _d, _e;
@@ -1554,7 +1605,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/website/website-list/website-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\"\r\n     [ngClass]=\"{'col-4 border border-left-0 border-top-0 border-bottom-0 border-secondary' : compactMode}\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <!-- Back button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"[ '../']\"\r\n         title=\"Back\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n      <!-- /Back button -->\r\n    </li>\r\n  </ul>\r\n\r\n  <span class=\"navbar-brand\">Websites</span>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['/user', userId, 'website', 'new']\"\r\n         title=\"New Website\">\r\n        <span class=\"fa fa-plus fa-lg\"></span>\r\n      </a>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-website-list\">\r\n  <ul class=\"list-group list-group-flush\">\r\n\r\n    <li class=\"list-group-item\"\r\n        *ngFor=\"let thisWebsite of websites\">\r\n      <a [routerLink]=\"['/user', userId, 'website', thisWebsite._id, 'page']\">\r\n        <span>{{thisWebsite.name}}</span>\r\n        <span class=\"small text-secondary font-italic d-sm-inline d-none ml-2\">{{thisWebsite.description}}</span>\r\n      </a>\r\n      <a [routerLink]=\"['/user', userId, 'website', thisWebsite._id]\"\r\n         class=\"btn btn-xs float-right link-royal\">\r\n        <span class=\"fa fa-gear\"></span>\r\n      </a>\r\n    </li>\r\n\r\n    <!-- No websites message -->\r\n    <li class=\"list-group-item\"\r\n        *ngIf=\"websites.length == 0\">\r\n      <span>\r\n        <em>No websites to show</em>\r\n      </span>\r\n    </li>\r\n\r\n    <li class=\"list-group-item\"\r\n        *ngIf=\"websites.length == 0\">\r\n      <a class=\"btn btn-xs link-royal\"\r\n         [routerLink]=\"['new']\">\r\n        <i class=\"fa fa-plus fa-lg mr-2\"></i>\r\n        <em class=\"text-secondary\">Create new website</em>\r\n      </a>\r\n    </li>\r\n\r\n  </ul>\r\n</div>\r\n\r\n\r\n"
+module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\"\r\n     [ngClass]=\"{'col-4 border border-left-0 border-top-0 border-bottom-0 border-secondary' : compactMode}\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <!-- Back button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"[ '../']\"\r\n         title=\"Back\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n      <!-- /Back button -->\r\n    </li>\r\n  </ul>\r\n\r\n  <span class=\"navbar-brand\">Websites</span>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['/user', userId, 'website', 'new']\"\r\n         title=\"New Website\">\r\n        <span class=\"fa fa-plus fa-lg\"></span>\r\n      </a>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-website-list\">\r\n  <ul class=\"list-group list-group-flush\"\r\n      *ngIf=\"websites\">\r\n\r\n    <li class=\"list-group-item\"\r\n        *ngFor=\"let thisWebsite of websites\">\r\n      <a [routerLink]=\"['/user', userId, 'website', thisWebsite._id, 'page']\">\r\n        <span>{{thisWebsite.name}}</span>\r\n        <span class=\"small text-secondary font-italic d-sm-inline d-none ml-2\">{{thisWebsite.description}}</span>\r\n      </a>\r\n      <a [routerLink]=\"['/user', userId, 'website', thisWebsite._id]\"\r\n         class=\"btn btn-xs float-right link-royal\">\r\n        <span class=\"fa fa-gear\"></span>\r\n      </a>\r\n    </li>\r\n\r\n    <!-- No websites message -->\r\n    <li class=\"list-group-item\"\r\n        *ngIf=\"websites.length == 0\">\r\n      <span>\r\n        <em>No websites to show</em>\r\n      </span>\r\n    </li>\r\n\r\n    <li class=\"list-group-item\"\r\n        *ngIf=\"websites.length == 0\">\r\n      <a class=\"btn btn-xs link-royal\"\r\n         [routerLink]=\"['new']\">\r\n        <i class=\"fa fa-plus fa-lg mr-2\"></i>\r\n        <em class=\"text-secondary\">Create new website</em>\r\n      </a>\r\n    </li>\r\n\r\n  </ul>\r\n</div>"
 
 /***/ }),
 
@@ -1566,7 +1617,8 @@ module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__ = __webpack_require__("../../../../../src/app/services/website.service.client.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1580,10 +1632,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var WebsiteListComponent = (function () {
-    function WebsiteListComponent(activatedRoute, websiteService, interactionsService) {
+    function WebsiteListComponent(activatedRoute, router, websiteService, userService, interactionsService) {
         this.activatedRoute = activatedRoute;
+        this.router = router;
         this.websiteService = websiteService;
+        this.userService = userService;
         this.interactionsService = interactionsService;
     }
     WebsiteListComponent.prototype.ngOnInit = function () {
@@ -1591,16 +1646,34 @@ var WebsiteListComponent = (function () {
         // get userid parameter route
         this.activatedRoute.params.subscribe(function (params) {
             _this.userId = params['uid'];
+            // check if user exists
+            _this.userService.findUserById(_this.userId)
+                .subscribe(function (userExists) {
+                if (userExists) {
+                    _this.getWebsites();
+                }
+                else {
+                    _this.interactionsService.showAlert('User with Id ' + _this.userId + ' does not exist. Please login again');
+                    _this.router.navigate(['/login']);
+                }
+            });
         });
-        this.getWebsites();
         // register for website change event
-        this.interactionsService.registerCallback('websiteUpdated', function () { _this.getWebsites(); });
+        this.interactionsService.registerCallback('websiteUpdated', function () { _this.getWebsites(); }, true);
     };
     /**
      * Get list of websites for the current user
      */
     WebsiteListComponent.prototype.getWebsites = function () {
-        this.websites = this.websiteService.findWebsitesByUser(this.userId);
+        var _this = this;
+        this.websiteService.findWebsitesByUser(this.userId)
+            .subscribe(function (websites) {
+            _this.websites = websites;
+        }, function (err) {
+            var errMessage = JSON.parse(err.error);
+            _this.interactionsService.showAlert('Oops! Can\'t load website list. ' + errMessage);
+            console.error('Error getting website list. ', err);
+        });
     };
     return WebsiteListComponent;
 }());
@@ -1614,10 +1687,10 @@ WebsiteListComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/website/website-list/website-list.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/website/website-list/website-list.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__["a" /* WebsiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__["a" /* WebsiteService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_interactions_service_client__["a" /* InteractionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_interactions_service_client__["a" /* InteractionsService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__["a" /* WebsiteService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__["a" /* WebsiteService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_interactions_service_client__["a" /* InteractionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_interactions_service_client__["a" /* InteractionsService */]) === "function" && _e || Object])
 ], WebsiteListComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=website-list.component.js.map
 
 /***/ }),
@@ -1693,21 +1766,27 @@ var WebsiteNewComponent = (function () {
      * create new page object
      */
     WebsiteNewComponent.prototype.saveChanges = function () {
+        var _this = this;
         if (this.websiteNewForm.invalid) {
             // touch controls to highlight validation
             this.websiteNewForm.controls.name.markAsTouched({ onlySelf: true });
         }
         else {
-            this.website = this.websiteService.createWebsite(this.userId, this.website);
-            if (this.website) {
-                console.log('website created successfully');
-                this.interactionsService.showAlert('Website created successfully', 'success', true);
-                this.router.navigate(['../'], { relativeTo: this.activatedRoute });
-            }
-            else {
-                console.log('error creating website');
-                this.interactionsService.showAlert('Website creation failed', 'danger');
-            }
+            this.websiteService.createWebsite(this.userId, this.website)
+                .subscribe(function (newWebsite) {
+                _this.website = newWebsite;
+                if (_this.website) {
+                    _this.interactionsService.showAlert('Website created successfully', 'success', true);
+                    _this.router.navigate(['../'], { relativeTo: _this.activatedRoute });
+                }
+                else {
+                    _this.interactionsService.showAlert('Uh ho! Website creation failed', 'danger');
+                }
+            }, function (err) {
+                var errMessage = JSON.parse(err.error);
+                _this.interactionsService.showAlert('Uh ho! Website creation failed. ' + errMessage, 'danger');
+                console.error('Website creation failed. ', err);
+            });
         }
     };
     return WebsiteNewComponent;
@@ -2820,7 +2899,9 @@ var Widget = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2830,6 +2911,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2863,14 +2945,19 @@ var AuthService = (function () {
      * @returns logged in user; null if login fails
      */
     AuthService.prototype.login = function (username, password) {
-        this.loggedInUser = this.userService.findUserByCredentials(username, password);
-        if (this.loggedInUser) {
-            localStorage.setItem('loggedInUser', JSON.stringify(this.loggedInUser));
-            return Object.assign({}, this.loggedInUser);
-        }
-        else {
-            return null;
-        }
+        var _this = this;
+        var obs = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"](function (observer) {
+            _this.userService.findUserByCredentials(username, password)
+                .subscribe(function (data) {
+                _this.loggedInUser = data;
+                localStorage.setItem('loggedInUser', JSON.stringify(_this.loggedInUser));
+                observer.next(Object.assign({}, _this.loggedInUser));
+                observer.complete();
+            }, function (err) {
+                observer.error(err);
+            });
+        });
+        return obs;
     };
     /**
      * Logout user
@@ -2884,7 +2971,7 @@ var AuthService = (function () {
 }());
 AuthService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */]) === "function" && _b || Object])
 ], AuthService);
 
 var _a, _b;
@@ -2926,11 +3013,13 @@ var InteractionsService = (function () {
      * Register callback for a specific event
      * @param name name of the event to subscribe to
      * @param callback callback function to be invoked with the event occurs
+     * @param clear clear all existing callbacks for the given name
      */
-    InteractionsService.prototype.registerCallback = function (name, callback) {
+    InteractionsService.prototype.registerCallback = function (name, callback, clear) {
         var _this = this;
+        console.log(this.callbacks);
         // create callback array if it doest not already exist
-        if (!this.callbacks[name]) {
+        if (!this.callbacks[name] || clear) {
             this.callbacks[name] = [];
         }
         this.callbacks[name].push(callback);
@@ -3183,6 +3272,8 @@ var _a;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_constant__ = __webpack_require__("../../../../../src/app/app.constant.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3193,15 +3284,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var UserService = (function () {
-    function UserService() {
-        // list of users
-        this.users = [
-            { _id: '123', username: 'alice', password: 'alice', firstName: 'Alice', lastName: 'Wonder' },
-            { _id: '234', username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Marley' },
-            { _id: '345', username: 'charly', password: 'charly', firstName: 'Charly', lastName: 'Garcia' },
-            { _id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose', lastName: 'Annunzi' }
-        ];
+    function UserService(http) {
+        this.http = http;
         this.api = {
             'createUser': this.createUser,
             'findUserById': this.findUserById,
@@ -3210,86 +3297,81 @@ var UserService = (function () {
             'updateUser': this.updateUser,
             'deleteUser': this.deleteUser
         };
+        this.endpoint = {
+            'createUser': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user',
+            'findUserByUsername': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user?username={username}',
+            'findUserByCredentials': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user?username={username}&password={password}',
+            'findUserById': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user/{userId}',
+            'updateUser': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user/{userId}',
+            'deleteUser': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user/{userId}'
+        };
     }
     /**
      * Create a new user
      * @param user user object to be added to the user list
-     * @returns created user object
+     * @returns Observable that resolves to created user object
      */
     UserService.prototype.createUser = function (user) {
-        var id = Math.floor(Math.random() * 10000);
-        // ensure generated ID is unique
-        while (this.findUserById(id.toString())) {
-            id++;
-        }
-        user._id = id.toString();
-        this.users.push(user);
-        return Object.assign({}, user);
+        var url = this.endpoint.createUser;
+        return this.http.post(url, user);
     };
     /**
      * Find user by user id
      * @param userId id of the user
-     * @returns user with the specifed id; null if id doesn't exist
+     * @returns Observable that resolves to user with the specifed id; null if id doesn't exist
      */
     UserService.prototype.findUserById = function (userId) {
-        var user = this.users.find(function (u) { return u._id === userId; });
-        return user ? Object.assign({}, user) : null;
+        var url = this.endpoint.findUserById.replace('{userId}', userId);
+        return this.http.get(url);
     };
     /**
      * Find user by user name
      * @param username username of the user
-     * @returns user with the specifed username; null if id doesn't exist
+     * @returns Observable that resolves to user with the specifed username; null if id doesn't exist
      */
     UserService.prototype.findUserByUsername = function (username) {
-        var user = this.users.find(function (u) { return u.username === username; });
-        return user ? Object.assign({}, user) : null;
+        var url = this.endpoint.findUserByUsername.replace('{username}', username);
+        return this.http.get(url);
     };
     /**
      * Find user by credentials
      * @param username username of the user
      * @param password password of the user
-     * @returns user with the specifed username; null if id doesn't exist
+     * @returns Observable that resolves to user with the specifed username; null if id doesn't exist
      */
     UserService.prototype.findUserByCredentials = function (username, password) {
-        var user = this.users.find(function (u) { return u.username === username && u.password === password; });
-        return user ? Object.assign({}, user) : null;
+        var url = this.endpoint.findUserByCredentials
+            .replace('{username}', username)
+            .replace('{password}', password);
+        return this.http.get(url);
     };
     /**
      * Update user by user id
      * @param {string} userId id of the user
      * @param user updated user object
-     * @returns updated user object
+     * @returns Observable that resolves to updated user object
      */
     UserService.prototype.updateUser = function (userId, user) {
-        var toUpdateIndex = this.users.findIndex(function (u) { return u._id === userId; });
-        if (toUpdateIndex > -1) {
-            this.users[toUpdateIndex] = user;
-            return Object.assign({}, user);
-        }
-        else {
-            return null;
-        }
+        var url = this.endpoint.updateUser.replace('{userId}', userId);
+        return this.http.put(url, user);
     };
     /**
      * Delete user by user id
      * @param {string} userId id of the user
-     * @returns deleted user object
+     * @returns Observable that resolves to deleted user object
      */
     UserService.prototype.deleteUser = function (userId) {
-        var toDeleteIndex = this.users.findIndex(function (u) { return u._id === userId; });
-        var toDelete = this.users[toDeleteIndex];
-        if (toDelete) {
-            this.users.splice(toDeleteIndex, 1);
-        }
-        return toDelete;
+        var url = this.endpoint.deleteUser.replace('{userId}', userId);
+        return this.http.delete(url);
     };
     return UserService;
 }());
 UserService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
 ], UserService);
 
+var _a;
 //# sourceMappingURL=user.service.client.js.map
 
 /***/ }),
@@ -3300,7 +3382,8 @@ UserService = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WebsiteService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__page_service_client__ = __webpack_require__("../../../../../src/app/services/page.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_constant__ = __webpack_require__("../../../../../src/app/app.constant.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3312,18 +3395,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var WebsiteService = (function () {
-    function WebsiteService(pageService) {
-        this.pageService = pageService;
-        this.websites = [
-            { '_id': '123', 'name': 'Facebook', 'developerId': '456', 'description': 'Lorem' },
-            { '_id': '234', 'name': 'Tweeter', 'developerId': '456', 'description': 'Lorem' },
-            { '_id': '456', 'name': 'Gizmodo', 'developerId': '456', 'description': 'Lorem' },
-            { '_id': '890', 'name': 'Go', 'developerId': '123', 'description': 'Lorem' },
-            { '_id': '567', 'name': 'Tic Tac Toe', 'developerId': '123', 'description': 'Lorem' },
-            { '_id': '678', 'name': 'Checkers', 'developerId': '123', 'description': 'Lorem' },
-            { '_id': '789', 'name': 'Chess', 'developerId': '234', 'description': 'Lorem' }
-        ];
+    function WebsiteService(http) {
+        this.http = http;
         this.api = {
             'createWebsite': this.createWebsite,
             'findWebsiteById': this.findWebsiteById,
@@ -3331,81 +3406,66 @@ var WebsiteService = (function () {
             'updateWebsite': this.updateWebsite,
             'deleteWebsite': this.deleteWebsite
         };
+        this.endpoint = {
+            'createWebsite': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user/{userId}/website',
+            'findWebsitesByUser': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user/{userId}/website',
+            'findWebsitesById': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/website/{websiteId}',
+            'updateWebsite': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/website/{websiteId}',
+            'deleteWebsite': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/website/{websiteId}'
+        };
     }
     /**
      * Create a new website
      * @param userId id of the user who created the website
      * @param website website object created by the user
-     * @returns the created website object
+     * @returns an observable that resolves to the created website object
      */
     WebsiteService.prototype.createWebsite = function (userId, website) {
-        var id = Math.floor(Math.random() * 10000);
-        // ensure generated ID is unique
-        while (this.findWebsiteById(id.toString())) {
-            id++;
-        }
-        website._id = id.toString();
-        this.websites.push(website);
-        return Object.assign({}, website);
+        var url = this.endpoint.createWebsite.replace('{userId}', userId);
+        return this.http.post(url, website);
     };
     /**
      * Find website by Id
      * @param websiteId id of the website
-     * @returns Website corresponding to the given Id; null if id websites doesn't exit
+     * @returns an observable that resolves to Website corresponding to the given Id; null if id websites doesn't exit
      */
     WebsiteService.prototype.findWebsiteById = function (websiteId) {
-        var website = this.websites.find(function (u) { return u._id === websiteId; });
-        return website ? Object.assign({}, website) : null;
+        var url = this.endpoint.findWebsitesById.replace('{websiteId}', websiteId);
+        return this.http.get(url);
     };
     /**
      * Get all websites created by a user
      * @param userId id of the user who developed the website
-     * @returns list of websites created by the specified user
+     * @returns an observable that resolves to list of websites created by the specified user
      */
     WebsiteService.prototype.findWebsitesByUser = function (userId) {
-        var websites = this.websites.filter(function (w) { return w.developerId === userId; });
-        return websites.map(function (w) { return Object.assign({}, w); });
+        var url = this.endpoint.findWebsitesByUser.replace('{userId}', userId);
+        return this.http.get(url);
     };
     /**
      * Update website by Id
      * @param websiteId Id of the website to update
      * @param website updated website object
-     * @returns the updated website object
+     * @returns an observable that resolves to the updated website object
      */
     WebsiteService.prototype.updateWebsite = function (websiteId, website) {
-        var toUpdateIndex = this.websites.findIndex(function (w) { return w._id === websiteId; });
-        if (toUpdateIndex > -1) {
-            this.websites[toUpdateIndex] = website;
-            return Object.assign({}, website);
-        }
-        else {
-            return null;
-        }
+        var url = this.endpoint.updateWebsite.replace('{websiteId}', websiteId);
+        return this.http.put(url, website);
     };
     /**
      * Delete webstie by Id
      * @param websiteId Id of the website to delete
-     * @returns website that was deleted, null if the id doesn't exist
+     * @returns an observable that resolves to website that was deleted, null if the id doesn't exist
      */
     WebsiteService.prototype.deleteWebsite = function (websiteId) {
-        var _this = this;
-        var toDeleteIndex = this.websites.findIndex(function (u) { return u._id === websiteId; });
-        var toDelete = this.websites[toDeleteIndex];
-        if (toDelete) {
-            // delete pages in website
-            var pagesToDelete = this.pageService.findPageBywebsiteId(websiteId);
-            pagesToDelete.forEach(function (p) {
-                _this.pageService.deletePage(p._id);
-            });
-            this.websites.splice(toDeleteIndex, 1);
-        }
-        return toDelete;
+        var url = this.endpoint.deleteWebsite.replace('{websiteId}', websiteId);
+        return this.http.delete(url);
     };
     return WebsiteService;
 }());
 WebsiteService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__page_service_client__["a" /* PageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__page_service_client__["a" /* PageService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
 ], WebsiteService);
 
 var _a;

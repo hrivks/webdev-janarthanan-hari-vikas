@@ -31,10 +31,10 @@ const exp = {
     // route: [POST] '/api/user'
     router.post('/', function (req, res) {
         try {
-            res.send(createUser(req.body));
+            res.json(createUser(req.body));
         }
         catch (ex) {
-            res.status(400).send(ex);
+            res.status(400).json(ex);
         }
     });
 
@@ -64,7 +64,12 @@ const exp = {
 
     // route: [GET] '/api/user/:userId'
     router.get('/:userId', function (req, res) {
-        res.send(findUserById(req.params.userId));
+        try {
+            res.json(findUserById(req.params.userId));
+        }
+        catch (ex) {
+            res.status(400).json(ex);
+        }
     });
 
     /**
@@ -74,7 +79,12 @@ const exp = {
      */
     function findUserById(userId) {
         const user = users.find(u => u._id === userId);
-        return user ? user : null;
+        if (user) {
+            return user;
+        } else {
+            throw ['User with Id ' + userId + ' does not exist'];
+        }
+
     }
 
     //#endregion Find user by id
@@ -84,10 +94,15 @@ const exp = {
     // route: [GET] '/api/user?username=username'
     // route: [GET] '/api/user?username=username&password=password'
     router.get('/', function (req, res) {
-        if (req.query.username && req.query.password)
-            res.send(findUserByCredentials(req.query.username, req.query.password));
-        else
-            res.send(findUserByUsername(req.query.username));
+        try {
+            if (req.query.username && req.query.password)
+                res.json(findUserByCredentials(req.query.username, req.query.password));
+            else
+                res.json(findUserByUsername(req.query.username));
+        }
+        catch (ex) {
+            res.status(400).json(ex);
+        }
 
     });
 
@@ -98,7 +113,11 @@ const exp = {
     */
     function findUserByUsername(username) {
         const user = users.find(u => u.username === username);
-        return user ? user : null;
+        if (user) {
+            return user;
+        } else {
+            throw ['User "' + username + '" does not exist'];
+        }
     }
 
     /**
@@ -109,7 +128,11 @@ const exp = {
      */
     function findUserByCredentials(username, password) {
         const user = users.find(u => u.username === username && u.password === password);
-        return user ? user : null;
+        if (user) {
+            return user;
+        } else {
+            throw ['Invalid credentials'];
+        }
     }
     //#endregion
 
@@ -118,10 +141,10 @@ const exp = {
     // route: [PUT] '/api/user/:userId'
     router.put('/:userId', function (req, res) {
         try {
-            res.send(updateUser(req.params.userId, req.body));
+            res.json(updateUser(req.params.userId, req.body));
         }
         catch (ex) {
-            res.status(400).send(ex);
+            res.status(400).json(ex);
         }
     });
 
@@ -134,7 +157,14 @@ const exp = {
     function updateUser(userId, user) {
         User.validate(user);
         const toUpdateIndex = users.findIndex(u => u._id === userId);
+
         if (toUpdateIndex > -1) {
+            // check if username corresponds to any other user
+            const userWithUsername = findUserByUsername(user.username);
+            if (userWithUsername && userWithUsername._id !== user._id) {
+                throw ['Username "' + user.username + '" is unavailable'];
+            }
+
             users[toUpdateIndex] = user;
             return user;
         } else {
@@ -149,10 +179,10 @@ const exp = {
     // route: [DELETE] '/api/user/:userId'
     router.delete('/:userId', function (req, res) {
         try {
-            res.send(deleteUser(req.params.userId));
+            res.json(deleteUser(req.params.userId));
         }
         catch (ex) {
-            res.status(400).send(ex);
+            res.status(400).json(ex);
         }
     });
 
@@ -168,7 +198,7 @@ const exp = {
             users.splice(toDeleteIndex, 1);
         }
         else {
-            throw 'User with id ' + userId + ' cannot be found';
+            throw ['User with id ' + userId + ' cannot be found'];
         }
         return toDelete;
     }

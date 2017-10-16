@@ -13,7 +13,7 @@ import { InteractionsService } from '../../../services/interactions.service.clie
 export class LoginComponent implements OnInit {
 
   // login form
-  @ViewChild('f') loginForm: NgForm;
+  @ViewChild('loginForm') loginForm: NgForm;
 
   // properties
   username: string;
@@ -29,14 +29,17 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    const user = this.authService.login(this.username, this.password);
-    if (user) {
-      this.router.navigate(['/user', user._id]);
-      return true;
-    } else {
-      this.loginError = 'Invalid Credentials';
-    }
-
+    this.authService.login(this.username, this.password)
+      .subscribe(
+      (user) => {
+        this.router.navigate(['/user', user._id]);
+      },
+      (err) => {
+        const errMessage = JSON.parse(err.error);
+        this.loginError = 'Error. ' + errMessage;
+        console.error('Error occured during login.', err);
+      }
+      );
   }
 
 }

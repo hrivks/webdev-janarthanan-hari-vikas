@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '../../../model/model';
 import { UserService } from '../../../services/user.service.client';
 import { AuthService } from '../../../services/auth.service.client';
+import { InteractionsService } from '../../../services/interactions.service.client';
 
 
 
@@ -22,22 +23,42 @@ export class RegisterComponent implements OnInit {
 
   constructor(private userService: UserService,
     private router: Router,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private interactionsService: InteractionsService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   register() {
-    let newUser = new User();
+    const newUser = new User();
     newUser.username = this.username;
     newUser.password = this.password;
 
-    newUser = this.userService.createUser(newUser);
-    if (newUser) {
-      const loggedInUser = this.authService.login(newUser.username, newUser.password);
-      if (loggedInUser) {
-        this.router.navigate(['/user', loggedInUser._id]);
+    // create new user
+    this.userService.createUser(newUser)
+      .subscribe(
+      (registeredUser) => {
+        // automatically login new user
+        this.authService.login(registeredUser.username, registeredUser.password)
+          .subscribe(
+          (user) => {
+            if (user) {
+              this.router.navigate(['/user', user._id]);
+            } else {
+              this.interactionsService.showAlert('Login post registration unsuccessfuly');
+              console.error('Login post registration unsuccessfuly', user);
+            }
+          },
+          (err) => {
+            this.interactionsService.showAlert('Error logging in post registration');
+            console.error('Error logging in post registration', err);
+          }
+          );
+      },
+      (err) => {
+        this.interactionsService.showAlert('Error registering user. Please try again.');
+        console.error('Error registering user', err);
       }
-    }
-
+      );
   }
 }

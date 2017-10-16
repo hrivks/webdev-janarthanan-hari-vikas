@@ -22,12 +22,15 @@ export class InteractionsService {
    * Register callback for a specific event
    * @param name name of the event to subscribe to
    * @param callback callback function to be invoked with the event occurs
+   * @param clear clear all existing callbacks for the given name
    */
-  registerCallback(name: string, callback: (data?: any) => void) {
+  registerCallback(name: string, callback: (data?: any) => void, clear?: boolean) {
+    console.log(this.callbacks);
     // create callback array if it doest not already exist
-    if (!this.callbacks[name]) {
+    if (!this.callbacks[name] || clear) {
       this.callbacks[name] = [];
     }
+
     this.callbacks[name].push(callback);
 
     // fire any requests already received

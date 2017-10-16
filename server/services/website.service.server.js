@@ -1,6 +1,6 @@
 // Provides CRUD for Website model
 // Module Route Root: '/api/website' and '/api/user/:userId/website'
-const router = require('express').Router();
+const router = require('express').Router({ mergeParams: true });
 const Website = require('../models/website.model.js');
 const PageService = require('./page.service.server');
 
@@ -87,7 +87,7 @@ const exp = {
         if (userId)
             return websites.filter(w => w.developerId === userId);
         else
-            throw 'Developer Id is required';
+            throw ['Developer Id is required'];
     }
 
     //#endregion Find all websites for user
@@ -110,10 +110,16 @@ const exp = {
      * @returns Website corresponding to the given Id; null if id websites doesn't exit
      */
     function findWebsiteById(websiteId) {
-        if (websiteId)
-            return websites.find(u => u._id === websiteId);
+        if (websiteId) {
+            const website = websites.find(u => u._id === websiteId);
+            if (website) {
+                return website;
+            } else {
+                throw ['Website with Id "' + websiteId + '" does not exist'];
+            }
+        }
         else
-            throw 'Website Id is required';
+            throw ['Website Id is required'];
     }
 
     //#endregion Find Website by Id
@@ -169,9 +175,10 @@ const exp = {
     function deleteWebsite(websiteId) {
         const toDeleteIndex = websites.findIndex(u => u._id === websiteId);
         const toDelete = websites[toDeleteIndex];
+
         if (toDelete) {
             // delete pages in website
-            const pagesToDelete = PageService.api.findPageBywebsiteId(websiteId);
+            const pagesToDelete = PageService.api.findPagesBywebsiteId(websiteId);
             pagesToDelete.forEach(p => {
                 PageService.api.deletePage(p._id);
             });
@@ -179,7 +186,7 @@ const exp = {
             websites.splice(toDeleteIndex, 1);
         }
         else {
-            throw 'Website with Id ' + websiteId + ' does not exist';
+            throw ['Website with Id ' + websiteId + ' does not exist'];
         }
 
         return toDelete;

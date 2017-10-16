@@ -1,6 +1,6 @@
 // Provides CRUD for Widget model
 // Module Route Root: '/api/page/:pageId/widget' and '/api/widget'
-const router = require('express').Router();
+const router = require('express').Router({mergeParams: true});
 const Widget = require('../models/widget.model.js').Widget;
 const WidgetType = require('../models/widget.model.js').WidgetType;
 
