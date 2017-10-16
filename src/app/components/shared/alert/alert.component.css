@@ -1,9 +1,14 @@
 .hvj-app-alert {
     position: fixed;
     z-index: 200;
-    /* bottom: 100px; */
+    left:20%;
+    right:20%;    
 }
 
 .hvj-app-alert .alert {
     box-shadow: 0 0 24px -7px black;
+}
+
+.hvj-app-alert .alert .close {
+    margin-top:-3px;
 }
