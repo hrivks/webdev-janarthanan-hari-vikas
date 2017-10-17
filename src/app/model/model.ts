@@ -32,7 +32,7 @@ export class Page implements IAppEntity {
 
 /** Types of supported widgets */
 export enum WidgetType {
-    Heading, Image, HTML, YouTube
+    Heading, Image, Html, YouTube
 }
 
 /** Represents a widget in a page */

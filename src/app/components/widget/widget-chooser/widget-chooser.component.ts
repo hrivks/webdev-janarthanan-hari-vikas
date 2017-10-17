@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Widget, WidgetType } from '../../../model/model';
 import { WidgetService } from '../../../services/widget.service.client';
+import { InteractionsService } from '../../../services/interactions.service.client';
 
 @Component({
   selector: 'app-widget-chooser',
@@ -16,7 +17,8 @@ export class WidgetChooserComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
-    private widgetService: WidgetService) { }
+    private widgetService: WidgetService,
+    private interactionsService: InteractionsService) { }
 
   ngOnInit() {
 
@@ -38,15 +40,20 @@ export class WidgetChooserComponent implements OnInit {
    * @param type Type of widget to create
    */
   createWidget(type: string) {
-    let newWidget = new Widget();
+    const newWidget = new Widget();
     newWidget.widgetType = WidgetType[type];
-    newWidget = this.widgetService.createWidget(this.pageId, newWidget);
-    if (newWidget) {
-      console.log('widget creation successful');
-      this.router.navigate(['../' + newWidget._id], { relativeTo: this.activatedRoute });
-    } else {
-      console.log('widget creation failed');
-    }
+    this.widgetService.createWidget(this.pageId, newWidget).
+      subscribe(
+      (createdWidget) => {
+        this.router.navigate(['../' + createdWidget._id], { relativeTo: this.activatedRoute });
+      },
+      (err) => {
+        console.error('Error creating widget. ', err);
+        const errMessage = JSON.parse(err.error);
+        this.interactionsService.showAlert('Uhhhh! Error creating widget. ' + errMessage);
+      }
+      );
+
   }
 
 }

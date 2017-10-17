@@ -44,10 +44,19 @@ export class PageNewComponent implements OnInit {
       // touch controls to highlight validation
       this.pageNewForm.controls.name.markAsTouched({ onlySelf: true });
     } else {
-      this.pageService.createPage(this.websiteId, this.page);
-      console.log('Page created successfully');
-      this.interactionsService.showAlert('Page created successfully', 'success', true);
-      this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+      this.pageService.createPage(this.websiteId, this.page)
+        .subscribe(
+        (createdPage) => {
+          this.interactionsService.showAlert('Page created successfully', 'success', true);
+          this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+        },
+        (err) => {
+          console.error('Error creating new page', err);
+          const errMessage = JSON.parse(err.error);
+          this.interactionsService.showAlert('oooh! Snap! Page creation failed', 'danger');
+        }
+        );
     }
+
   }
 }

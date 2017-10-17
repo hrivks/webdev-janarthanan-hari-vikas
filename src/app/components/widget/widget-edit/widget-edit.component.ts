@@ -13,7 +13,7 @@ import { InteractionsService } from '../../../services/interactions.service.clie
 export class WidgetEditComponent implements OnInit {
 
   // properties
-  widgetType = WidgetType;
+  WidgetType = WidgetType;
   widget: Widget;
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -24,14 +24,52 @@ export class WidgetEditComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {
       const widgetId = params['wgid'];
-      const widget = this.widgetService.findWidgetById(widgetId);
-      if (widget) {
-        this.widget = widget;
-      } else {
-        this.interactionsService.showAlert('Widget with Id "' + widgetId + '" does not exist', 'danger', true);
-        this.router.navigate(['../'], { relativeTo: this.activatedRoute });
-      }
+      this.widgetService.findWidgetById(widgetId)
+        .subscribe(
+        (widget) => {
+          this.widget = widget;
+        },
+        (err) => {
+          console.error('Error getting widget of Id ' + widgetId, err);
+          const errMessage = JSON.parse(err.error);
+          this.interactionsService.showAlert('Error getting Widget with Id "' + widgetId + '". ' + errMessage, 'danger', true);
+          this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+        }
+        );
+
     });
+  }
+
+  /**
+   * Update widget object
+   * @param widget updated widget object
+   */
+  updateWidget(widget: Widget) {
+    this.widgetService.updateWidget(widget._id, widget)
+      .subscribe(
+      (updatedWidget) => {
+        this.interactionsService.showAlert('Widget updated successfully', 'success', true);
+        this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+      },
+      (err) => {
+        this.interactionsService.showAlert('Widget update failed', 'danger');
+      }
+      );
+  }
+
+  deleteWidget(widgetId: string) {
+    this.widgetService.deleteWidget(widgetId)
+      .subscribe(
+      (deletedWidget) => {
+        this.interactionsService.showAlert('Widget deleted successfully', 'success', true);
+        this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+      },
+      (err) => {
+        console.error('Error deleting widget. ', err);
+        const errMessage = JSON.parse(err.error);
+        this.interactionsService.showAlert('Oh Snap! Widget delete failed. ' + errMessage, 'danger');
+      }
+      );
   }
 
 }

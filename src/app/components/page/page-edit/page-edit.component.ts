@@ -32,13 +32,18 @@ export class PageEditComponent implements OnInit {
       this.userId = params['uid'];
       this.websiteId = params['wid'];
       this.pageId = params['pid'];
-      const page = this.pageService.findPageById(this.pageId);
-      if (page) {
-        this.page = page;
-      } else {
-        this.interactionsService.showAlert('Page with Id ' + this.pageId + ' does not exist', 'danger', true);
-        this.router.navigate(['../'], { relativeTo: this.activatedRoute });
-      }
+      this.pageService.findPageById(this.pageId).
+        subscribe(
+        (page) => {
+          this.page = page;
+        },
+        (err) => {
+          console.error('Error retrieving page with id ' + this.pageId, err);
+          const errMessage = JSON.parse(err.error);
+          this.interactionsService.showAlert('Oopsie! ' + errMessage, 'danger', true);
+          this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+        }
+        );
     });
   }
 
@@ -50,10 +55,18 @@ export class PageEditComponent implements OnInit {
       // touch controls to highlight validation
       this.pageEditForm.controls.name.markAsTouched({ onlySelf: true });
     } else {
-      this.pageService.updatePage(this.pageId, this.page);
-      console.log('Page saved successfully');
-      this.interactionsService.showAlert('Page saved successfully', 'success', true);
-      this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+      this.pageService.updatePage(this.pageId, this.page)
+        .subscribe(
+        (updatedPage) => {
+          this.interactionsService.showAlert('Page saved successfully', 'success', true);
+          this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+        },
+        (err) => {
+          console.error('Error saving page.', err);
+          const errMessage = JSON.parse(err.error);
+          this.interactionsService.showAlert('Oops! Page save failed. ' + errMessage);
+        }
+        );
     }
   }
 
@@ -61,13 +74,18 @@ export class PageEditComponent implements OnInit {
    * Delete current page
    */
   deletePage() {
-    const deletedPage = this.pageService.deletePage(this.pageId);
-    if (deletedPage) {
-      this.interactionsService.showAlert('Page deleted successfully', 'success', true);
-      this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
-    } else {
-      this.interactionsService.showAlert('Page deletion unsuccessful', 'danger');
-    }
+    this.pageService.deletePage(this.pageId)
+      .subscribe(
+      (deletedPage) => {
+        this.interactionsService.showAlert('Page deleted successfully', 'success', true);
+        this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
+      },
+      (err) => {
+        console.error('Error deleting page. ', err);
+        const errMessage = JSON.parse(err.error);
+        this.interactionsService.showAlert('Uh ho! Page deletion unsuccessful. ' + errMessage, 'danger');
+      }
+      );
   }
 
 }

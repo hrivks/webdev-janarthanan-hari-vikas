@@ -3,12 +3,25 @@
  */
 class Widget {
     constructor() {
+        /** @type {string} */
         this._id = null;
+
+        /** @type {string} */
         this.widgetType = null;
+
+        /** @type {string} */
         this.pageId = null;
+
+        /** @type {number} must be between 1-6 */
         this.size = null;
+
+        /** @type {string} */
         this.text = null;
+
+        /** @type {string} */
         this.width = null;
+
+        /** @type {url} */
         this.url = null;
     }
 
@@ -36,12 +49,13 @@ class Widget {
     }
 }
 
-class WidgetType {
-}
+const WidgetType = {
+    Heading : 'Heading',
+    Html: 'Html',
+    YouTube: 'YouTube',
+    Image: 'Image'
+};
 
-WidgetType.prototype.Heading = 'Heading';
-WidgetType.prototype.Html = 'Html';
-WidgetType.prototype.YouTube = 'YouTube';
-WidgetType.prototype.Image = 'Image';
+
 
 module.exports = { Widget: Widget, WidgetType: WidgetType };

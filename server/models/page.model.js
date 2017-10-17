@@ -1,14 +1,25 @@
 
 /**
- * Models a Page object
+ * Models a Page object 
  */
 class Page {
     constructor() {
+        /** @type {string} */
         this._id = null;
+
+        /** @type {string} */
         this.name = null;
+
+        /** @type {string} */
         this.websiteId = null;
+
+        /** @type {string} */
         this.title = null;
+
+        /** @type {string} */
         this.description = null;
+
+        /** @type {string} */
         this.email = null;
     }
 
@@ -26,7 +37,7 @@ class Page {
         if (!page.name) {
             errors.push('name is required');
         }
-       
+
         if (errors.length > 0) {
             throw errors;
         }

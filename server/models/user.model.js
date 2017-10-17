@@ -3,11 +3,22 @@
  */
 class User {
     constructor() {
+        /** @type {string} */
         this._id = null;
+
+        /** @type {string} */
         this.username = null;
+
+        /** @type {string} */
         this.password = null;
+
+        /** @type {string} */
         this.firstName = null;
+
+        /** @type {string} */
         this.lastName = null;
+
+        /** @type {string} */
         this.email = null;
     }
 

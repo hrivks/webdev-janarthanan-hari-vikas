@@ -25,7 +25,7 @@ export class InteractionsService {
    * @param clear clear all existing callbacks for the given name
    */
   registerCallback(name: string, callback: (data?: any) => void, clear?: boolean) {
-    console.log(this.callbacks);
+
     // create callback array if it doest not already exist
     if (!this.callbacks[name] || clear) {
       this.callbacks[name] = [];

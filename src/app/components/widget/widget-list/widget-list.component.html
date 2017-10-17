@@ -29,24 +29,25 @@
 <!--/Top Nav-->
 
 <div class="container hvj-widget-list">
-  <ul class="list-group">
+  <ul class="list-group"
+      *ngIf="widgets">
     <li class="list-group-item border-0 px-1"
         *ngFor="let thisWidget of widgets">
       <div class="hvj-widget"
-           [ngSwitch]="thisWidget.widgetType">
-        <div *ngSwitchCase="widgetType.Heading">
+           [ngSwitch]="WidgetType[thisWidget.widgetType]">
+        <div *ngSwitchCase="WidgetType.Heading">
           <app-widget-header [widget]="thisWidget"></app-widget-header>
         </div>
 
-        <div *ngSwitchCase="widgetType.Image">
+        <div *ngSwitchCase="WidgetType.Image">
           <app-widget-image [widget]="thisWidget"></app-widget-image>
         </div>
 
-        <div *ngSwitchCase="widgetType.HTML">
+        <div *ngSwitchCase="WidgetType.Html">
           <app-widget-html [widget]="thisWidget"></app-widget-html>
         </div>
 
-        <div *ngSwitchCase="widgetType.YouTube">
+        <div *ngSwitchCase="WidgetType.YouTube">
           <app-widget-youtube [widget]="thisWidget"></app-widget-youtube>
         </div>
       </div>
@@ -85,5 +86,3 @@
 
   </ul>
 </div>
-
-

@@ -14,7 +14,7 @@ import { AppConstants } from '../../../app.constant';
 export class WidgetListComponent implements OnInit {
 
   // properties
-  widgetType = WidgetType;
+  WidgetType = WidgetType;
   widgets: Widget[];
 
 
@@ -27,7 +27,17 @@ export class WidgetListComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {
       const pageId = params['pid'];
-      this.widgets = this.widgetService.findWidgetsByPageId(pageId);
+      this.widgetService.findWidgetsByPageId(pageId)
+      .subscribe(
+        (widgets) => {
+          this.widgets = widgets;
+        },
+        (err) => {
+          console.error('Error getting list of widgets', err);
+          const errMessage = JSON.parse(err.error);
+          this.interactionsService.showAlert('Oops! Error getting list of widgets. ' + errMessage);
+        }
+      );
 
       // add page specific links to footer
       this.interactionsService.invoke(AppConstants.EVENTS.addFooterLink, { icon: 'fa-play fa-lg' });

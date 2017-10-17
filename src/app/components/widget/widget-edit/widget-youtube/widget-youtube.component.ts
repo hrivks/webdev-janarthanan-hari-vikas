@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Widget } from '../../../../model/model';
@@ -14,6 +14,8 @@ export class WidgetYoutubeEditComponent implements OnInit {
 
   // properties
   @Input() widget: Widget;
+  @Output() updateWidget = new EventEmitter<Widget>();
+  @Output() deleteWidget = new EventEmitter<string>();
   @ViewChild('widgetYoutubeEditForm') widgetYoutubeEditForm: NgForm;
   private showDeleteConfirmation: Boolean;
 
@@ -36,28 +38,15 @@ export class WidgetYoutubeEditComponent implements OnInit {
       this.widgetYoutubeEditForm.controls.name.markAsTouched({ onlySelf: true });
       this.widgetYoutubeEditForm.controls.url.markAsTouched({ onlySelf: true });
     } else {
-      const updatedWidget = this.widgetService.updateWidget(this.widget._id, this.widget);
-      if (updatedWidget) {
-        this.interactionsService.showAlert('Widget updated successfully', 'success', true);
-        this.router.navigate(['../'], { relativeTo: this.activatedRoute });
-      } else {
-        console.log('Widget update failed');
-        this.interactionsService.showAlert('Widget update failed', 'danger');
-      }
+      this.updateWidget.emit(this.widget);
     }
   }
 
   /**
    * Delete current widget
    */
-  deleteWidget() {
-    const deletedWidget = this.widgetService.deleteWidget(this.widget._id);
-    if (deletedWidget) {
-      this.interactionsService.showAlert('Widget deleted successfully', 'success', true);
-      this.router.navigate(['../'], { relativeTo: this.activatedRoute });
-    } else {
-      this.interactionsService.showAlert('Widget delete failed', 'danger');
-    }
+  delete() {
+    this.deleteWidget.emit(this.widget._id);
   }
 
 }

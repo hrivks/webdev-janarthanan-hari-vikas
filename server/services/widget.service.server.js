@@ -25,13 +25,13 @@ const exp = {
             '_id': '345', 'widgetType': WidgetType.Image, 'pageId': '321', 'width': '100%',
             'url': 'http://lorempixel.com/400/200/'
         },
-        { '_id': '456', 'widgetType': WidgetType.HTML, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' },
+        { '_id': '456', 'widgetType': WidgetType.Html, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' },
         { '_id': '567', 'widgetType': WidgetType.Heading, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
         {
             '_id': '678', 'widgetType': WidgetType.YouTube, 'pageId': '321', 'width': '100%',
             'url': 'https://www.youtube.com/embed/AM2Ivdi9c4E'
         },
-        { '_id': '789', 'widgetType': WidgetType.HTML, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' }
+        { '_id': '789', 'widgetType': WidgetType.Html, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' }
     ];
 
     //#endregion
@@ -140,9 +140,9 @@ const exp = {
      */
     function updateWidget(widgetId, widget) {
         Widget.validate(widget);
-        const toUpdateIndex = this.widgets.findIndex(w => w._id === widgetId);
+        const toUpdateIndex = widgets.findIndex(w => w._id === widgetId);
         if (toUpdateIndex > -1) {
-            this.widgets[toUpdateIndex] = widget;
+            widgets[toUpdateIndex] = widget;
             return widget;
         } else {
             throw ['Widget with id ' + widgetId + ' does not exist'];

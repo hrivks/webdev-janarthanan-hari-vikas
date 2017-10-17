@@ -1,21 +1,29 @@
-<div class="hvj-widget-edit" [ngSwitch]="widget?.widgetType">
+<div class="hvj-widget-edit" *ngIf="widget"
+     [ngSwitch]="WidgetType[widget.widgetType]">
 
-  <div *ngSwitchCase="widgetType.Heading">
-    <app-widget-header-edit [widget]="widget"></app-widget-header-edit>
+
+  <div *ngSwitchCase="WidgetType.Heading">
+    <app-widget-header-edit [widget]="widget"
+                            (updateWidget)="updateWidget($event)"
+                            (deleteWidget)="deleteWidget($event)"></app-widget-header-edit>
   </div>
 
-  <div *ngSwitchCase="widgetType.Image">
-    <app-widget-image-edit [widget]="widget"></app-widget-image-edit>
+  <div *ngSwitchCase="WidgetType.Image">
+    <app-widget-image-edit [widget]="widget"
+                           (updateWidget)="updateWidget($event)"
+                           (deleteWidget)="deleteWidget($event)"></app-widget-image-edit>
   </div>
 
-  <div *ngSwitchCase="widgetType.HTML">
-      <app-widget-html-edit [widget]="widget"></app-widget-html-edit>
-    </div>
+  <div *ngSwitchCase="WidgetType.Html">
+    <app-widget-html-edit [widget]="widget"
+                          (updateWidget)="updateWidget($event)"
+                          (deleteWidget)="deleteWidget($event)"></app-widget-html-edit>
+  </div>
 
-  <div *ngSwitchCase="widgetType.YouTube">
-    <app-widget-youtube-edit [widget]="widget"></app-widget-youtube-edit>
+  <div *ngSwitchCase="WidgetType.YouTube">
+    <app-widget-youtube-edit [widget]="widget"
+                             (updateWidget)="updateWidget($event)"
+                             (deleteWidget)="deleteWidget($event)"></app-widget-youtube-edit>
   </div>
 
 </div>
-
-

@@ -3,9 +3,16 @@
  */
 class Website {
     constructor() {
+        /** @type {string} */
         this._id = null;
+
+        /** @type {string} */
         this.name = null;
+
+        /** @type {string} */
         this.developerId = null;
+
+        /** @type {string} */
         this.description = null;
     }
 

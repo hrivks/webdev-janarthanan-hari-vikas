@@ -40,7 +40,7 @@
     <!--/Top Nav-->
 
     <!--content-->
-    <div>
+    <div *ngIf="page">
       <form #pageEditForm="ngForm">
         <!--Page Name-->
         <div class="form-group">
@@ -84,7 +84,7 @@
                  id="pageDescription"
                  name="description"
                  placeholder="Description"
-                 [(ngModel)]="page.descrption"
+                 [(ngModel)]="page.description"
                  #descriptionField="ngModel"
                  [ngClass]="{'border-danger': descriptionField.invalid && descriptionField.touched}">
         </div>

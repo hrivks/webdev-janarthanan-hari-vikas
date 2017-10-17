@@ -36,7 +36,7 @@ const exp = {
     // route: [POST] '/api/website/:websiteId/page'
     router.post('/', function (req, res) {
         try {
-            res.send(createWebsite(req.params.websiteId, req.body));
+            res.send(createPage(req.params.websiteId, req.body));
         }
         catch (ex) {
             res.status(400).send(ex);
@@ -123,7 +123,7 @@ const exp = {
     // route: [PUT] '/api/page/:pageId'
     router.put('/:pageId', function (req, res) {
         try {
-            res.send(updatePage(req.params.websiteId));
+            res.send(updatePage(req.params.pageId, req.body));
         }
         catch (ex) {
             res.status(400).send(ex);
