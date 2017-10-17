@@ -30,8 +30,9 @@
 
 <div class="container hvj-widget-list">
   <ul class="list-group"
-      *ngIf="widgets">
-    <li class="list-group-item border-0 px-1"
+      *ngIf="widgets"
+      appSortable>
+    <li class="list-group-item border-0 px-1 mb-1"
         *ngFor="let thisWidget of widgets">
       <div class="hvj-widget"
            [ngSwitch]="WidgetType[thisWidget.widgetType]">

@@ -55,6 +55,7 @@ const exp = {
      * @returns {Widget} the created widget object
      */
     function createWidget(pageId, widget) {
+        widget.pageId = pageId;
         Widget.validate(widget);
         let id = Math.floor(Math.random() * 10000);
 
