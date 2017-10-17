@@ -50,6 +50,7 @@ import { WidgetHtmlComponent } from './components/widget/widget-list/widget-html
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { AlertComponent } from './components/shared/alert/alert.component';
 import { LoaderComponent } from './components/shared/loader/loader.component';
+import { SortableDirective } from './directives/sortable.directive';
 
 
 // #endregion
@@ -82,7 +83,8 @@ import { LoaderComponent } from './components/shared/loader/loader.component';
     WidgetHtmlComponent,
     FooterComponent,
     AlertComponent,
-    LoaderComponent
+    LoaderComponent,
+    SortableDirective
   ],
   imports: [
     BrowserModule,

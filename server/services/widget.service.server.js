@@ -19,19 +19,19 @@ const exp = {
      * @type {Widget[]}
      */
     let widgets = [
-        { '_id': '123', 'widgetType': WidgetType.Heading, 'pageId': '321', 'size': 2, 'text': 'GIZMODO' },
-        { '_id': '234', 'widgetType': WidgetType.Heading, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
+        { '_id': '123', 'widgetType': WidgetType.Heading, 'pageId': '321', 'size': 2, 'text': 'GIZMODO', 'order': 1 },
+        { '_id': '234', 'widgetType': WidgetType.Heading, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum', 'order': 2 },
         {
             '_id': '345', 'widgetType': WidgetType.Image, 'pageId': '321', 'width': '100%',
-            'url': 'http://lorempixel.com/400/200/'
+            'url': 'http://lorempixel.com/400/200/', 'order': 3
         },
-        { '_id': '456', 'widgetType': WidgetType.Html, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' },
-        { '_id': '567', 'widgetType': WidgetType.Heading, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
+        { '_id': '456', 'widgetType': WidgetType.Html, 'pageId': '321', 'text': '<p>Lorem ipsum</p>', 'order': 4 },
+        { '_id': '567', 'widgetType': WidgetType.Heading, 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum', 'order': 5 },
         {
             '_id': '678', 'widgetType': WidgetType.YouTube, 'pageId': '321', 'width': '100%',
-            'url': 'https://www.youtube.com/embed/AM2Ivdi9c4E'
+            'url': 'https://www.youtube.com/embed/AM2Ivdi9c4E', 'order': 6
         },
-        { '_id': '789', 'widgetType': WidgetType.Html, 'pageId': '321', 'text': '<p>Lorem ipsum</p>' }
+        { '_id': '789', 'widgetType': WidgetType.Html, 'pageId': '321', 'text': '<p>Lorem ipsum</p>', 'order': 7 }
     ];
 
     //#endregion

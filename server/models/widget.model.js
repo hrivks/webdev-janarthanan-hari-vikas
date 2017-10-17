@@ -23,6 +23,9 @@ class Widget {
 
         /** @type {url} */
         this.url = null;
+
+        /** @type {number} */
+        this.order = 0;
     }
 
     /**
