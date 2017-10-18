@@ -1,6 +1,6 @@
 // Provides CRUD for Widget model
 // Module Route Root: '/api/page/:pageId/widget' and '/api/widget'
-const router = require('express').Router({mergeParams: true});
+const router = require('express').Router({ mergeParams: true });
 const Widget = require('../models/widget.model.js').Widget;
 const WidgetType = require('../models/widget.model.js').WidgetType;
 
@@ -41,10 +41,10 @@ const exp = {
     // Route: [POST] '/api/page/:pageId/widget'
     router.post('/', function (req, res) {
         try {
-            res.send(createWidget(req.params.pageId, req.body));
+            res.json(createWidget(req.params.pageId, req.body));
         }
         catch (ex) {
-            res.status(400).send(ex);
+            res.status(400).json(ex);
         }
     });
 
@@ -78,10 +78,10 @@ const exp = {
     // Route: [GET] '/api/page/:pageId/widget'
     router.get('/', function (req, res) {
         try {
-            res.send(findWidgetsByPageId(req.params.pageId));
+            res.json(findWidgetsByPageId(req.params.pageId));
         }
         catch (ex) {
-            res.status(400).send(ex);
+            res.status(400).json(ex);
         }
     });
 
@@ -102,10 +102,10 @@ const exp = {
     // Route: [GET] '/widget/:widgetId'
     router.get('/:widgetId', function (req, res) {
         try {
-            res.send(findWidgetById(req.params.widgetId));
+            res.json(findWidgetById(req.params.widgetId));
         }
         catch (ex) {
-            res.status(400).send(ex);
+            res.status(400).json(ex);
         }
     });
 
@@ -126,21 +126,22 @@ const exp = {
     // Route: [PUT] '/api/widget/:widgetId'
     router.put('/:widgetId', function (req, res) {
         try {
-            res.send(updateWidget(req.params.widgetId, req.body));
+            res.json(updateWidget(req.params.widgetId, req.body, { initial: req.query.initial, final: req.query.final }));
         }
         catch (ex) {
-            res.status(400).send(ex);
+            res.status(400).json(ex);
         }
     });
 
     /**
      * Update widget by Id
-     * @param {String} widgetId Id of the widget to update
+     * @param {string} widgetId Id of the widget to update
      * @param {Widget} widget updated widget object
      * @returns {Widget} the updated widget object
      */
     function updateWidget(widgetId, widget) {
         Widget.validate(widget);
+
         const toUpdateIndex = widgets.findIndex(w => w._id === widgetId);
         if (toUpdateIndex > -1) {
             widgets[toUpdateIndex] = widget;
@@ -153,15 +154,59 @@ const exp = {
     //#endregion: Update widget
 
 
+    //#region: Reorder widget
+
+    // Route: [PUT] '/api/page/:pageId/widget?initial = index1 & final = index2'
+    router.put('/', function (req, res) {
+        try {
+            res.json(reorderWidgets(req.params.pageId, req.body, { initial: req.query.initial, final: req.query.final }));
+        }
+        catch (ex) {
+            res.status(400).json(ex);
+        }
+    });
+
+    /**
+     * Update widget by Id
+     * @param {string} pageId Id of the page 
+     * @param {Widget} widget widget object to reorder
+     * @param {{initial: number, final: number}} order initial and final order of the widget
+     * @return {Widget[]} list of updated widgets
+     */
+    function reorderWidgets(pageId, widget, order) {
+
+        const toUpdateIndex = widgets.findIndex(w => w._id === widget._id);
+        if (toUpdateIndex == -1) {
+            throw ['Widget with id ' + widgetId + ' does not exist'];
+        }
+
+        if (order.final && order.initial) {
+            const widgetsInThisPage = widgets.filter(w => w.pageId === pageId);
+            const widgetAtFinalPos = widgetsInThisPage[order.final];
+
+            const insertIndex = widgets.indexOf(widgetAtFinalPos);
+
+            // remove this widget
+            const toInsert = widgets.splice(toUpdateIndex, 1);
+            // insert at insertIndex
+            widgets.splice(insertIndex, 0, toInsert[0]);
+
+            return widgets;
+        } else {
+            throw ['Inital and final order position is required'];
+        }
+    }
+    //#endregion: Reorder widget
+
     //#region: Delete widget
 
     // Route: [DELETE] '/api/widget/:widgetId'
     router.delete('/:widgetId', function (req, res) {
         try {
-            res.send(deleteWidget(req.params.widgetId));
+            res.json(deleteWidget(req.params.widgetId));
         }
         catch (ex) {
-            res.status(400).send(ex);
+            res.status(400).json(ex);
         }
     });
 

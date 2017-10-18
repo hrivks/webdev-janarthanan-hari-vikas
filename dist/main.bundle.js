@@ -782,7 +782,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/shared/alert/alert.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-app-alert\">\r\n  \r\n    <div class=\"alert fade show\"\r\n         [hidden]=\"!alertVisible\"\r\n         [ngClass]=\"'alert-' + (alertType ? alertType : 'danger')\"\r\n         role=\"alert\">\r\n      <button type=\"button\"\r\n              class=\"close\"\r\n              (click)=\"alertVisible = false\">\r\n        <small>\r\n          <i class=\"fa fa-times\"\r\n             aria-hidden=\"true\"></i>\r\n        </small>\r\n      </button>\r\n      {{alertText}}\r\n    </div>\r\n  \r\n</div>"
+module.exports = "<div class=\"hvj-app-alert\">\n  \n    <div class=\"alert fade show\"\n         [hidden]=\"!alertVisible\"\n         [ngClass]=\"'alert-' + (alertType ? alertType : 'danger')\"\n         role=\"alert\">\n      <button type=\"button\"\n              class=\"close\"\n              (click)=\"alertVisible = false\">\n        <small>\n          <i class=\"fa fa-times\"\n             aria-hidden=\"true\"></i>\n        </small>\n      </button>\n      {{alertText}}\n    </div>\n  \n</div>"
 
 /***/ }),
 
@@ -978,7 +978,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/shared/loader/loader.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-loading\"\r\n     [hidden]=\"!show\">\r\n  <div class=\"modal-backdrop bg-light hvj-loading-mask\">\r\n  </div>\r\n  <p class=\"mt-5 text-center w-100 hvj-img-loader\">\r\n    <img class=\"mt-5\"\r\n         src=\"../../../../assets/loader.gif\">\r\n  </p>\r\n</div>"
+module.exports = "<div class=\"hvj-loading\"\n     [hidden]=\"!show\">\n  <div class=\"modal-backdrop bg-light hvj-loading-mask\">\n  </div>\n  <p class=\"mt-5 text-center w-100 hvj-img-loader\">\n    <img class=\"mt-5\"\n         src=\"../../../../assets/loader.gif\">\n  </p>\n</div>"
 
 /***/ }),
 
@@ -2197,7 +2197,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-html/widget-html.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <!-- Back button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['../']\"\r\n         title=\"Widgets\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n      <!-- /Back button -->\r\n    </li>\r\n  </ul>\r\n\r\n  <span class=\"navbar-brand\">Widget Edit : Html</span>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <a class=\"nav-link px-0\"\r\n         (click)=\"saveChanges()\"\r\n         title=\"Save Changes\">\r\n        <span class=\"fa fa-check fa-lg\"></span>\r\n      </a>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<!--content-->\r\n<div class=\"container hvj-widget-header-edit\">\r\n  <form #widgetHtmlEditForm=\"ngForm\">\r\n    <!--Widget Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"widget-name\"\r\n             class=\"font-weight-bold text-muted\">Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"widgetName\"\r\n             name=\"name\"\r\n             placeholder=\"Name\"\r\n             [(ngModel)]=\"widget.name\"\r\n             #nameField=\"ngModel\">\r\n    </div>\r\n    <!--/Widget Name-->\r\n\r\n    <!--Widget Heading Text-->\r\n    <div class=\"form-group\">\r\n      <label for=\"widget-heading-text\"\r\n             class=\"font-weight-bold text-muted\">Text</label>\r\n      <textarea type=\"text\"\r\n                class=\"form-control\"\r\n                id=\"widget-heading-text\"\r\n                name=\"text\"\r\n                placeholder=\"Html\"\r\n                rows=5\r\n                [(ngModel)]=\"widget.text\"\r\n                #textField=\"ngModel\"\r\n                [ngClass]=\"{'border-danger': textField.invalid && textField.touched}\"\r\n                required>\r\n      </textarea>\r\n      <span *ngIf=\"textField.invalid && textField.touched\"\r\n            class=\"text-danger ml-2\">Text is required</span>\r\n    </div>\r\n    <!--/Widget Heading Text-->\r\n\r\n    <!-- Form buttons -->\r\n    <div class=\"row no-gutters\">\r\n      <div class=\"col-12 col-sm-9 mr-1\">\r\n        <!-- Save button -->\r\n        <button class=\"btn btn-success btn-block mr-1 mb-2\"\r\n                title=\"Save Widget\"\r\n                (click)=\"saveChanges()\">\r\n          <i class=\"fa fa-check\"></i>\r\n        </button>\r\n      </div>\r\n      <div class=\"col\">\r\n        <!-- Delete button -->\r\n        <button class=\"btn btn-danger btn-block\"\r\n                title=\"Delete Widget\"\r\n                (click)=\"showDeleteConfirmation = true\"\r\n                [hidden]=\"showDeleteConfirmation\">\r\n          <i class=\"fa fa-trash\"></i>\r\n        </button>\r\n        <button class=\"btn btn-danger btn-block mt-0\"\r\n                title=\"Delete Widget\"\r\n                [hidden]=\"!showDeleteConfirmation\"\r\n                (click)=\"delete()\">sure?</button>\r\n      </div>\r\n    </div>\r\n\r\n  </form>\r\n</div>\r\n<!--/content-->"
+module.exports = "<!--Top Nav-->\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\n  <ul class=\"navbar-nav mr-3\">\n    <li class=\"nav-item\">\n      <!-- Back button -->\n      <a class=\"nav-link px-0\"\n         [routerLink]=\"['../']\"\n         title=\"Widgets\">\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\n      </a>\n      <!-- /Back button -->\n    </li>\n  </ul>\n\n  <span class=\"navbar-brand\">Widget Edit : Html</span>\n\n  <ul class=\"navbar-nav ml-auto\">\n    <li class=\"nav-item\">\n      <!-- Action button -->\n      <a class=\"nav-link px-0\"\n         (click)=\"saveChanges()\"\n         title=\"Save Changes\">\n        <span class=\"fa fa-check fa-lg\"></span>\n      </a>\n      <!-- /Action button -->\n    </li>\n  </ul>\n</nav>\n<!--/Top Nav-->\n\n<!--content-->\n<div class=\"container hvj-widget-header-edit\">\n  <form #widgetHtmlEditForm=\"ngForm\">\n    <!--Widget Name-->\n    <div class=\"form-group\">\n      <label for=\"widget-name\"\n             class=\"font-weight-bold text-muted\">Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"widgetName\"\n             name=\"name\"\n             placeholder=\"Name\"\n             [(ngModel)]=\"widget.name\"\n             #nameField=\"ngModel\">\n    </div>\n    <!--/Widget Name-->\n\n    <!--Widget Heading Text-->\n    <div class=\"form-group\">\n      <label for=\"widget-heading-text\"\n             class=\"font-weight-bold text-muted\">Text</label>\n      <textarea type=\"text\"\n                class=\"form-control\"\n                id=\"widget-heading-text\"\n                name=\"text\"\n                placeholder=\"Html\"\n                rows=5\n                [(ngModel)]=\"widget.text\"\n                #textField=\"ngModel\"\n                [ngClass]=\"{'border-danger': textField.invalid && textField.touched}\"\n                required>\n      </textarea>\n      <span *ngIf=\"textField.invalid && textField.touched\"\n            class=\"text-danger ml-2\">Text is required</span>\n    </div>\n    <!--/Widget Heading Text-->\n\n    <!-- Form buttons -->\n    <div class=\"row no-gutters\">\n      <div class=\"col-12 col-sm-9 mr-1\">\n        <!-- Save button -->\n        <button class=\"btn btn-success btn-block mr-1 mb-2\"\n                title=\"Save Widget\"\n                (click)=\"saveChanges()\">\n          <i class=\"fa fa-check\"></i>\n        </button>\n      </div>\n      <div class=\"col\">\n        <!-- Delete button -->\n        <button class=\"btn btn-danger btn-block\"\n                title=\"Delete Widget\"\n                (click)=\"showDeleteConfirmation = true\"\n                [hidden]=\"showDeleteConfirmation\">\n          <i class=\"fa fa-trash\"></i>\n        </button>\n        <button class=\"btn btn-danger btn-block mt-0\"\n                title=\"Delete Widget\"\n                [hidden]=\"!showDeleteConfirmation\"\n                (click)=\"delete()\">sure?</button>\n      </div>\n    </div>\n\n  </form>\n</div>\n<!--/content-->"
 
 /***/ }),
 
@@ -2539,7 +2539,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-header/widget-header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-widget-heading\">\r\n  <div [ngClass]=\"widget.size ? 'h' + widget.size : 'h2'\">{{widget.text}}</div>\r\n  <p *ngIf=\"!widget.text\"\r\n     class=\"small font-italic text-secondary\"> No content</p>\r\n</div>"
+module.exports = "<div class=\"hvj-widget-heading\">\n  <div [ngClass]=\"widget.size ? 'h' + widget.size : 'h2'\">{{widget.text}}</div>\n  <p *ngIf=\"!widget.text\"\n     class=\"small font-italic text-secondary\"> No content</p>\n</div>"
 
 /***/ }),
 
@@ -2606,7 +2606,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-html/widget-html.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-widget-html\">\r\n    <div *ngIf=\"widget.text\"\r\n         [innerHtml]=\"widget.text\"></div>\r\n    <p *ngIf=\"!widget.text\"\r\n       class=\"small font-italic text-secondary\"> No content</p>\r\n</div>"
+module.exports = "<div class=\"hvj-widget-html\">\n    <div *ngIf=\"widget.text\"\n         [innerHtml]=\"widget.text\"></div>\n    <p *ngIf=\"!widget.text\"\n       class=\"small font-italic text-secondary\"> No content</p>\n</div>"
 
 /***/ }),
 
@@ -2674,7 +2674,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-image/widget-image.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-widget-image\">\r\n  <img *ngIf=\"widget.url\"\r\n       [style.width]=\"widget.width\"\r\n       [alt]=\"widget.text ? widget.text : ''\"\r\n       [src]=\"widget.url\" />\r\n  <p *ngIf=\"!widget.url && !widget.text\"\r\n     class=\"small font-italics text-secondary\">No image specified</p>\r\n</div>"
+module.exports = "<div class=\"hvj-widget-image\">\n  <img *ngIf=\"widget.url\"\n       [style.width]=\"widget.width\"\n       [alt]=\"widget.text ? widget.text : ''\"\n       [src]=\"widget.url\" />\n  <p *ngIf=\"!widget.url && !widget.text\"\n     class=\"small font-italics text-secondary\">No image specified</p>\n</div>"
 
 /***/ }),
 
@@ -2742,7 +2742,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <!-- Back button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['../../']\"\r\n         title=\"Pages\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n      <!-- /Back button -->\r\n    </li>\r\n  </ul>\r\n\r\n  <span class=\"navbar-brand\">Widgets</span>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['new']\"\r\n         title=\"Add Widget\">\r\n        <span class=\"fa fa-plus fa-lg\"></span>\r\n      </a>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-widget-list\">\r\n  <ul class=\"list-group\"\r\n      *ngIf=\"widgets\"\r\n      appSortable>\r\n    <li class=\"list-group-item border-0 px-1 mb-1\"\r\n        *ngFor=\"let thisWidget of widgets\">\r\n      <div class=\"hvj-widget\"\r\n           [ngSwitch]=\"WidgetType[thisWidget.widgetType]\">\r\n        <div *ngSwitchCase=\"WidgetType.Heading\">\r\n          <app-widget-header [widget]=\"thisWidget\"></app-widget-header>\r\n        </div>\r\n\r\n        <div *ngSwitchCase=\"WidgetType.Image\">\r\n          <app-widget-image [widget]=\"thisWidget\"></app-widget-image>\r\n        </div>\r\n\r\n        <div *ngSwitchCase=\"WidgetType.Html\">\r\n          <app-widget-html [widget]=\"thisWidget\"></app-widget-html>\r\n        </div>\r\n\r\n        <div *ngSwitchCase=\"WidgetType.YouTube\">\r\n          <app-widget-youtube [widget]=\"thisWidget\"></app-widget-youtube>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- Widget Action buttons -->\r\n      <div class=\"hvj-widget-actions btn-group ml-auto\">\r\n        <a class=\"btn btn-xs mr-1 link-royal\"\r\n           [routerLink]=\"[thisWidget._id]\"\r\n           title=\"Edit\">\r\n          <span class=\"fa fa-gear\"></span>\r\n        </a>\r\n        <a class=\"btn btn-xs link-royal\"\r\n           title=\"More Options\">\r\n          <span class=\"fa fa-bars\"></span>\r\n        </a>\r\n      </div>\r\n      <!-- /Widget Action buttons -->\r\n    </li>\r\n\r\n    <!-- list empty message -->\r\n    <li class=\"list-group-item border-0 px-1\"\r\n        *ngIf=\"widgets.length == 0\">\r\n      <span>\r\n        <em>No widgets to show</em>\r\n      </span>\r\n    </li>\r\n\r\n    <li class=\"list-group-item border-0 px-1\"\r\n        *ngIf=\"widgets.length == 0\">\r\n      <a class=\"btn btn-xs link-royal\"\r\n         [routerLink]=\"['new']\">\r\n        <i class=\"fa fa-plus fa-lg mr-2\"></i>\r\n        <em class=\"text-secondary\">Create new widget</em>\r\n      </a>\r\n    </li>\r\n\r\n  </ul>\r\n</div>"
+module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <!-- Back button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['../../']\"\r\n         title=\"Pages\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n      <!-- /Back button -->\r\n    </li>\r\n  </ul>\r\n\r\n  <span class=\"navbar-brand\">Widgets</span>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['new']\"\r\n         title=\"Add Widget\">\r\n        <span class=\"fa fa-plus fa-lg\"></span>\r\n      </a>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-widget-list\">\r\n  <ul class=\"list-group\"\r\n      *ngIf=\"widgets\"\r\n      appSortable (onSort)=\"updateSortOrder($event)\">\r\n    <li class=\"list-group-item border-0 px-1 mb-1\"\r\n        *ngFor=\"let thisWidget of widgets\">\r\n      <div class=\"hvj-widget\"\r\n           [ngSwitch]=\"WidgetType[thisWidget.widgetType]\">\r\n        <div *ngSwitchCase=\"WidgetType.Heading\">\r\n          <app-widget-header [widget]=\"thisWidget\"></app-widget-header>\r\n        </div>\r\n\r\n        <div *ngSwitchCase=\"WidgetType.Image\">\r\n          <app-widget-image [widget]=\"thisWidget\"></app-widget-image>\r\n        </div>\r\n\r\n        <div *ngSwitchCase=\"WidgetType.Html\">\r\n          <app-widget-html [widget]=\"thisWidget\"></app-widget-html>\r\n        </div>\r\n\r\n        <div *ngSwitchCase=\"WidgetType.YouTube\">\r\n          <app-widget-youtube [widget]=\"thisWidget\"></app-widget-youtube>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- Widget Action buttons -->\r\n      <div class=\"hvj-widget-actions btn-group ml-auto\">\r\n        <a class=\"btn btn-xs mr-1 link-royal\"\r\n           [routerLink]=\"[thisWidget._id]\"\r\n           title=\"Edit\">\r\n          <span class=\"fa fa-gear\"></span>\r\n        </a>\r\n        <a class=\"btn btn-xs link-royal\"\r\n           title=\"More Options\">\r\n          <span class=\"fa fa-bars\"></span>\r\n        </a>\r\n      </div>\r\n      <!-- /Widget Action buttons -->\r\n    </li>\r\n\r\n    <!-- list empty message -->\r\n    <li class=\"list-group-item border-0 px-1\"\r\n        *ngIf=\"widgets.length == 0\">\r\n      <span>\r\n        <em>No widgets to show</em>\r\n      </span>\r\n    </li>\r\n\r\n    <li class=\"list-group-item border-0 px-1\"\r\n        *ngIf=\"widgets.length == 0\">\r\n      <a class=\"btn btn-xs link-royal\"\r\n         [routerLink]=\"['new']\">\r\n        <i class=\"fa fa-plus fa-lg mr-2\"></i>\r\n        <em class=\"text-secondary\">Create new widget</em>\r\n      </a>\r\n    </li>\r\n\r\n  </ul>\r\n</div>"
 
 /***/ }),
 
@@ -2784,8 +2784,8 @@ var WidgetListComponent = (function () {
     WidgetListComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.activatedRoute.params.subscribe(function (params) {
-            var pageId = params['pid'];
-            _this.widgetService.findWidgetsByPageId(pageId)
+            _this.pageId = params['pid'];
+            _this.widgetService.findWidgetsByPageId(_this.pageId)
                 .subscribe(function (widgets) {
                 _this.widgets = widgets;
             }, function (err) {
@@ -2796,6 +2796,23 @@ var WidgetListComponent = (function () {
             // add page specific links to footer
             _this.interactionsService.invoke(__WEBPACK_IMPORTED_MODULE_5__app_constant__["a" /* AppConstants */].EVENTS.addFooterLink, { icon: 'fa-play fa-lg' });
             _this.interactionsService.invoke(__WEBPACK_IMPORTED_MODULE_5__app_constant__["a" /* AppConstants */].EVENTS.addFooterLink, { icon: 'fa-eye fa-lg' });
+        });
+    };
+    /**
+     * Update widget order
+     * @param newPosition new position of the widget
+     */
+    WidgetListComponent.prototype.updateSortOrder = function (newPosition) {
+        var _this = this;
+        console.log(newPosition);
+        this.widgetService.reorderWidget(this.pageId, this.widgets[newPosition.initial], newPosition.initial, newPosition.final)
+            .subscribe(function (widgets) {
+            console.log('Widget order updated');
+            // this.widgets = widgets;
+        }, function (err) {
+            console.error('Error updating widget order. ', err);
+            var errMessage = JSON.parse(err);
+            _this.interactionsService.showAlert('Oops! Something went wrong in saving widget order. ' + errMessage, 'danger', true);
         });
     };
     return WidgetListComponent;
@@ -2835,7 +2852,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-youtube/widget-youtube.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-widget-youtube\">\r\n  <div class=\"embed-responsive embed-responsive-16by9\"\r\n       *ngIf=\"safeUrl\">\r\n    <iframe class=\"embed-responsive-item\"\r\n            [style.width]=\"widget.width ? widget.width : '100%'\"\r\n            [src]=\"safeUrl\"\r\n            allowfullscreen></iframe>\r\n  </div>\r\n  <p *ngIf=\"!widget.url\"\r\n     class=\"small font-italics text-secondary\">No URL specified</p>\r\n</div>"
+module.exports = "<div class=\"hvj-widget-youtube\">\n  <div class=\"embed-responsive embed-responsive-16by9\"\n       *ngIf=\"safeUrl\">\n    <iframe class=\"embed-responsive-item\"\n            [style.width]=\"widget.width ? widget.width : '100%'\"\n            [src]=\"safeUrl\"\n            allowfullscreen></iframe>\n  </div>\n  <p *ngIf=\"!widget.url\"\n     class=\"small font-italics text-secondary\">No URL specified</p>\n</div>"
 
 /***/ }),
 
@@ -2913,25 +2930,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var SortableDirective = (function () {
     function SortableDirective(el) {
         this.el = el;
+        // properties
+        this.onSort = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
     }
     SortableDirective.prototype.ngAfterViewInit = function () {
         this.makeSortable();
     };
+    /**
+     * Make the attached dom element sortable
+     */
     SortableDirective.prototype.makeSortable = function () {
+        var _this = this;
         jQuery(this.el.nativeElement).sortable({
             axis: 'y',
             placeholder: 'ui-state-highlight',
             start: function (event, ui) {
                 jQuery(ui.placeholder).height(jQuery(ui.item).height());
-                console.log('Start Index: ' + ui.item.index());
+                _this.initialPosition = ui.item.index();
             },
             stop: function (event, ui) {
-                console.log('End Index: ' + ui.item.index());
+                _this.finalPosition = ui.item.index();
+                _this.onSort.emit({
+                    initial: _this.initialPosition,
+                    final: _this.finalPosition
+                });
             }
         });
     };
     return SortableDirective;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(),
+    __metadata("design:type", Object)
+], SortableDirective.prototype, "onSort", void 0);
 SortableDirective = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* Directive */])({
         selector: '[appSortable]'
@@ -3579,14 +3610,16 @@ var WidgetService = (function () {
             'findWidgetById': this.findWidgetById,
             'findWidgetsByPageId': this.findWidgetsByPageId,
             'updateWidget': this.updateWidget,
-            'deleteWidget': this.deleteWidget
+            'deleteWidget': this.deleteWidget,
+            'reorderWidget': this.reorderWidget
         };
         this.endpoint = {
             'createWidget': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/page/{pageId}/widget',
             'findWidgetsByPageId': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/page/{pageId}/widget',
             'findWidgetById': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/widget/{widgetId}',
             'updateWidget': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/widget/{widgetId}',
-            'deleteWidget': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/widget/{widgetId}'
+            'deleteWidget': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/widget/{widgetId}',
+            'reorderWidget': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/page/{pageId}/widget?initial={initial}&final={final}'
         };
     }
     /**
@@ -3625,6 +3658,20 @@ var WidgetService = (function () {
      */
     WidgetService.prototype.updateWidget = function (widgetId, widget) {
         var url = this.endpoint.updateWidget.replace('{widgetId}', widgetId);
+        return this.http.put(url, widget);
+    };
+    /**
+     * Update widget position
+     * @param pageId Id of the page in which the widget is to be updated
+     * @param widget widget whose order is to be changed
+     * @param initial initial position of the widget
+     * @param final final position of the widget
+     */
+    WidgetService.prototype.reorderWidget = function (pageId, widget, initial, final) {
+        var url = this.endpoint.reorderWidget
+            .replace('{pageId}', pageId)
+            .replace('{initial}', initial.toString())
+            .replace('{final}', final.toString());
         return this.http.put(url, widget);
     };
     /**

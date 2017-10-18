@@ -12,7 +12,8 @@ export class WidgetService {
     'findWidgetById': this.findWidgetById,
     'findWidgetsByPageId': this.findWidgetsByPageId,
     'updateWidget': this.updateWidget,
-    'deleteWidget': this.deleteWidget
+    'deleteWidget': this.deleteWidget,
+    'reorderWidget': this.reorderWidget
   };
 
   endpoint = {
@@ -20,7 +21,8 @@ export class WidgetService {
     'findWidgetsByPageId': AppConstants.ENDPOINT.baseUrl + '/page/{pageId}/widget',
     'findWidgetById': AppConstants.ENDPOINT.baseUrl + '/widget/{widgetId}',
     'updateWidget': AppConstants.ENDPOINT.baseUrl + '/widget/{widgetId}',
-    'deleteWidget': AppConstants.ENDPOINT.baseUrl + '/widget/{widgetId}'
+    'deleteWidget': AppConstants.ENDPOINT.baseUrl + '/widget/{widgetId}',
+    'reorderWidget': AppConstants.ENDPOINT.baseUrl + '/page/{pageId}/widget?initial={initial}&final={final}'
   };
 
   constructor(private http: HttpClient) { }
@@ -68,6 +70,21 @@ export class WidgetService {
   }
 
   /**
+   * Update widget position
+   * @param pageId Id of the page in which the widget is to be updated
+   * @param widget widget whose order is to be changed
+   * @param initial initial position of the widget
+   * @param final final position of the widget
+   */
+  reorderWidget(pageId: string, widget: Widget, initial: number, final: number): Observable<Widget[]> {
+    const url = this.endpoint.reorderWidget
+      .replace('{pageId}', pageId)
+      .replace('{initial}', initial.toString())
+      .replace('{final}', final.toString());
+    return this.http.put<Widget[]>(url, widget);
+  }
+
+  /**
    * Delete widget by Id
    * @param widgetId Id of the widget to delete
    * @returns Observable that resolves to widget that was deleted, null if the id doesn't exist
@@ -76,4 +93,5 @@ export class WidgetService {
     const url = this.endpoint.deleteWidget.replace('{widgetId}', widgetId);
     return this.http.delete<Widget>(url);
   }
+
 }

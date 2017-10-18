@@ -2,7 +2,7 @@
 // Module Route Root: '/api/website' and '/api/user/:userId/website'
 const router = require('express').Router({ mergeParams: true });
 const Website = require('../models/website.model.js');
-const PageService = require('./page.service.server');
+const PageService = require('./page.service.server.js');
 
 
 /** Exported objects */
