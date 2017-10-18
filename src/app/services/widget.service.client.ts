@@ -13,7 +13,8 @@ export class WidgetService {
     'findWidgetsByPageId': this.findWidgetsByPageId,
     'updateWidget': this.updateWidget,
     'deleteWidget': this.deleteWidget,
-    'reorderWidget': this.reorderWidget
+    'reorderWidget': this.reorderWidget,
+    'uploadImage': this.uploadImage
   };
 
   endpoint = {
@@ -22,7 +23,8 @@ export class WidgetService {
     'findWidgetById': AppConstants.ENDPOINT.baseUrl + '/widget/{widgetId}',
     'updateWidget': AppConstants.ENDPOINT.baseUrl + '/widget/{widgetId}',
     'deleteWidget': AppConstants.ENDPOINT.baseUrl + '/widget/{widgetId}',
-    'reorderWidget': AppConstants.ENDPOINT.baseUrl + '/page/{pageId}/widget?initial={initial}&final={final}'
+    'reorderWidget': AppConstants.ENDPOINT.baseUrl + '/page/{pageId}/widget?initial={initial}&final={final}',
+    'uploadImage': AppConstants.ENDPOINT.baseUrl + '/upload'
   };
 
   constructor(private http: HttpClient) { }
@@ -35,6 +37,7 @@ export class WidgetService {
    */
   createWidget(pageId: string, widget: Widget): Observable<Widget> {
     const url = this.endpoint.createWidget.replace('{pageId}', pageId);
+    widget.widgetType = WidgetType[widget.widgetType].toString();
     return this.http.post<Widget>(url, widget);
   }
 
@@ -92,6 +95,11 @@ export class WidgetService {
   deleteWidget(widgetId: string): Observable<Widget> {
     const url = this.endpoint.deleteWidget.replace('{widgetId}', widgetId);
     return this.http.delete<Widget>(url);
+  }
+
+  uploadImage(formData: FormData): Observable<{file: string}> {
+    const url = this.endpoint.uploadImage;
+    return this.http.post<{file: string}>(url, formData);
   }
 
 }

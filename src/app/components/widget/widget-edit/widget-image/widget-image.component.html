@@ -95,13 +95,17 @@
       <label for="widget-upload"
              class="font-weight-bold text-muted">Upload</label>
       <input type="file"
+             name="fileUpload"
+             #fileUpload
              class="form-control"
              id="widget-upload"
              placeholder="Upload">
     </div>
     <!--/Widget upload-->
     <div class="form-group">
-      <button class="btn btn-royal btn-block">Upload Image</button>
+      <button type="button"
+              (click)="uploadImage()"
+              class="btn btn-royal btn-block">Upload Image</button>
     </div>
 
     <!-- Form buttons -->

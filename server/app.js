@@ -20,7 +20,7 @@ router.use('/page', require('./services/page.service.server.js').router);
 // Widget route: /api/widget
 router.use('/page/:pageId/widget', require('./services/widget.service.server.js').router);
 router.use('/widget', require('./services/widget.service.server.js').router);
-
+router.use('/upload', require('./services/upload.service.server.js'));
 //#endregion
 
 module.exports = router;

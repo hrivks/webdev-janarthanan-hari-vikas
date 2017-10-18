@@ -24,6 +24,11 @@ app.use(function(req, res, next) {
 
 app.use('/api', require('./server/app.js'));
 
+// Return images from public/uploads folder
+app.get('/public/uploads*', function(req, res) {
+  res.sendFile(path.join(__dirname, req.path));
+});
+
 // Redirect all other routes to index.html and let angular deal with it
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'dist/index.html'));

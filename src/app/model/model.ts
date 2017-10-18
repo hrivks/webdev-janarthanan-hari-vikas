@@ -38,7 +38,7 @@ export enum WidgetType {
 /** Represents a widget in a page */
 export class Widget implements IAppEntity {
     _id: string;
-    widgetType: WidgetType;
+    widgetType: WidgetType | string;
     pageId: string;
     size?: number;
     text?: string;

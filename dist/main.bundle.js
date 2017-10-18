@@ -130,6 +130,8 @@ AppConstants.EVENTS = {
     showLoader: 'showLoader'
 };
 AppConstants.ENDPOINT = {
+    // root: '/', // for prod
+    root: 'http://localhost:3100/',
     // baseUrl: '/api', // for prod
     baseUrl: 'http://localhost:3100/api' // for local
 };
@@ -2311,7 +2313,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-image/widget-image.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <!-- Back button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['../']\"\r\n         title=\"Widgets\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n      <!-- /Back button -->\r\n    </li>\r\n  </ul>\r\n\r\n  <span class=\"navbar-brand\">Widget Edit : Image</span>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <a class=\"nav-link px-0\"\r\n         (click)=\"saveChanges()\"\r\n         title=\"Save Changes\">\r\n        <span class=\"fa fa-check fa-lg\"></span>\r\n      </a>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<!--content-->\r\n<div class=\"container hvj-widget-image-edit\">\r\n  <form #widgetImageEditForm=\"ngForm\">\r\n    <!--Widget Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"widget-name\"\r\n             class=\"font-weight-bold text-muted\">Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"widgetName\"\r\n             name=\"name\"\r\n             placeholder=\"Name\"\r\n             [(ngModel)]=\"widget.name\"\r\n             #nameField=\"ngModel\">\r\n    </div>\r\n    <!--/Widget Name-->\r\n\r\n    <!--Widget Text-->\r\n    <div class=\"form-group\">\r\n      <label for=\"widget-heading-text\"\r\n             class=\"font-weight-bold text-muted\">Text</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"widget-heading-text\"\r\n             name=\"text\"\r\n             placeholder=\"Text\"\r\n             [(ngModel)]=\"widget.text\"\r\n             #textField=\"ngModel\">\r\n    </div>\r\n    <!--/Widget Text-->\r\n\r\n    <!--Widget URL-->\r\n    <div class=\"form-group\">\r\n      <label for=\"widget-url\"\r\n             class=\"font-weight-bold text-muted\">URL</label>\r\n      <input type=\"url\"\r\n             class=\"form-control\"\r\n             id=\"widget-url\"\r\n             name=\"url\"\r\n             placeholder=\"URL\"\r\n             [(ngModel)]=\"widget.url\"\r\n             #urlField=\"ngModel\"\r\n             required>\r\n      <span *ngIf=\"urlField.invalid && urlField.touched\"\r\n            class=\"text-danger ml-2\">Enter a valid URL</span>\r\n    </div>\r\n    <!--/Widget URL-->\r\n\r\n    <!--Widget width-->\r\n    <div class=\"form-group\">\r\n      <label for=\"widget-width\"\r\n             class=\"font-weight-bold text-muted\">Size</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"widget-width\"\r\n             name=\"width\"\r\n             placeholder=\"Width\"\r\n             [(ngModel)]=\"widget.width\"\r\n             ngModel>\r\n    </div>\r\n    <!--/Widget width-->\r\n\r\n    <!--Widget Upload-->\r\n    <div class=\"form-group\">\r\n      <label for=\"widget-upload\"\r\n             class=\"font-weight-bold text-muted\">Upload</label>\r\n      <input type=\"file\"\r\n             class=\"form-control\"\r\n             id=\"widget-upload\"\r\n             placeholder=\"Upload\">\r\n    </div>\r\n    <!--/Widget upload-->\r\n    <div class=\"form-group\">\r\n      <button class=\"btn btn-royal btn-block\">Upload Image</button>\r\n    </div>\r\n\r\n    <!-- Form buttons -->\r\n    <div class=\"row no-gutters\">\r\n      <div class=\"col-12 col-sm-9 mr-1\">\r\n        <!-- Save button -->\r\n        <button class=\"btn btn-success btn-block mr-1 mb-2\"\r\n                title=\"Save Widget\"\r\n                (click)=\"saveChanges()\">\r\n          <i class=\"fa fa-check\"></i>\r\n        </button>\r\n      </div>\r\n      <div class=\"col\">\r\n        <!-- Delete button -->\r\n        <button class=\"btn btn-danger btn-block\"\r\n                title=\"Delete Widget\"\r\n                (click)=\"showDeleteConfirmation = true\"\r\n                [hidden]=\"showDeleteConfirmation\">\r\n          <i class=\"fa fa-trash\"></i>\r\n        </button>\r\n        <button class=\"btn btn-danger btn-block mt-0\"\r\n                title=\"Delete Widget\"\r\n                [hidden]=\"!showDeleteConfirmation\"\r\n                (click)=\"delete()\">sure?</button>\r\n      </div>\r\n    </div>\r\n\r\n  </form>\r\n</div>\r\n<!--/content-->"
+module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <!-- Back button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['../']\"\r\n         title=\"Widgets\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n      <!-- /Back button -->\r\n    </li>\r\n  </ul>\r\n\r\n  <span class=\"navbar-brand\">Widget Edit : Image</span>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <a class=\"nav-link px-0\"\r\n         (click)=\"saveChanges()\"\r\n         title=\"Save Changes\">\r\n        <span class=\"fa fa-check fa-lg\"></span>\r\n      </a>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<!--content-->\r\n<div class=\"container hvj-widget-image-edit\">\r\n  <form #widgetImageEditForm=\"ngForm\">\r\n    <!--Widget Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"widget-name\"\r\n             class=\"font-weight-bold text-muted\">Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"widgetName\"\r\n             name=\"name\"\r\n             placeholder=\"Name\"\r\n             [(ngModel)]=\"widget.name\"\r\n             #nameField=\"ngModel\">\r\n    </div>\r\n    <!--/Widget Name-->\r\n\r\n    <!--Widget Text-->\r\n    <div class=\"form-group\">\r\n      <label for=\"widget-heading-text\"\r\n             class=\"font-weight-bold text-muted\">Text</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"widget-heading-text\"\r\n             name=\"text\"\r\n             placeholder=\"Text\"\r\n             [(ngModel)]=\"widget.text\"\r\n             #textField=\"ngModel\">\r\n    </div>\r\n    <!--/Widget Text-->\r\n\r\n    <!--Widget URL-->\r\n    <div class=\"form-group\">\r\n      <label for=\"widget-url\"\r\n             class=\"font-weight-bold text-muted\">URL</label>\r\n      <input type=\"url\"\r\n             class=\"form-control\"\r\n             id=\"widget-url\"\r\n             name=\"url\"\r\n             placeholder=\"URL\"\r\n             [(ngModel)]=\"widget.url\"\r\n             #urlField=\"ngModel\"\r\n             required>\r\n      <span *ngIf=\"urlField.invalid && urlField.touched\"\r\n            class=\"text-danger ml-2\">Enter a valid URL</span>\r\n    </div>\r\n    <!--/Widget URL-->\r\n\r\n    <!--Widget width-->\r\n    <div class=\"form-group\">\r\n      <label for=\"widget-width\"\r\n             class=\"font-weight-bold text-muted\">Size</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"widget-width\"\r\n             name=\"width\"\r\n             placeholder=\"Width\"\r\n             [(ngModel)]=\"widget.width\"\r\n             ngModel>\r\n    </div>\r\n    <!--/Widget width-->\r\n\r\n    <!--Widget Upload-->\r\n    <div class=\"form-group\">\r\n      <label for=\"widget-upload\"\r\n             class=\"font-weight-bold text-muted\">Upload</label>\r\n      <input type=\"file\"\r\n             name=\"fileUpload\"\r\n             #fileUpload\r\n             class=\"form-control\"\r\n             id=\"widget-upload\"\r\n             placeholder=\"Upload\">\r\n    </div>\r\n    <!--/Widget upload-->\r\n    <div class=\"form-group\">\r\n      <button type=\"button\"\r\n              (click)=\"uploadImage()\"\r\n              class=\"btn btn-royal btn-block\">Upload Image</button>\r\n    </div>\r\n\r\n    <!-- Form buttons -->\r\n    <div class=\"row no-gutters\">\r\n      <div class=\"col-12 col-sm-9 mr-1\">\r\n        <!-- Save button -->\r\n        <button class=\"btn btn-success btn-block mr-1 mb-2\"\r\n                title=\"Save Widget\"\r\n                (click)=\"saveChanges()\">\r\n          <i class=\"fa fa-check\"></i>\r\n        </button>\r\n      </div>\r\n      <div class=\"col\">\r\n        <!-- Delete button -->\r\n        <button class=\"btn btn-danger btn-block\"\r\n                title=\"Delete Widget\"\r\n                (click)=\"showDeleteConfirmation = true\"\r\n                [hidden]=\"showDeleteConfirmation\">\r\n          <i class=\"fa fa-trash\"></i>\r\n        </button>\r\n        <button class=\"btn btn-danger btn-block mt-0\"\r\n                title=\"Delete Widget\"\r\n                [hidden]=\"!showDeleteConfirmation\"\r\n                (click)=\"delete()\">sure?</button>\r\n      </div>\r\n    </div>\r\n\r\n  </form>\r\n</div>\r\n<!--/content-->"
 
 /***/ }),
 
@@ -2326,6 +2328,7 @@ module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_model__ = __webpack_require__("../../../../../src/app/model/model.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_widget_service_client__ = __webpack_require__("../../../../../src/app/services/widget.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_constant__ = __webpack_require__("../../../../../src/app/app.constant.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2341,6 +2344,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var WidgetImageEditComponent = (function () {
     function WidgetImageEditComponent(activatedRoute, router, widgetService, interactionsService) {
         this.activatedRoute = activatedRoute;
@@ -2349,6 +2353,7 @@ var WidgetImageEditComponent = (function () {
         this.interactionsService = interactionsService;
         this.updateWidget = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
         this.deleteWidget = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
+        this.Endpoint = __WEBPACK_IMPORTED_MODULE_6__app_constant__["a" /* AppConstants */].ENDPOINT;
         this.showDeleteConfirmation = false;
     }
     WidgetImageEditComponent.prototype.ngOnInit = function () {
@@ -2372,6 +2377,22 @@ var WidgetImageEditComponent = (function () {
     WidgetImageEditComponent.prototype.delete = function () {
         this.deleteWidget.emit(this.widget._id);
     };
+    /**
+     * Upload Image
+     */
+    WidgetImageEditComponent.prototype.uploadImage = function () {
+        var _this = this;
+        var file = this.fileUpload.nativeElement;
+        if (file.files && file.files[0]) {
+            var formData = new FormData();
+            formData.append('image', file.files[0]);
+            this.widgetService.uploadImage(formData)
+                .subscribe(function (res) {
+                console.log(res);
+                _this.widget.url = __WEBPACK_IMPORTED_MODULE_6__app_constant__["a" /* AppConstants */].ENDPOINT.root + res.file;
+            });
+        }
+    };
     return WidgetImageEditComponent;
 }());
 __decorate([
@@ -2390,6 +2411,10 @@ __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('widgetImageEditForm'),
     __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */]) === "function" && _b || Object)
 ], WidgetImageEditComponent.prototype, "widgetImageEditForm", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('fileUpload'),
+    __metadata("design:type", Object)
+], WidgetImageEditComponent.prototype, "fileUpload", void 0);
 WidgetImageEditComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-widget-image-edit',
@@ -2661,7 +2686,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".hvj-widget-image img {\r\n    max-width: 100%;\r\n}", ""]);
 
 // exports
 
@@ -3589,7 +3614,8 @@ var _a;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WidgetService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_constant__ = __webpack_require__("../../../../../src/app/app.constant.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_model__ = __webpack_require__("../../../../../src/app/model/model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_constant__ = __webpack_require__("../../../../../src/app/app.constant.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3602,6 +3628,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var WidgetService = (function () {
     function WidgetService(http) {
         this.http = http;
@@ -3611,15 +3638,17 @@ var WidgetService = (function () {
             'findWidgetsByPageId': this.findWidgetsByPageId,
             'updateWidget': this.updateWidget,
             'deleteWidget': this.deleteWidget,
-            'reorderWidget': this.reorderWidget
+            'reorderWidget': this.reorderWidget,
+            'uploadImage': this.uploadImage
         };
         this.endpoint = {
-            'createWidget': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/page/{pageId}/widget',
-            'findWidgetsByPageId': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/page/{pageId}/widget',
-            'findWidgetById': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/widget/{widgetId}',
-            'updateWidget': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/widget/{widgetId}',
-            'deleteWidget': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/widget/{widgetId}',
-            'reorderWidget': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/page/{pageId}/widget?initial={initial}&final={final}'
+            'createWidget': __WEBPACK_IMPORTED_MODULE_3__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/page/{pageId}/widget',
+            'findWidgetsByPageId': __WEBPACK_IMPORTED_MODULE_3__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/page/{pageId}/widget',
+            'findWidgetById': __WEBPACK_IMPORTED_MODULE_3__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/widget/{widgetId}',
+            'updateWidget': __WEBPACK_IMPORTED_MODULE_3__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/widget/{widgetId}',
+            'deleteWidget': __WEBPACK_IMPORTED_MODULE_3__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/widget/{widgetId}',
+            'reorderWidget': __WEBPACK_IMPORTED_MODULE_3__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/page/{pageId}/widget?initial={initial}&final={final}',
+            'uploadImage': __WEBPACK_IMPORTED_MODULE_3__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/upload'
         };
     }
     /**
@@ -3630,6 +3659,7 @@ var WidgetService = (function () {
      */
     WidgetService.prototype.createWidget = function (pageId, widget) {
         var url = this.endpoint.createWidget.replace('{pageId}', pageId);
+        widget.widgetType = __WEBPACK_IMPORTED_MODULE_2__model_model__["e" /* WidgetType */][widget.widgetType].toString();
         return this.http.post(url, widget);
     };
     /**
@@ -3682,6 +3712,10 @@ var WidgetService = (function () {
     WidgetService.prototype.deleteWidget = function (widgetId) {
         var url = this.endpoint.deleteWidget.replace('{widgetId}', widgetId);
         return this.http.delete(url);
+    };
+    WidgetService.prototype.uploadImage = function (formData) {
+        var url = this.endpoint.uploadImage;
+        return this.http.post(url, formData);
     };
     return WidgetService;
 }());

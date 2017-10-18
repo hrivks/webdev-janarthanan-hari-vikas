@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Widget } from '../../../../model/model';
 import { WidgetService } from '../../../../services/widget.service.client';
 import { InteractionsService } from '../../../../services/interactions.service.client';
+import { AppConstants } from '../../../../app.constant';
 
 @Component({
   selector: 'app-widget-image-edit',
@@ -17,14 +18,16 @@ export class WidgetImageEditComponent implements OnInit {
   @Output() updateWidget = new EventEmitter<Widget>();
   @Output() deleteWidget = new EventEmitter<string>();
   @ViewChild('widgetImageEditForm') widgetImageEditForm: NgForm;
+  @ViewChild('fileUpload') fileUpload;
   private showDeleteConfirmation: Boolean;
+  private Endpoint = AppConstants.ENDPOINT;
 
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private widgetService: WidgetService,
     private interactionsService: InteractionsService) {
-      this.showDeleteConfirmation = false;
-    }
+    this.showDeleteConfirmation = false;
+  }
 
   ngOnInit() {
   }
@@ -47,6 +50,23 @@ export class WidgetImageEditComponent implements OnInit {
    */
   delete() {
     this.deleteWidget.emit(this.widget._id);
+  }
+
+  /**
+   * Upload Image
+   */
+  uploadImage() {
+    const file = this.fileUpload.nativeElement;
+    if (file.files && file.files[0]) {
+      const formData = new FormData();
+      formData.append('image', file.files[0]);
+      this.widgetService.uploadImage(formData)
+        .subscribe(res => {
+          console.log(res);
+          this.widget.url = AppConstants.ENDPOINT.root + res.file;
+        });
+    }
+
   }
 
 }
