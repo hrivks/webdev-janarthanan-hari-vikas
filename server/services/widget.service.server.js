@@ -159,7 +159,7 @@ const exp = {
     // Route: [PUT] '/api/page/:pageId/widget?initial = index1 & final = index2'
     router.put('/', function (req, res) {
         try {
-            res.json(reorderWidgets(req.params.pageId, req.body, { initial: req.query.initial, final: req.query.final }));
+            res.json(reorderWidgets(req.params.pageId, { initial: req.query.initial, final: req.query.final }));
         }
         catch (ex) {
             res.status(400).json(ex);
@@ -173,23 +173,17 @@ const exp = {
      * @param {{initial: number, final: number}} order initial and final order of the widget
      * @return {Widget[]} list of updated widgets
      */
-    function reorderWidgets(pageId, widget, order) {
+    function reorderWidgets(pageId, order) {
 
-        const toUpdateIndex = widgets.findIndex(w => w._id === widget._id);
-        if (toUpdateIndex == -1) {
-            throw ['Widget with id ' + widgetId + ' does not exist'];
-        }
-
-        if (order.final && order.initial) {
+        if (order.final && order.initial && order.final !== order.initial) {
             const widgetsInThisPage = widgets.filter(w => w.pageId === pageId);
-            const widgetAtFinalPos = widgetsInThisPage[order.final];
+            const widgetAtInitPos = widgetsInThisPage[order.initial];
+            const widgetAtFinalPos = widgetsInThisPage[order.final];            
 
-            const insertIndex = widgets.indexOf(widgetAtFinalPos);
-
-            // remove this widget
-            const toInsert = widgets.splice(toUpdateIndex, 1);
-            // insert at insertIndex
-            widgets.splice(insertIndex, 0, toInsert[0]);
+            // remove widget at initial position
+            widgets.splice(widgets.indexOf(widgetAtInitPos), 1);
+            // insert at final position
+            widgets.splice(widgets.indexOf(widgetAtFinalPos), 0, widgetAtInitPos);
 
             return widgets;
         } else {
