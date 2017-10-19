@@ -63,14 +63,22 @@
     <div class="form-group">
       <label for="widget-url"
              class="font-weight-bold text-muted">URL</label>
-      <input type="url"
-             class="form-control"
-             id="widget-url"
-             name="url"
-             placeholder="URL"
-             [(ngModel)]="widget.url"
-             #urlField="ngModel"
-             required>
+      <div class="input-group">
+        <input type="url"
+               class="form-control"
+               id="widget-url"
+               name="url"
+               placeholder="URL"
+               [(ngModel)]="widget.url"
+               #urlField="ngModel"
+               required>
+        <span class="input-group-btn">
+          <a class="btn btn-royal text-light" [routerLink]="['flickr']">
+            <i class="fa fa-flickr"
+               aria-hidden="true"></i>
+            Choose from Flickr</a>
+        </span>
+      </div>
       <span *ngIf="urlField.invalid && urlField.touched"
             class="text-danger ml-2">Enter a valid URL</span>
     </div>
@@ -107,6 +115,8 @@
               (click)="uploadImage()"
               class="btn btn-royal btn-block">Upload Image</button>
     </div>
+
+    <!--/Widget upload-->
 
     <!-- Form buttons -->
     <div class="row no-gutters">

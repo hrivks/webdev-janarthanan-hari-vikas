@@ -13,6 +13,7 @@ import { UserService } from './services/user.service.client';
 import { WebsiteService } from './services/website.service.client';
 import { PageService } from './services/page.service.client';
 import { WidgetService } from './services/widget.service.client';
+import { FlickrService } from './services/flickr.service.client';
 import { InteractionsService } from './services/interactions.service.client';
 import { AuthService } from './services/auth.service.client';
 import { TestService } from './services/test.service.client';
@@ -35,10 +36,12 @@ import { PageListComponent } from './components/page/page-list/page-list.compone
 import { WidgetChooserComponent } from './components/widget/widget-chooser/widget-chooser.component';
 // widget edit components
 import { WidgetEditComponent } from './components/widget/widget-edit/widget-edit.component';
+import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 import { WidgetHeaderEditComponent } from './components/widget/widget-edit/widget-header/widget-header.component';
 import { WidgetImageEditComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetYoutubeEditComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
 import { WidgetHtmlEditComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
+
 // widget list components
 import { WidgetListComponent } from './components/widget/widget-list/widget-list.component';
 import { WidgetHeaderComponent } from './components/widget/widget-list/widget-header/widget-header.component';
@@ -84,7 +87,8 @@ import { SortableDirective } from './directives/sortable.directive';
     FooterComponent,
     AlertComponent,
     LoaderComponent,
-    SortableDirective
+    SortableDirective,
+    FlickrImageSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -92,8 +96,7 @@ import { SortableDirective } from './directives/sortable.directive';
     FormsModule,
     Routing
   ],
-  // Client Side services here
-  providers: [TestService, UserService, WebsiteService, PageService, WidgetService, AuthService, InteractionsService],
+  providers: [TestService, UserService, WebsiteService, PageService, WidgetService, FlickrService, AuthService, InteractionsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
