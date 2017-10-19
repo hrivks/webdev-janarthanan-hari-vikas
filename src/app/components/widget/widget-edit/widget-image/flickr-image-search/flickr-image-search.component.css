@@ -1,0 +1,9 @@
+.hvj-flickr-image-search .search-results-wrap img {
+    height: 85px;
+    width:85px;
+}
+
+.hvj-flickr-image-search .search-results-wrap div:hover {
+    transform: scale(1.5);
+}
+
