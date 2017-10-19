@@ -4,6 +4,7 @@ import { Page } from '../../../model/model';
 import { PageService } from '../../../services/page.service.client';
 import { WebsiteService } from '../../../services/website.service.client';
 import { InteractionsService } from '../../../services/interactions.service.client';
+import { ErrorHandlerService } from '../../../services/error-handler.service.client';
 
 @Component({
   selector: 'app-page-list',
@@ -22,7 +23,8 @@ export class PageListComponent implements OnInit {
     private router: Router,
     private pageService: PageService,
     private websiteService: WebsiteService,
-    private interactionsService: InteractionsService) { }
+    private interactionsService: InteractionsService,
+    private errorHanderService: ErrorHandlerService) { }
 
   ngOnInit() {
     // get userid parameter route
@@ -61,9 +63,7 @@ export class PageListComponent implements OnInit {
         this.pages = pages;
       },
       (err) => {
-        const errMessage = JSON.parse(err.error);
-        this.interactionsService.showAlert('Oops! Can\'t load pages list. ' + errMessage);
-        console.error('Error getting pages list. ', err);
+        this.errorHanderService.handleError('Oops! Can\'t load pages list', err);
       }
       );
   }

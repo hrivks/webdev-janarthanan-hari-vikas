@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Widget, WidgetType } from '../../../model/model';
 import { WidgetService } from '../../../services/widget.service.client';
 import { InteractionsService } from '../../../services/interactions.service.client';
+import { ErrorHandlerService } from '../../../services/error-handler.service.client';
 
 @Component({
   selector: 'app-widget-edit',
@@ -19,7 +20,8 @@ export class WidgetEditComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private widgetService: WidgetService,
-    private interactionsService: InteractionsService) { }
+    private interactionsService: InteractionsService,
+    private errorHanderService: ErrorHandlerService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {
@@ -30,9 +32,7 @@ export class WidgetEditComponent implements OnInit {
           this.widget = widget;
         },
         (err) => {
-          console.error('Error getting widget of Id ' + widgetId, err);
-          const errMessage = JSON.parse(err.error);
-          this.interactionsService.showAlert('Error getting Widget with Id "' + widgetId + '". ' + errMessage, 'danger', true);
+          this.errorHanderService.handleError('Uhhhh! Error getting Widget with Id "' + widgetId + '"', err, true);
           this.router.navigate(['../'], { relativeTo: this.activatedRoute });
         }
         );
@@ -57,6 +57,10 @@ export class WidgetEditComponent implements OnInit {
       );
   }
 
+  /**
+   * Delete widget
+   * @param widgetId Id of the widget to be deleted
+   */
   deleteWidget(widgetId: string) {
     this.widgetService.deleteWidget(widgetId)
       .subscribe(
@@ -65,9 +69,7 @@ export class WidgetEditComponent implements OnInit {
         this.router.navigate(['../'], { relativeTo: this.activatedRoute });
       },
       (err) => {
-        console.error('Error deleting widget. ', err);
-        const errMessage = JSON.parse(err.error);
-        this.interactionsService.showAlert('Oh Snap! Widget delete failed. ' + errMessage, 'danger');
+        this.errorHanderService.handleError('Oh Snap! Widget delete failed', err);
       }
       );
   }

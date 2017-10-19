@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Widget, WidgetType } from '../../../../../model/model';
 import { FlickrService } from '../../../../../services/flickr.service.client';
+import { WidgetService } from '../../../../../services/widget.service.client';
 import { InteractionsService } from '../../../../../services/interactions.service.client';
+import { ErrorHandlerService } from '../../../../../services/error-handler.service.client';
 
 @Component({
   selector: 'app-flickr-image-search',
@@ -10,15 +14,46 @@ import { InteractionsService } from '../../../../../services/interactions.servic
 export class FlickrImageSearchComponent implements OnInit {
 
   // properties
-  searchText: string;
-  searchResults: string[];
-  searchPageNo: number;
-  flickrUrlFormat = 'https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_s.jpg';
+  private searchText: string;
+  private searchResults: string[];
+  private searchPageNo: number;
+  private widgetId: string;
+  private widget: Widget;
+  private flickrUrlFormat = 'https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_s.jpg';
 
-  constructor(private flickrService: FlickrService,
-    private interactionsService: InteractionsService) { }
+
+  constructor(private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private flickrService: FlickrService,
+    private widgetService: WidgetService,
+    private interactionsService: InteractionsService,
+    private errorHanderService: ErrorHandlerService) { }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe((params: any) => {
+      this.widgetId = params['wgid'];
+      if (!this.widgetId) {
+        this.interactionsService.showAlert('Hmm! Widget Id is needed to access Flickr Image search. Try again', 'danger', true);
+        this.router.navigate(['../../'], { relativeTo: this.activatedRoute });
+      } else {
+        // get corresponding widget
+        this.widgetService.findWidgetById(this.widgetId)
+          .subscribe(
+          (widget) => {
+            if (WidgetType[widget.widgetType] !== WidgetType.Image) {
+              this.interactionsService.showAlert('Hmm! Widget with id ' + this.widgetId + ' is not an Image widget', 'danger', true);
+              this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+            }
+            this.widget = widget;
+          },
+          (err) => {
+            this.errorHanderService.handleError('Uhho! Error getting Widget with Id "' + this.widgetId + '"', err);
+            this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+          }
+          );
+      }
+
+    });
   }
 
   search() {
@@ -28,19 +63,35 @@ export class FlickrImageSearchComponent implements OnInit {
         (results) => {
           this.searchResults = (results.photos.photo).map(r => {
             return this.flickrUrlFormat.toString()
-            .replace('{farm-id}', r.farm)
-            .replace('{server-id}', r.server)
-            .replace('{id}', r.id)
-            .replace('{secret}', r.secret);
+              .replace('{farm-id}', r.farm)
+              .replace('{server-id}', r.server)
+              .replace('{id}', r.id)
+              .replace('{secret}', r.secret);
           });
         },
         (err) => {
-          console.error('Error performing Flickr Search', err);
-          const errMessage = JSON.parse(err.error);
-          this.interactionsService.showAlert('Uh ho! Flickr is acting up again!. ' + errMessage, 'danger', true);
+          this.errorHanderService.handleError('Uhho! Flickr is acting up again!', err, true);
         }
         );
     }
+  }
+
+  /**
+   * Select image and save it to widget
+   * @param src URL of the image
+   */
+  selectImage(src: string) {
+    this.widget.url = src.replace('_s.jpg', '_b.jpg');
+    this.widgetService.updateWidget(this.widgetId, this.widget)
+      .subscribe(
+      (updatedWidget) => {
+        this.interactionsService.showAlert('Widget updated successfully', 'success', true);
+        this.router.navigate(['../../'], { relativeTo: this.activatedRoute });
+      },
+      (err) => {
+        this.errorHanderService.handleError('ummfff! Widget update failed', err);
+      }
+      );
   }
 
 }

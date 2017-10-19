@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Widget, WidgetType } from '../../../model/model';
 import { WidgetService } from '../../../services/widget.service.client';
 import { InteractionsService } from '../../../services/interactions.service.client';
+import { ErrorHandlerService } from '../../../services/error-handler.service.client';
 
 @Component({
   selector: 'app-widget-chooser',
@@ -18,7 +19,8 @@ export class WidgetChooserComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private widgetService: WidgetService,
-    private interactionsService: InteractionsService) { }
+    private interactionsService: InteractionsService,
+    private errorHanderService: ErrorHandlerService) { }
 
   ngOnInit() {
 
@@ -48,9 +50,7 @@ export class WidgetChooserComponent implements OnInit {
         this.router.navigate(['../' + createdWidget._id], { relativeTo: this.activatedRoute });
       },
       (err) => {
-        console.error('Error creating widget. ', err);
-        const errMessage = JSON.parse(err.error);
-        this.interactionsService.showAlert('Uhhhh! Error creating widget. ' + errMessage);
+        this.errorHanderService.handleError('Uhhhh! Error creating widget', err);
       }
       );
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { AppConstants } from '../app.constant';
+import { ErrorHandlerService } from './error-handler.service.client';
 
 @Injectable()
 export class FlickrService {
@@ -10,12 +11,13 @@ export class FlickrService {
     private flickrSearchEndpoint
     = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key={key}&text={text}&format=json&nojsoncallback=1&accuracy=3';
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,
+        private errorHanderService: ErrorHandlerService) {
         this.flickrApiKey = '';  // << ADD YOUR FLICKR API KEY HERE >>
 
         if (!this.flickrApiKey) {
-            alert('Flickr Api key is required. Please specify api key in flickr.service.client.ts file');
-            throw Error('Flickr Api key is required. Please specify api key in flickr.service.client.ts file');
+            this.errorHanderService.handleError('Flickr Api key is required',
+                Error('Please specify api key in flickr.service.client.ts file'));
         }
     }
 

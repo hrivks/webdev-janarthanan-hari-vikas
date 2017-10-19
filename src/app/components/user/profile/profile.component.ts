@@ -6,6 +6,7 @@ import { UserService } from '../../../services/user.service.client';
 import { AuthService } from '../../../services/auth.service.client';
 import { InteractionsService } from '../../../services/interactions.service.client';
 import { AppConstants } from '../../../app.constant';
+import { ErrorHandlerService } from '../../../services/error-handler.service.client';
 
 @Component({
   selector: 'app-profile',
@@ -26,7 +27,8 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private authService: AuthService,
-    private interactionsService: InteractionsService) { }
+    private interactionsService: InteractionsService,
+    private errorHanderService: ErrorHandlerService) { }
 
   ngOnInit() {
 
@@ -50,8 +52,7 @@ export class ProfileComponent implements OnInit {
         }
       },
       (err) => {
-        this.interactionsService.showAlert('Error retrieving user with Id ' + this.userId);
-        console.error('Error retrieving user with Id ' + this.userId, err);
+        this.errorHanderService.handleError('Error retrieving user with Id ' + this.userId, err);
       }
       );
   }
@@ -109,9 +110,7 @@ export class ProfileComponent implements OnInit {
           }
         },
         (err) => {
-          const errMessage = JSON.parse(err.error);
-          this.interactionsService.showAlert('Profile update failed. ' + errMessage);
-          console.error('Profile update failed', err);
+          this.errorHanderService.handleError('Profile update failed', err);
         }
         );
     }

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Page } from '../../../model/model';
 import { PageService } from '../../../services/page.service.client';
 import { InteractionsService } from '../../../services/interactions.service.client';
+import { ErrorHandlerService } from '../../../services/error-handler.service.client';
 
 @Component({
   selector: 'app-page-new',
@@ -23,7 +24,8 @@ export class PageNewComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private pageService: PageService,
-    private interactionsService: InteractionsService) { }
+    private interactionsService: InteractionsService,
+    private errorHanderService: ErrorHandlerService) { }
 
   ngOnInit() {
     this.showDeleteConfirmation = false;
@@ -51,9 +53,7 @@ export class PageNewComponent implements OnInit {
           this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
         },
         (err) => {
-          console.error('Error creating new page', err);
-          const errMessage = JSON.parse(err.error);
-          this.interactionsService.showAlert('oooh! Snap! Page creation failed', 'danger');
+          this.errorHanderService.handleError('oooh! Snap! Page creation failed', err);
         }
         );
     }

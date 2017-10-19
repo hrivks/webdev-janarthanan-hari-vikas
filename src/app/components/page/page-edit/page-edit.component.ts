@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Page } from '../../../model/model';
 import { PageService } from '../../../services/page.service.client';
 import { InteractionsService } from '../../../services/interactions.service.client';
+import { ErrorHandlerService } from '../../../services/error-handler.service.client';
 
 @Component({
   selector: 'app-page-edit',
@@ -23,7 +24,8 @@ export class PageEditComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private pageService: PageService,
-    private interactionsService: InteractionsService) { }
+    private interactionsService: InteractionsService,
+    private errorHanderService: ErrorHandlerService) { }
 
   ngOnInit() {
     this.showDeleteConfirmation = false;
@@ -38,9 +40,7 @@ export class PageEditComponent implements OnInit {
           this.page = page;
         },
         (err) => {
-          console.error('Error retrieving page with id ' + this.pageId, err);
-          const errMessage = JSON.parse(err.error);
-          this.interactionsService.showAlert('Oopsie! ' + errMessage, 'danger', true);
+          this.errorHanderService.handleError('Oopsie! Error retrieving page with id ' + this.pageId, err, true);
           this.router.navigate(['../'], { relativeTo: this.activatedRoute });
         }
         );
@@ -62,9 +62,7 @@ export class PageEditComponent implements OnInit {
           this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
         },
         (err) => {
-          console.error('Error saving page.', err);
-          const errMessage = JSON.parse(err.error);
-          this.interactionsService.showAlert('Oops! Page save failed. ' + errMessage);
+          this.errorHanderService.handleError('Oooh Snap! Error saving page', err);
         }
         );
     }
@@ -81,9 +79,7 @@ export class PageEditComponent implements OnInit {
         this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']);
       },
       (err) => {
-        console.error('Error deleting page. ', err);
-        const errMessage = JSON.parse(err.error);
-        this.interactionsService.showAlert('Uh ho! Page deletion unsuccessful. ' + errMessage, 'danger');
+        this.errorHanderService.handleError('Uh ho! Page deletion unsuccessful', err);
       }
       );
   }

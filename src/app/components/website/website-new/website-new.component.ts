@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Website } from '../../../model/model';
 import { WebsiteService } from '../../../services/website.service.client';
 import { InteractionsService } from '../../../services/interactions.service.client';
+import { ErrorHandlerService } from '../../../services/error-handler.service.client';
 
 @Component({
   selector: 'app-website-new',
@@ -20,7 +21,8 @@ export class WebsiteNewComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private websiteService: WebsiteService,
-    private interactionsService: InteractionsService) { }
+    private interactionsService: InteractionsService,
+    private errorHanderService: ErrorHandlerService) { }
 
   ngOnInit() {
     // get userid parameter route
@@ -47,13 +49,11 @@ export class WebsiteNewComponent implements OnInit {
             this.interactionsService.showAlert('Website created successfully', 'success', true);
             this.router.navigate(['../'], { relativeTo: this.activatedRoute });
           } else {
-            this.interactionsService.showAlert('Uh ho! Website creation failed', 'danger');
+            this.interactionsService.showAlert('Uh ho! Website creation failed. Refresh page and try again');
           }
         },
         (err) => {
-          const errMessage = JSON.parse(err.error);
-          this.interactionsService.showAlert('Uh ho! Website creation failed. ' + errMessage, 'danger');
-          console.error('Website creation failed. ', err);
+          this.errorHanderService.handleError('Uh ho! Website creation failed', err);
         }
         );
 

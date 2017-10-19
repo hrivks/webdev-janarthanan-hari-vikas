@@ -4,6 +4,7 @@ import { Website } from '../../../model/model';
 import { WebsiteService } from '../../../services/website.service.client';
 import { UserService } from '../../../services/user.service.client';
 import { InteractionsService } from '../../../services/interactions.service.client';
+import { ErrorHandlerService } from '../../../services/error-handler.service.client';
 
 @Component({
   selector: 'app-website-list',
@@ -20,7 +21,8 @@ export class WebsiteListComponent implements OnInit {
     private router: Router,
     private websiteService: WebsiteService,
     private userService: UserService,
-    private interactionsService: InteractionsService) { }
+    private interactionsService: InteractionsService,
+    private errorHanderService: ErrorHandlerService) { }
 
 
   ngOnInit() {
@@ -56,9 +58,7 @@ export class WebsiteListComponent implements OnInit {
         this.websites = websites;
       },
       (err) => {
-        console.error('Error getting website list. ', err);
-        const errMessage = JSON.parse(err.error);
-        this.interactionsService.showAlert('Oops! Can\'t load website list. ' + errMessage);
+        this.errorHanderService.handleError('Oops! Can\'t load website list', err);
       }
       );
   }

@@ -16,6 +16,7 @@ import { WidgetService } from './services/widget.service.client';
 import { FlickrService } from './services/flickr.service.client';
 import { InteractionsService } from './services/interactions.service.client';
 import { AuthService } from './services/auth.service.client';
+import { ErrorHandlerService } from './services/error-handler.service.client';
 import { TestService } from './services/test.service.client';
 // #endregion
 
@@ -96,7 +97,15 @@ import { SortableDirective } from './directives/sortable.directive';
     FormsModule,
     Routing
   ],
-  providers: [TestService, UserService, WebsiteService, PageService, WidgetService, FlickrService, AuthService, InteractionsService],
+  providers: [TestService,
+    UserService,
+    WebsiteService,
+    PageService,
+    WidgetService,
+    FlickrService,
+    AuthService,
+    ErrorHandlerService,
+    InteractionsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

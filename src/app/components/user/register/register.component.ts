@@ -5,7 +5,7 @@ import { User } from '../../../model/model';
 import { UserService } from '../../../services/user.service.client';
 import { AuthService } from '../../../services/auth.service.client';
 import { InteractionsService } from '../../../services/interactions.service.client';
-
+import { ErrorHandlerService } from '../../../services/error-handler.service.client';
 
 
 @Component({
@@ -24,7 +24,8 @@ export class RegisterComponent implements OnInit {
   constructor(private userService: UserService,
     private router: Router,
     private authService: AuthService,
-    private interactionsService: InteractionsService) { }
+    private interactionsService: InteractionsService,
+    private errorHanderService: ErrorHandlerService) { }
 
   ngOnInit() {
   }
@@ -50,14 +51,12 @@ export class RegisterComponent implements OnInit {
             }
           },
           (err) => {
-            this.interactionsService.showAlert('Error logging in post registration');
-            console.error('Error logging in post registration', err);
+            this.errorHanderService.handleError('Error logging in post registration', err);
           }
           );
       },
       (err) => {
-        this.interactionsService.showAlert('Error registering user. Please try again.');
-        console.error('Error registering user', err);
+        this.errorHanderService.handleError('Error registering user', err);
       }
       );
   }

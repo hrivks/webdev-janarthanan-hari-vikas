@@ -12,3 +12,9 @@
 .hvj-app-alert .alert .close {
     margin-top:-3px;
 }
+
+.hvj-app-alert .alert-text span {
+    font-size: 80%;
+    font-weight: bold;
+    font-style: italic;
+}

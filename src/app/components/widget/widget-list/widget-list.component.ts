@@ -4,7 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Widget, WidgetType } from '../../../model/model';
 import { WidgetService } from '../../../services/widget.service.client';
 import { InteractionsService } from '../../../services/interactions.service.client';
+import { ErrorHandlerService } from '../../../services/error-handler.service.client';
 import { AppConstants } from '../../../app.constant';
+
 
 @Component({
   selector: 'app-widget-list',
@@ -21,7 +23,8 @@ export class WidgetListComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private widgetService: WidgetService,
-    private interactionsService: InteractionsService) { }
+    private interactionsService: InteractionsService,
+    private errorHanderService: ErrorHandlerService) { }
 
 
   ngOnInit() {
@@ -33,9 +36,7 @@ export class WidgetListComponent implements OnInit {
           this.widgets = widgets;
         },
         (err) => {
-          console.error('Error getting list of widgets', err);
-          const errMessage = JSON.parse(err.error);
-          this.interactionsService.showAlert('Oops! Error getting list of widgets. ' + errMessage);
+          this.errorHanderService.handleError('Oops! Error getting list of widgets', err);
         }
         );
 
@@ -55,13 +56,10 @@ export class WidgetListComponent implements OnInit {
     this.widgetService.reorderWidget(this.pageId, this.widgets[newPosition.initial], newPosition.initial, newPosition.final)
       .subscribe(
       (widgets) => {
-        console.log('Widget order updated');
         // this.widgets = widgets;
       },
       (err) => {
-        console.error('Error updating widget order. ', err);
-        const errMessage = JSON.parse(err);
-        this.interactionsService.showAlert('Oops! Something went wrong in saving widget order. ' + errMessage, 'danger', true);
+        this.errorHanderService.handleError('Oops! Something went wrong in saving widget order', err, true);
       }
       );
   }

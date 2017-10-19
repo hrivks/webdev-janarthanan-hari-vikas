@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Website } from '../../../model/model';
 import { WebsiteService } from '../../../services/website.service.client';
 import { InteractionsService } from '../../../services/interactions.service.client';
+import { ErrorHandlerService } from '../../../services/error-handler.service.client';
 
 @Component({
   selector: 'app-website-edit',
@@ -22,7 +23,8 @@ export class WebsiteEditComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private websiteService: WebsiteService,
-    private interactionsService: InteractionsService) { }
+    private interactionsService: InteractionsService,
+    private errorHanderService: ErrorHandlerService) { }
 
   ngOnInit() {
     this.showDeleteConfirmation = false;
@@ -42,8 +44,7 @@ export class WebsiteEditComponent implements OnInit {
           }
         },
         (err) => {
-          const errMessage = JSON.parse(err.error);
-          this.interactionsService.showAlert('Error getting Website with Id ' + this.websiteId + '. ' + errMessage);
+          this.errorHanderService.handleError('Error getting Website with Id ' + this.websiteId, err);
           this.router.navigate(['../'], { relativeTo: this.activatedRoute });
         }
         );
@@ -71,9 +72,7 @@ export class WebsiteEditComponent implements OnInit {
           }
         },
         (err) => {
-          const errMessage = JSON.parse(err.error);
-          this.interactionsService.showAlert('Error saving changes. ' + errMessage);
-          console.error('Error saving website.', err);
+          this.errorHanderService.handleError('Error saving website', err);
         }
         );
 
@@ -95,9 +94,7 @@ export class WebsiteEditComponent implements OnInit {
         }
       },
       (err) => {
-        const errMessage = JSON.parse(err.error);
-        this.interactionsService.showAlert('Website deletion failed. ' + errMessage, 'danger');
-        console.error('Website deletion failed. ', err);
+        this.errorHanderService.handleError('Error deleting website', err);
       }
       );
 

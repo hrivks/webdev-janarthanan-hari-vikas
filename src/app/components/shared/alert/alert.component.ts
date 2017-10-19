@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { InteractionsService } from '../../../services/interactions.service.client';
 import { AppConstants } from '../../../app.constant';
 import { AlertData } from '../../../model/ui-model';
@@ -6,16 +7,18 @@ import { AlertData } from '../../../model/ui-model';
 @Component({
   selector: 'app-alert',
   templateUrl: './alert.component.html',
-  styleUrls: ['./alert.component.css']
+  styleUrls: ['./alert.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AlertComponent implements OnInit {
 
   // properties
   private alertType: string;
-  private alertText: string;
+  private alertText: string | SafeHtml;
   private alertVisible: boolean;
 
-  constructor(private interactionsService: InteractionsService) { }
+  constructor(private sce: DomSanitizer,
+    private interactionsService: InteractionsService) { }
 
   ngOnInit() {
     this.alertVisible = false;
@@ -28,7 +31,7 @@ export class AlertComponent implements OnInit {
    */
   showAlert(data: AlertData) {
     if (data.text) {
-      this.alertText = data.text;
+      this.alertText = this.sce.bypassSecurityTrustHtml(data.text);
       this.alertType = data.type;
       this.alertVisible = true;
 
