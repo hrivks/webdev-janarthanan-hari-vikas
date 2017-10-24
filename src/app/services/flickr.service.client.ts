@@ -13,7 +13,7 @@ export class FlickrService {
 
     constructor(private http: HttpClient,
         private errorHanderService: ErrorHandlerService) {
-        this.flickrApiKey = '';  // << ADD YOUR FLICKR API KEY HERE >>
+        this.flickrApiKey = 'bd852c88d114a538443cfffa86380f74';  // << ADD YOUR FLICKR API KEY HERE >>
 
         if (!this.flickrApiKey) {
             this.errorHanderService.handleError('Flickr Api key is required',

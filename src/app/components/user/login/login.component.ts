@@ -31,7 +31,9 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.interactionsService.showLoader(true);
     this.authService.login(this.username, this.password)
+      .finally(() => { this.interactionsService.showLoader(false); })
       .subscribe(
       (user) => {
         this.router.navigate(['/user', user._id]);
@@ -42,6 +44,7 @@ export class LoginComponent implements OnInit {
         this.loginError = 'Error. ' + errMessage;
       }
       );
+
   }
 
 }

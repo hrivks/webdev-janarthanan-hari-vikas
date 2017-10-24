@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InteractionsService } from '../../../services/interactions.service.client';
 import { AppConstants } from '../../../app.constant';
 
+
 @Component({
   selector: 'app-loader',
   templateUrl: './loader.component.html',
@@ -10,21 +11,19 @@ import { AppConstants } from '../../../app.constant';
 export class LoaderComponent implements OnInit {
 
   // properties
-  private show: boolean;
+  private showLoader = false;
 
-  constructor(private interactionsService: InteractionsService) { }
+  constructor(private interactionService: InteractionsService) { }
 
   ngOnInit() {
-    this.show = false;
-    this.interactionsService.registerCallback(AppConstants.EVENTS.showLoader, (show) => { this.showLoader(show); });
+    this.interactionService.registerCallback(AppConstants.EVENTS.showLoader, (d) => { this.toggleLoader(d); }, true);
   }
 
   /**
-   * Show / Hide loading screen
-   * @param show true to show; false to hide
+   * Show / hide loader
+   * @param val true to show, false to hide
    */
-  showLoader(show: boolean) {
-    this.show = show;
+  toggleLoader(val: boolean) {
+    this.showLoader = val;
   }
-
 }

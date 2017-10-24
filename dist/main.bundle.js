@@ -987,7 +987,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".hvj-loading .hvj-loading-mask {\r\n    opacity: 0.6;\r\n    z-index: 1000;\r\n}\r\n\r\n.hvj-loading .hvj-img-loader {\r\n    position: fixed;\r\n    z-index: 1001;\r\n}", ""]);
+exports.push([module.i, ".hvj-loader{\r\n    position: fixed;\r\n    left: 0;\r\n    right: 0;\r\n    top: 50%;\r\n}\r\n\r\n.hvj-loader .loader-mask {\r\n    background: white;\r\n    opacity: 0.6;\r\n    position: fixed;\r\n    top:0;\r\n    bottom: 0;\r\n    left: 0;\r\n    right: 0;\r\n}\r\n\r\n.hvj-loader .loader-img{\r\n    position: relative;\r\n}", ""]);
 
 // exports
 
@@ -1000,7 +1000,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/shared/loader/loader.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-loading\"\n     [hidden]=\"!show\">\n  <div class=\"modal-backdrop bg-light hvj-loading-mask\">\n  </div>\n  <p class=\"mt-5 text-center w-100 hvj-img-loader\">\n    <img class=\"mt-5\"\n         src=\"../../../../assets/loader.gif\">\n  </p>\n</div>"
+module.exports = "<div class=\"hvj-loader text-center\" *ngIf=\"showLoader\">\n  <div class=\"loader-mask\"></div>\n  <img class=\"loader-img\" src=\"../../../../assets/loader.gif\">\n</div>"
 
 /***/ }),
 
@@ -1025,20 +1025,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var LoaderComponent = (function () {
-    function LoaderComponent(interactionsService) {
-        this.interactionsService = interactionsService;
+    function LoaderComponent(interactionService) {
+        this.interactionService = interactionService;
+        // properties
+        this.showLoader = false;
     }
     LoaderComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.show = false;
-        this.interactionsService.registerCallback(__WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].EVENTS.showLoader, function (show) { _this.showLoader(show); });
+        this.interactionService.registerCallback(__WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].EVENTS.showLoader, function (d) { _this.toggleLoader(d); }, true);
     };
     /**
-     * Show / Hide loading screen
-     * @param show true to show; false to hide
+     * Show / hide loader
+     * @param val true to show, false to hide
      */
-    LoaderComponent.prototype.showLoader = function (show) {
-        this.show = show;
+    LoaderComponent.prototype.toggleLoader = function (val) {
+        this.showLoader = val;
     };
     return LoaderComponent;
 }());
@@ -1194,7 +1195,9 @@ var LoginComponent = (function () {
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
+        this.interactionsService.showLoader(true);
         this.authService.login(this.username, this.password)
+            .finally(function () { _this.interactionsService.showLoader(false); })
             .subscribe(function (user) {
             _this.router.navigate(['/user', user._id]);
         }, function (err) {
@@ -2341,7 +2344,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Top Nav-->\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\n  <ul class=\"navbar-nav mr-3\">\n    <li class=\"nav-item\">\n      <!-- Back button -->\n      <a class=\"nav-link px-0\"\n         [routerLink]=\"['../']\"\n         title=\"Edit Widget\">\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\n      </a>\n      <!-- /Back button -->\n    </li>\n  </ul>\n\n  <span class=\"navbar-brand ml-auto mr-auto\">\n    <i class=\"fa fa-flickr\"\n       aria-hidden=\"true\"></i>\n    Flickr Image Search\n  </span>\n\n</nav>\n<!--/Top Nav-->\n\n<!--content-->\n<div class=\"container hvj-flickr-image-search\">\n  <form ngForm\n        (ngSubmit)=\"search()\">\n    <div class=\"input-group\">\n      <input type=\"text\"\n             class=\"form-control\"\n             placeholder=\"Search Images\"\n             name=\"searchText\"\n             [(ngModel)]=\"searchText\">\n      <span class=\"input-group-btn\">\n        <button type=\"submit\"\n                class=\"btn btn-royal text-light\">\n          <span class=\"fa fa-check fa-lg\"></span>\n        </button>\n      </span>\n    </div>\n  </form>\n  <div *ngIf=\"searchResults\"\n       class=\"mt-3 row search-results-wrap\">\n    <div class=\"d-inline-block\"\n         *ngFor=\"let img of searchResults\"\n         (click)=\"selectImage(img)\">\n      <img class=\"img-thumbnail p-1 rounded-0\"\n           [src]=\"img\">\n    </div>\n  </div>\n  <p class=\"text-center mt-3\"\n     *ngIf=\"!searchResults || searchResults.length == 0\">\n    <small>\n      <em class=\"text-secondary\">Nothing to show yet!</em>\n    </small>\n  </p>\n\n</div>\n<!--/content-->"
+module.exports = "<!--Top Nav-->\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\n  <ul class=\"navbar-nav mr-3\">\n    <li class=\"nav-item\">\n      <!-- Back button -->\n      <a class=\"nav-link px-0\"\n         [routerLink]=\"['../']\"\n         title=\"Edit Widget\">\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\n      </a>\n      <!-- /Back button -->\n    </li>\n  </ul>\n\n  <span class=\"navbar-brand ml-auto mr-auto\">\n    <i class=\"fa fa-flickr\"\n       aria-hidden=\"true\"></i>\n    Flickr Image Search\n  </span>\n\n</nav>\n<!--/Top Nav-->\n\n<!--content-->\n<div class=\"container hvj-flickr-image-search\">\n  <form ngForm\n        (ngSubmit)=\"search()\">\n    <div class=\"input-group\">\n      <input type=\"text\"\n             class=\"form-control\"\n             placeholder=\"Search Images\"\n             name=\"searchText\"\n             [(ngModel)]=\"searchText\">\n      <span class=\"input-group-btn\">\n        <button type=\"submit\"\n                class=\"btn btn-royal text-light\">\n          <span class=\"fa fa-check fa-lg\"></span>\n        </button>\n      </span>\n    </div>\n  </form>\n  <div *ngIf=\"searchResults\"\n       class=\"mt-3 search-results-wrap\">\n    <div class=\"d-inline-block\"\n         *ngFor=\"let img of searchResults\"\n         (click)=\"selectImage(img)\">\n      <img class=\"img-thumbnail p-1 rounded-0\"\n           [src]=\"img\">\n    </div>\n  </div>\n  <p class=\"text-center mt-3\"\n     *ngIf=\"!searchResults || searchResults.length == 0\">\n    <small>\n      <em class=\"text-secondary\">Nothing to show yet!</em>\n    </small>\n  </p>\n\n</div>\n<!--/content-->"
 
 /***/ }),
 
@@ -3390,7 +3393,7 @@ var FlickrService = (function () {
         this.http = http;
         this.errorHanderService = errorHanderService;
         this.flickrSearchEndpoint = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key={key}&text={text}&format=json&nojsoncallback=1&accuracy=3';
-        this.flickrApiKey = ''; // << ADD YOUR FLICKR API KEY HERE >>
+        this.flickrApiKey = 'bd852c88d114a538443cfffa86380f74'; // << ADD YOUR FLICKR API KEY HERE >>
         if (!this.flickrApiKey) {
             this.errorHanderService.handleError('Flickr Api key is required', Error('Please specify api key in flickr.service.client.ts file'));
         }
