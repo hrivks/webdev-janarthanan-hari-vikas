@@ -494,8 +494,10 @@ var PageEditComponent = (function () {
             _this.userId = params['uid'];
             _this.websiteId = params['wid'];
             _this.pageId = params['pid'];
-            _this.pageService.findPageById(_this.pageId).
-                subscribe(function (page) {
+            _this.interactionsService.showLoader(true);
+            _this.pageService.findPageById(_this.pageId)
+                .finally(function () { _this.interactionsService.showLoader(false); })
+                .subscribe(function (page) {
                 _this.page = page;
             }, function (err) {
                 _this.errorHanderService.handleError('Oopsie! Error retrieving page with id ' + _this.pageId, err, true);
@@ -513,7 +515,9 @@ var PageEditComponent = (function () {
             this.pageEditForm.controls.name.markAsTouched({ onlySelf: true });
         }
         else {
+            this.interactionsService.showLoader(true);
             this.pageService.updatePage(this.pageId, this.page)
+                .finally(function () { _this.interactionsService.showLoader(false); })
                 .subscribe(function (updatedPage) {
                 _this.interactionsService.showAlert('Page saved successfully', 'success', true);
                 _this.router.navigate(['/user', _this.userId, 'website', _this.websiteId, 'page']);
@@ -527,7 +531,9 @@ var PageEditComponent = (function () {
      */
     PageEditComponent.prototype.deletePage = function () {
         var _this = this;
+        this.interactionsService.showLoader(true);
         this.pageService.deletePage(this.pageId)
+            .finally(function () { _this.interactionsService.showLoader(false); })
             .subscribe(function (deletedPage) {
             _this.interactionsService.showAlert('Page deleted successfully', 'success', true);
             _this.router.navigate(['/user', _this.userId, 'website', _this.websiteId, 'page']);
@@ -621,8 +627,10 @@ var PageListComponent = (function () {
         this.activatedRoute.params.subscribe(function (params) {
             _this.userId = params['uid'];
             _this.websiteId = params['wid'];
+            _this.interactionsService.showLoader(true);
             // check if website exists
             _this.websiteService.findWebsiteById(_this.websiteId)
+                .finally(function () { _this.interactionsService.showLoader(false); })
                 .subscribe(function (websiteExists) {
                 if (websiteExists) {
                     _this.getPages();
@@ -631,6 +639,8 @@ var PageListComponent = (function () {
                     _this.interactionsService.showAlert('Website with Id ' + _this.websiteId + ' does not exist.');
                     _this.router.navigate(['../../'], { relativeTo: _this.activatedRoute });
                 }
+            }, function (err) {
+                _this.errorHanderService.handleError('Error loading Page list', err);
             });
         });
         this.getPages();
@@ -642,7 +652,9 @@ var PageListComponent = (function () {
      */
     PageListComponent.prototype.getPages = function () {
         var _this = this;
+        this.interactionsService.showLoader(true);
         this.pageService.findPagesBywebsiteId(this.websiteId)
+            .finally(function () { _this.interactionsService.showLoader(false); })
             .subscribe(function (pages) {
             _this.pages = pages;
         }, function (err) {
@@ -750,7 +762,9 @@ var PageNewComponent = (function () {
             this.pageNewForm.controls.name.markAsTouched({ onlySelf: true });
         }
         else {
+            this.interactionsService.showLoader(true);
             this.pageService.createPage(this.websiteId, this.page)
+                .finally(function () { _this.interactionsService.showLoader(false); })
                 .subscribe(function (createdPage) {
                 _this.interactionsService.showAlert('Page created successfully', 'success', true);
                 _this.router.navigate(['/user', _this.userId, 'website', _this.websiteId, 'page']);
@@ -1344,7 +1358,9 @@ var ProfileComponent = (function () {
         }
         //#endregion
         if (!this.profileErrors.hasError) {
+            this.interactionsService.showLoader(true);
             this.userService.updateUser(this.userId, this.user)
+                .finally(function () { _this.interactionsService.showLoader(false); })
                 .subscribe(function (updatedUser) {
                 if (updatedUser) {
                     _this.user = updatedUser;
@@ -1464,10 +1480,12 @@ var RegisterComponent = (function () {
         newUser.username = this.username;
         newUser.password = this.password;
         // create new user
+        this.interactionsService.showLoader(true);
         this.userService.createUser(newUser)
             .subscribe(function (registeredUser) {
             // automatically login new user
             _this.authService.login(registeredUser.username, registeredUser.password)
+                .finally(function () { _this.interactionsService.showLoader(false); })
                 .subscribe(function (user) {
                 if (user) {
                     _this.router.navigate(['/user', user._id]);
@@ -1481,6 +1499,7 @@ var RegisterComponent = (function () {
             });
         }, function (err) {
             _this.errorHanderService.handleError('Error registering user', err);
+            _this.interactionsService.showLoader(false);
         });
     };
     return RegisterComponent;
@@ -1565,7 +1584,9 @@ var WebsiteEditComponent = (function () {
         this.activatedRoute.params.subscribe(function (params) {
             _this.userId = params['uid'];
             _this.websiteId = params['wid'];
+            _this.interactionsService.showLoader(true);
             _this.websiteService.findWebsiteById(_this.websiteId)
+                .finally(function () { _this.interactionsService.showLoader(false); })
                 .subscribe(function (website) {
                 if (website) {
                     _this.website = website;
@@ -1591,7 +1612,9 @@ var WebsiteEditComponent = (function () {
             this.websiteEditForm.controls.name.markAsTouched({ onlySelf: true });
         }
         else {
+            this.interactionsService.showLoader(true);
             this.websiteService.updateWebsite(this.websiteId, this.website)
+                .finally(function () { _this.interactionsService.showLoader(false); })
                 .subscribe(function (updatedWebsite) {
                 if (updatedWebsite) {
                     _this.interactionsService.showAlert('Website saved successfully', 'success', true);
@@ -1611,7 +1634,9 @@ var WebsiteEditComponent = (function () {
      */
     WebsiteEditComponent.prototype.deleteWebsite = function () {
         var _this = this;
+        this.interactionsService.showLoader(true);
         this.websiteService.deleteWebsite(this.websiteId)
+            .finally(function () { _this.interactionsService.showLoader(false); })
             .subscribe(function (deletedWebsite) {
             if (deletedWebsite) {
                 _this.interactionsService.showAlert('Website deleted successfully', 'success', true);
@@ -1709,8 +1734,10 @@ var WebsiteListComponent = (function () {
         // get userid parameter route
         this.activatedRoute.params.subscribe(function (params) {
             _this.userId = params['uid'];
+            _this.interactionsService.showLoader(true);
             // check if user exists
             _this.userService.findUserById(_this.userId)
+                .finally(function () { _this.interactionsService.showLoader(false); })
                 .subscribe(function (userExists) {
                 if (userExists) {
                     _this.getWebsites();
@@ -1719,6 +1746,8 @@ var WebsiteListComponent = (function () {
                     _this.interactionsService.showAlert('User with Id ' + _this.userId + ' does not exist. Please login again');
                     _this.router.navigate(['/login']);
                 }
+            }, function (err) {
+                _this.errorHanderService.handleError('Error loading website list', err);
             });
         });
         // register for website change event
@@ -1729,7 +1758,9 @@ var WebsiteListComponent = (function () {
      */
     WebsiteListComponent.prototype.getWebsites = function () {
         var _this = this;
+        this.interactionsService.showLoader(true);
         this.websiteService.findWebsitesByUser(this.userId)
+            .finally(function () { _this.interactionsService.showLoader(false); })
             .subscribe(function (websites) {
             _this.websites = websites;
         }, function (err) {
@@ -1836,7 +1867,9 @@ var WebsiteNewComponent = (function () {
             this.websiteNewForm.controls.name.markAsTouched({ onlySelf: true });
         }
         else {
+            this.interactionsService.showLoader(true);
             this.websiteService.createWebsite(this.userId, this.website)
+                .finally(function () { _this.interactionsService.showLoader(false); })
                 .subscribe(function (newWebsite) {
                 _this.website = newWebsite;
                 if (_this.website) {
@@ -1951,8 +1984,10 @@ var WidgetChooserComponent = (function () {
         var _this = this;
         var newWidget = new __WEBPACK_IMPORTED_MODULE_2__model_model__["d" /* Widget */]();
         newWidget.widgetType = __WEBPACK_IMPORTED_MODULE_2__model_model__["e" /* WidgetType */][type];
-        this.widgetService.createWidget(this.pageId, newWidget).
-            subscribe(function (createdWidget) {
+        this.interactionsService.showLoader(true);
+        this.widgetService.createWidget(this.pageId, newWidget)
+            .finally(function () { _this.interactionsService.showLoader(false); })
+            .subscribe(function (createdWidget) {
             _this.router.navigate(['../' + createdWidget._id], { relativeTo: _this.activatedRoute });
         }, function (err) {
             _this.errorHanderService.handleError('Uhhhh! Error creating widget', err);
@@ -2039,7 +2074,9 @@ var WidgetEditComponent = (function () {
         var _this = this;
         this.activatedRoute.params.subscribe(function (params) {
             var widgetId = params['wgid'];
+            _this.interactionsService.showLoader(true);
             _this.widgetService.findWidgetById(widgetId)
+                .finally(function () { _this.interactionsService.showLoader(false); })
                 .subscribe(function (widget) {
                 _this.widget = widget;
             }, function (err) {
@@ -2054,7 +2091,9 @@ var WidgetEditComponent = (function () {
      */
     WidgetEditComponent.prototype.updateWidget = function (widget) {
         var _this = this;
+        this.interactionsService.showLoader(true);
         this.widgetService.updateWidget(widget._id, widget)
+            .finally(function () { _this.interactionsService.showLoader(false); })
             .subscribe(function (updatedWidget) {
             _this.interactionsService.showAlert('Widget updated successfully', 'success', true);
             _this.router.navigate(['../'], { relativeTo: _this.activatedRoute });
@@ -2068,7 +2107,9 @@ var WidgetEditComponent = (function () {
      */
     WidgetEditComponent.prototype.deleteWidget = function (widgetId) {
         var _this = this;
+        this.interactionsService.showLoader(true);
         this.widgetService.deleteWidget(widgetId)
+            .finally(function () { _this.interactionsService.showLoader(false); })
             .subscribe(function (deletedWidget) {
             _this.interactionsService.showAlert('Widget deleted successfully', 'success', true);
             _this.router.navigate(['../'], { relativeTo: _this.activatedRoute });

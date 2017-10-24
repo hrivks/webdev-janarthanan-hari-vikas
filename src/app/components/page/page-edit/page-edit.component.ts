@@ -34,8 +34,10 @@ export class PageEditComponent implements OnInit {
       this.userId = params['uid'];
       this.websiteId = params['wid'];
       this.pageId = params['pid'];
-      this.pageService.findPageById(this.pageId).
-        subscribe(
+      this.interactionsService.showLoader(true);
+      this.pageService.findPageById(this.pageId)
+        .finally(() => { this.interactionsService.showLoader(false); })
+        .subscribe(
         (page) => {
           this.page = page;
         },
@@ -55,7 +57,9 @@ export class PageEditComponent implements OnInit {
       // touch controls to highlight validation
       this.pageEditForm.controls.name.markAsTouched({ onlySelf: true });
     } else {
+      this.interactionsService.showLoader(true);
       this.pageService.updatePage(this.pageId, this.page)
+        .finally(() => { this.interactionsService.showLoader(false); })
         .subscribe(
         (updatedPage) => {
           this.interactionsService.showAlert('Page saved successfully', 'success', true);
@@ -72,7 +76,9 @@ export class PageEditComponent implements OnInit {
    * Delete current page
    */
   deletePage() {
+    this.interactionsService.showLoader(true);
     this.pageService.deletePage(this.pageId)
+      .finally(() => { this.interactionsService.showLoader(false); })
       .subscribe(
       (deletedPage) => {
         this.interactionsService.showAlert('Page deleted successfully', 'success', true);

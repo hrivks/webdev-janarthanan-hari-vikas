@@ -29,8 +29,10 @@ export class WebsiteListComponent implements OnInit {
     // get userid parameter route
     this.activatedRoute.params.subscribe((params: any) => {
       this.userId = params['uid'];
+      this.interactionsService.showLoader(true);
       // check if user exists
       this.userService.findUserById(this.userId)
+        .finally(() => { this.interactionsService.showLoader(false); })
         .subscribe(
         (userExists) => {
           if (userExists) {
@@ -39,6 +41,9 @@ export class WebsiteListComponent implements OnInit {
             this.interactionsService.showAlert('User with Id ' + this.userId + ' does not exist. Please login again');
             this.router.navigate(['/login']);
           }
+        },
+        (err) => {
+          this.errorHanderService.handleError('Error loading website list', err);
         }
         );
 
@@ -52,7 +57,9 @@ export class WebsiteListComponent implements OnInit {
    * Get list of websites for the current user
    */
   getWebsites() {
+    this.interactionsService.showLoader(true);
     this.websiteService.findWebsitesByUser(this.userId)
+      .finally(() => { this.interactionsService.showLoader(false); })
       .subscribe(
       (websites) => {
         this.websites = websites;

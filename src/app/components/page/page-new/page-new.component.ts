@@ -46,7 +46,9 @@ export class PageNewComponent implements OnInit {
       // touch controls to highlight validation
       this.pageNewForm.controls.name.markAsTouched({ onlySelf: true });
     } else {
+      this.interactionsService.showLoader(true);
       this.pageService.createPage(this.websiteId, this.page)
+        .finally(() => { this.interactionsService.showLoader(false); })
         .subscribe(
         (createdPage) => {
           this.interactionsService.showAlert('Page created successfully', 'success', true);

@@ -32,7 +32,9 @@ export class WebsiteEditComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: any) => {
       this.userId = params['uid'];
       this.websiteId = params['wid'];
+      this.interactionsService.showLoader(true);
       this.websiteService.findWebsiteById(this.websiteId)
+        .finally(() => { this.interactionsService.showLoader(false); })
         .subscribe(
         (website) => {
           if (website) {
@@ -60,7 +62,9 @@ export class WebsiteEditComponent implements OnInit {
       // touch controls to highlight validation
       this.websiteEditForm.controls.name.markAsTouched({ onlySelf: true });
     } else {
+      this.interactionsService.showLoader(true);
       this.websiteService.updateWebsite(this.websiteId, this.website)
+        .finally(() => { this.interactionsService.showLoader(false); })
         .subscribe(
         (updatedWebsite) => {
           if (updatedWebsite) {
@@ -83,7 +87,9 @@ export class WebsiteEditComponent implements OnInit {
    * Delete current website
    */
   deleteWebsite() {
+    this.interactionsService.showLoader(true);
     this.websiteService.deleteWebsite(this.websiteId)
+      .finally(() => { this.interactionsService.showLoader(false); })
       .subscribe(
       (deletedWebsite) => {
         if (deletedWebsite) {

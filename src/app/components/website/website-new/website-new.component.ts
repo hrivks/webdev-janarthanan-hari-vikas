@@ -41,7 +41,9 @@ export class WebsiteNewComponent implements OnInit {
       // touch controls to highlight validation
       this.websiteNewForm.controls.name.markAsTouched({ onlySelf: true });
     } else {
+      this.interactionsService.showLoader(true);
       this.websiteService.createWebsite(this.userId, this.website)
+        .finally(() => { this.interactionsService.showLoader(false); })
         .subscribe(
         (newWebsite) => {
           this.website = newWebsite;

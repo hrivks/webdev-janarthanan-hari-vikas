@@ -26,7 +26,9 @@ export class WidgetEditComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: any) => {
       const widgetId = params['wgid'];
+      this.interactionsService.showLoader(true);
       this.widgetService.findWidgetById(widgetId)
+        .finally(() => { this.interactionsService.showLoader(false); })
         .subscribe(
         (widget) => {
           this.widget = widget;
@@ -45,7 +47,9 @@ export class WidgetEditComponent implements OnInit {
    * @param widget updated widget object
    */
   updateWidget(widget: Widget) {
+    this.interactionsService.showLoader(true);
     this.widgetService.updateWidget(widget._id, widget)
+      .finally(() => { this.interactionsService.showLoader(false); })
       .subscribe(
       (updatedWidget) => {
         this.interactionsService.showAlert('Widget updated successfully', 'success', true);
@@ -62,7 +66,9 @@ export class WidgetEditComponent implements OnInit {
    * @param widgetId Id of the widget to be deleted
    */
   deleteWidget(widgetId: string) {
+    this.interactionsService.showLoader(true);
     this.widgetService.deleteWidget(widgetId)
+      .finally(() => { this.interactionsService.showLoader(false); })
       .subscribe(
       (deletedWidget) => {
         this.interactionsService.showAlert('Widget deleted successfully', 'success', true);

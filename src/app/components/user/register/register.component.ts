@@ -36,11 +36,13 @@ export class RegisterComponent implements OnInit {
     newUser.password = this.password;
 
     // create new user
+    this.interactionsService.showLoader(true);
     this.userService.createUser(newUser)
       .subscribe(
       (registeredUser) => {
         // automatically login new user
         this.authService.login(registeredUser.username, registeredUser.password)
+          .finally(() => { this.interactionsService.showLoader(false); })
           .subscribe(
           (user) => {
             if (user) {
@@ -57,6 +59,7 @@ export class RegisterComponent implements OnInit {
       },
       (err) => {
         this.errorHanderService.handleError('Error registering user', err);
+        this.interactionsService.showLoader(false);
       }
       );
   }

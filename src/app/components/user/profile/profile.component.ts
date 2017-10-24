@@ -99,7 +99,9 @@ export class ProfileComponent implements OnInit {
     //#endregion
 
     if (!this.profileErrors.hasError) {
+      this.interactionsService.showLoader(true);
       this.userService.updateUser(this.userId, this.user)
+        .finally(() => { this.interactionsService.showLoader(false); })
         .subscribe(
         (updatedUser) => {
           if (updatedUser) {

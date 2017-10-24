@@ -32,8 +32,10 @@ export class PageListComponent implements OnInit {
       this.userId = params['uid'];
       this.websiteId = params['wid'];
 
+      this.interactionsService.showLoader(true);
       // check if website exists
       this.websiteService.findWebsiteById(this.websiteId)
+        .finally(() => { this.interactionsService.showLoader(false); })
         .subscribe(
         (websiteExists) => {
           if (websiteExists) {
@@ -42,6 +44,9 @@ export class PageListComponent implements OnInit {
             this.interactionsService.showAlert('Website with Id ' + this.websiteId + ' does not exist.');
             this.router.navigate(['../../'], { relativeTo: this.activatedRoute });
           }
+        },
+        (err) => {
+          this.errorHanderService.handleError('Error loading Page list', err);
         }
         );
 
@@ -57,7 +62,9 @@ export class PageListComponent implements OnInit {
    * Get list of Pages for the current user
    */
   getPages() {
+    this.interactionsService.showLoader(true);
     this.pageService.findPagesBywebsiteId(this.websiteId)
+      .finally(() => { this.interactionsService.showLoader(false); })
       .subscribe(
       (pages) => {
         this.pages = pages;

@@ -44,8 +44,10 @@ export class WidgetChooserComponent implements OnInit {
   createWidget(type: string) {
     const newWidget = new Widget();
     newWidget.widgetType = WidgetType[type];
-    this.widgetService.createWidget(this.pageId, newWidget).
-      subscribe(
+    this.interactionsService.showLoader(true);
+    this.widgetService.createWidget(this.pageId, newWidget)
+      .finally(() => { this.interactionsService.showLoader(false); })
+      .subscribe(
       (createdWidget) => {
         this.router.navigate(['../' + createdWidget._id], { relativeTo: this.activatedRoute });
       },
