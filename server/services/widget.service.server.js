@@ -60,7 +60,7 @@ const exp = {
         let id = Math.floor(Math.random() * 10000);
 
         // ensure generated ID is unique
-        while (findWidgetById(id.toString())) {
+        while (widgets.find(w => w._id === id.toString())) {
             id++;
         }
 
@@ -99,7 +99,7 @@ const exp = {
 
     //#region: find widgets by Id
 
-    // Route: [GET] '/widget/:widgetId'
+    // Route: [GET] 'api/widget/:widgetId'
     router.get('/:widgetId', function (req, res) {
         try {
             res.json(findWidgetById(req.params.widgetId));
@@ -115,7 +115,12 @@ const exp = {
      * @returns {Widget} widget corresponding to the given Id; null if id widget doesn't exit
      */
     function findWidgetById(widgetId) {
-        return widgets.find(w => w._id === widgetId);
+        const widget = widgets.find(w => w._id === widgetId);
+        if (widget) {
+            return widget;
+        } else {
+            throw ['Widget with id ' + widgetId + ' does not exist'];
+        }
     }
 
     //#endregion: find widgets by Id
@@ -178,7 +183,7 @@ const exp = {
         if (order.final && order.initial && order.final !== order.initial) {
             const widgetsInThisPage = widgets.filter(w => w.pageId === pageId);
             const widgetAtInitPos = widgetsInThisPage[order.initial];
-            const widgetAtFinalPos = widgetsInThisPage[order.final];            
+            const widgetAtFinalPos = widgetsInThisPage[order.final];
 
             // remove widget at initial position
             widgets.splice(widgets.indexOf(widgetAtInitPos), 1);
@@ -222,6 +227,23 @@ const exp = {
     }
 
     //#endregion: Delete widget
+
+
+    // #region: Get Flickr API key
+
+    // Route: [GET] 'api/widget/Flickr/ApiKey'
+    router.get('/Flickr/ApiKey', function (req, res) {
+        try {
+            var flickrApiKey = process.env.FLICKR_API_KEY || ''; // FOR LOCAL, SPECIFY API KEY HERE
+            res.json({ key: flickrApiKey });
+        }
+        catch (ex) {
+            res.status(400).json(ex);
+        }
+    });
+
+    //#endregion: Get Flickr API key
+
 
     exp.api = {
         createWidget: createWidget,

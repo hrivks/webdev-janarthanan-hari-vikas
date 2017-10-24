@@ -1014,7 +1014,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/shared/loader/loader.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-loader text-center\" *ngIf=\"showLoader\">\n  <div class=\"loader-mask\"></div>\n  <img class=\"loader-img\" src=\"../../../../assets/loader.gif\">\n</div>"
+module.exports = "<div class=\"hvj-loader text-center\" *ngIf=\"showLoader\">\r\n  <div class=\"loader-mask\"></div>\r\n  <img class=\"loader-img\" src=\"../../../../assets/loader.gif\">\r\n</div>"
 
 /***/ }),
 
@@ -2271,7 +2271,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-html/widget-html.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Top Nav-->\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\n  <ul class=\"navbar-nav mr-3\">\n    <li class=\"nav-item\">\n      <!-- Back button -->\n      <a class=\"nav-link px-0\"\n         [routerLink]=\"['../']\"\n         title=\"Widgets\">\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\n      </a>\n      <!-- /Back button -->\n    </li>\n  </ul>\n\n  <span class=\"navbar-brand\">Widget Edit : Html</span>\n\n  <ul class=\"navbar-nav ml-auto\">\n    <li class=\"nav-item\">\n      <!-- Action button -->\n      <a class=\"nav-link px-0\"\n         (click)=\"saveChanges()\"\n         title=\"Save Changes\">\n        <span class=\"fa fa-check fa-lg\"></span>\n      </a>\n      <!-- /Action button -->\n    </li>\n  </ul>\n</nav>\n<!--/Top Nav-->\n\n<!--content-->\n<div class=\"container hvj-widget-header-edit\">\n  <form #widgetHtmlEditForm=\"ngForm\">\n    <!--Widget Name-->\n    <div class=\"form-group\">\n      <label for=\"widget-name\"\n             class=\"font-weight-bold text-muted\">Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"widgetName\"\n             name=\"name\"\n             placeholder=\"Name\"\n             [(ngModel)]=\"widget.name\"\n             #nameField=\"ngModel\">\n    </div>\n    <!--/Widget Name-->\n\n    <!--Widget Heading Text-->\n    <div class=\"form-group\">\n      <label for=\"widget-heading-text\"\n             class=\"font-weight-bold text-muted\">Text</label>\n      <textarea type=\"text\"\n                class=\"form-control\"\n                id=\"widget-heading-text\"\n                name=\"text\"\n                placeholder=\"Html\"\n                rows=5\n                [(ngModel)]=\"widget.text\"\n                #textField=\"ngModel\"\n                [ngClass]=\"{'border-danger': textField.invalid && textField.touched}\"\n                required>\n      </textarea>\n      <span *ngIf=\"textField.invalid && textField.touched\"\n            class=\"text-danger ml-2\">Text is required</span>\n    </div>\n    <!--/Widget Heading Text-->\n\n    <!-- Form buttons -->\n    <div class=\"row no-gutters\">\n      <div class=\"col-12 col-sm-9 mr-1\">\n        <!-- Save button -->\n        <button class=\"btn btn-success btn-block mr-1 mb-2\"\n                title=\"Save Widget\"\n                (click)=\"saveChanges()\">\n          <i class=\"fa fa-check\"></i>\n        </button>\n      </div>\n      <div class=\"col\">\n        <!-- Delete button -->\n        <button class=\"btn btn-danger btn-block\"\n                title=\"Delete Widget\"\n                (click)=\"showDeleteConfirmation = true\"\n                [hidden]=\"showDeleteConfirmation\">\n          <i class=\"fa fa-trash\"></i>\n        </button>\n        <button class=\"btn btn-danger btn-block mt-0\"\n                title=\"Delete Widget\"\n                [hidden]=\"!showDeleteConfirmation\"\n                (click)=\"delete()\">sure?</button>\n      </div>\n    </div>\n\n  </form>\n</div>\n<!--/content-->"
+module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <!-- Back button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['../']\"\r\n         title=\"Widgets\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n      <!-- /Back button -->\r\n    </li>\r\n  </ul>\r\n\r\n  <span class=\"navbar-brand\">Widget Edit : Html</span>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <a class=\"nav-link px-0\"\r\n         (click)=\"saveChanges()\"\r\n         title=\"Save Changes\">\r\n        <span class=\"fa fa-check fa-lg\"></span>\r\n      </a>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<!--content-->\r\n<div class=\"container hvj-widget-header-edit\">\r\n  <form #widgetHtmlEditForm=\"ngForm\">\r\n    <!--Widget Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"widget-name\"\r\n             class=\"font-weight-bold text-muted\">Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"widgetName\"\r\n             name=\"name\"\r\n             placeholder=\"Name\"\r\n             [(ngModel)]=\"widget.name\"\r\n             #nameField=\"ngModel\">\r\n    </div>\r\n    <!--/Widget Name-->\r\n\r\n    <!--Widget Heading Text-->\r\n    <div class=\"form-group\">\r\n      <label for=\"widget-heading-text\"\r\n             class=\"font-weight-bold text-muted\">Text</label>\r\n      <textarea type=\"text\"\r\n                class=\"form-control\"\r\n                id=\"widget-heading-text\"\r\n                name=\"text\"\r\n                placeholder=\"Html\"\r\n                rows=5\r\n                [(ngModel)]=\"widget.text\"\r\n                #textField=\"ngModel\"\r\n                [ngClass]=\"{'border-danger': textField.invalid && textField.touched}\"\r\n                required>\r\n      </textarea>\r\n      <span *ngIf=\"textField.invalid && textField.touched\"\r\n            class=\"text-danger ml-2\">Text is required</span>\r\n    </div>\r\n    <!--/Widget Heading Text-->\r\n\r\n    <!-- Form buttons -->\r\n    <div class=\"row no-gutters\">\r\n      <div class=\"col-12 col-sm-9 mr-1\">\r\n        <!-- Save button -->\r\n        <button class=\"btn btn-success btn-block mr-1 mb-2\"\r\n                title=\"Save Widget\"\r\n                (click)=\"saveChanges()\">\r\n          <i class=\"fa fa-check\"></i>\r\n        </button>\r\n      </div>\r\n      <div class=\"col\">\r\n        <!-- Delete button -->\r\n        <button class=\"btn btn-danger btn-block\"\r\n                title=\"Delete Widget\"\r\n                (click)=\"showDeleteConfirmation = true\"\r\n                [hidden]=\"showDeleteConfirmation\">\r\n          <i class=\"fa fa-trash\"></i>\r\n        </button>\r\n        <button class=\"btn btn-danger btn-block mt-0\"\r\n                title=\"Delete Widget\"\r\n                [hidden]=\"!showDeleteConfirmation\"\r\n                (click)=\"delete()\">sure?</button>\r\n      </div>\r\n    </div>\r\n\r\n  </form>\r\n</div>\r\n<!--/content-->"
 
 /***/ }),
 
@@ -2385,7 +2385,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Top Nav-->\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\n  <ul class=\"navbar-nav mr-3\">\n    <li class=\"nav-item\">\n      <!-- Back button -->\n      <a class=\"nav-link px-0\"\n         [routerLink]=\"['../']\"\n         title=\"Edit Widget\">\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\n      </a>\n      <!-- /Back button -->\n    </li>\n  </ul>\n\n  <span class=\"navbar-brand ml-auto mr-auto\">\n    <i class=\"fa fa-flickr\"\n       aria-hidden=\"true\"></i>\n    Flickr Image Search\n  </span>\n\n</nav>\n<!--/Top Nav-->\n\n<!--content-->\n<div class=\"container hvj-flickr-image-search\">\n  <form ngForm\n        (ngSubmit)=\"search()\">\n    <div class=\"input-group\">\n      <input type=\"text\"\n             class=\"form-control\"\n             placeholder=\"Search Images\"\n             name=\"searchText\"\n             [(ngModel)]=\"searchText\">\n      <span class=\"input-group-btn\">\n        <button type=\"submit\"\n                class=\"btn btn-royal text-light\">\n          <span class=\"fa fa-check fa-lg\"></span>\n        </button>\n      </span>\n    </div>\n  </form>\n  <div *ngIf=\"searchResults\"\n       class=\"mt-3 search-results-wrap\">\n    <div class=\"d-inline-block\"\n         *ngFor=\"let img of searchResults\"\n         (click)=\"selectImage(img)\">\n      <img class=\"img-thumbnail p-1 rounded-0\"\n           [src]=\"img\">\n    </div>\n  </div>\n  <p class=\"text-center mt-3\"\n     *ngIf=\"!searchResults || searchResults.length == 0\">\n    <small>\n      <em class=\"text-secondary\">Nothing to show yet!</em>\n    </small>\n  </p>\n\n</div>\n<!--/content-->"
+module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <!-- Back button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['../']\"\r\n         title=\"Edit Widget\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n      <!-- /Back button -->\r\n    </li>\r\n  </ul>\r\n\r\n  <span class=\"navbar-brand ml-auto mr-auto\">\r\n    <i class=\"fa fa-flickr\"\r\n       aria-hidden=\"true\"></i>\r\n    Flickr Image Search\r\n  </span>\r\n\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<!--content-->\r\n<div class=\"container hvj-flickr-image-search\">\r\n  <form ngForm\r\n        (ngSubmit)=\"search()\">\r\n    <div class=\"input-group\">\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             placeholder=\"Search Images\"\r\n             name=\"searchText\"\r\n             [(ngModel)]=\"searchText\">\r\n      <span class=\"input-group-btn\">\r\n        <button type=\"submit\"\r\n                class=\"btn btn-royal text-light\">\r\n          <span class=\"fa fa-check fa-lg\"></span>\r\n        </button>\r\n      </span>\r\n    </div>\r\n  </form>\r\n  <div *ngIf=\"searchResults\"\r\n       class=\"mt-3 search-results-wrap\">\r\n    <div class=\"d-inline-block\"\r\n         *ngFor=\"let img of searchResults\"\r\n         (click)=\"selectImage(img)\">\r\n      <img class=\"img-thumbnail p-1 rounded-0\"\r\n           [src]=\"img\">\r\n    </div>\r\n  </div>\r\n  <p class=\"text-center mt-3\"\r\n     *ngIf=\"!searchResults || searchResults.length == 0\">\r\n    <small>\r\n      <em class=\"text-secondary\">Nothing to show yet!</em>\r\n    </small>\r\n  </p>\r\n\r\n</div>\r\n<!--/content-->"
 
 /***/ }),
 
@@ -2432,12 +2432,14 @@ var FlickrImageSearchComponent = (function () {
         this.activatedRoute.params.subscribe(function (params) {
             _this.widgetId = params['wgid'];
             if (!_this.widgetId) {
-                _this.interactionsService.showAlert('Hmm! Widget Id is needed to access Flickr Image search. Try again', 'danger', true);
+                _this.interactionsService.showAlert('Uhho! Widget Id is needed to access Flickr Image search. Try again', 'danger', true);
                 _this.router.navigate(['../../'], { relativeTo: _this.activatedRoute });
             }
             else {
+                _this.interactionsService.showLoader(true);
                 // get corresponding widget
                 _this.widgetService.findWidgetById(_this.widgetId)
+                    .finally(function () { _this.interactionsService.showLoader(false); })
                     .subscribe(function (widget) {
                     if (__WEBPACK_IMPORTED_MODULE_2__model_model__["e" /* WidgetType */][widget.widgetType] !== __WEBPACK_IMPORTED_MODULE_2__model_model__["e" /* WidgetType */].Image) {
                         _this.interactionsService.showAlert('Hmm! Widget with id ' + _this.widgetId + ' is not an Image widget', 'danger', true);
@@ -2454,7 +2456,12 @@ var FlickrImageSearchComponent = (function () {
     FlickrImageSearchComponent.prototype.search = function () {
         var _this = this;
         if (this.searchText) {
+            this.interactionsService.showLoader(true);
             this.flickrService.search(this.searchText)
+                .finally(function () {
+                console.log('in finally');
+                _this.interactionsService.showLoader(false);
+            })
                 .subscribe(function (results) {
                 _this.searchResults = (results.photos.photo).map(function (r) {
                     return _this.flickrUrlFormat.toString()
@@ -2474,8 +2481,10 @@ var FlickrImageSearchComponent = (function () {
      */
     FlickrImageSearchComponent.prototype.selectImage = function (src) {
         var _this = this;
+        this.interactionsService.showLoader(true);
         this.widget.url = src.replace('_s.jpg', '_b.jpg');
         this.widgetService.updateWidget(this.widgetId, this.widget)
+            .finally(function () { _this.interactionsService.showLoader(false); })
             .subscribe(function (updatedWidget) {
             _this.interactionsService.showAlert('Widget updated successfully', 'success', true);
             _this.router.navigate(['../../'], { relativeTo: _this.activatedRoute });
@@ -2771,7 +2780,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-header/widget-header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-widget-heading\">\n  <div [ngClass]=\"widget.size ? 'h' + widget.size : 'h2'\">{{widget.text}}</div>\n  <p *ngIf=\"!widget.text\"\n     class=\"small font-italic text-secondary\"> No content</p>\n</div>"
+module.exports = "<div class=\"hvj-widget-heading\">\r\n  <div [ngClass]=\"widget.size ? 'h' + widget.size : 'h2'\">{{widget.text}}</div>\r\n  <p *ngIf=\"!widget.text\"\r\n     class=\"small font-italic text-secondary\"> No content</p>\r\n</div>"
 
 /***/ }),
 
@@ -2838,7 +2847,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-html/widget-html.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-widget-html\">\n    <div *ngIf=\"widget.text\"\n         [innerHtml]=\"widget.text\"></div>\n    <p *ngIf=\"!widget.text\"\n       class=\"small font-italic text-secondary\"> No content</p>\n</div>"
+module.exports = "<div class=\"hvj-widget-html\">\r\n    <div *ngIf=\"widget.text\"\r\n         [innerHtml]=\"widget.text\"></div>\r\n    <p *ngIf=\"!widget.text\"\r\n       class=\"small font-italic text-secondary\"> No content</p>\r\n</div>"
 
 /***/ }),
 
@@ -2906,7 +2915,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-image/widget-image.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-widget-image\">\n  <img *ngIf=\"widget.url\"\n       [style.width]=\"widget.width\"\n       [alt]=\"widget.text ? widget.text : ''\"\n       [src]=\"widget.url\" />\n  <p *ngIf=\"!widget.url && !widget.text\"\n     class=\"small font-italics text-secondary\">No image specified</p>\n</div>"
+module.exports = "<div class=\"hvj-widget-image\">\r\n  <img *ngIf=\"widget.url\"\r\n       [style.width]=\"widget.width\"\r\n       [alt]=\"widget.text ? widget.text : ''\"\r\n       [src]=\"widget.url\" />\r\n  <p *ngIf=\"!widget.url && !widget.text\"\r\n     class=\"small font-italics text-secondary\">No image specified</p>\r\n</div>"
 
 /***/ }),
 
@@ -3020,7 +3029,9 @@ var WidgetListComponent = (function () {
         var _this = this;
         this.activatedRoute.params.subscribe(function (params) {
             _this.pageId = params['pid'];
+            _this.interactionsService.showLoader(true);
             _this.widgetService.findWidgetsByPageId(_this.pageId)
+                .finally(function () { _this.interactionsService.showLoader(false); })
                 .subscribe(function (widgets) {
                 _this.widgets = widgets;
             }, function (err) {
@@ -3082,7 +3093,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-youtube/widget-youtube.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-widget-youtube\">\n  <div class=\"embed-responsive embed-responsive-16by9\"\n       *ngIf=\"safeUrl\">\n    <iframe class=\"embed-responsive-item\"\n            [style.width]=\"widget.width ? widget.width : '100%'\"\n            [src]=\"safeUrl\"\n            allowfullscreen></iframe>\n  </div>\n  <p *ngIf=\"!widget.url\"\n     class=\"small font-italics text-secondary\">No URL specified</p>\n</div>"
+module.exports = "<div class=\"hvj-widget-youtube\">\r\n  <div class=\"embed-responsive embed-responsive-16by9\"\r\n       *ngIf=\"safeUrl\">\r\n    <iframe class=\"embed-responsive-item\"\r\n            [style.width]=\"widget.width ? widget.width : '100%'\"\r\n            [src]=\"safeUrl\"\r\n            allowfullscreen></iframe>\r\n  </div>\r\n  <p *ngIf=\"!widget.url\"\r\n     class=\"small font-italics text-secondary\">No URL specified</p>\r\n</div>"
 
 /***/ }),
 
@@ -3416,7 +3427,10 @@ var _a;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FlickrService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__error_handler_service_client__ = __webpack_require__("../../../../../src/app/services/error-handler.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_constant__ = __webpack_require__("../../../../../src/app/app.constant.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__error_handler_service_client__ = __webpack_require__("../../../../../src/app/services/error-handler.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3429,35 +3443,82 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var FlickrService = (function () {
     function FlickrService(http, errorHanderService) {
         this.http = http;
         this.errorHanderService = errorHanderService;
+        // properties
+        this.endpoint = {
+            'getApiKey': __WEBPACK_IMPORTED_MODULE_3__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/widget/Flickr/ApiKey'
+        };
         this.flickrSearchEndpoint = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key={key}&text={text}&format=json&nojsoncallback=1&accuracy=3';
-        this.flickrApiKey = 'bd852c88d114a538443cfffa86380f74'; // << ADD YOUR FLICKR API KEY HERE >>
-        if (!this.flickrApiKey) {
-            this.errorHanderService.handleError('Flickr Api key is required', Error('Please specify api key in flickr.service.client.ts file'));
-        }
     }
+    /**
+     * Get Flickr API key
+     * @returns Observable that gets resolved to Flickr API key string
+     */
+    FlickrService.prototype.getFlickrApiKey = function () {
+        var _this = this;
+        var obs = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"](function (observer) {
+            if (_this.flickrApiKey) {
+                observer.next(_this.flickrApiKey);
+                observer.complete();
+            }
+            else {
+                _this.http.get(_this.endpoint.getApiKey)
+                    .subscribe(function (data) {
+                    if (data.key) {
+                        _this.flickrApiKey = data.key;
+                        observer.next(_this.flickrApiKey);
+                        observer.complete();
+                    }
+                    else {
+                        var err = Error('Please specify api key in flickr.service.client.ts file');
+                        _this.errorHanderService.handleError('Flickr Api key is required', err);
+                        observer.error(err);
+                    }
+                }, function (err) {
+                    _this.errorHanderService.handleError('Oops! Error getting Flickr API key from server', err);
+                    observer.error(err);
+                });
+            }
+        });
+        return obs;
+    };
     /**
      * Search flickr for images related to specifed searchText
      * @param searchText image search keyword
      * @param page page number
      */
     FlickrService.prototype.search = function (searchText, page) {
-        var url = this.flickrSearchEndpoint
-            .replace('{key}', this.flickrApiKey)
-            .replace('{text}', searchText);
-        if (page) {
-            url += '&page=' + page;
-        }
-        return this.http.get(url);
+        var _this = this;
+        var obs = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"](function (observer) {
+            _this.getFlickrApiKey()
+                .subscribe(function (apiKey) {
+                var url = _this.flickrSearchEndpoint
+                    .replace('{key}', _this.flickrApiKey)
+                    .replace('{text}', searchText);
+                if (page) {
+                    url += '&page=' + page;
+                }
+                _this.http.get(url)
+                    .subscribe(function (data) {
+                    observer.next(data);
+                    observer.complete();
+                }, function (err) {
+                    observer.error(err);
+                });
+            });
+        });
+        return obs;
     };
     return FlickrService;
 }());
 FlickrService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__error_handler_service_client__["a" /* ErrorHandlerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__error_handler_service_client__["a" /* ErrorHandlerService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__error_handler_service_client__["a" /* ErrorHandlerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__error_handler_service_client__["a" /* ErrorHandlerService */]) === "function" && _b || Object])
 ], FlickrService);
 
 var _a, _b;
