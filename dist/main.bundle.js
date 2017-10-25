@@ -130,10 +130,10 @@ AppConstants.EVENTS = {
     showLoader: 'showLoader'
 };
 AppConstants.ENDPOINT = {
-    // root: '/', // for prod
-    root: 'http://localhost:3100/',
-    // baseUrl: '/api', // for prod
-    baseUrl: 'http://localhost:3100/api' // for local
+    root: '/',
+    // root: 'http://localhost:3100/',
+    baseUrl: '/api' // for prod
+    // baseUrl: 'http://localhost:3100/api' // for local
 };
 //# sourceMappingURL=app.constant.js.map
 
@@ -387,7 +387,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"container\">\r\n\r\n  <h1>\r\n    Angular 4 MEAN stack app\r\n  </h1>\r\n\r\n\r\n  <h3>\r\n    App works\r\n  </h3>\r\n\r\n\r\n  <h4>\r\n    <a href=\"test\">Test MongoDB</a>\r\n  </h4>\r\n\r\n  <h4>\r\n      <a [routerLink]=\"['/login']\">Assignment 3</a>\r\n  </h4>\r\n</div>\r\n\r\n"
+module.exports = "\r\n<div class=\"container\">\r\n\r\n  <h1>\r\n    Angular 4 MEAN stack app\r\n  </h1>\r\n\r\n\r\n  <h3>\r\n    App works\r\n  </h3>\r\n\r\n\r\n  <h4>\r\n    <a href=\"test\">Test MongoDB</a>\r\n  </h4>\r\n\r\n  <h4>\r\n      <a [routerLink]=\"['/login']\">Assignment 4</a>\r\n  </h4>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
