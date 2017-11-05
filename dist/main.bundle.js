@@ -117,6 +117,8 @@ var _a, _b, _c, _d, _e;
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppConstants; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+
 var AppConstants = (function () {
     function AppConstants() {
     }
@@ -130,10 +132,8 @@ AppConstants.EVENTS = {
     showLoader: 'showLoader'
 };
 AppConstants.ENDPOINT = {
-    root: '/',
-    // root: 'http://localhost:3100/',
-    baseUrl: '/api' // for prod
-    // baseUrl: 'http://localhost:3100/api' // for local
+    root: __WEBPACK_IMPORTED_MODULE_0__environments_environment__["a" /* environment */].baseUrl + '/',
+    baseUrl: __WEBPACK_IMPORTED_MODULE_0__environments_environment__["a" /* environment */].baseUrl + '/api'
 };
 //# sourceMappingURL=app.constant.js.map
 
