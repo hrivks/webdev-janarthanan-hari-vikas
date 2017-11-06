@@ -1,4 +1,5 @@
-<div class="hvj-widget-edit" *ngIf="widget"
+<div class="hvj-widget-edit"
+     *ngIf="widget"
      [ngSwitch]="WidgetType[widget.widgetType]">
 
 
@@ -24,6 +25,12 @@
     <app-widget-youtube-edit [widget]="widget"
                              (updateWidget)="updateWidget($event)"
                              (deleteWidget)="deleteWidget($event)"></app-widget-youtube-edit>
+  </div>
+
+  <div *ngSwitchCase="WidgetType.Text">
+    <app-widget-text-edit [widget]="widget"
+                          (updateWidget)="updateWidget($event)"
+                          (deleteWidget)="deleteWidget($event)"></app-widget-text-edit>
   </div>
 
 </div>

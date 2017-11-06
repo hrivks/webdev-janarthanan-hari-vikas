@@ -183,10 +183,11 @@ AppConstants.ENDPOINT = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__components_widget_widget_list_widget_image_widget_image_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-image/widget-image.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__components_widget_widget_list_widget_youtube_widget_youtube_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-youtube/widget-youtube.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_widget_widget_list_widget_html_widget_html_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-html/widget-html.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_shared_footer_footer_component__ = __webpack_require__("../../../../../src/app/components/shared/footer/footer.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__components_shared_alert_alert_component__ = __webpack_require__("../../../../../src/app/components/shared/alert/alert.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__components_shared_loader_loader_component__ = __webpack_require__("../../../../../src/app/components/shared/loader/loader.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__directives_sortable_directive__ = __webpack_require__("../../../../../src/app/directives/sortable.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_widget_widget_edit_widget_text_widget_text_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__components_shared_footer_footer_component__ = __webpack_require__("../../../../../src/app/components/shared/footer/footer.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__components_shared_alert_alert_component__ = __webpack_require__("../../../../../src/app/components/shared/alert/alert.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__components_shared_loader_loader_component__ = __webpack_require__("../../../../../src/app/components/shared/loader/loader.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__directives_sortable_directive__ = __webpack_require__("../../../../../src/app/directives/sortable.directive.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -242,6 +243,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 // shared components
 
 
@@ -280,11 +282,12 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_36__components_widget_widget_list_widget_image_widget_image_component__["a" /* WidgetImageComponent */],
             __WEBPACK_IMPORTED_MODULE_37__components_widget_widget_list_widget_youtube_widget_youtube_component__["a" /* WidgetYoutubeComponent */],
             __WEBPACK_IMPORTED_MODULE_38__components_widget_widget_list_widget_html_widget_html_component__["a" /* WidgetHtmlComponent */],
-            __WEBPACK_IMPORTED_MODULE_39__components_shared_footer_footer_component__["a" /* FooterComponent */],
-            __WEBPACK_IMPORTED_MODULE_40__components_shared_alert_alert_component__["a" /* AlertComponent */],
-            __WEBPACK_IMPORTED_MODULE_41__components_shared_loader_loader_component__["a" /* LoaderComponent */],
-            __WEBPACK_IMPORTED_MODULE_42__directives_sortable_directive__["a" /* SortableDirective */],
-            __WEBPACK_IMPORTED_MODULE_29__components_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__["a" /* FlickrImageSearchComponent */]
+            __WEBPACK_IMPORTED_MODULE_40__components_shared_footer_footer_component__["a" /* FooterComponent */],
+            __WEBPACK_IMPORTED_MODULE_41__components_shared_alert_alert_component__["a" /* AlertComponent */],
+            __WEBPACK_IMPORTED_MODULE_42__components_shared_loader_loader_component__["a" /* LoaderComponent */],
+            __WEBPACK_IMPORTED_MODULE_43__directives_sortable_directive__["a" /* SortableDirective */],
+            __WEBPACK_IMPORTED_MODULE_29__components_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__["a" /* FlickrImageSearchComponent */],
+            __WEBPACK_IMPORTED_MODULE_39__components_widget_widget_edit_widget_text_widget_text_component__["a" /* WidgetTextComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -2038,7 +2041,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-widget-edit\" *ngIf=\"widget\"\r\n     [ngSwitch]=\"WidgetType[widget.widgetType]\">\r\n\r\n\r\n  <div *ngSwitchCase=\"WidgetType.Heading\">\r\n    <app-widget-header-edit [widget]=\"widget\"\r\n                            (updateWidget)=\"updateWidget($event)\"\r\n                            (deleteWidget)=\"deleteWidget($event)\"></app-widget-header-edit>\r\n  </div>\r\n\r\n  <div *ngSwitchCase=\"WidgetType.Image\">\r\n    <app-widget-image-edit [widget]=\"widget\"\r\n                           (updateWidget)=\"updateWidget($event)\"\r\n                           (deleteWidget)=\"deleteWidget($event)\"></app-widget-image-edit>\r\n  </div>\r\n\r\n  <div *ngSwitchCase=\"WidgetType.Html\">\r\n    <app-widget-html-edit [widget]=\"widget\"\r\n                          (updateWidget)=\"updateWidget($event)\"\r\n                          (deleteWidget)=\"deleteWidget($event)\"></app-widget-html-edit>\r\n  </div>\r\n\r\n  <div *ngSwitchCase=\"WidgetType.YouTube\">\r\n    <app-widget-youtube-edit [widget]=\"widget\"\r\n                             (updateWidget)=\"updateWidget($event)\"\r\n                             (deleteWidget)=\"deleteWidget($event)\"></app-widget-youtube-edit>\r\n  </div>\r\n\r\n</div>"
+module.exports = "<div class=\"hvj-widget-edit\"\r\n     *ngIf=\"widget\"\r\n     [ngSwitch]=\"WidgetType[widget.widgetType]\">\r\n\r\n\r\n  <div *ngSwitchCase=\"WidgetType.Heading\">\r\n    <app-widget-header-edit [widget]=\"widget\"\r\n                            (updateWidget)=\"updateWidget($event)\"\r\n                            (deleteWidget)=\"deleteWidget($event)\"></app-widget-header-edit>\r\n  </div>\r\n\r\n  <div *ngSwitchCase=\"WidgetType.Image\">\r\n    <app-widget-image-edit [widget]=\"widget\"\r\n                           (updateWidget)=\"updateWidget($event)\"\r\n                           (deleteWidget)=\"deleteWidget($event)\"></app-widget-image-edit>\r\n  </div>\r\n\r\n  <div *ngSwitchCase=\"WidgetType.Html\">\r\n    <app-widget-html-edit [widget]=\"widget\"\r\n                          (updateWidget)=\"updateWidget($event)\"\r\n                          (deleteWidget)=\"deleteWidget($event)\"></app-widget-html-edit>\r\n  </div>\r\n\r\n  <div *ngSwitchCase=\"WidgetType.YouTube\">\r\n    <app-widget-youtube-edit [widget]=\"widget\"\r\n                             (updateWidget)=\"updateWidget($event)\"\r\n                             (deleteWidget)=\"deleteWidget($event)\"></app-widget-youtube-edit>\r\n  </div>\r\n\r\n  <div *ngSwitchCase=\"WidgetType.Text\">\r\n    <app-widget-text-edit [widget]=\"widget\"\r\n                          (updateWidget)=\"updateWidget($event)\"\r\n                          (deleteWidget)=\"deleteWidget($event)\"></app-widget-text-edit>\r\n  </div>\r\n\r\n</div>"
 
 /***/ }),
 
@@ -2290,10 +2293,7 @@ module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top 
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WidgetHtmlEditComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_model__ = __webpack_require__("../../../../../src/app/model/model.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_widget_service_client__ = __webpack_require__("../../../../../src/app/services/widget.service.client.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_model__ = __webpack_require__("../../../../../src/app/model/model.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2306,15 +2306,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
-
 var WidgetHtmlEditComponent = (function () {
-    function WidgetHtmlEditComponent(activatedRoute, router, widgetService, interactionsService) {
-        this.activatedRoute = activatedRoute;
-        this.router = router;
-        this.widgetService = widgetService;
-        this.interactionsService = interactionsService;
+    function WidgetHtmlEditComponent() {
         this.updateWidget = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
         this.deleteWidget = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
         this.showDeleteConfirmation = false;
@@ -2343,7 +2336,7 @@ var WidgetHtmlEditComponent = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__model_model__["d" /* Widget */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__model_model__["d" /* Widget */]) === "function" && _a || Object)
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__model_model__["d" /* Widget */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__model_model__["d" /* Widget */]) === "function" && _a || Object)
 ], WidgetHtmlEditComponent.prototype, "widget", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(),
@@ -2363,10 +2356,10 @@ WidgetHtmlEditComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-html/widget-html.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-html/widget-html.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* Router */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_widget_service_client__["a" /* WidgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_widget_service_client__["a" /* WidgetService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__services_interactions_service_client__["a" /* InteractionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_interactions_service_client__["a" /* InteractionsService */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [])
 ], WidgetHtmlEditComponent);
 
-var _a, _b, _c, _d, _e, _f;
+var _a, _b;
 //# sourceMappingURL=widget-html.component.js.map
 
 /***/ }),
@@ -2649,6 +2642,104 @@ WidgetImageEditComponent = __decorate([
 
 var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=widget-image.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<!--Top Nav-->\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\n  <ul class=\"navbar-nav mr-3\">\n    <li class=\"nav-item\">\n      <!-- Back button -->\n      <a class=\"nav-link px-0\"\n         [routerLink]=\"['../']\"\n         title=\"Widgets\">\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\n      </a>\n      <!-- /Back button -->\n    </li>\n  </ul>\n\n  <span class=\"navbar-brand\">Widget Edit : Text</span>\n\n  <ul class=\"navbar-nav ml-auto\">\n    <li class=\"nav-item\">\n      <!-- Action button -->\n      <a class=\"nav-link px-0\"\n         (click)=\"saveChanges()\"\n         title=\"Save Changes\">\n        <span class=\"fa fa-check fa-lg\"></span>\n      </a>\n      <!-- /Action button -->\n    </li>\n  </ul>\n</nav>\n<!--/Top Nav-->\n\n<!--content-->\n<div class=\"container hvj-widget-header-edit\">\n  <form #widgetTextEditForm=\"ngForm\">\n    <!--Widget Name-->\n    <div class=\"form-group\">\n      <label for=\"name\"\n             class=\"font-weight-bold text-muted\">Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"widgetName\"\n             name=\"name\"\n             placeholder=\"Name\"\n             [(ngModel)]=\"widget.name\"\n             #nameField=\"ngModel\">\n    </div>\n    <!--/Widget Name-->\n\n    <!--Widget Formatted-->\n    <div class=\"form-group\">\n      <label for=\"formatted\"\n             class=\"font-weight-bold text-muted\">Formatted</label>\n      <input type=\"checkbox\"\n             class=\"form-control\"\n             id=\"widgetFormatted\"\n             name=\"formatted\"\n             [(ngModel)]=\"widget.formatted\"\n             #formattedField=\"ngModel\">\n    </div>\n    <!--/Widget Formatted-->\n\n    <!--Widget Rows-->\n    <div class=\"form-group\"\n         *ngIf=\"widget.formatted\">\n      <label for=\"formatted\"\n             class=\"font-weight-bold text-muted\">Rows</label>\n      <input type=\"number\"\n             class=\"form-control\"\n             id=\"widgetRows\"\n             name=\"rows\"\n             [(ngModel)]=\"widget.rows\"\n             #rowsField=\"ngModel\">\n    </div>\n    <!--/Widget Formatted-->\n\n    <!-- Form buttons -->\n    <div class=\"row no-gutters\">\n      <div class=\"col-12 col-sm-9 mr-1\">\n        <!-- Save button -->\n        <button class=\"btn btn-success btn-block mr-1 mb-2\"\n                title=\"Save Widget\"\n                (click)=\"saveChanges()\">\n          <i class=\"fa fa-check\"></i>\n        </button>\n      </div>\n      <div class=\"col\">\n        <!-- Delete button -->\n        <button class=\"btn btn-danger btn-block\"\n                title=\"Delete Widget\"\n                (click)=\"showDeleteConfirmation = true\"\n                [hidden]=\"showDeleteConfirmation\">\n          <i class=\"fa fa-trash\"></i>\n        </button>\n        <button class=\"btn btn-danger btn-block mt-0\"\n                title=\"Delete Widget\"\n                [hidden]=\"!showDeleteConfirmation\"\n                (click)=\"delete()\">sure?</button>\n      </div>\n    </div>\n\n  </form>\n</div>\n<!--/content-->"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WidgetTextComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_model__ = __webpack_require__("../../../../../src/app/model/model.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var WidgetTextComponent = (function () {
+    function WidgetTextComponent() {
+        this.updateWidget = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
+        this.deleteWidget = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
+        this.showDeleteConfirmation = false;
+        this.widget.rows = this.widget.rows || 1;
+    }
+    WidgetTextComponent.prototype.ngOnInit = function () {
+    };
+    /**
+     * Save changes to widget
+     */
+    WidgetTextComponent.prototype.saveChanges = function () {
+        this.updateWidget.emit(this.widget);
+    };
+    /**
+     * Delete current widget
+     */
+    WidgetTextComponent.prototype.delete = function () {
+        this.deleteWidget.emit(this.widget._id);
+    };
+    return WidgetTextComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__model_model__["d" /* Widget */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__model_model__["d" /* Widget */]) === "function" && _a || Object)
+], WidgetTextComponent.prototype, "widget", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(),
+    __metadata("design:type", Object)
+], WidgetTextComponent.prototype, "updateWidget", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(),
+    __metadata("design:type", Object)
+], WidgetTextComponent.prototype, "deleteWidget", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('widgetTextEditForm'),
+    __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* NgForm */]) === "function" && _b || Object)
+], WidgetTextComponent.prototype, "widgetTextEditForm", void 0);
+WidgetTextComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-widget-text-edit',
+        template: __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], WidgetTextComponent);
+
+var _a, _b;
+//# sourceMappingURL=widget-text.component.js.map
 
 /***/ }),
 
@@ -3271,6 +3362,7 @@ var WidgetType;
     WidgetType[WidgetType["Image"] = 1] = "Image";
     WidgetType[WidgetType["Html"] = 2] = "Html";
     WidgetType[WidgetType["YouTube"] = 3] = "YouTube";
+    WidgetType[WidgetType["Text"] = 4] = "Text";
 })(WidgetType || (WidgetType = {}));
 /** Represents a widget in a page */
 var Widget = (function () {

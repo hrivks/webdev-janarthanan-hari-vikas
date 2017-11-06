@@ -13,7 +13,7 @@ module.exports = (function () {
         text: String,
         description: String,
         order: Number,
-        pageId:  { type: mongoose.Schema.Types.ObjectId, ref: 'pages' },
+        pageId: { type: mongoose.Schema.Types.ObjectId, ref: 'pages' },
         dateCreated: { type: Date, default: Date.now }
     }, options);
 
@@ -37,16 +37,21 @@ module.exports = (function () {
 
     /** Html Widget schema */
     const HtmlWidgetSchema = new mongoose.Schema({
+    }, options);
+
+    /** Text widget schema */
+    const TextWidgetSchema = new mongoose.Schema({
         formatted: Boolean,
         rows: Number
-    }, options);
+    }, options)
 
     return {
         WidgetSchema: WidgetSchema,
         HeadingWidgetSchema: HeadingWidgetSchema,
         ImageWidgetSchema: ImageWidgetSchema,
         YouTubeWidgetSchema: YouTubeWidgetSchema,
-        HtmlWidgetSchema: HtmlWidgetSchema
+        HtmlWidgetSchema: HtmlWidgetSchema,
+        TextWidgetSchema: TextWidgetSchema
     };
 
 })();

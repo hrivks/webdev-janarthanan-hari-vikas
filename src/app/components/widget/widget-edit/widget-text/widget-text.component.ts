@@ -3,21 +3,22 @@ import { NgForm } from '@angular/forms';
 import { Widget } from '../../../../model/model';
 
 @Component({
-  selector: 'app-widget-html-edit',
-  templateUrl: './widget-html.component.html',
-  styleUrls: ['./widget-html.component.css']
+  selector: 'app-widget-text-edit',
+  templateUrl: './widget-text.component.html',
+  styleUrls: ['./widget-text.component.css']
 })
-export class WidgetHtmlEditComponent implements OnInit {
+export class WidgetTextComponent implements OnInit {
 
   // properties
   @Input() widget: Widget;
   @Output() updateWidget = new EventEmitter<Widget>();
   @Output() deleteWidget = new EventEmitter<string>();
-  @ViewChild('widgetHtmlEditForm') widgetHtmlEditForm: NgForm;
+  @ViewChild('widgetTextEditForm') widgetTextEditForm: NgForm;
   private showDeleteConfirmation: Boolean;
 
   constructor() {
     this.showDeleteConfirmation = false;
+    this.widget.rows = this.widget.rows || 1;
   }
 
   ngOnInit() {
@@ -27,13 +28,7 @@ export class WidgetHtmlEditComponent implements OnInit {
    * Save changes to widget
    */
   saveChanges() {
-    if (this.widgetHtmlEditForm.invalid) {
-      // touch controls to trigger validation messages
-      this.widgetHtmlEditForm.controls.name.markAsTouched({ onlySelf: true });
-    } else {
-      this.updateWidget.emit(this.widget);
-    }
-
+    this.updateWidget.emit(this.widget);
   }
 
   /**

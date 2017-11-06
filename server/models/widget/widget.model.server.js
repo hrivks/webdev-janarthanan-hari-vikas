@@ -15,6 +15,7 @@ module.exports = (function () {
     const ImageWidgetModel = WidgetModel.discriminator('Image', WidgetSchemas.ImageWidgetSchema);
     const YouTubeWidgetModel = WidgetModel.discriminator('YouTube', WidgetSchemas.YouTubeWidgetSchema);
     const HtmlWidgetModel = WidgetModel.discriminator('Html', WidgetSchemas.HtmlWidgetSchema);
+    const TextWidgetModel = WidgetModel.discriminator('Text', WidgetSchemas.TextWidgetSchema);
 
     // #endregion: Widget Types
 

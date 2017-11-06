@@ -52,12 +52,14 @@ import { WidgetHeaderComponent } from './components/widget/widget-list/widget-he
 import { WidgetImageComponent } from './components/widget/widget-list/widget-image/widget-image.component';
 import { WidgetYoutubeComponent } from './components/widget/widget-list/widget-youtube/widget-youtube.component';
 import { WidgetHtmlComponent } from './components/widget/widget-list/widget-html/widget-html.component';
+import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
 
 // shared components
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { AlertComponent } from './components/shared/alert/alert.component';
 import { LoaderComponent } from './components/shared/loader/loader.component';
 import { SortableDirective } from './directives/sortable.directive';
+
 
 
 // #endregion
@@ -92,7 +94,8 @@ import { SortableDirective } from './directives/sortable.directive';
     AlertComponent,
     LoaderComponent,
     SortableDirective,
-    FlickrImageSearchComponent
+    FlickrImageSearchComponent,
+    WidgetTextComponent
   ],
   imports: [
     BrowserModule,

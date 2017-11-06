@@ -1,0 +1,102 @@
+<!--Top Nav-->
+<nav class="navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3">
+  <ul class="navbar-nav mr-3">
+    <li class="nav-item">
+      <!-- Back button -->
+      <a class="nav-link px-0"
+         [routerLink]="['../']"
+         title="Widgets">
+        <span class="fa fa-chevron-left fa-lg"></span>
+      </a>
+      <!-- /Back button -->
+    </li>
+  </ul>
+
+  <span class="navbar-brand">Widget Edit : Text</span>
+
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <!-- Action button -->
+      <a class="nav-link px-0"
+         (click)="saveChanges()"
+         title="Save Changes">
+        <span class="fa fa-check fa-lg"></span>
+      </a>
+      <!-- /Action button -->
+    </li>
+  </ul>
+</nav>
+<!--/Top Nav-->
+
+<!--content-->
+<div class="container hvj-widget-header-edit">
+  <form #widgetTextEditForm="ngForm">
+    <!--Widget Name-->
+    <div class="form-group">
+      <label for="name"
+             class="font-weight-bold text-muted">Name</label>
+      <input type="text"
+             class="form-control"
+             id="widgetName"
+             name="name"
+             placeholder="Name"
+             [(ngModel)]="widget.name"
+             #nameField="ngModel">
+    </div>
+    <!--/Widget Name-->
+
+    <!--Widget Formatted-->
+    <div class="form-group">
+      <label for="formatted"
+             class="font-weight-bold text-muted">Formatted</label>
+      <input type="checkbox"
+             class="form-control"
+             id="widgetFormatted"
+             name="formatted"
+             [(ngModel)]="widget.formatted"
+             #formattedField="ngModel">
+    </div>
+    <!--/Widget Formatted-->
+
+    <!--Widget Rows-->
+    <div class="form-group"
+         *ngIf="widget.formatted">
+      <label for="formatted"
+             class="font-weight-bold text-muted">Rows</label>
+      <input type="number"
+             class="form-control"
+             id="widgetRows"
+             name="rows"
+             [(ngModel)]="widget.rows"
+             #rowsField="ngModel">
+    </div>
+    <!--/Widget Formatted-->
+
+    <!-- Form buttons -->
+    <div class="row no-gutters">
+      <div class="col-12 col-sm-9 mr-1">
+        <!-- Save button -->
+        <button class="btn btn-success btn-block mr-1 mb-2"
+                title="Save Widget"
+                (click)="saveChanges()">
+          <i class="fa fa-check"></i>
+        </button>
+      </div>
+      <div class="col">
+        <!-- Delete button -->
+        <button class="btn btn-danger btn-block"
+                title="Delete Widget"
+                (click)="showDeleteConfirmation = true"
+                [hidden]="showDeleteConfirmation">
+          <i class="fa fa-trash"></i>
+        </button>
+        <button class="btn btn-danger btn-block mt-0"
+                title="Delete Widget"
+                [hidden]="!showDeleteConfirmation"
+                (click)="delete()">sure?</button>
+      </div>
+    </div>
+
+  </form>
+</div>
+<!--/content-->
