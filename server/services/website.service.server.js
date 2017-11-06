@@ -1,30 +1,30 @@
 // Provides CRUD for Website model
 // Module Route Root: '/api/website' and '/api/user/:userId/website'
-const router = require('express').Router({ mergeParams: true });
-const WebsiteModel = require('../models/website/website.model.server');
-const PageService = require('./page.service.server.js');
 
+module.exports = (function () {
 
-/** Exported objects */
-const exp = {
-    router: router, // router object
-    api: {} // list of functions supported by this service
-};
+    const router = require('express').Router({ mergeParams: true });
+    const WebsiteModel = require('../models/website/website.model.server');
+    const PageService = require('./page.service.server.js');
+    const Utils = require('./service-utils.js');
 
-(function (router) {
+    /** Exported objects */
+    const exp = {
+        router: router, // router object
+        api: { // list of functions supported by this service
+            createWebsite: createWebsite,
+            findWebsitesByUser: findWebsitesByUser,
+            findWebsiteById: findWebsiteById,
+            updateWebsite: updateWebsite,
+            deleteWebsite: deleteWebsite
+        }
+    };
 
     //#region Create Website
+
     // Route: [POST] '/api/user/:userId/website'
     router.post('/', function (req, res) {
-        createWebsite(req.params.userId, req.body)
-            .then((websites) => {
-                res.json(websites);
-            }, (err) => {
-                res.status(400).json([err.message]);
-            })
-            .catch((err) => {
-                res.status(400).json([err.message]);
-            });
+        Utils.sendResponse(res, createWebsite, [req.params.userId, req.body]);
     });
 
     /**
@@ -37,22 +37,14 @@ const exp = {
         return WebsiteModel.createWebsite(userId, website);
     }
 
-
     //#endregion Create Website
 
 
     //#region Find all websites for user
+
     // route: [GET] '/api/user/:userId/website'
     router.get('/', function (req, res) {
-        findWebsitesByUser(req.params.userId)
-            .then((websites) => {
-                res.json(websites);
-            }, (err) => {
-                res.status(400).json([err.message]);
-            })
-            .catch((err) => {
-                res.status(400).json([err.message]);
-            });
+        Utils.sendResponse(res, findWebsitesByUser, [req.params.userId]);
     });
 
     /**
@@ -68,17 +60,10 @@ const exp = {
 
 
     //#region Find Website by Id
+
     // route: [GET] '/api/website/:websiteId'
     router.get('/:websiteId', function (req, res) {
-        findWebsiteById(req.params.websiteId)
-            .then((website) => {
-                res.json(website);
-            }, (err) => {
-                res.status(400).json([err.message]);
-            })
-            .catch((err) => {
-                res.status(400).json([err.message]);
-            });
+        Utils.sendResponse(res, findWebsiteById, [req.params.websiteId]);
     });
 
     /**
@@ -94,17 +79,10 @@ const exp = {
 
 
     //#region Update Website
+
     // route: [PUT] '/api/website/:websiteId'
     router.put('/:websiteId', function (req, res) {
-        updateWebsite(req.params.websiteId, req.body)
-            .then((website) => {
-                res.json(website);
-            }, (err) => {
-                res.status(400).json([err.message]);
-            })
-            .catch((err) => {
-                res.status(400).json([err.message]);
-            });
+        Utils.sendResponse(res, updateWebsite, [req.params.websiteId, req.body]);
     });
 
     /**
@@ -123,15 +101,7 @@ const exp = {
     //#region Delete Website
     // route: [DELETE] '/api/website/:websiteId'
     router.delete('/:websiteId', function (req, res) {
-        deleteWebsite(req.params.websiteId)
-            .then(() => {
-                res.status(200);
-            }, (err) => {
-                res.status(400).json([err.message]);
-            })
-            .catch((err) => {
-                res.status(400).json([err.message]);
-            });
+        Utils.sendResponse(res, deleteWebsite, [req.params.websiteId]);
     });
 
     /**
@@ -145,15 +115,6 @@ const exp = {
 
     //#endregion Delete website
 
-    exp.api = {
-        createWebsite: createWebsite,
-        findWebsitesByUser: findWebsitesByUser,
-        findWebsiteById: findWebsiteById,
-        updateWebsite: updateWebsite,
-        deleteWebsite: deleteWebsite
-    };
+    return exp;
 
-})(router);
-
-
-module.exports = exp;
+})();

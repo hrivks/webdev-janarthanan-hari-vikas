@@ -5,6 +5,7 @@ var multer = require('multer');
 var upload = multer({ dest: __dirname + '/../../public/uploads' });
 
 //#region: Upload image
+
 router.post('/', upload.single('image'), function (req, res) {
     try {
         var myFile = req.file;
@@ -14,6 +15,7 @@ router.post('/', upload.single('image'), function (req, res) {
         res.status(400).json(ex);
     }
 });
+
 //#endregion: upload image
 
 module.exports = router;

@@ -10,7 +10,6 @@ module.exports = (function () {
         name: String,
         title: String,
         description: String,
-        widgets: [WidgetSchema],
         dateCreated: { type: Date, default: Date.now }
     }, { collection: 'pages' });
 

@@ -5,8 +5,8 @@ module.exports = (function () {
     const q = require('q');
     const mongoose = require('mongoose');
     const WidgetSchemas = require('./widget.schema.server');
-    const PageModel = require('../page/page.model.server.js');
-
+    const PageSchema = require('../page/page.schema.server.js');
+    const PageModel = mongoose.model('PageModel', PageSchema);
     const WidgetModel = mongoose.model('WidgetModel', WidgetSchemas.WidgetSchema);
 
     // #region: Widget Types
@@ -24,7 +24,7 @@ module.exports = (function () {
     WidgetModel.findWidgetById = findWidgetById;
     WidgetModel.updateWidget = updateWidget;
     WidgetModel.deleteWidget = deleteWidget;
-    WidgetModel.reorderWidget = reorderWidget;
+    WidgetModel.reorderWidgets = reorderWidgets;
 
     // Implimentation
 
@@ -66,25 +66,32 @@ module.exports = (function () {
         validate(widget);
         PageModel.findById(pageId, (err, page) => {
             if (err) {
-                def.reject(err.message);
+                def.reject(err);
             } else if (!page) {
                 def.reject({ message: 'No page with the given id exists' });
             }
             else {
-                widget.order = page.widgets ? page.widgets.length : 0;
-                WidgetModel.create(widget, (err, createdWidget) => {
-                    if (err) {
-                        def.reject(err.message);
-                    } else {
-                        if (page.widgets) {
-                            page.widgets.push(createdWidget);
-                        } else {
-                            page.widgets = [createdWidget];
-                        }
-                        page.save();
-                        def.resolve(createdWidget);
-                    }
-                });
+
+                // get the last widget on the page
+                WidgetModel
+                    .findOne({ pageId: pageId })
+                    .sort({ order: -1 })
+                    .then((lastWidget) => {
+
+                        // compute order of new widget
+                        widget.order = lastWidget ? lastWidget.order + 1 : 0;
+                        WidgetModel.create(widget, (err, createdWidget) => {
+                            if (err) {
+                                def.reject(err);
+                            } else {
+                                def.resolve(createdWidget);
+                            }
+                        });
+
+                    }, (err) => {
+                        def.reject(err);
+                    });
+
             }
         });
 
@@ -117,7 +124,21 @@ module.exports = (function () {
      */
     function updateWidget(widgetId, widget) {
         validate(widget);
-        return WidgetModel.findByIdAndUpdate(widgetId, { url: 'test' });
+
+        let model = WidgetModel;
+        switch (widget.widgetType) {
+            case 'Heading':
+                model = HeadingWidgetModel;
+                break;
+            case 'Image':
+                model = ImageWidgetModel;
+                break;
+            case 'YouTube':
+                model = YouTubeWidgetModel;
+                break;
+        }
+
+        return model.findByIdAndUpdate(widgetId, widget, { new: true });
     }
 
     /**
@@ -135,20 +156,20 @@ module.exports = (function () {
      * @param {number} start 
      * @param {number} end 
      */
-    function reorderWidget(pageId, start, end) {
+    function reorderWidgets(pageId, start, end) {
         var def = q.defer();
 
         let widgetAtStart, widgetAtEnd;
 
         // get widget at start index
         WidgetModel
-            .findOne({ pageId: pageId, order: start })
+            .findOne({ pageId: pageId, order: { $gte: start } })
             .then((wAtStart) => {
                 widgetAtStart = wAtStart;
 
                 // get widget at end index
                 WidgetModel
-                    .findOne({ pageId: pageId, order: end })
+                    .findOne({ pageId: pageId, order: { $gte: end } })
                     .then((wAtEnd) => {
                         widgetAtEnd = wAtEnd;
 

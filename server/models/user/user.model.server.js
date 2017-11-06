@@ -90,10 +90,21 @@ module.exports = (function () {
      * Find user by username and password
      * @param {string} username 
      * @param {string} password 
-     * @returns {DocumentQuery<UserSchema>} query that resolves to the user object
+     * @returns {Promise<UserSchema>} query that resolves to the user object
      */
     function findUserByCredentials(username, password) {
-        return UserModel.findOne({ username: username, password: password });
+        const def = q.defer();
+        UserModel
+            .findOne({ username: username, password: password }, (err, user) => {
+                if (err) {
+                    def.reject(err);
+                } else if (!user) {
+                    def.reject('Invalid Credentails');
+                } else {
+                    def.resolve(user);
+                }
+            });
+        return def.promise;
     }
 
     /**
@@ -104,7 +115,7 @@ module.exports = (function () {
      */
     function updateUser(userId, user) {
         validate(user);
-        return UserModel.findOneAndUpdate({ _id: userId }, user);
+        return UserModel.findByIdAndUpdate(userId, user, { new: true });
     }
 
     /**
@@ -113,7 +124,7 @@ module.exports = (function () {
      * @returns {DocumentQuery<UserSchema>} query that resolves successfully when the user is removed
      */
     function deleteUser(userId) {
-        return UserModel.remove({ _id: userId });
+        return UserModel.findByIdAndRemove(userId);
     }
 
     return UserModel;

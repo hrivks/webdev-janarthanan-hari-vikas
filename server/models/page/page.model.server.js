@@ -4,8 +4,10 @@
 module.exports = (function () {
     const q = require('q');
     const mongoose = require('mongoose');
-    const PageSchema = require('./page.schema.server');
-    const WebsiteModel = require('../website/website.model.server');
+    const PageSchema = require('./page.schema.server.js');
+    const WebsiteSchema = require('../website/website.schema.server.js');
+    const WebsiteModel = mongoose.model('WebsiteModel', WebsiteSchema);
+    const WidgetModel = require('../widget/widget.model.server.js');
 
     const PageModel = mongoose.model('PageModel', PageSchema);
 
@@ -52,7 +54,7 @@ module.exports = (function () {
         // find website
         WebsiteModel.findById(websiteId, (err, website) => {
             if (err) {
-                def.reject(err.message);
+                def.reject(err);
             } else if (!website) {
                 def.reject({ message: 'No website with the given id exists' });
             }
@@ -60,11 +62,8 @@ module.exports = (function () {
                 // create page
                 PageModel.create(page, (err, createdPage) => {
                     if (err) {
-                        def.reject(err.message);
+                        def.reject(err);
                     } else {
-                        // add to website
-                        website.pages.push(createdPage);
-                        website.save();
                         def.resolve(createdPage);
                     }
                 });
@@ -100,7 +99,7 @@ module.exports = (function () {
      */
     function updatePage(pageId, page) {
         validate(page);
-        return PageModel.findOneAndUpdate({ _id: pageId }, page);
+        return PageModel.findByIdAndUpdate(pageId, page, { new: true });
     }
 
     /**
@@ -109,7 +108,21 @@ module.exports = (function () {
      * @returns {DocumentQuery} query that resolves on successful deletion
      */
     function deletePage(pageId) {
-        return PageModel.remove({ _id: pageId });
+        var def = q.defer();
+        PageModel.findByIdAndRemove(pageId, (err, res) => {
+            if (err) {
+                def.reject(err);
+            } else {
+                if (res) {
+                    // remove widgets in page
+                    WidgetModel.find({ pageId: pageId }).remove().then();
+                    def.resolve({ result: 'deleted' });
+                } else {
+                    def.resolve({ result: 'no page to delete' });
+                }
+            }
+        });
+        return def.promise;
     }
 
     return PageModel;

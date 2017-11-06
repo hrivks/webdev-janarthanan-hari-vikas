@@ -1,28 +1,31 @@
 // Provides CRUD for user model
 // Module Route Root: '/api/user'
-const router = require('express').Router();
-const UserModel = require('../models/model.server').user;
 
-/** Exported objects */
-const exp = {
-    router: router, // router object
-    api: {} // list of functions supported by this service
-};
+module.exports = (function () {
 
-(function (router) {
+    const router = require('express').Router();
+    const UserModel = require('../models/model.server').User;
+    const Utils = require('./service-utils.js');
+
+    /** Exported objects */
+    const exp = {
+        router: router, // router object
+        api: { // list of functions supported by this service
+            createUser: createUser,
+            findUserByUsername: findUserByUsername,
+            findUserById: findUserById,
+            findUserByCredentials: findUserByCredentials,
+            updateUser: updateUser,
+            deleteUser: deleteUser
+        }
+    };
+
+
     //#region : Create User
 
     // route: [POST] '/api/user'
     router.post('/', function (req, res) {
-        createUser(req.body)
-            .then((createdUser) => {
-                res.json(createdUser);
-            }, (err) => {
-                res.status(400).json([err.message]);
-            })
-            .catch((err) => {
-                res.status(400).json([err.message]);
-            });
+        Utils.sendResponse(res, createUser, [req.body]);
     });
 
     /**
@@ -40,15 +43,7 @@ const exp = {
 
     // route: [GET] '/api/user/:userId'
     router.get('/:userId', function (req, res) {
-        findUserById(req.params.userId)
-            .then((user) => {
-                res.json(user);
-            }, (err) => {
-                res.status(400).json([err.message]);
-            })
-            .catch((err) => {
-                res.status(400).json([err.message]);
-            });
+        Utils.sendResponse(res, findUserById, [req.params.userId]);
     });
 
     /**
@@ -67,24 +62,11 @@ const exp = {
     // route: [GET] '/api/user?username=username'
     // route: [GET] '/api/user?username=username&password=password'
     router.get('/', function (req, res) {
-
-        var promise;
         if (req.query.username && req.query.password) {
-            promise = findUserByCredentials(req.query.username, req.query.password);
+            Utils.sendResponse(res, findUserByCredentials, [req.query.username, req.query.password]);
         } else {
-            promise = findUserByUsername(req.query.username);
+            Utils.sendResponse(res, findUserByUsername, [req.query.username]);
         }
-
-        promise
-            .then((user) => {
-                res.json(user);
-            }, (err) => {
-                res.status(400).json([err.message]);
-            })
-            .catch((err) => {
-                res.status(400).json([err.message]);
-            });
-
     });
 
     /**
@@ -111,15 +93,7 @@ const exp = {
 
     // route: [PUT] '/api/user/:userId'
     router.put('/:userId', function (req, res) {
-        updateUser(req.params.userId, req.body)
-            .then((user) => {
-                res.json(user);
-            }, (err) => {
-                res.status(400).json([err.message]);
-            })
-            .catch((err) => {
-                res.status(400).json([err.message]);
-            });
+        Utils.sendResponse(res, updateUser, [req.params.userId, req.body]);
     });
 
     /**
@@ -138,15 +112,7 @@ const exp = {
 
     // route: [DELETE] '/api/user/:userId'
     router.delete('/:userId', function (req, res) {
-        deleteUser(req.params.userId)
-            .then(() => {
-                res.json(200);
-            }, (err) => {
-                res.status(400).json([err.message]);
-            })
-            .catch((err) => {
-                res.status(400).json([err.message]);
-            });
+        Utils.sendResponse(res, deleteUser, [req.params.userId]);
     });
 
     /**
@@ -160,16 +126,7 @@ const exp = {
 
     // #endregion: Delete User
 
-    // Add to export
-    exp.api = {
-        createUser: createUser,
-        findUserByUsername: findUserByUsername,
-        findUserById: findUserById,
-        findUserByCredentials: findUserByCredentials,
-        updateUser: updateUser,
-        deleteUser: deleteUser
-    };
+    return exp;
 
-})(router);
+})();
 
-module.exports = exp;

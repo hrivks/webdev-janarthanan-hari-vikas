@@ -1,32 +1,29 @@
 // Provides CRUD for Widget model
 // Module Route Root: '/api/page/:pageId/widget' and '/api/widget'
-const router = require('express').Router({ mergeParams: true });
-const WidgetModel = require('../models/widget/widget.model.server.js');
-/** Exported objects */
-const exp = {
-    router: router, // router object
-    api: {} // list of functions supported by this service
-};
 
-(function () {
+module.exports = (function () {
+
+    const router = require('express').Router({ mergeParams: true });
+    const WidgetModel = require('../models/widget/widget.model.server.js');
+    const Utils = require('./service-utils.js');
+
+    /** Exported objects */
+    const exp = {
+        router: router, // router object
+        api: { // list of functions supported by this service
+            createWidget: createWidget,
+            findWidgetsByPageId: findWidgetsByPageId,
+            findWidgetById: findWidgetById,
+            updateWidget: updateWidget,
+            deleteWidget: deleteWidget,
+            reorderWidgets: reorderWidgets
+        }
+    };
 
     //#region: Create Widget
     // Route: [POST] '/api/page/:pageId/widget'
     router.post('/', function (req, res) {
-        try {
-            createWidget(req.params.pageId, req.body)
-                .then((widget) => {
-                    res.json(widget);
-                }, (err) => {
-                    res.status(400).json([err.message]);
-                })
-                .catch((err) => {
-                    res.status(400).json([err.message]);
-                });
-        }
-        catch (ex) {
-            res.status(400).json(ex);
-        }
+        Utils.sendResponse(res, createWidget, [req.params.pageId, req.body]);
     });
 
     /**
@@ -46,15 +43,7 @@ const exp = {
 
     // Route: [GET] '/api/page/:pageId/widget'
     router.get('/', function (req, res) {
-        findWidgetsByPageId(req.params.pageId)
-            .then((widgets) => {
-                res.json(widgets);
-            }, (err) => {
-                res.status(400).json([err.message]);
-            })
-            .catch((err) => {
-                res.status(400).json([err.message]);
-            });
+        Utils.sendResponse(res, findWidgetsByPageId, [req.params.pageId]);
     });
 
     /**
@@ -73,15 +62,7 @@ const exp = {
 
     // Route: [GET] 'api/widget/:widgetId'
     router.get('/:widgetId', function (req, res) {
-        findWidgetById(req.params.widgetId)
-            .then((widget) => {
-                res.json(widget);
-            }, (err) => {
-                res.status(400).json([err.message]);
-            })
-            .catch((err) => {
-                res.status(400).json([err.message]);
-            });
+        Utils.sendResponse(res, findWidgetById, [req.params.widgetId]);
     });
 
     /**
@@ -100,15 +81,7 @@ const exp = {
 
     // Route: [PUT] '/api/widget/:widgetId'
     router.put('/:widgetId', function (req, res) {
-        updateWidget(req.params.widgetId, req.body)
-            .then((widget) => {
-                res.json(widget);
-            }, (err) => {
-                res.status(400).json([err.message]);
-            })
-            .catch((err) => {
-                res.status(400).json([err.message]);
-            });
+        Utils.sendResponse(res, updateWidget, [req.params.widgetId, req.body]);
     });
 
     /**
@@ -128,20 +101,7 @@ const exp = {
 
     // Route: [PUT] '/api/page/:pageId/widget?initial = index1 & final = index2'
     router.put('/', function (req, res) {
-        try {
-            reorderWidgets(req.params.pageId, { initial: req.query.initial, final: req.query.final })
-                .then(() => {
-                    res.status(200);
-                }, (err) => {
-                    res.status(400).json([err.message]);
-                })
-                .catch((err) => {
-                    res.status(400).json([err.message]);
-                });
-        }
-        catch (ex) {
-            res.status(400).json(ex);
-        }
+        Utils.sendResponse(res, reorderWidgets, [req.params.pageId, { initial: req.query.initial, final: req.query.final }]);
     });
 
     /**
@@ -152,11 +112,10 @@ const exp = {
      * @return {Widget[]} list of updated widgets
      */
     function reorderWidgets(pageId, order) {
-
         if (order.final && order.initial && order.final !== order.initial) {
-            return WidgetModel.reorderWidget(pageId, order.initial, order.final);
+            return WidgetModel.reorderWidgets(pageId, order.initial, order.final);
         } else {
-            throw ['Inital and final order position is required'];
+            throw 'Inital and final order position is required';
         }
     }
     //#endregion: Reorder widget
@@ -165,20 +124,7 @@ const exp = {
 
     // Route: [DELETE] '/api/widget/:widgetId'
     router.delete('/:widgetId', function (req, res) {
-        try {
-            deleteWidget(req.params.widgetId)
-                .then(() => {
-                    res.status(200);
-                }, (err) => {
-                    res.status(400).json([err.message]);
-                })
-                .catch((err) => {
-                    res.status(400).json([err.message]);
-                });
-        }
-        catch (ex) {
-            res.status(400).json(ex);
-        }
+        Utils.sendResponse(res, deleteWidget, [req.params.widgetId]);
     });
 
     /**
@@ -208,16 +154,6 @@ const exp = {
 
     //#endregion: Get Flickr API key
 
-
-    exp.api = {
-        createWidget: createWidget,
-        findWidgetsByPageId: findWidgetsByPageId,
-        findWidgetById: findWidgetById,
-        updateWidget: updateWidget,
-        deleteWidget: deleteWidget
-    };
+    return exp;
 
 })();
-
-
-module.exports = exp;

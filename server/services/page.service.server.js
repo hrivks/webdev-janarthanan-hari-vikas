@@ -1,31 +1,31 @@
 // Provides CRUD for Page model
 // Module Route Root: '/api/page' and '/api/website/:websiteId/page'
-const router = require('express').Router({ mergeParams: true });
-const PageModel = require('../models/page/page.model.server.js');
-const WidgetService = require('./widget.service.server.js');
 
+module.exports = (function () {
 
-/** Exported objects */
-const exp = {
-    router: router, // router object
-    api: {} // list of functions supported by this service
-};
+    const router = require('express').Router({ mergeParams: true });
+    const PageModel = require('../models/page/page.model.server.js');
+    const WidgetService = require('./widget.service.server.js');
+    const Utils = require('./service-utils.js');
 
-(function (router) {
+    /** Exported object */
+    const exp = {
+        router: router, // router object
+        api: {  // list of functions supported by this service
+            createPage: createPage,
+            findPagesBywebsiteId: findPagesBywebsiteId,
+            findPageById: findPageById,
+            updatePage: updatePage,
+            deletePage: deletePage
+        }
+    };
+
 
     //#region: Create Page
 
     // route: [POST] '/api/website/:websiteId/page'
     router.post('/', function (req, res) {
-        createPage(req.params.websiteId, req.body)
-            .then((page) => {
-                res.json(page);
-            }, (err) => {
-                res.status(400).json([err.message]);
-            })
-            .catch((err) => {
-                res.status(400).json([err.message]);
-            });
+        Utils.sendResponse(res, createPage, [req.params.websiteId, req.body]);
     });
 
     /**
@@ -44,15 +44,7 @@ const exp = {
 
     // route: [GET] '/api/website/:websiteId/page'
     router.get('/', function (req, res) {
-        findPagesBywebsiteId(req.params.websiteId)
-            .then((pages) => {
-                res.json(pages);
-            }, (err) => {
-                res.status(400).json([err.message]);
-            })
-            .catch((err) => {
-                res.status(400).json([err.message]);
-            });
+        Utils.sendResponse(res, findPagesBywebsiteId, [req.params.websiteId]);
     });
 
     /**
@@ -71,15 +63,7 @@ const exp = {
 
     //route: [GET] '/api/page/:pageId'
     router.get('/:pageId', function (req, res) {
-        findPageById(req.params.pageId)
-            .then((page) => {
-                res.json(page);
-            }, (err) => {
-                res.status(400).json([err.message]);
-            })
-            .catch((err) => {
-                res.status(400).json([err.message]);
-            });
+        Utils.sendResponse(res, findPageById, [req.params.pageId]);
     });
 
     /**
@@ -98,15 +82,7 @@ const exp = {
 
     // route: [PUT] '/api/page/:pageId'
     router.put('/:pageId', function (req, res) {
-        updatePage(req.params.pageId, req.body)
-            .then((page) => {
-                res.json(page);
-            }, (err) => {
-                res.status(400).json([err.message]);
-            })
-            .catch((err) => {
-                res.status(400).json([err.message]);
-            });
+        Utils.sendResponse(res, updatePage, [req.params.pageId, req.body]);
     });
 
     /**
@@ -126,15 +102,7 @@ const exp = {
 
     // route: [DELETE] '/api/page/:pageId'
     router.delete('/:pageId', function (req, res) {
-        deletePage(req.params.pageId)
-            .then(() => {
-                res.status(200);
-            }, (err) => {
-                res.status(400).json([err.message]);
-            })
-            .catch((err) => {
-                res.status(400).json([err.message]);
-            });
+        Utils.sendResponse(res, deletePage, [req.params.pageId]);
     });
 
     /**
@@ -148,15 +116,6 @@ const exp = {
 
     //#endregion: Delete page
 
-    exp.api = {
-        createPage: createPage,
-        findPagesBywebsiteId: findPagesBywebsiteId,
-        findPageById: findPageById,
-        updatePage: updatePage,
-        deletePage: deletePage
-    };
+    return exp;
 
-})(router);
-
-
-module.exports = exp;
+})();

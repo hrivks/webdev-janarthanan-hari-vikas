@@ -1,13 +1,17 @@
 /**
  * Website Model
  */
-module.exports = (function () {
-    const q = require('q');
-    const mongoose = require('mongoose');
-    const WebsiteSchema = require('./website.schema.server');
-    const UserModel = require('../user/user.model.server');
 
-    var WebsiteModel = mongoose.model('WebsiteModel', WebsiteSchema);
+const q = require('q');
+const mongoose = require('mongoose');
+const WebsiteSchema = require('./website.schema.server');
+const UserModel = require('../user/user.model.server.js');
+const PageModel = require('../page/page.model.server.js');
+const WidgetModel = require('../widget/widget.model.server.js');
+
+module.exports = (function () {
+
+    const WebsiteModel = mongoose.model('WebsiteModel', WebsiteSchema);
 
     // API
     WebsiteModel.createWebsite = createWebsite;
@@ -55,15 +59,13 @@ module.exports = (function () {
             if (err) {
                 def.reject(err.message);
             } else if (!user) {
-                def.reject({ message: 'No user with the given developer id' });
+                def.reject({ message: 'No user with the given developer id exists' });
             }
             else {
                 WebsiteModel.create(website, (err, createdWebsite) => {
                     if (err) {
                         def.reject(err.message);
                     } else {
-                        user.websites.push(createdWebsite);
-                        user.save();
                         def.resolve(createdWebsite);
                     }
                 });
@@ -99,7 +101,7 @@ module.exports = (function () {
      */
     function updateWebsite(websiteId, website) {
         validate(website);
-        return WebsiteModel.findOneAndUpdate({ _id: websiteId }, website);
+        return WebsiteModel.findByIdAndUpdate(websiteId, website, { new: true });
     }
 
     /**
@@ -108,7 +110,36 @@ module.exports = (function () {
      * @returns {DocumentQuery} query that resolves on successful deletion
      */
     function deleteWebsite(websiteId) {
-        return WebsiteModel.remove({ _id: websiteId });
+        const def = q.defer();
+        // delete website object
+        WebsiteModel.findByIdAndRemove(websiteId, (err, res) => {
+            if (err) {
+                def.reject(err);
+            } else if (!res) {
+                // document doesn't exist. no operation needed
+                def.resolve({ result: 'nothing to delete' });
+            } else {
+
+                // get all pages in the website
+                const pages = PageModel
+                    .find({ websiteId: websiteId }, (err, pages) => {
+                        if (err) {
+                            def.reject(err);
+                        }
+                        if (pages) {
+                            const pageIds = pages.map((p) => p._id);
+
+                            // remove all widgets in these pages
+                            WidgetModel.find({ pageId: { $in: pageIds } }).remove().then();
+                        }
+                        def.resolve({ result: 'deleted' });
+                    });
+
+                // delete all pages in the website
+                pages.remove().then();
+            }
+        });
+        return def.promise;
     }
 
     return WebsiteModel;

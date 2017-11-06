@@ -78,14 +78,14 @@ export class ProfileComponent implements OnInit {
 
     // first name validation
 
-    if (this.testInvalidString(this.user.firstName)) {
+    if (this.testInvalidString(this.user.firstName, false, true)) {
       this.profileErrors.firstName = 'Invalid Name. Only alphabets allowed';
       this.profileErrors.hasError = true;
     }
 
     // last name validation
 
-    if (this.testInvalidString(this.user.lastName)) {
+    if (this.testInvalidString(this.user.lastName, false, true)) {
       this.profileErrors.lastName = 'Invalid Name. Only alphabets allowed';
       this.profileErrors.hasError = true;
     }
@@ -123,10 +123,12 @@ export class ProfileComponent implements OnInit {
    * @param allowDot true, if dot is allowed in the string
    * @returns true, if the string contains invalid characters
    */
-  private testInvalidString(s: string, allowDot: boolean = false) {
+  private testInvalidString(s: string, allowDot: boolean = false, allowSpace: boolean = false) {
     let regEx: RegExp;
     if (allowDot) {
       regEx = new RegExp('[^a-zA-Z.]');
+    } else if (allowSpace) {
+      regEx = new RegExp('[^a-zA-Z ]');
     } else {
       regEx = new RegExp('[^a-zA-Z]');
     }
