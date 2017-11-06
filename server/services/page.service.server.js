@@ -1,7 +1,7 @@
 // Provides CRUD for Page model
 // Module Route Root: '/api/page' and '/api/website/:websiteId/page'
-const router = require('express').Router({mergeParams: true});
-const Page = require('../models/page.model.js');
+const router = require('express').Router({ mergeParams: true });
+const PageModel = require('../models/page/page.model.server.js');
 const WidgetService = require('./widget.service.server.js');
 
 
@@ -13,54 +13,29 @@ const exp = {
 
 (function (router) {
 
-    //#region : Data Store
-
-    /** 
-     * List of available Pages
-     * @type {Page[]}
-     */
-    let pages = [
-        { '_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem' },
-        { '_id': '432', 'name': 'Post 2', 'websiteId': '456', 'description': 'Lorem' },
-        { '_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem' },
-        { '_id': '555', 'name': 'Post 4', 'websiteId': '789', 'description': 'Lorem' },
-        { '_id': '666', 'name': 'Post 5', 'websiteId': '789', 'description': 'Lorem Epsum 2' },
-        { '_id': '777', 'name': 'Post 6', 'websiteId': '789', 'description': 'Lorem Epsum' }
-    ];
-
-    //#endregion
-
-
     //#region: Create Page
 
     // route: [POST] '/api/website/:websiteId/page'
     router.post('/', function (req, res) {
-        try {
-            res.send(createPage(req.params.websiteId, req.body));
-        }
-        catch (ex) {
-            res.status(400).send(ex);
-        }
+        createPage(req.params.websiteId, req.body)
+            .then((page) => {
+                res.json(page);
+            }, (err) => {
+                res.status(400).json([err.message]);
+            })
+            .catch((err) => {
+                res.status(400).json([err.message]);
+            });
     });
 
     /**
      * Create a new page
      * @param {String} websiteId id of the user who created the page
-     * @param {Page} page page object created by the user
-     * @returns the created page object
+     * @param {PageSchema} page page object created by the user
+     * @returns {Promise<PageSchema>} the created page object
      */
     function createPage(websiteId, page) {
-        let id = Math.floor(Math.random() * 10000);
-
-        // ensure generated ID is unique
-        while (pages.find(p => p._id === id)) {
-            id++;
-        }
-
-        page._id = id.toString();
-        page.websiteId = websiteId;
-        pages.push(page);
-        return page;
+        return PageModel.createPage(websiteId, page);
     }
     //#endregion : Create Page
 
@@ -69,21 +44,24 @@ const exp = {
 
     // route: [GET] '/api/website/:websiteId/page'
     router.get('/', function (req, res) {
-        try {
-            res.send(findPagesBywebsiteId(req.params.websiteId));
-        }
-        catch (ex) {
-            res.status(400).send(ex);
-        }
+        findPagesBywebsiteId(req.params.websiteId)
+            .then((pages) => {
+                res.json(pages);
+            }, (err) => {
+                res.status(400).json([err.message]);
+            })
+            .catch((err) => {
+                res.status(400).json([err.message]);
+            });
     });
 
     /**
      * Get all pages in the website specified by website id
      * @param {String} websiteId id of the website
-     * @returns {Page[]} list of pages in the website specified by the given id
+     * @returns {DocumentQuery<PageSchema[]>} list of pages in the website specified by the given id
      */
     function findPagesBywebsiteId(websiteId) {
-        return pages.filter(p => p.websiteId === websiteId);
+        return PageModel.findPagesBywebsiteId(websiteId);
     }
 
     //#endregion: Find all pages by website id
@@ -93,26 +71,24 @@ const exp = {
 
     //route: [GET] '/api/page/:pageId'
     router.get('/:pageId', function (req, res) {
-        try {
-            res.send(findPageById(req.params.pageId));
-        }
-        catch (ex) {
-            res.status(400).send(ex);
-        }
+        findPageById(req.params.pageId)
+            .then((page) => {
+                res.json(page);
+            }, (err) => {
+                res.status(400).json([err.message]);
+            })
+            .catch((err) => {
+                res.status(400).json([err.message]);
+            });
     });
 
     /**
      * Find page by Id
-     * @param pageId id of the page
-     * @returns page corresponding to the given Id; null if id page doesn't exit
+     * @param {string} pageId id of the page
+     * @returns {DocumentQuery<PageSchema>} page corresponding to the given Id; null if id page doesn't exit
      */
     function findPageById(pageId) {
-        const page = pages.find(p => p._id === pageId);
-        if(page) {
-            return page;
-        } else {
-            throw ['Page with Id ' + pageId + 'does not exist'];
-        }
+        return PageModel.findPageById(pageId);
     }
 
     //#endregion: Find page by id
@@ -122,29 +98,25 @@ const exp = {
 
     // route: [PUT] '/api/page/:pageId'
     router.put('/:pageId', function (req, res) {
-        try {
-            res.send(updatePage(req.params.pageId, req.body));
-        }
-        catch (ex) {
-            res.status(400).send(ex);
-        }
+        updatePage(req.params.pageId, req.body)
+            .then((page) => {
+                res.json(page);
+            }, (err) => {
+                res.status(400).json([err.message]);
+            })
+            .catch((err) => {
+                res.status(400).json([err.message]);
+            });
     });
 
     /**
      * Update page by Id
      * @param {String} pageId Id of the page to update
      * @param {String} page updated page object
-     * @returns {Page} the updated page object
+     * @returns {{DocumentQuery<PageSchema>}} the updated page object
      */
     function updatePage(pageId, page) {
-        Page.validate(page);
-        const toUpdateIndex = pages.findIndex(p => p._id === pageId);
-        if (toUpdateIndex > -1) {
-            pages[toUpdateIndex] = page;
-            return page;
-        } else {
-            throw ['Page with id ' + pageId + ' does not exist'];
-        }
+        return PageModel.updatePage(pageId, page);
     }
 
     //#endregion: Update page
@@ -154,37 +126,24 @@ const exp = {
 
     // route: [DELETE] '/api/page/:pageId'
     router.delete('/:pageId', function (req, res) {
-        try {
-            res.send(deletePage(req.params.pageId));
-        }
-        catch (ex) {
-            res.status(400).send(ex);
-        }
+        deletePage(req.params.pageId)
+            .then(() => {
+                res.status(200);
+            }, (err) => {
+                res.status(400).json([err.message]);
+            })
+            .catch((err) => {
+                res.status(400).json([err.message]);
+            });
     });
 
     /**
      * Delete page by Id
-     * @param pageId Id of the page to delete
-     * @returns page that was deleted, null if the id doesn't exist
+     * @param {string} pageId Id of the page to delete
+     * @returns {DocumentQuery} page that was deleted, null if the id doesn't exist
      */
     function deletePage(pageId) {
-        const toDeleteIndex = pages.findIndex(u => u._id === pageId);
-        const toDelete = pages[toDeleteIndex];
-
-        if (toDeleteIndex > -1) {
-
-            // delete all widgets in the page
-            const widgetsToDelete = WidgetService.api.findWidgetsByPageId(pageId);
-            widgetsToDelete.forEach(w => {
-                WidgetService.api.deleteWidget(w._id);
-            });
-
-            pages.splice(toDeleteIndex, 1);
-        }
-        else {
-            throw ['Page with id ' + pageId + ' does not exist'];
-        }
-        return toDelete;
+        return PageModel.deletePage(pageId);
     }
 
     //#endregion: Delete page

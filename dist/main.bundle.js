@@ -3033,6 +3033,17 @@ var WidgetListComponent = (function () {
             _this.widgetService.findWidgetsByPageId(_this.pageId)
                 .finally(function () { _this.interactionsService.showLoader(false); })
                 .subscribe(function (widgets) {
+                widgets = widgets.sort(function (a, b) {
+                    if (a.order < b.order) {
+                        return -1;
+                    }
+                    else if (a.order > b.order) {
+                        return 1;
+                    }
+                    else {
+                        return 0;
+                    }
+                });
                 _this.widgets = widgets;
             }, function (err) {
                 _this.errorHanderService.handleError('Oops! Error getting list of widgets', err);

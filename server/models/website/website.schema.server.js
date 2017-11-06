@@ -4,7 +4,7 @@
 module.exports = (function () {
     var mongoose = require('mongoose');
 
-    var WebsiteSchema = mongoose.Schema({
+    var WebsiteSchema = new mongoose.Schema({
         developerId: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
         name: String,
         description: String,

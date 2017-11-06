@@ -35,6 +35,16 @@ export class WidgetListComponent implements OnInit {
         .finally(() => { this.interactionsService.showLoader(false); })
         .subscribe(
         (widgets) => {
+          widgets = widgets.sort((a, b) => {
+            if (a.order < b.order) {
+              return -1;
+            } else if (a.order > b.order) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+
           this.widgets = widgets;
         },
         (err) => {
