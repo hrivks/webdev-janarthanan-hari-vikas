@@ -47,21 +47,8 @@
 
     <!--Widget Heading Text-->
     <div class="form-group">
-      <label for="widget-heading-text"
-             class="font-weight-bold text-muted">Text</label>
-      <textarea type="text"
-                class="form-control"
-                id="widget-heading-text"
-                name="text"
-                placeholder="Html"
-                rows=5
-                [(ngModel)]="widget.text"
-                #textField="ngModel"
-                [ngClass]="{'border-danger': textField.invalid && textField.touched}"
-                required>
-      </textarea>
-      <span *ngIf="textField.invalid && textField.touched"
-            class="text-danger ml-2">Text is required</span>
+      <quill-editor name="widgetTextEditor"
+                    [(ngModel)]="widget.text"></quill-editor>
     </div>
     <!--/Widget Heading Text-->
 

@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+// Quill Editor
+import { QuillEditorModule } from 'ngx-quill-editor';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { TestComponent } from './components/test/test.component';
@@ -95,7 +98,8 @@ import { SortableDirective } from './directives/sortable.directive';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    Routing
+    Routing,
+    QuillEditorModule
   ],
   providers: [TestService,
     UserService,

@@ -36,7 +36,6 @@ export class WidgetHtmlEditComponent implements OnInit {
     if (this.widgetHtmlEditForm.invalid) {
       // touch controls to trigger validation messages
       this.widgetHtmlEditForm.controls.name.markAsTouched({ onlySelf: true });
-      this.widgetHtmlEditForm.controls.text.markAsTouched({ onlySelf: true });
     } else {
       this.updateWidget.emit(this.widget);
     }
