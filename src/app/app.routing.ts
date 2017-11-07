@@ -21,17 +21,17 @@ const APP_ROUTES: Routes = [
   { path: 'test', component: TestComponent , data: { title: 'Test', skipAuth: true } },
   { path: 'login', component: LoginComponent, data: { title: 'Login', skipAuth: true } },
   { path: 'register', component: RegisterComponent, data: { title: 'Register', skipAuth: true } },
-  { path: 'user/:uid', component: ProfileComponent },
-  { path: 'user/:uid/website', component: WebsiteListComponent },
-  { path: 'user/:uid/website/new', component: WebsiteNewComponent },
-  { path: 'user/:uid/website/:wid', component: WebsiteEditComponent },
-  { path: 'user/:uid/website/:wid/page', component: PageListComponent },
-  { path: 'user/:uid/website/:wid/page/new', component: PageNewComponent },
-  { path: 'user/:uid/website/:wid/page/:pid', component: PageEditComponent },
-  { path: 'user/:uid/website/:wid/page/:pid/widget', component: WidgetListComponent },
-  { path: 'user/:uid/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent },
-  { path: 'user/:uid/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent },
-  { path: 'user/:uid/website/:wid/page/:pid/widget/:wgid/flickr', component: FlickrImageSearchComponent }
+  { path: 'user/:uid', component: ProfileComponent, data: { title: 'Profile'} },
+  { path: 'user/:uid/website', component: WebsiteListComponent, data: { title: 'Websites'} },
+  { path: 'user/:uid/website/new', component: WebsiteNewComponent, data: { title: 'New Website'} },
+  { path: 'user/:uid/website/:wid', component: WebsiteEditComponent, data: { title: 'Edit Website'} },
+  { path: 'user/:uid/website/:wid/page', component: PageListComponent, data: { title: 'Pages'} },
+  { path: 'user/:uid/website/:wid/page/new', component: PageNewComponent, data: { title: 'New Page'} },
+  { path: 'user/:uid/website/:wid/page/:pid', component: PageEditComponent, data: { title: 'Edit Page'} },
+  { path: 'user/:uid/website/:wid/page/:pid/widget', component: WidgetListComponent, data: { title: 'Widgets'} },
+  { path: 'user/:uid/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent, data: { title: 'New Widget'} },
+  { path: 'user/:uid/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent, data: { title: 'Edit Widget'} },
+  { path: 'user/:uid/website/:wid/page/:pid/widget/:wgid/flickr', component: FlickrImageSearchComponent, data: { title: 'Search Flickr'} },
 ];
 
 // Export the routes as module providers

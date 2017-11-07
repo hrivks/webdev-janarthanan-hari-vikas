@@ -1,6 +1,9 @@
 // Route: /api
 const router = require('express').Router();
 
+// initiate DB
+require('./models/db.server.js');
+
 //#region: api route definitions
 
 // User route: /api/user
@@ -21,6 +24,7 @@ router.use('/page', require('./services/page.service.server.js').router);
 router.use('/page/:pageId/widget', require('./services/widget.service.server.js').router);
 router.use('/widget', require('./services/widget.service.server.js').router);
 router.use('/upload', require('./services/upload.service.server.js'));
+
 //#endregion
 
 module.exports = router;

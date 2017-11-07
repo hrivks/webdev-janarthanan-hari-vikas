@@ -4,7 +4,7 @@
 module.exports = (function () {
 
     const router = require('express').Router({ mergeParams: true });
-    const WidgetModel = require('../models/widget/widget.model.server.js');
+    const WidgetModel = require('../models/model.server.js').Widget;
     const Utils = require('./service-utils.js');
 
     /** Exported objects */

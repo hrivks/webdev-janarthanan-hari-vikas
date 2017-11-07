@@ -4,7 +4,7 @@
 module.exports = (function () {
 
     const router = require('express').Router({ mergeParams: true });
-    const WebsiteModel = require('../models/website/website.model.server');
+    const WebsiteModel = require('../models/model.server.js').Website;
     const PageService = require('./page.service.server.js');
     const Utils = require('./service-utils.js');
 

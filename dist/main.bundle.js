@@ -93,6 +93,8 @@ var AppComponent = (function () {
                 title.setTitle(_this.activatedRoute.snapshot.firstChild.data.title || 'webdev-hari-vikas-janarthanan');
                 // clear dynamic footer links set by previous page
                 _this.interactionsService.invoke(__WEBPACK_IMPORTED_MODULE_5__app_constant__["a" /* AppConstants */].EVENTS.clearFooterLink);
+                // clear alert set by previous page
+                _this.interactionsService.hideAlert();
             }
         });
     }
@@ -129,6 +131,7 @@ AppConstants.EVENTS = {
     addFooterLink: 'addFooterLink',
     clearFooterLink: 'clearFooterLink',
     showAlert: 'showAlert',
+    hideAlert: 'hideAlert',
     showLoader: 'showLoader'
 };
 AppConstants.ENDPOINT = {
@@ -358,17 +361,17 @@ var APP_ROUTES = [
     { path: 'test', component: __WEBPACK_IMPORTED_MODULE_2__components_test_test_component__["a" /* TestComponent */], data: { title: 'Test', skipAuth: true } },
     { path: 'login', component: __WEBPACK_IMPORTED_MODULE_3__components_user_login_login_component__["a" /* LoginComponent */], data: { title: 'Login', skipAuth: true } },
     { path: 'register', component: __WEBPACK_IMPORTED_MODULE_5__components_user_register_register_component__["a" /* RegisterComponent */], data: { title: 'Register', skipAuth: true } },
-    { path: 'user/:uid', component: __WEBPACK_IMPORTED_MODULE_4__components_user_profile_profile_component__["a" /* ProfileComponent */] },
-    { path: 'user/:uid/website', component: __WEBPACK_IMPORTED_MODULE_8__components_website_website_list_website_list_component__["a" /* WebsiteListComponent */] },
-    { path: 'user/:uid/website/new', component: __WEBPACK_IMPORTED_MODULE_6__components_website_website_new_website_new_component__["a" /* WebsiteNewComponent */] },
-    { path: 'user/:uid/website/:wid', component: __WEBPACK_IMPORTED_MODULE_7__components_website_website_edit_website_edit_component__["a" /* WebsiteEditComponent */] },
-    { path: 'user/:uid/website/:wid/page', component: __WEBPACK_IMPORTED_MODULE_11__components_page_page_list_page_list_component__["a" /* PageListComponent */] },
-    { path: 'user/:uid/website/:wid/page/new', component: __WEBPACK_IMPORTED_MODULE_9__components_page_page_new_page_new_component__["a" /* PageNewComponent */] },
-    { path: 'user/:uid/website/:wid/page/:pid', component: __WEBPACK_IMPORTED_MODULE_10__components_page_page_edit_page_edit_component__["a" /* PageEditComponent */] },
-    { path: 'user/:uid/website/:wid/page/:pid/widget', component: __WEBPACK_IMPORTED_MODULE_14__components_widget_widget_list_widget_list_component__["a" /* WidgetListComponent */] },
-    { path: 'user/:uid/website/:wid/page/:pid/widget/new', component: __WEBPACK_IMPORTED_MODULE_12__components_widget_widget_chooser_widget_chooser_component__["a" /* WidgetChooserComponent */] },
-    { path: 'user/:uid/website/:wid/page/:pid/widget/:wgid', component: __WEBPACK_IMPORTED_MODULE_13__components_widget_widget_edit_widget_edit_component__["a" /* WidgetEditComponent */] },
-    { path: 'user/:uid/website/:wid/page/:pid/widget/:wgid/flickr', component: __WEBPACK_IMPORTED_MODULE_15__components_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__["a" /* FlickrImageSearchComponent */] }
+    { path: 'user/:uid', component: __WEBPACK_IMPORTED_MODULE_4__components_user_profile_profile_component__["a" /* ProfileComponent */], data: { title: 'Profile' } },
+    { path: 'user/:uid/website', component: __WEBPACK_IMPORTED_MODULE_8__components_website_website_list_website_list_component__["a" /* WebsiteListComponent */], data: { title: 'Websites' } },
+    { path: 'user/:uid/website/new', component: __WEBPACK_IMPORTED_MODULE_6__components_website_website_new_website_new_component__["a" /* WebsiteNewComponent */], data: { title: 'New Website' } },
+    { path: 'user/:uid/website/:wid', component: __WEBPACK_IMPORTED_MODULE_7__components_website_website_edit_website_edit_component__["a" /* WebsiteEditComponent */], data: { title: 'Edit Website' } },
+    { path: 'user/:uid/website/:wid/page', component: __WEBPACK_IMPORTED_MODULE_11__components_page_page_list_page_list_component__["a" /* PageListComponent */], data: { title: 'Pages' } },
+    { path: 'user/:uid/website/:wid/page/new', component: __WEBPACK_IMPORTED_MODULE_9__components_page_page_new_page_new_component__["a" /* PageNewComponent */], data: { title: 'New Page' } },
+    { path: 'user/:uid/website/:wid/page/:pid', component: __WEBPACK_IMPORTED_MODULE_10__components_page_page_edit_page_edit_component__["a" /* PageEditComponent */], data: { title: 'Edit Page' } },
+    { path: 'user/:uid/website/:wid/page/:pid/widget', component: __WEBPACK_IMPORTED_MODULE_14__components_widget_widget_list_widget_list_component__["a" /* WidgetListComponent */], data: { title: 'Widgets' } },
+    { path: 'user/:uid/website/:wid/page/:pid/widget/new', component: __WEBPACK_IMPORTED_MODULE_12__components_widget_widget_chooser_widget_chooser_component__["a" /* WidgetChooserComponent */], data: { title: 'New Widget' } },
+    { path: 'user/:uid/website/:wid/page/:pid/widget/:wgid', component: __WEBPACK_IMPORTED_MODULE_13__components_widget_widget_edit_widget_edit_component__["a" /* WidgetEditComponent */], data: { title: 'Edit Widget' } },
+    { path: 'user/:uid/website/:wid/page/:pid/widget/:wgid/flickr', component: __WEBPACK_IMPORTED_MODULE_15__components_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__["a" /* FlickrImageSearchComponent */], data: { title: 'Search Flickr' } },
 ];
 // Export the routes as module providers
 var Routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["d" /* RouterModule */].forRoot(APP_ROUTES);
@@ -397,7 +400,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"container\">\r\n\r\n  <h1>\r\n    Angular 4 MEAN stack app\r\n  </h1>\r\n\r\n\r\n  <h3>\r\n    App works\r\n  </h3>\r\n\r\n\r\n  <h4>\r\n    <a href=\"test\">Test MongoDB</a>\r\n  </h4>\r\n\r\n  <h4>\r\n      <a [routerLink]=\"['/login']\">Assignment 4</a>\r\n  </h4>\r\n</div>\r\n\r\n"
+module.exports = "\r\n<div class=\"container\">\r\n\r\n  <h1>\r\n    Angular 4 MEAN stack app\r\n  </h1>\r\n\r\n\r\n  <h3>\r\n    App works\r\n  </h3>\r\n\r\n\r\n  <h4>\r\n    <a href=\"test\">Test MongoDB</a>\r\n  </h4>\r\n\r\n  <h4>\r\n      <a [routerLink]=\"['/login']\">Assignment 5</a>\r\n  </h4>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -859,6 +862,7 @@ var AlertComponent = (function () {
         var _this = this;
         this.alertVisible = false;
         this.interactionsService.registerCallback(__WEBPACK_IMPORTED_MODULE_3__app_constant__["a" /* AppConstants */].EVENTS.showAlert, function (d) { _this.showAlert(d); });
+        this.interactionsService.registerCallback(__WEBPACK_IMPORTED_MODULE_3__app_constant__["a" /* AppConstants */].EVENTS.hideAlert, function () { _this.hideAlert(); });
     };
     /**
      * show alert on page
@@ -876,6 +880,12 @@ var AlertComponent = (function () {
                 }, 3000);
             }
         }
+    };
+    /**
+     * Hide alert on page
+     */
+    AlertComponent.prototype.hideAlert = function () {
+        this.alertVisible = false;
     };
     return AlertComponent;
 }());
@@ -3205,7 +3215,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-text/widget-text.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-widget-text\">\n  <label *ngIf=\"widget.text\"\n         class=\"font-weight-bold text-muted\">{{widget.text}}</label>\n  <div *ngIf=\"widget.formatted\">\n    <quill-editor></quill-editor>\n  </div>\n  <div *ngIf=\"!widget.formatted\"\n       class=\"form-group\">\n    <input *ngIf=\"widget.rows < 2 || widget.rows === undefined\"\n           type=\"text\"\n           class=\"form-control\"\n           placeholder=\"{{widget?.placeholder}}\" />\n    <textarea *ngIf=\"widget.rows > 2\"\n              rows=\"{{widget.rows}}\"\n              class=\"form-control\"\n              placeholder=\"{{widget?.placeholder}}\"></textarea>\n  </div>\n</div>"
+module.exports = "<div class=\"hvj-widget-text\">\r\n  <label *ngIf=\"widget.text\"\r\n         class=\"font-weight-bold text-muted\">{{widget.text}}</label>\r\n  <div *ngIf=\"widget.formatted\">\r\n    <quill-editor></quill-editor>\r\n  </div>\r\n  <div *ngIf=\"!widget.formatted\"\r\n       class=\"form-group\">\r\n    <input *ngIf=\"widget.rows < 2 || widget.rows === undefined\"\r\n           type=\"text\"\r\n           class=\"form-control\"\r\n           placeholder=\"{{widget?.placeholder}}\" />\r\n    <textarea *ngIf=\"widget.rows > 2\"\r\n              rows=\"{{widget.rows}}\"\r\n              class=\"form-control\"\r\n              placeholder=\"{{widget?.placeholder}}\"></textarea>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -3790,6 +3800,12 @@ var InteractionsService = (function () {
      */
     InteractionsService.prototype.showAlert = function (text, type, autoClose) {
         this.invoke(__WEBPACK_IMPORTED_MODULE_1__app_constant__["a" /* AppConstants */].EVENTS.showAlert, { text: text, type: type, autoClose: autoClose });
+    };
+    /**
+     * Hide alert
+     */
+    InteractionsService.prototype.hideAlert = function () {
+        this.invoke(__WEBPACK_IMPORTED_MODULE_1__app_constant__["a" /* AppConstants */].EVENTS.hideAlert);
     };
     /**
      * Show / hide loading screen

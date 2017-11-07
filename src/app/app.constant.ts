@@ -5,6 +5,7 @@ export class AppConstants {
         addFooterLink: 'addFooterLink',
         clearFooterLink: 'clearFooterLink',
         showAlert: 'showAlert',
+        hideAlert: 'hideAlert',
         showLoader: 'showLoader'
     };
 
