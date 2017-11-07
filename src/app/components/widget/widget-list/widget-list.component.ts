@@ -64,7 +64,9 @@ export class WidgetListComponent implements OnInit {
    * @param newPosition new position of the widget
    */
   updateSortOrder(newPosition: { initial: number, final: number }) {
-    console.log(newPosition);
+    if (newPosition.initial === newPosition.final) {
+      return;
+    }
     this.widgetService.reorderWidget(this.pageId, this.widgets[newPosition.initial], newPosition.initial, newPosition.final)
       .subscribe(
       (widgets) => {

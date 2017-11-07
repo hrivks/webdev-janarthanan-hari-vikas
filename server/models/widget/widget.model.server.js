@@ -188,7 +188,7 @@ module.exports = (function () {
                             widgetAtEnd.save();
                         }
 
-                        def.resolve();
+                        def.resolve({ result: 'reordered' });
 
                     }, (err) => {
                         def.reject(err);

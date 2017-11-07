@@ -25,14 +25,14 @@ module.exports = (function () {
     /** Image Widget schema */
     const ImageWidgetSchema = new mongoose.Schema({
         url: String,
-        size: Number
+        size: String
     }, options);
 
     /** YouTube Widget schema */
     const YouTubeWidgetSchema = new mongoose.Schema({
         url: String,
         text: String,
-        size: Number
+        size: String
     }, options);
 
     /** Html Widget schema */

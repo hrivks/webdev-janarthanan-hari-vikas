@@ -1,6 +1,6 @@
 <div class="hvj-widget-image">
   <img *ngIf="widget.url"
-       [style.width]="widget.width"
+       [style.width]="widget.size"
        [alt]="widget.text ? widget.text : ''"
        [src]="widget.url" />
   <p *ngIf="!widget.url && !widget.text"
