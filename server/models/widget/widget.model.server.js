@@ -137,6 +137,9 @@ module.exports = (function () {
             case 'YouTube':
                 model = YouTubeWidgetModel;
                 break;
+            case 'Text':
+                model = TextWidgetModel;
+                break;
         }
 
         return model.findByIdAndUpdate(widgetId, widget, { new: true });

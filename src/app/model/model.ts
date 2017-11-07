@@ -46,5 +46,6 @@ export class Widget implements IAppEntity {
     url?: string;
     order?: number;
     rows?: number;
+    placeholder?: string;
 }
 

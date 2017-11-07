@@ -45,6 +45,7 @@ import { WidgetHeaderEditComponent } from './components/widget/widget-edit/widge
 import { WidgetImageEditComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetYoutubeEditComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
 import { WidgetHtmlEditComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
+import { WidgetTextEditComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
 
 // widget list components
 import { WidgetListComponent } from './components/widget/widget-list/widget-list.component';
@@ -52,7 +53,7 @@ import { WidgetHeaderComponent } from './components/widget/widget-list/widget-he
 import { WidgetImageComponent } from './components/widget/widget-list/widget-image/widget-image.component';
 import { WidgetYoutubeComponent } from './components/widget/widget-list/widget-youtube/widget-youtube.component';
 import { WidgetHtmlComponent } from './components/widget/widget-list/widget-html/widget-html.component';
-import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
+import { WidgetTextComponent } from './components/widget/widget-list/widget-text/widget-text.component';
 
 // shared components
 import { FooterComponent } from './components/shared/footer/footer.component';
@@ -85,17 +86,18 @@ import { SortableDirective } from './directives/sortable.directive';
     WidgetImageEditComponent,
     WidgetYoutubeEditComponent,
     WidgetHtmlEditComponent,
+    WidgetTextEditComponent,
     WidgetListComponent,
     WidgetHeaderComponent,
     WidgetImageComponent,
     WidgetYoutubeComponent,
     WidgetHtmlComponent,
+    WidgetTextComponent,
     FooterComponent,
     AlertComponent,
     LoaderComponent,
     SortableDirective,
-    FlickrImageSearchComponent,
-    WidgetTextComponent
+    FlickrImageSearchComponent
   ],
   imports: [
     BrowserModule,

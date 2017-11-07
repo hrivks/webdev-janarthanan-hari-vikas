@@ -7,7 +7,7 @@ import { Widget } from '../../../../model/model';
   templateUrl: './widget-text.component.html',
   styleUrls: ['./widget-text.component.css']
 })
-export class WidgetTextComponent implements OnInit {
+export class WidgetTextEditComponent implements OnInit {
 
   // properties
   @Input() widget: Widget;
@@ -18,10 +18,10 @@ export class WidgetTextComponent implements OnInit {
 
   constructor() {
     this.showDeleteConfirmation = false;
-    this.widget.rows = this.widget.rows || 1;
   }
 
   ngOnInit() {
+    this.widget.rows = this.widget.rows || 1;
   }
 
   /**

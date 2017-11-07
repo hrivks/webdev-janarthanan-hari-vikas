@@ -1,0 +1,18 @@
+<div class="hvj-widget-text">
+  <label *ngIf="widget.text"
+         class="font-weight-bold text-muted">{{widget.text}}</label>
+  <div *ngIf="widget.formatted">
+    <quill-editor></quill-editor>
+  </div>
+  <div *ngIf="!widget.formatted"
+       class="form-group">
+    <input *ngIf="widget.rows < 2 || widget.rows === undefined"
+           type="text"
+           class="form-control"
+           placeholder="{{widget?.placeholder}}" />
+    <textarea *ngIf="widget.rows > 2"
+              rows="{{widget.rows}}"
+              class="form-control"
+              placeholder="{{widget?.placeholder}}"></textarea>
+  </div>
+</div>

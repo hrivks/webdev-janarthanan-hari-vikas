@@ -178,16 +178,17 @@ AppConstants.ENDPOINT = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_widget_widget_edit_widget_image_widget_image_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-image/widget-image.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__components_widget_widget_edit_widget_youtube_widget_youtube_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-youtube/widget-youtube.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__components_widget_widget_edit_widget_html_widget_html_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-html/widget-html.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__components_widget_widget_list_widget_list_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__components_widget_widget_list_widget_header_widget_header_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-header/widget-header.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__components_widget_widget_list_widget_image_widget_image_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-image/widget-image.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__components_widget_widget_list_widget_youtube_widget_youtube_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-youtube/widget-youtube.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_widget_widget_list_widget_html_widget_html_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-html/widget-html.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_widget_widget_edit_widget_text_widget_text_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__components_shared_footer_footer_component__ = __webpack_require__("../../../../../src/app/components/shared/footer/footer.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__components_shared_alert_alert_component__ = __webpack_require__("../../../../../src/app/components/shared/alert/alert.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__components_shared_loader_loader_component__ = __webpack_require__("../../../../../src/app/components/shared/loader/loader.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__directives_sortable_directive__ = __webpack_require__("../../../../../src/app/directives/sortable.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__components_widget_widget_edit_widget_text_widget_text_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__components_widget_widget_list_widget_list_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__components_widget_widget_list_widget_header_widget_header_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-header/widget-header.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__components_widget_widget_list_widget_image_widget_image_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-image/widget-image.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_widget_widget_list_widget_youtube_widget_youtube_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-youtube/widget-youtube.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_widget_widget_list_widget_html_widget_html_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-html/widget-html.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__components_widget_widget_list_widget_text_widget_text_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-text/widget-text.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__components_shared_footer_footer_component__ = __webpack_require__("../../../../../src/app/components/shared/footer/footer.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__components_shared_alert_alert_component__ = __webpack_require__("../../../../../src/app/components/shared/alert/alert.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__components_shared_loader_loader_component__ = __webpack_require__("../../../../../src/app/components/shared/loader/loader.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__directives_sortable_directive__ = __webpack_require__("../../../../../src/app/directives/sortable.directive.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -237,6 +238,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 // widget list components
 
 
@@ -277,17 +279,18 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_31__components_widget_widget_edit_widget_image_widget_image_component__["a" /* WidgetImageEditComponent */],
             __WEBPACK_IMPORTED_MODULE_32__components_widget_widget_edit_widget_youtube_widget_youtube_component__["a" /* WidgetYoutubeEditComponent */],
             __WEBPACK_IMPORTED_MODULE_33__components_widget_widget_edit_widget_html_widget_html_component__["a" /* WidgetHtmlEditComponent */],
-            __WEBPACK_IMPORTED_MODULE_34__components_widget_widget_list_widget_list_component__["a" /* WidgetListComponent */],
-            __WEBPACK_IMPORTED_MODULE_35__components_widget_widget_list_widget_header_widget_header_component__["a" /* WidgetHeaderComponent */],
-            __WEBPACK_IMPORTED_MODULE_36__components_widget_widget_list_widget_image_widget_image_component__["a" /* WidgetImageComponent */],
-            __WEBPACK_IMPORTED_MODULE_37__components_widget_widget_list_widget_youtube_widget_youtube_component__["a" /* WidgetYoutubeComponent */],
-            __WEBPACK_IMPORTED_MODULE_38__components_widget_widget_list_widget_html_widget_html_component__["a" /* WidgetHtmlComponent */],
-            __WEBPACK_IMPORTED_MODULE_40__components_shared_footer_footer_component__["a" /* FooterComponent */],
-            __WEBPACK_IMPORTED_MODULE_41__components_shared_alert_alert_component__["a" /* AlertComponent */],
-            __WEBPACK_IMPORTED_MODULE_42__components_shared_loader_loader_component__["a" /* LoaderComponent */],
-            __WEBPACK_IMPORTED_MODULE_43__directives_sortable_directive__["a" /* SortableDirective */],
-            __WEBPACK_IMPORTED_MODULE_29__components_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__["a" /* FlickrImageSearchComponent */],
-            __WEBPACK_IMPORTED_MODULE_39__components_widget_widget_edit_widget_text_widget_text_component__["a" /* WidgetTextComponent */]
+            __WEBPACK_IMPORTED_MODULE_34__components_widget_widget_edit_widget_text_widget_text_component__["a" /* WidgetTextEditComponent */],
+            __WEBPACK_IMPORTED_MODULE_35__components_widget_widget_list_widget_list_component__["a" /* WidgetListComponent */],
+            __WEBPACK_IMPORTED_MODULE_36__components_widget_widget_list_widget_header_widget_header_component__["a" /* WidgetHeaderComponent */],
+            __WEBPACK_IMPORTED_MODULE_37__components_widget_widget_list_widget_image_widget_image_component__["a" /* WidgetImageComponent */],
+            __WEBPACK_IMPORTED_MODULE_38__components_widget_widget_list_widget_youtube_widget_youtube_component__["a" /* WidgetYoutubeComponent */],
+            __WEBPACK_IMPORTED_MODULE_39__components_widget_widget_list_widget_html_widget_html_component__["a" /* WidgetHtmlComponent */],
+            __WEBPACK_IMPORTED_MODULE_40__components_widget_widget_list_widget_text_widget_text_component__["a" /* WidgetTextComponent */],
+            __WEBPACK_IMPORTED_MODULE_41__components_shared_footer_footer_component__["a" /* FooterComponent */],
+            __WEBPACK_IMPORTED_MODULE_42__components_shared_alert_alert_component__["a" /* AlertComponent */],
+            __WEBPACK_IMPORTED_MODULE_43__components_shared_loader_loader_component__["a" /* LoaderComponent */],
+            __WEBPACK_IMPORTED_MODULE_44__directives_sortable_directive__["a" /* SortableDirective */],
+            __WEBPACK_IMPORTED_MODULE_29__components_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__["a" /* FlickrImageSearchComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -2666,7 +2669,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Top Nav-->\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\n  <ul class=\"navbar-nav mr-3\">\n    <li class=\"nav-item\">\n      <!-- Back button -->\n      <a class=\"nav-link px-0\"\n         [routerLink]=\"['../']\"\n         title=\"Widgets\">\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\n      </a>\n      <!-- /Back button -->\n    </li>\n  </ul>\n\n  <span class=\"navbar-brand\">Widget Edit : Text</span>\n\n  <ul class=\"navbar-nav ml-auto\">\n    <li class=\"nav-item\">\n      <!-- Action button -->\n      <a class=\"nav-link px-0\"\n         (click)=\"saveChanges()\"\n         title=\"Save Changes\">\n        <span class=\"fa fa-check fa-lg\"></span>\n      </a>\n      <!-- /Action button -->\n    </li>\n  </ul>\n</nav>\n<!--/Top Nav-->\n\n<!--content-->\n<div class=\"container hvj-widget-header-edit\">\n  <form #widgetTextEditForm=\"ngForm\">\n    <!--Widget Name-->\n    <div class=\"form-group\">\n      <label for=\"name\"\n             class=\"font-weight-bold text-muted\">Name</label>\n      <input type=\"text\"\n             class=\"form-control\"\n             id=\"widgetName\"\n             name=\"name\"\n             placeholder=\"Name\"\n             [(ngModel)]=\"widget.name\"\n             #nameField=\"ngModel\">\n    </div>\n    <!--/Widget Name-->\n\n    <!--Widget Formatted-->\n    <div class=\"form-group\">\n      <label for=\"formatted\"\n             class=\"font-weight-bold text-muted\">Formatted</label>\n      <input type=\"checkbox\"\n             class=\"form-control\"\n             id=\"widgetFormatted\"\n             name=\"formatted\"\n             [(ngModel)]=\"widget.formatted\"\n             #formattedField=\"ngModel\">\n    </div>\n    <!--/Widget Formatted-->\n\n    <!--Widget Rows-->\n    <div class=\"form-group\"\n         *ngIf=\"widget.formatted\">\n      <label for=\"formatted\"\n             class=\"font-weight-bold text-muted\">Rows</label>\n      <input type=\"number\"\n             class=\"form-control\"\n             id=\"widgetRows\"\n             name=\"rows\"\n             [(ngModel)]=\"widget.rows\"\n             #rowsField=\"ngModel\">\n    </div>\n    <!--/Widget Formatted-->\n\n    <!-- Form buttons -->\n    <div class=\"row no-gutters\">\n      <div class=\"col-12 col-sm-9 mr-1\">\n        <!-- Save button -->\n        <button class=\"btn btn-success btn-block mr-1 mb-2\"\n                title=\"Save Widget\"\n                (click)=\"saveChanges()\">\n          <i class=\"fa fa-check\"></i>\n        </button>\n      </div>\n      <div class=\"col\">\n        <!-- Delete button -->\n        <button class=\"btn btn-danger btn-block\"\n                title=\"Delete Widget\"\n                (click)=\"showDeleteConfirmation = true\"\n                [hidden]=\"showDeleteConfirmation\">\n          <i class=\"fa fa-trash\"></i>\n        </button>\n        <button class=\"btn btn-danger btn-block mt-0\"\n                title=\"Delete Widget\"\n                [hidden]=\"!showDeleteConfirmation\"\n                (click)=\"delete()\">sure?</button>\n      </div>\n    </div>\n\n  </form>\n</div>\n<!--/content-->"
+module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <!-- Back button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['../']\"\r\n         title=\"Widgets\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n      <!-- /Back button -->\r\n    </li>\r\n  </ul>\r\n\r\n  <span class=\"navbar-brand\">Widget Edit : Text</span>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <a class=\"nav-link px-0\"\r\n         (click)=\"saveChanges()\"\r\n         title=\"Save Changes\">\r\n        <span class=\"fa fa-check fa-lg\"></span>\r\n      </a>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<!--content-->\r\n<div class=\"container hvj-widget-header-edit\">\r\n  <form #widgetTextEditForm=\"ngForm\">\r\n    <!--Widget Name-->\r\n    <div class=\"form-group\">\r\n      <label for=\"name\"\r\n             class=\"font-weight-bold text-muted\">Name</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"widgetName\"\r\n             name=\"name\"\r\n             placeholder=\"Name\"\r\n             [(ngModel)]=\"widget.name\">\r\n    </div>\r\n    <!--/Widget Name-->\r\n\r\n    <!--Widget Text-->\r\n    <div class=\"form-group\">\r\n      <label for=\"text\"\r\n             class=\"font-weight-bold text-muted\">Text</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"widgetText\"\r\n             name=\"text\"\r\n             placeholder=\"Text\"\r\n             [(ngModel)]=\"widget.text\">\r\n    </div>\r\n    <!--/Widget Name-->\r\n\r\n    <!--Widget Formatted-->\r\n    <div class=\"form-group text-muted\">\r\n      <span (click)=\"widget.formatted = !widget.formatted\">\r\n        <label class=\"font-weight-bold align-top mr-3\">Formatted </label>\r\n        <span [ngClass]=\"widget.formatted ? 'fa-toggle-on text-success' : 'fa-toggle-off'\"\r\n              class=\"fa fa-2x\"></span>\r\n\r\n      </span>\r\n    </div>\r\n    <!--/Widget Formatted-->\r\n\r\n    <!--Widget Rows-->\r\n    <div class=\"form-group\"\r\n         *ngIf=\"!widget.formatted\">\r\n      <label for=\"formatted\"\r\n             class=\"font-weight-bold text-muted\">Rows</label>\r\n      <input type=\"number\"\r\n             class=\"form-control\"\r\n             id=\"widgetRows\"\r\n             name=\"rows\"\r\n             [(ngModel)]=\"widget.rows\">\r\n    </div>\r\n    <!--/Widget Formatted-->\r\n\r\n    <!--Widget Placeholder-->\r\n    <div class=\"form-group\">\r\n      <label for=\"placeholder\"\r\n             class=\"font-weight-bold text-muted\">Placeholder</label>\r\n      <input type=\"text\"\r\n             class=\"form-control\"\r\n             id=\"widgetPlaceholder\"\r\n             name=\"placeholder\"\r\n             [(ngModel)]=\"widget.placeholder\">\r\n    </div>\r\n    <!--/Widget Formatted-->\r\n\r\n    <!-- Form buttons -->\r\n    <div class=\"row no-gutters\">\r\n      <div class=\"col-12 col-sm-9 mr-1\">\r\n        <!-- Save button -->\r\n        <button class=\"btn btn-success btn-block mr-1 mb-2\"\r\n                title=\"Save Widget\"\r\n                (click)=\"saveChanges()\">\r\n          <i class=\"fa fa-check\"></i>\r\n        </button>\r\n      </div>\r\n      <div class=\"col\">\r\n        <!-- Delete button -->\r\n        <button class=\"btn btn-danger btn-block\"\r\n                title=\"Delete Widget\"\r\n                (click)=\"showDeleteConfirmation = true\"\r\n                [hidden]=\"showDeleteConfirmation\">\r\n          <i class=\"fa fa-trash\"></i>\r\n        </button>\r\n        <button class=\"btn btn-danger btn-block mt-0\"\r\n                title=\"Delete Widget\"\r\n                [hidden]=\"!showDeleteConfirmation\"\r\n                (click)=\"delete()\">sure?</button>\r\n      </div>\r\n    </div>\r\n\r\n  </form>\r\n</div>\r\n<!--/content-->"
 
 /***/ }),
 
@@ -2674,7 +2677,7 @@ module.exports = "<!--Top Nav-->\n<nav class=\"navbar navbar-expand fixed-top na
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WidgetTextComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WidgetTextEditComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_model__ = __webpack_require__("../../../../../src/app/model/model.ts");
@@ -2690,53 +2693,53 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var WidgetTextComponent = (function () {
-    function WidgetTextComponent() {
+var WidgetTextEditComponent = (function () {
+    function WidgetTextEditComponent() {
         this.updateWidget = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
         this.deleteWidget = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
         this.showDeleteConfirmation = false;
-        this.widget.rows = this.widget.rows || 1;
     }
-    WidgetTextComponent.prototype.ngOnInit = function () {
+    WidgetTextEditComponent.prototype.ngOnInit = function () {
+        this.widget.rows = this.widget.rows || 1;
     };
     /**
      * Save changes to widget
      */
-    WidgetTextComponent.prototype.saveChanges = function () {
+    WidgetTextEditComponent.prototype.saveChanges = function () {
         this.updateWidget.emit(this.widget);
     };
     /**
      * Delete current widget
      */
-    WidgetTextComponent.prototype.delete = function () {
+    WidgetTextEditComponent.prototype.delete = function () {
         this.deleteWidget.emit(this.widget._id);
     };
-    return WidgetTextComponent;
+    return WidgetTextEditComponent;
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
     __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__model_model__["d" /* Widget */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__model_model__["d" /* Widget */]) === "function" && _a || Object)
-], WidgetTextComponent.prototype, "widget", void 0);
+], WidgetTextEditComponent.prototype, "widget", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(),
     __metadata("design:type", Object)
-], WidgetTextComponent.prototype, "updateWidget", void 0);
+], WidgetTextEditComponent.prototype, "updateWidget", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(),
     __metadata("design:type", Object)
-], WidgetTextComponent.prototype, "deleteWidget", void 0);
+], WidgetTextEditComponent.prototype, "deleteWidget", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('widgetTextEditForm'),
     __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* NgForm */]) === "function" && _b || Object)
-], WidgetTextComponent.prototype, "widgetTextEditForm", void 0);
-WidgetTextComponent = __decorate([
+], WidgetTextEditComponent.prototype, "widgetTextEditForm", void 0);
+WidgetTextEditComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-widget-text-edit',
         template: __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.css")]
     }),
     __metadata("design:paramtypes", [])
-], WidgetTextComponent);
+], WidgetTextEditComponent);
 
 var _a, _b;
 //# sourceMappingURL=widget-text.component.js.map
@@ -3081,7 +3084,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <!-- Back button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['../../']\"\r\n         title=\"Pages\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n      <!-- /Back button -->\r\n    </li>\r\n  </ul>\r\n\r\n  <span class=\"navbar-brand\">Widgets</span>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['new']\"\r\n         title=\"Add Widget\">\r\n        <span class=\"fa fa-plus fa-lg\"></span>\r\n      </a>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-widget-list\">\r\n  <ul class=\"list-group\"\r\n      *ngIf=\"widgets\"\r\n      appSortable (onSort)=\"updateSortOrder($event)\">\r\n    <li class=\"list-group-item border-0 px-1 mb-1\"\r\n        *ngFor=\"let thisWidget of widgets\">\r\n      <div class=\"hvj-widget\"\r\n           [ngSwitch]=\"WidgetType[thisWidget.widgetType]\">\r\n        <div *ngSwitchCase=\"WidgetType.Heading\">\r\n          <app-widget-header [widget]=\"thisWidget\"></app-widget-header>\r\n        </div>\r\n\r\n        <div *ngSwitchCase=\"WidgetType.Image\">\r\n          <app-widget-image [widget]=\"thisWidget\"></app-widget-image>\r\n        </div>\r\n\r\n        <div *ngSwitchCase=\"WidgetType.Html\">\r\n          <app-widget-html [widget]=\"thisWidget\"></app-widget-html>\r\n        </div>\r\n\r\n        <div *ngSwitchCase=\"WidgetType.YouTube\">\r\n          <app-widget-youtube [widget]=\"thisWidget\"></app-widget-youtube>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- Widget Action buttons -->\r\n      <div class=\"hvj-widget-actions btn-group ml-auto\">\r\n        <a class=\"btn btn-xs mr-1 link-royal\"\r\n           [routerLink]=\"[thisWidget._id]\"\r\n           title=\"Edit\">\r\n          <span class=\"fa fa-gear\"></span>\r\n        </a>\r\n        <a class=\"btn btn-xs link-royal\"\r\n           title=\"More Options\">\r\n          <span class=\"fa fa-bars\"></span>\r\n        </a>\r\n      </div>\r\n      <!-- /Widget Action buttons -->\r\n    </li>\r\n\r\n    <!-- list empty message -->\r\n    <li class=\"list-group-item border-0 px-1\"\r\n        *ngIf=\"widgets.length == 0\">\r\n      <span>\r\n        <em>No widgets to show</em>\r\n      </span>\r\n    </li>\r\n\r\n    <li class=\"list-group-item border-0 px-1\"\r\n        *ngIf=\"widgets.length == 0\">\r\n      <a class=\"btn btn-xs link-royal\"\r\n         [routerLink]=\"['new']\">\r\n        <i class=\"fa fa-plus fa-lg mr-2\"></i>\r\n        <em class=\"text-secondary\">Create new widget</em>\r\n      </a>\r\n    </li>\r\n\r\n  </ul>\r\n</div>"
+module.exports = "<!--Top Nav-->\r\n<nav class=\"navbar navbar-expand fixed-top navbar-dark bg-royal px-2 px-sm-3\">\r\n  <ul class=\"navbar-nav mr-3\">\r\n    <li class=\"nav-item\">\r\n      <!-- Back button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['../../']\"\r\n         title=\"Pages\">\r\n        <span class=\"fa fa-chevron-left fa-lg\"></span>\r\n      </a>\r\n      <!-- /Back button -->\r\n    </li>\r\n  </ul>\r\n\r\n  <span class=\"navbar-brand\">Widgets</span>\r\n\r\n  <ul class=\"navbar-nav ml-auto\">\r\n    <li class=\"nav-item\">\r\n      <!-- Action button -->\r\n      <a class=\"nav-link px-0\"\r\n         [routerLink]=\"['new']\"\r\n         title=\"Add Widget\">\r\n        <span class=\"fa fa-plus fa-lg\"></span>\r\n      </a>\r\n      <!-- /Action button -->\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--/Top Nav-->\r\n\r\n<div class=\"container hvj-widget-list\">\r\n  <ul class=\"list-group\"\r\n      *ngIf=\"widgets\"\r\n      appSortable\r\n      (onSort)=\"updateSortOrder($event)\">\r\n    <li class=\"list-group-item border-0 px-1 mb-1\"\r\n        *ngFor=\"let thisWidget of widgets\">\r\n      <div class=\"hvj-widget\"\r\n           [ngSwitch]=\"WidgetType[thisWidget.widgetType]\">\r\n        <div *ngSwitchCase=\"WidgetType.Heading\">\r\n          <app-widget-header [widget]=\"thisWidget\"></app-widget-header>\r\n        </div>\r\n\r\n        <div *ngSwitchCase=\"WidgetType.Image\">\r\n          <app-widget-image [widget]=\"thisWidget\"></app-widget-image>\r\n        </div>\r\n\r\n        <div *ngSwitchCase=\"WidgetType.Html\">\r\n          <app-widget-html [widget]=\"thisWidget\"></app-widget-html>\r\n        </div>\r\n\r\n        <div *ngSwitchCase=\"WidgetType.YouTube\">\r\n          <app-widget-youtube [widget]=\"thisWidget\"></app-widget-youtube>\r\n        </div>\r\n\r\n        <div *ngSwitchCase=\"WidgetType.Text\">\r\n          <app-widget-text [widget]=\"thisWidget\"></app-widget-text>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- Widget Action buttons -->\r\n      <div class=\"hvj-widget-actions btn-group ml-auto\">\r\n        <a class=\"btn btn-xs mr-1 link-royal\"\r\n           [routerLink]=\"[thisWidget._id]\"\r\n           title=\"Edit\">\r\n          <span class=\"fa fa-gear\"></span>\r\n        </a>\r\n        <a class=\"btn btn-xs link-royal\"\r\n           title=\"More Options\">\r\n          <span class=\"fa fa-bars\"></span>\r\n        </a>\r\n      </div>\r\n      <!-- /Widget Action buttons -->\r\n    </li>\r\n\r\n    <!-- list empty message -->\r\n    <li class=\"list-group-item border-0 px-1\"\r\n        *ngIf=\"widgets.length == 0\">\r\n      <span>\r\n        <em>No widgets to show</em>\r\n      </span>\r\n    </li>\r\n\r\n    <li class=\"list-group-item border-0 px-1\"\r\n        *ngIf=\"widgets.length == 0\">\r\n      <a class=\"btn btn-xs link-royal\"\r\n         [routerLink]=\"['new']\">\r\n        <i class=\"fa fa-plus fa-lg mr-2\"></i>\r\n        <em class=\"text-secondary\">Create new widget</em>\r\n      </a>\r\n    </li>\r\n\r\n  </ul>\r\n</div>"
 
 /***/ }),
 
@@ -3178,6 +3181,74 @@ WidgetListComponent = __decorate([
 
 var _a, _b, _c, _d, _e;
 //# sourceMappingURL=widget-list.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/widget/widget-list/widget-text/widget-text.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/widget/widget-list/widget-text/widget-text.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"hvj-widget-text\">\n  <label *ngIf=\"widget.text\"\n         class=\"font-weight-bold text-muted\">{{widget.text}}</label>\n  <div *ngIf=\"widget.formatted\">\n    <quill-editor></quill-editor>\n  </div>\n  <div *ngIf=\"!widget.formatted\"\n       class=\"form-group\">\n    <input *ngIf=\"widget.rows < 2 || widget.rows === undefined\"\n           type=\"text\"\n           class=\"form-control\"\n           placeholder=\"{{widget?.placeholder}}\" />\n    <textarea *ngIf=\"widget.rows > 2\"\n              rows=\"{{widget.rows}}\"\n              class=\"form-control\"\n              placeholder=\"{{widget?.placeholder}}\"></textarea>\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/widget/widget-list/widget-text/widget-text.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WidgetTextComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_model__ = __webpack_require__("../../../../../src/app/model/model.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var WidgetTextComponent = (function () {
+    function WidgetTextComponent() {
+    }
+    WidgetTextComponent.prototype.ngOnInit = function () {
+    };
+    return WidgetTextComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__model_model__["d" /* Widget */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__model_model__["d" /* Widget */]) === "function" && _a || Object)
+], WidgetTextComponent.prototype, "widget", void 0);
+WidgetTextComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-widget-text',
+        template: __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-text/widget-text.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/widget/widget-list/widget-text/widget-text.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], WidgetTextComponent);
+
+var _a;
+//# sourceMappingURL=widget-text.component.js.map
 
 /***/ }),
 

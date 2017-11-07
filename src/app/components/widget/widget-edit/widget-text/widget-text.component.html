@@ -40,35 +40,56 @@
              id="widgetName"
              name="name"
              placeholder="Name"
-             [(ngModel)]="widget.name"
-             #nameField="ngModel">
+             [(ngModel)]="widget.name">
+    </div>
+    <!--/Widget Name-->
+
+    <!--Widget Text-->
+    <div class="form-group">
+      <label for="text"
+             class="font-weight-bold text-muted">Text</label>
+      <input type="text"
+             class="form-control"
+             id="widgetText"
+             name="text"
+             placeholder="Text"
+             [(ngModel)]="widget.text">
     </div>
     <!--/Widget Name-->
 
     <!--Widget Formatted-->
-    <div class="form-group">
-      <label for="formatted"
-             class="font-weight-bold text-muted">Formatted</label>
-      <input type="checkbox"
-             class="form-control"
-             id="widgetFormatted"
-             name="formatted"
-             [(ngModel)]="widget.formatted"
-             #formattedField="ngModel">
+    <div class="form-group text-muted">
+      <span (click)="widget.formatted = !widget.formatted">
+        <label class="font-weight-bold align-top mr-3">Formatted </label>
+        <span [ngClass]="widget.formatted ? 'fa-toggle-on text-success' : 'fa-toggle-off'"
+              class="fa fa-2x"></span>
+
+      </span>
     </div>
     <!--/Widget Formatted-->
 
     <!--Widget Rows-->
     <div class="form-group"
-         *ngIf="widget.formatted">
+         *ngIf="!widget.formatted">
       <label for="formatted"
              class="font-weight-bold text-muted">Rows</label>
       <input type="number"
              class="form-control"
              id="widgetRows"
              name="rows"
-             [(ngModel)]="widget.rows"
-             #rowsField="ngModel">
+             [(ngModel)]="widget.rows">
+    </div>
+    <!--/Widget Formatted-->
+
+    <!--Widget Placeholder-->
+    <div class="form-group">
+      <label for="placeholder"
+             class="font-weight-bold text-muted">Placeholder</label>
+      <input type="text"
+             class="form-control"
+             id="widgetPlaceholder"
+             name="placeholder"
+             [(ngModel)]="widget.placeholder">
     </div>
     <!--/Widget Formatted-->
 

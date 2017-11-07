@@ -42,8 +42,9 @@ module.exports = (function () {
     /** Text widget schema */
     const TextWidgetSchema = new mongoose.Schema({
         formatted: Boolean,
-        rows: Number
-    }, options)
+        rows: Number,
+        placeholder: String
+    }, options);
 
     return {
         WidgetSchema: WidgetSchema,
