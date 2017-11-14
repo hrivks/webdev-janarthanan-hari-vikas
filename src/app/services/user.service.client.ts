@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { User } from '../model/model';
 import { AppConstants } from '../app.constant';
@@ -17,15 +17,26 @@ export class UserService {
   };
 
   endpoint = {
+    'register': AppConstants.ENDPOINT.baseUrl + '/user/register',
     'createUser': AppConstants.ENDPOINT.baseUrl + '/user',
-    'findUserByUsername':  AppConstants.ENDPOINT.baseUrl + '/user?username={username}',
-    'findUserByCredentials':  AppConstants.ENDPOINT.baseUrl + '/user?username={username}&password={password}',
-    'findUserById':  AppConstants.ENDPOINT.baseUrl + '/user/{userId}',
-    'updateUser':  AppConstants.ENDPOINT.baseUrl + '/user/{userId}',
-    'deleteUser':  AppConstants.ENDPOINT.baseUrl + '/user/{userId}'
+    'findUserByUsername': AppConstants.ENDPOINT.baseUrl + '/user?username={username}',
+    'findUserByCredentials': AppConstants.ENDPOINT.baseUrl + '/user?username={username}&password={password}',
+    'findUserById': AppConstants.ENDPOINT.baseUrl + '/user/{userId}',
+    'updateUser': AppConstants.ENDPOINT.baseUrl + '/user/{userId}',
+    'deleteUser': AppConstants.ENDPOINT.baseUrl + '/user/{userId}'
   };
 
   constructor(private http: HttpClient) { }
+
+  register(username, password) {
+    const url = this.endpoint.register;
+    const creds = {
+      username: username,
+      password: password
+    };
+    const headers = new HttpHeaders({ 'withCredentials': 'true' });
+    return this.http.post<User>(url, creds, { headers: headers });
+  }
 
   /**
    * Create a new user

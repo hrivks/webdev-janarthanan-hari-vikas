@@ -6,7 +6,12 @@ module.exports = (function () {
     const router = require('express').Router();
     const UserModel = require('../models/model.server').User;
     const Utils = require('./service-utils.js');
+    const passport = require('passport');
+    const q = require('q');
 
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+    
     /** Exported objects */
     const exp = {
         router: router, // router object
@@ -19,6 +24,40 @@ module.exports = (function () {
             deleteUser: deleteUser
         }
     };
+
+    //#region: Register User
+
+    // route: [POST] '/api/user/register'
+    router.post('/register', function (req, res) {
+        Utils.sendResponse(res, register, [req.body]);
+    });
+
+    function register(user) {
+        var def = q.defer();
+
+        // check if username already exists
+        findUserByUsername(user.username)
+            .then((userExists) => {
+                if (userExists) {
+                    def.reject('user with userid "' + userExists.username + '" already exists');
+                } else {
+                    // create new user
+                    createUser(user)
+                        .then((createdUser) => {
+                            // login created user
+                            req.login(createdUser, (err) => {
+                                def.resolve(createdUser);
+                            })
+                        }, (err) => {
+                            def.reject(err);
+                        });
+                }
+            });
+
+        return def.promise;
+    }
+
+    //#endregion: Register User
 
 
     //#region : Create User
@@ -125,6 +164,26 @@ module.exports = (function () {
     }
 
     // #endregion: Delete User
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        this.findUserById(user._id)
+            .then(
+            (user) => {
+                if (user) {
+                    done(null, user);
+                } else {
+                    done('No such user exists', null);
+                }
+            },
+            (err) => {
+                done(err, null);
+            }
+            );
+    }
 
     return exp;
 

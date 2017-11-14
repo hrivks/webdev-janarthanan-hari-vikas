@@ -1505,22 +1505,25 @@ var RegisterComponent = (function () {
         newUser.password = this.password;
         // create new user
         this.interactionsService.showLoader(true);
-        this.userService.createUser(newUser)
+        this.userService.register(this.username, this.password)
             .subscribe(function (registeredUser) {
             // automatically login new user
-            _this.authService.login(registeredUser.username, registeredUser.password)
-                .finally(function () { _this.interactionsService.showLoader(false); })
-                .subscribe(function (user) {
-                if (user) {
-                    _this.router.navigate(['/user', user._id]);
-                }
-                else {
-                    _this.interactionsService.showAlert('Login post registration unsuccessfuly');
-                    console.error('Login post registration unsuccessfuly', user);
-                }
-            }, function (err) {
-                _this.errorHanderService.handleError('Error logging in post registration', err);
-            });
+            console.log(registeredUser);
+            // this.authService.login(registeredUser.username, registeredUser.password)
+            //   .finally(() => { this.interactionsService.showLoader(false); })
+            //   .subscribe(
+            //   (user) => {
+            //     if (user) {
+            //       this.router.navigate(['/user', user._id]);
+            //     } else {
+            //       this.interactionsService.showAlert('Login post registration unsuccessfuly');
+            //       console.error('Login post registration unsuccessfuly', user);
+            //     }
+            //   },
+            //   (err) => {
+            //     this.errorHanderService.handleError('Error logging in post registration', err);
+            //   }
+            //   );
         }, function (err) {
             _this.errorHanderService.handleError('Error registering user', err);
             _this.interactionsService.showLoader(false);
@@ -4021,6 +4024,7 @@ var UserService = (function () {
             'deleteUser': this.deleteUser
         };
         this.endpoint = {
+            'register': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user/register',
             'createUser': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user',
             'findUserByUsername': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user?username={username}',
             'findUserByCredentials': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user?username={username}&password={password}',
@@ -4029,6 +4033,15 @@ var UserService = (function () {
             'deleteUser': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user/{userId}'
         };
     }
+    UserService.prototype.register = function (username, password) {
+        var url = this.endpoint.register;
+        var creds = {
+            username: username,
+            password: password
+        };
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({ 'withCredentials': 'true' });
+        return this.http.post(url, creds, { headers: headers });
+    };
     /**
      * Create a new user
      * @param user user object to be added to the user list
