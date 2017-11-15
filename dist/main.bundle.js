@@ -3201,7 +3201,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-text/widget-text.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-widget-text\">\n  <label *ngIf=\"widget.text\"\n         class=\"font-weight-bold text-muted\">{{widget.text}}</label>\n  <div *ngIf=\"widget.formatted\">\n    <quill-editor></quill-editor>\n  </div>\n  <div *ngIf=\"!widget.formatted\"\n       class=\"form-group\">\n    <input *ngIf=\"widget.rows < 2 || widget.rows === undefined\"\n           type=\"text\"\n           class=\"form-control\"\n           placeholder=\"{{widget?.placeholder}}\" />\n    <textarea *ngIf=\"widget.rows > 2\"\n              rows=\"{{widget.rows}}\"\n              class=\"form-control\"\n              placeholder=\"{{widget?.placeholder}}\"></textarea>\n  </div>\n</div>"
+module.exports = "<div class=\"hvj-widget-text\">\r\n  <label *ngIf=\"widget.text\"\r\n         class=\"font-weight-bold text-muted\">{{widget.text}}</label>\r\n  <div *ngIf=\"widget.formatted\">\r\n    <quill-editor></quill-editor>\r\n  </div>\r\n  <div *ngIf=\"!widget.formatted\"\r\n       class=\"form-group\">\r\n    <input *ngIf=\"widget.rows < 2 || widget.rows === undefined\"\r\n           type=\"text\"\r\n           class=\"form-control\"\r\n           placeholder=\"{{widget?.placeholder}}\" />\r\n    <textarea *ngIf=\"widget.rows > 2\"\r\n              rows=\"{{widget.rows}}\"\r\n              class=\"form-control\"\r\n              placeholder=\"{{widget?.placeholder}}\"></textarea>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -3452,6 +3452,7 @@ var Widget = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__error_handler_service_client__ = __webpack_require__("../../../../../src/app/services/error-handler.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3465,10 +3466,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AuthService = (function () {
-    function AuthService(router, userService) {
+    function AuthService(router, userService, errorHandlerService) {
         this.router = router;
         this.userService = userService;
+        this.errorHandlerService = errorHandlerService;
         this.api = {
             'getLoggedInUser': this.getLoggedInUser,
             'login': this.login,
@@ -3518,18 +3521,24 @@ var AuthService = (function () {
      * Logout user
      */
     AuthService.prototype.logout = function () {
-        this.loggedInUser = null;
-        localStorage.removeItem('loggedInUser');
-        this.router.navigate(['/login']);
+        var _this = this;
+        this.userService.logout()
+            .subscribe(function (res) {
+            _this.loggedInUser = null;
+            localStorage.removeItem('loggedInUser');
+            _this.router.navigate(['/login']);
+        }, function (err) {
+            _this.errorHandlerService.handleError('Oops! Strange! Can\'t log you out!', err);
+        });
     };
     return AuthService;
 }());
 AuthService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service_client__["a" /* UserService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__error_handler_service_client__["a" /* ErrorHandlerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__error_handler_service_client__["a" /* ErrorHandlerService */]) === "function" && _c || Object])
 ], AuthService);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=auth.service.client.js.map
 
 /***/ }),
@@ -4011,6 +4020,7 @@ var UserService = (function () {
         };
         this.endpoint = {
             'login': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user/login',
+            'logout': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user/logout',
             'register': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user/register',
             'createUser': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user',
             'findUserByUsername': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user?username={username}',
@@ -4033,6 +4043,12 @@ var UserService = (function () {
         };
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({ 'withCredentials': 'true' });
         return this.http.post(url, creds, { headers: headers });
+    };
+    /** Logout user */
+    UserService.prototype.logout = function () {
+        var url = this.endpoint.logout;
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({ 'withCredentials': 'true' });
+        return this.http.post(url, '', { headers: headers });
     };
     /**
      * Register new user

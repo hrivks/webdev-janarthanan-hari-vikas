@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { User } from '../model/model';
 import { UserService } from '../services/user.service.client';
+import { ErrorHandlerService } from './error-handler.service.client';
 
 @Injectable()
 export class AuthService {
@@ -15,7 +16,7 @@ export class AuthService {
     'logout': this.logout
   };
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, private errorHandlerService: ErrorHandlerService) { }
 
   /**
    * Check if user is logged in
@@ -47,14 +48,12 @@ export class AuthService {
     const obs = new Observable<User>((observer) => {
 
       this.userService.login(username, password)
-        .subscribe(
-        (loggedInUser) => {
+        .subscribe((loggedInUser) => {
           console.log(loggedInUser);
           this.setLoggedInUser(loggedInUser);
           observer.next(Object.assign({}, loggedInUser));
           observer.complete();
-        },
-        (err) => {
+        }, (err) => {
           observer.error(err);
         });
 
@@ -67,9 +66,15 @@ export class AuthService {
    * Logout user
    */
   logout() {
-    this.loggedInUser = null;
-    localStorage.removeItem('loggedInUser');
-    this.router.navigate(['/login']);
+
+    this.userService.logout()
+      .subscribe((res) => {
+        this.loggedInUser = null;
+        localStorage.removeItem('loggedInUser');
+        this.router.navigate(['/login']);
+      }, (err) => {
+        this.errorHandlerService.handleError('Oops! Strange! Can\'t log you out!', err);
+      });
   }
 
 }

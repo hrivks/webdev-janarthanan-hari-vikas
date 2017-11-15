@@ -1,7 +1,7 @@
 // Provides CRUD for user model
 // Module Route Root: '/api/user'
 
-module.exports = (function() {
+module.exports = (function () {
 
     const router = require('express').Router();
     const UserModel = require('../models/model.server').User;
@@ -22,7 +22,6 @@ module.exports = (function() {
         }
     };
 
-
     //#region: Login User
 
     // route: [POST] '/api/user/login'
@@ -33,10 +32,20 @@ module.exports = (function() {
     //#endregion: Login User
 
 
+    //#region: Logout User
+    // route: [POST] '/api/user/logout'
+    router.post('/logout', (req, res) => {
+        req.logOut();
+        res.json({ result: 'logout successful' });
+    });
+
+
+    //#endregion: Logout User
+
     //#region: Register User
 
     // route: [POST] '/api/user/register'
-    router.post('/register', function(req, res) {
+    router.post('/register', function (req, res) {
         Utils.sendResponse(res, register, [req.body, req]);
     });
 
@@ -71,7 +80,7 @@ module.exports = (function() {
     //#region : Create User
 
     // route: [POST] '/api/user'
-    router.post('/', function(req, res) {
+    router.post('/', function (req, res) {
         Utils.sendResponse(res, createUser, [req.body]);
     });
 
@@ -89,7 +98,7 @@ module.exports = (function() {
     //#region : Find user by Id
 
     // route: [GET] '/api/user/:userId'
-    router.get('/:userId', function(req, res) {
+    router.get('/:userId', function (req, res) {
         Utils.sendResponse(res, findUserById, [req.params.userId]);
     });
 
@@ -108,7 +117,7 @@ module.exports = (function() {
 
     // route: [GET] '/api/user?username=username'
     // route: [GET] '/api/user?username=username&password=password'
-    router.get('/', function(req, res) {
+    router.get('/', function (req, res) {
         if (req.query.username && req.query.password) {
             Utils.sendResponse(res, findUserByCredentials, [req.query.username, req.query.password]);
         } else {
@@ -139,7 +148,7 @@ module.exports = (function() {
     //#region : Update User
 
     // route: [PUT] '/api/user/:userId'
-    router.put('/:userId', function(req, res) {
+    router.put('/:userId', function (req, res) {
         Utils.sendResponse(res, updateUser, [req.params.userId, req.body]);
     });
 
@@ -158,7 +167,7 @@ module.exports = (function() {
     //#region : Delete User
 
     // route: [DELETE] '/api/user/:userId'
-    router.delete('/:userId', function(req, res) {
+    router.delete('/:userId', function (req, res) {
         Utils.sendResponse(res, deleteUser, [req.params.userId]);
     });
 

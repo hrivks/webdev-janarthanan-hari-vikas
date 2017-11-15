@@ -18,6 +18,7 @@ export class UserService {
 
   endpoint = {
     'login': AppConstants.ENDPOINT.baseUrl + '/user/login',
+    'logout': AppConstants.ENDPOINT.baseUrl + '/user/logout',
     'register': AppConstants.ENDPOINT.baseUrl + '/user/register',
     'createUser': AppConstants.ENDPOINT.baseUrl + '/user',
     'findUserByUsername': AppConstants.ENDPOINT.baseUrl + '/user?username={username}',
@@ -42,6 +43,13 @@ export class UserService {
     };
     const headers = new HttpHeaders({ 'withCredentials': 'true' });
     return this.http.post<User>(url, creds, { headers: headers });
+  }
+
+  /** Logout user */
+  logout() {
+    const url = this.endpoint.logout;
+    const headers = new HttpHeaders({ 'withCredentials': 'true' });
+    return this.http.post<User>(url, '', { headers: headers });
   }
 
   /**
