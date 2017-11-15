@@ -37,24 +37,11 @@ export class ProfileComponent implements OnInit {
     };
 
     // get userid parameter route
-    this.activatedRoute.params.subscribe((params: any) => {
-      this.userId = params['uid'];
-    });
+    // this.activatedRoute.params.subscribe((params: any) => {
+    //   this.userId = params['uid'];
+    // });
 
-    this.userService.findUserById(this.userId)
-      .subscribe(
-      (user) => {
-        if (user) {
-          this.user = user;
-        } else {
-          this.interactionsService.showAlert('Login required', 'danger', true);
-          this.router.navigate(['/login']);
-        }
-      },
-      (err) => {
-        this.errorHanderService.handleError('Error retrieving user with Id ' + this.userId, err);
-      }
-      );
+    this.user = this.authService.getLoggedInUser();
   }
 
   /**
@@ -100,7 +87,7 @@ export class ProfileComponent implements OnInit {
 
     if (!this.profileErrors.hasError) {
       this.interactionsService.showLoader(true);
-      this.userService.updateUser(this.userId, this.user)
+      this.userService.updateUser(this.user._id, this.user)
         .finally(() => { this.interactionsService.showLoader(false); })
         .subscribe(
         (updatedUser) => {

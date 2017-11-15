@@ -21,6 +21,7 @@ const APP_ROUTES: Routes = [
   { path: 'test', component: TestComponent , data: { title: 'Test', skipAuth: true } },
   { path: 'login', component: LoginComponent, data: { title: 'Login', skipAuth: true } },
   { path: 'register', component: RegisterComponent, data: { title: 'Register', skipAuth: true } },
+  { path: 'profile', component: ProfileComponent, data: { title: 'Profile'} },
   { path: 'user/:uid', component: ProfileComponent, data: { title: 'Profile'} },
   { path: 'user/:uid/website', component: WebsiteListComponent, data: { title: 'Websites'} },
   { path: 'user/:uid/website/new', component: WebsiteNewComponent, data: { title: 'New Website'} },

@@ -30,6 +30,13 @@ export class AuthService {
     }
   }
 
+
+  /** Set user as logged in user */
+  setLoggedInUser(user: User): void {
+    this.loggedInUser = user;
+    localStorage.setItem('loggedInUser', JSON.stringify(this.loggedInUser));
+  }
+
   /**
    * Login user
    * @param username username
@@ -39,12 +46,12 @@ export class AuthService {
   login(username: string, password: string): Observable<User> {
     const obs = new Observable<User>((observer) => {
 
-      this.userService.findUserByCredentials(username, password)
+      this.userService.login(username, password)
         .subscribe(
-        (data) => {
-          this.loggedInUser = data;
-          localStorage.setItem('loggedInUser', JSON.stringify(this.loggedInUser));
-          observer.next(Object.assign({}, this.loggedInUser));
+        (loggedInUser) => {
+          console.log(loggedInUser);
+          this.setLoggedInUser(loggedInUser);
+          observer.next(Object.assign({}, loggedInUser));
           observer.complete();
         },
         (err) => {
@@ -66,4 +73,3 @@ export class AuthService {
   }
 
 }
-

@@ -192,7 +192,7 @@ module.exports = (function () {
 
                     }, (err) => {
                         def.reject(err);
-                    })
+                    });
             }, (err) => {
                 def.reject(err);
             });

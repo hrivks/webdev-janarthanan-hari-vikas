@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       .finally(() => { this.interactionsService.showLoader(false); })
       .subscribe(
       (user) => {
-        this.router.navigate(['/user', user._id]);
+        this.router.navigate(['/profile']);
       },
       (err) => {
         console.error('Error occured during login.', err);

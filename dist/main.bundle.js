@@ -361,6 +361,7 @@ var APP_ROUTES = [
     { path: 'test', component: __WEBPACK_IMPORTED_MODULE_2__components_test_test_component__["a" /* TestComponent */], data: { title: 'Test', skipAuth: true } },
     { path: 'login', component: __WEBPACK_IMPORTED_MODULE_3__components_user_login_login_component__["a" /* LoginComponent */], data: { title: 'Login', skipAuth: true } },
     { path: 'register', component: __WEBPACK_IMPORTED_MODULE_5__components_user_register_register_component__["a" /* RegisterComponent */], data: { title: 'Register', skipAuth: true } },
+    { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_4__components_user_profile_profile_component__["a" /* ProfileComponent */], data: { title: 'Profile' } },
     { path: 'user/:uid', component: __WEBPACK_IMPORTED_MODULE_4__components_user_profile_profile_component__["a" /* ProfileComponent */], data: { title: 'Profile' } },
     { path: 'user/:uid/website', component: __WEBPACK_IMPORTED_MODULE_8__components_website_website_list_website_list_component__["a" /* WebsiteListComponent */], data: { title: 'Websites' } },
     { path: 'user/:uid/website/new', component: __WEBPACK_IMPORTED_MODULE_6__components_website_website_new_website_new_component__["a" /* WebsiteNewComponent */], data: { title: 'New Website' } },
@@ -1233,7 +1234,7 @@ var LoginComponent = (function () {
         this.authService.login(this.username, this.password)
             .finally(function () { _this.interactionsService.showLoader(false); })
             .subscribe(function (user) {
-            _this.router.navigate(['/user', user._id]);
+            _this.router.navigate(['/profile']);
         }, function (err) {
             console.error('Error occured during login.', err);
             var errMessage = _this.errorHanderService.getErrorMessage(err);
@@ -1323,26 +1324,14 @@ var ProfileComponent = (function () {
         this.errorHanderService = errorHanderService;
     }
     ProfileComponent.prototype.ngOnInit = function () {
-        var _this = this;
         this.profileErrors = {
             hasError: false
         };
         // get userid parameter route
-        this.activatedRoute.params.subscribe(function (params) {
-            _this.userId = params['uid'];
-        });
-        this.userService.findUserById(this.userId)
-            .subscribe(function (user) {
-            if (user) {
-                _this.user = user;
-            }
-            else {
-                _this.interactionsService.showAlert('Login required', 'danger', true);
-                _this.router.navigate(['/login']);
-            }
-        }, function (err) {
-            _this.errorHanderService.handleError('Error retrieving user with Id ' + _this.userId, err);
-        });
+        // this.activatedRoute.params.subscribe((params: any) => {
+        //   this.userId = params['uid'];
+        // });
+        this.user = this.authService.getLoggedInUser();
     };
     /**
      * Logout user
@@ -1379,7 +1368,7 @@ var ProfileComponent = (function () {
         //#endregion
         if (!this.profileErrors.hasError) {
             this.interactionsService.showLoader(true);
-            this.userService.updateUser(this.userId, this.user)
+            this.userService.updateUser(this.user._id, this.user)
                 .finally(function () { _this.interactionsService.showLoader(false); })
                 .subscribe(function (updatedUser) {
                 if (updatedUser) {
@@ -1507,23 +1496,15 @@ var RegisterComponent = (function () {
         this.interactionsService.showLoader(true);
         this.userService.register(this.username, this.password)
             .subscribe(function (registeredUser) {
-            // automatically login new user
-            console.log(registeredUser);
-            // this.authService.login(registeredUser.username, registeredUser.password)
-            //   .finally(() => { this.interactionsService.showLoader(false); })
-            //   .subscribe(
-            //   (user) => {
-            //     if (user) {
-            //       this.router.navigate(['/user', user._id]);
-            //     } else {
-            //       this.interactionsService.showAlert('Login post registration unsuccessfuly');
-            //       console.error('Login post registration unsuccessfuly', user);
-            //     }
-            //   },
-            //   (err) => {
-            //     this.errorHanderService.handleError('Error logging in post registration', err);
-            //   }
-            //   );
+            if (registeredUser) {
+                console.log(registeredUser);
+                _this.authService.setLoggedInUser(registeredUser);
+                _this.interactionsService.showLoader(false);
+                _this.router.navigate(['/profile']);
+            }
+            else {
+                _this.interactionsService.showAlert('Registration unsuccessful! <br/> Server returned empty user object');
+            }
         }, function (err) {
             _this.errorHanderService.handleError('Error registering user', err);
             _this.interactionsService.showLoader(false);
@@ -3220,7 +3201,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-text/widget-text.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-widget-text\">\r\n  <label *ngIf=\"widget.text\"\r\n         class=\"font-weight-bold text-muted\">{{widget.text}}</label>\r\n  <div *ngIf=\"widget.formatted\">\r\n    <quill-editor></quill-editor>\r\n  </div>\r\n  <div *ngIf=\"!widget.formatted\"\r\n       class=\"form-group\">\r\n    <input *ngIf=\"widget.rows < 2 || widget.rows === undefined\"\r\n           type=\"text\"\r\n           class=\"form-control\"\r\n           placeholder=\"{{widget?.placeholder}}\" />\r\n    <textarea *ngIf=\"widget.rows > 2\"\r\n              rows=\"{{widget.rows}}\"\r\n              class=\"form-control\"\r\n              placeholder=\"{{widget?.placeholder}}\"></textarea>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"hvj-widget-text\">\n  <label *ngIf=\"widget.text\"\n         class=\"font-weight-bold text-muted\">{{widget.text}}</label>\n  <div *ngIf=\"widget.formatted\">\n    <quill-editor></quill-editor>\n  </div>\n  <div *ngIf=\"!widget.formatted\"\n       class=\"form-group\">\n    <input *ngIf=\"widget.rows < 2 || widget.rows === undefined\"\n           type=\"text\"\n           class=\"form-control\"\n           placeholder=\"{{widget?.placeholder}}\" />\n    <textarea *ngIf=\"widget.rows > 2\"\n              rows=\"{{widget.rows}}\"\n              class=\"form-control\"\n              placeholder=\"{{widget?.placeholder}}\"></textarea>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -3507,6 +3488,11 @@ var AuthService = (function () {
             this.router.navigate(['/login']);
         }
     };
+    /** Set user as logged in user */
+    AuthService.prototype.setLoggedInUser = function (user) {
+        this.loggedInUser = user;
+        localStorage.setItem('loggedInUser', JSON.stringify(this.loggedInUser));
+    };
     /**
      * Login user
      * @param username username
@@ -3516,11 +3502,11 @@ var AuthService = (function () {
     AuthService.prototype.login = function (username, password) {
         var _this = this;
         var obs = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"](function (observer) {
-            _this.userService.findUserByCredentials(username, password)
-                .subscribe(function (data) {
-                _this.loggedInUser = data;
-                localStorage.setItem('loggedInUser', JSON.stringify(_this.loggedInUser));
-                observer.next(Object.assign({}, _this.loggedInUser));
+            _this.userService.login(username, password)
+                .subscribe(function (loggedInUser) {
+                console.log(loggedInUser);
+                _this.setLoggedInUser(loggedInUser);
+                observer.next(Object.assign({}, loggedInUser));
                 observer.complete();
             }, function (err) {
                 observer.error(err);
@@ -4024,6 +4010,7 @@ var UserService = (function () {
             'deleteUser': this.deleteUser
         };
         this.endpoint = {
+            'login': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user/login',
             'register': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user/register',
             'createUser': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user',
             'findUserByUsername': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user?username={username}',
@@ -4033,6 +4020,25 @@ var UserService = (function () {
             'deleteUser': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user/{userId}'
         };
     }
+    /**
+     * Login user
+     * @param username username
+     * @param password password
+     */
+    UserService.prototype.login = function (username, password) {
+        var url = this.endpoint.login;
+        var creds = {
+            username: username,
+            password: password
+        };
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({ 'withCredentials': 'true' });
+        return this.http.post(url, creds, { headers: headers });
+    };
+    /**
+     * Register new user
+     * @param username username
+     * @param password password
+     */
     UserService.prototype.register = function (username, password) {
         var url = this.endpoint.register;
         var creds = {

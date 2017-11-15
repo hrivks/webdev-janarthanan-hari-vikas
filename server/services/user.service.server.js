@@ -1,17 +1,14 @@
 // Provides CRUD for user model
 // Module Route Root: '/api/user'
 
-module.exports = (function () {
+module.exports = (function() {
 
     const router = require('express').Router();
     const UserModel = require('../models/model.server').User;
     const Utils = require('./service-utils.js');
-    const passport = require('passport');
     const q = require('q');
+    const passport = require('passport');
 
-    passport.serializeUser(serializeUser);
-    passport.deserializeUser(deserializeUser);
-    
     /** Exported objects */
     const exp = {
         router: router, // router object
@@ -25,14 +22,25 @@ module.exports = (function () {
         }
     };
 
+
+    //#region: Login User
+
+    // route: [POST] '/api/user/login'
+    router.post('/login', passport.authenticate('local'), (req, res) => {
+        res.json(req.user);
+    });
+
+    //#endregion: Login User
+
+
     //#region: Register User
 
     // route: [POST] '/api/user/register'
-    router.post('/register', function (req, res) {
-        Utils.sendResponse(res, register, [req.body]);
+    router.post('/register', function(req, res) {
+        Utils.sendResponse(res, register, [req.body, req]);
     });
 
-    function register(user) {
+    function register(user, req) {
         var def = q.defer();
 
         // check if username already exists
@@ -47,7 +55,7 @@ module.exports = (function () {
                             // login created user
                             req.login(createdUser, (err) => {
                                 def.resolve(createdUser);
-                            })
+                            });
                         }, (err) => {
                             def.reject(err);
                         });
@@ -63,7 +71,7 @@ module.exports = (function () {
     //#region : Create User
 
     // route: [POST] '/api/user'
-    router.post('/', function (req, res) {
+    router.post('/', function(req, res) {
         Utils.sendResponse(res, createUser, [req.body]);
     });
 
@@ -81,7 +89,7 @@ module.exports = (function () {
     //#region : Find user by Id
 
     // route: [GET] '/api/user/:userId'
-    router.get('/:userId', function (req, res) {
+    router.get('/:userId', function(req, res) {
         Utils.sendResponse(res, findUserById, [req.params.userId]);
     });
 
@@ -100,7 +108,7 @@ module.exports = (function () {
 
     // route: [GET] '/api/user?username=username'
     // route: [GET] '/api/user?username=username&password=password'
-    router.get('/', function (req, res) {
+    router.get('/', function(req, res) {
         if (req.query.username && req.query.password) {
             Utils.sendResponse(res, findUserByCredentials, [req.query.username, req.query.password]);
         } else {
@@ -110,9 +118,9 @@ module.exports = (function () {
 
     /**
      * Find user by user name
-    * @param {String} username username of the user
-    * @returns {Promise<UserSchema>} promise that resolves to user with the specifed username; null if id doesn't exist
-    */
+     * @param {String} username username of the user
+     * @returns {Promise<UserSchema>} promise that resolves to user with the specifed username; null if id doesn't exist
+     */
     function findUserByUsername(username) {
         return UserModel.findUserByUsername(username);
     }
@@ -131,16 +139,16 @@ module.exports = (function () {
     //#region : Update User
 
     // route: [PUT] '/api/user/:userId'
-    router.put('/:userId', function (req, res) {
+    router.put('/:userId', function(req, res) {
         Utils.sendResponse(res, updateUser, [req.params.userId, req.body]);
     });
 
     /**
-  * Update user by user id
-  * @param {string} userId id of the user
-  * @param {UserSchema} user updated user object
-  * @returns {Promise<UserSchema>} promise that resolves to updated user object
-  */
+     * Update user by user id
+     * @param {string} userId id of the user
+     * @param {UserSchema} user updated user object
+     * @returns {Promise<UserSchema>} promise that resolves to updated user object
+     */
     function updateUser(userId, user) {
         return UserModel.updateUser(userId, user);
     }
@@ -150,7 +158,7 @@ module.exports = (function () {
     //#region : Delete User
 
     // route: [DELETE] '/api/user/:userId'
-    router.delete('/:userId', function (req, res) {
+    router.delete('/:userId', function(req, res) {
         Utils.sendResponse(res, deleteUser, [req.params.userId]);
     });
 
@@ -165,27 +173,6 @@ module.exports = (function () {
 
     // #endregion: Delete User
 
-    function serializeUser(user, done) {
-        done(null, user);
-    }
-
-    function deserializeUser(user, done) {
-        this.findUserById(user._id)
-            .then(
-            (user) => {
-                if (user) {
-                    done(null, user);
-                } else {
-                    done('No such user exists', null);
-                }
-            },
-            (err) => {
-                done(err, null);
-            }
-            );
-    }
-
     return exp;
 
 })();
-

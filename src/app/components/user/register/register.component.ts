@@ -40,25 +40,14 @@ export class RegisterComponent implements OnInit {
     this.userService.register(this.username, this.password)
       .subscribe(
       (registeredUser) => {
-        // automatically login new user
-
-        console.log(registeredUser);
-
-        // this.authService.login(registeredUser.username, registeredUser.password)
-        //   .finally(() => { this.interactionsService.showLoader(false); })
-        //   .subscribe(
-        //   (user) => {
-        //     if (user) {
-        //       this.router.navigate(['/user', user._id]);
-        //     } else {
-        //       this.interactionsService.showAlert('Login post registration unsuccessfuly');
-        //       console.error('Login post registration unsuccessfuly', user);
-        //     }
-        //   },
-        //   (err) => {
-        //     this.errorHanderService.handleError('Error logging in post registration', err);
-        //   }
-        //   );
+        if (registeredUser) {
+          console.log(registeredUser);
+          this.authService.setLoggedInUser(registeredUser);
+          this.interactionsService.showLoader(false);
+          this.router.navigate(['/profile']);
+        } else {
+          this.interactionsService.showAlert('Registration unsuccessful! <br/> Server returned empty user object');
+        }
       },
       (err) => {
         this.errorHanderService.handleError('Error registering user', err);

@@ -17,6 +17,7 @@ export class UserService {
   };
 
   endpoint = {
+    'login': AppConstants.ENDPOINT.baseUrl + '/user/login',
     'register': AppConstants.ENDPOINT.baseUrl + '/user/register',
     'createUser': AppConstants.ENDPOINT.baseUrl + '/user',
     'findUserByUsername': AppConstants.ENDPOINT.baseUrl + '/user?username={username}',
@@ -28,7 +29,27 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  register(username, password) {
+  /**
+   * Login user
+   * @param username username
+   * @param password password
+   */
+  login(username: string, password: string) {
+    const url = this.endpoint.login;
+    const creds = {
+      username: username,
+      password: password
+    };
+    const headers = new HttpHeaders({ 'withCredentials': 'true' });
+    return this.http.post<User>(url, creds, { headers: headers });
+  }
+
+  /**
+   * Register new user
+   * @param username username
+   * @param password password
+   */
+  register(username: string, password: string) {
     const url = this.endpoint.register;
     const creds = {
       username: username,
