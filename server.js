@@ -10,7 +10,11 @@ const passport = require('passport');
 const app = express();
 
 app.use(cookieParser());
-app.use(session({ secret: process.env.SESSION_SECRET || 'ABCDEFGH' }));
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'ABCDEFGH',
+  resave: false,
+  saveUninitialized: false
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.json());
@@ -21,9 +25,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // CORS
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, withCredentials");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   res.header("Access-Control-Allow-Credentials", "true");
   next();
@@ -34,7 +38,7 @@ app.use(function(req, res, next) {
 app.use('/api', require('./server/app.js'));
 
 // Return images from public/uploads folder
-app.get('/public/uploads*', function(req, res) {
+app.get('/public/uploads*', function (req, res) {
   res.sendFile(path.join(__dirname, req.path));
 });
 
@@ -48,4 +52,4 @@ app.get('*', function (req, res) {
 const port = process.env.PORT || '3100';
 app.set('port', port);
 
-app.listen(port , () => console.log('Running on port : ' + port));
+app.listen(port, () => console.log('Running on port : ' + port));

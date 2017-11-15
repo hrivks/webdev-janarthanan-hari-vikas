@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { User } from '../model/model';
 import { AppConstants } from '../app.constant';
@@ -19,6 +19,7 @@ export class UserService {
   endpoint = {
     'login': AppConstants.ENDPOINT.baseUrl + '/user/login',
     'logout': AppConstants.ENDPOINT.baseUrl + '/user/logout',
+    'loggedIn': AppConstants.ENDPOINT.baseUrl + '/user/loggedIn',
     'register': AppConstants.ENDPOINT.baseUrl + '/user/register',
     'createUser': AppConstants.ENDPOINT.baseUrl + '/user',
     'findUserByUsername': AppConstants.ENDPOINT.baseUrl + '/user?username={username}',
@@ -30,27 +31,37 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  // #region: Authentication
+
   /**
    * Login user
    * @param username username
    * @param password password
    */
   login(username: string, password: string) {
+
     const url = this.endpoint.login;
     const creds = {
       username: username,
       password: password
     };
-    const headers = new HttpHeaders({ 'withCredentials': 'true' });
-    return this.http.post<User>(url, creds, { headers: headers });
+    return this.http.post<User>(url, creds, { withCredentials: true });
+
   }
 
   /** Logout user */
   logout() {
     const url = this.endpoint.logout;
-    const headers = new HttpHeaders({ 'withCredentials': 'true' });
-    return this.http.post<User>(url, '', { headers: headers });
+    return this.http.post<User>(url, '', { withCredentials: true });
   }
+
+  /** Check if current user is logged in */
+  loggedIn() {
+    const url = this.endpoint.loggedIn;
+    return this.http.post<User>(url, '', { withCredentials: true });
+  }
+
+  //#endregion: Authentication
 
   /**
    * Register new user
@@ -63,8 +74,8 @@ export class UserService {
       username: username,
       password: password
     };
-    const headers = new HttpHeaders({ 'withCredentials': 'true' });
-    return this.http.post<User>(url, creds, { headers: headers });
+
+    return this.http.post<User>(url, creds, { withCredentials: true });
   }
 
   /**

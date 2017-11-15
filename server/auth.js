@@ -3,7 +3,7 @@
 module.exports = (function() {
     const passport = require('passport');
     const LocalStrategy = require('passport-local').Strategy;
-    const UserService = require('./user.service.server');
+    const UserService = require('./services/user.service.server.js');
 
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);

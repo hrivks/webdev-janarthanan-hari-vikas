@@ -340,6 +340,8 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_widget_widget_edit_widget_edit_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-edit.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_widget_widget_list_widget_list_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-list/widget-list.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_auth_service_client__ = __webpack_require__("../../../../../src/app/services/auth.service.client.ts");
+
 
 
 
@@ -361,7 +363,7 @@ var APP_ROUTES = [
     { path: 'test', component: __WEBPACK_IMPORTED_MODULE_2__components_test_test_component__["a" /* TestComponent */], data: { title: 'Test', skipAuth: true } },
     { path: 'login', component: __WEBPACK_IMPORTED_MODULE_3__components_user_login_login_component__["a" /* LoginComponent */], data: { title: 'Login', skipAuth: true } },
     { path: 'register', component: __WEBPACK_IMPORTED_MODULE_5__components_user_register_register_component__["a" /* RegisterComponent */], data: { title: 'Register', skipAuth: true } },
-    { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_4__components_user_profile_profile_component__["a" /* ProfileComponent */], data: { title: 'Profile' } },
+    { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_4__components_user_profile_profile_component__["a" /* ProfileComponent */], data: { title: 'Profile' }, canActivate: [__WEBPACK_IMPORTED_MODULE_16__services_auth_service_client__["a" /* AuthService */]] },
     { path: 'user/:uid', component: __WEBPACK_IMPORTED_MODULE_4__components_user_profile_profile_component__["a" /* ProfileComponent */], data: { title: 'Profile' } },
     { path: 'user/:uid/website', component: __WEBPACK_IMPORTED_MODULE_8__components_website_website_list_website_list_component__["a" /* WebsiteListComponent */], data: { title: 'Websites' } },
     { path: 'user/:uid/website/new', component: __WEBPACK_IMPORTED_MODULE_6__components_website_website_new_website_new_component__["a" /* WebsiteNewComponent */], data: { title: 'New Website' } },
@@ -3474,10 +3476,14 @@ var AuthService = (function () {
         this.errorHandlerService = errorHandlerService;
         this.api = {
             'getLoggedInUser': this.getLoggedInUser,
+            'setLoggedInUser': this.setLoggedInUser,
             'login': this.login,
             'logout': this.logout
         };
     }
+    AuthService.prototype.canActivate = function () {
+        return this.checkLoggedIn();
+    };
     /**
      * Check if user is logged in
      * @returns logged in user object; null, if user is not logged in
@@ -3513,6 +3519,35 @@ var AuthService = (function () {
                 observer.complete();
             }, function (err) {
                 observer.error(err);
+            });
+        });
+        return obs;
+    };
+    /**
+     *  Check if user is logged in
+     * @returns subscription that resolves to true if the user is logged in, false otherwise
+     */
+    AuthService.prototype.checkLoggedIn = function () {
+        var _this = this;
+        var obs = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"](function (observer) {
+            _this.userService.loggedIn()
+                .subscribe(function (res) {
+                if (res) {
+                    _this.setLoggedInUser(res);
+                    observer.next(true);
+                    observer.complete();
+                }
+                else {
+                    _this.loggedInUser = null;
+                    localStorage.removeItem('loggedInUser');
+                    _this.router.navigate(['/login']);
+                    observer.next(false);
+                    observer.complete();
+                }
+            }, function (err) {
+                console.log(err);
+                observer.next(false);
+                observer.complete();
             });
         });
         return obs;
@@ -4021,6 +4056,7 @@ var UserService = (function () {
         this.endpoint = {
             'login': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user/login',
             'logout': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user/logout',
+            'loggedIn': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user/loggedIn',
             'register': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user/register',
             'createUser': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user',
             'findUserByUsername': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user?username={username}',
@@ -4030,6 +4066,7 @@ var UserService = (function () {
             'deleteUser': __WEBPACK_IMPORTED_MODULE_2__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/user/{userId}'
         };
     }
+    // #region: Authentication
     /**
      * Login user
      * @param username username
@@ -4041,15 +4078,19 @@ var UserService = (function () {
             username: username,
             password: password
         };
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({ 'withCredentials': 'true' });
-        return this.http.post(url, creds, { headers: headers });
+        return this.http.post(url, creds, { withCredentials: true });
     };
     /** Logout user */
     UserService.prototype.logout = function () {
         var url = this.endpoint.logout;
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({ 'withCredentials': 'true' });
-        return this.http.post(url, '', { headers: headers });
+        return this.http.post(url, '', { withCredentials: true });
     };
+    /** Check if current user is logged in */
+    UserService.prototype.loggedIn = function () {
+        var url = this.endpoint.loggedIn;
+        return this.http.post(url, '', { withCredentials: true });
+    };
+    //#endregion: Authentication
     /**
      * Register new user
      * @param username username
@@ -4061,8 +4102,7 @@ var UserService = (function () {
             username: username,
             password: password
         };
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({ 'withCredentials': 'true' });
-        return this.http.post(url, creds, { headers: headers });
+        return this.http.post(url, creds, { withCredentials: true });
     };
     /**
      * Create a new user

@@ -33,14 +33,29 @@ module.exports = (function () {
 
 
     //#region: Logout User
+
     // route: [POST] '/api/user/logout'
     router.post('/logout', (req, res) => {
         req.logOut();
         res.json({ result: 'logout successful' });
     });
 
-
     //#endregion: Logout User
+
+
+    //#region: LoggedIn User
+
+    // route: [POST] '/api/user/loggedIn'
+    router.post('/loggedIn', (req, res) => {
+        if (req.isAuthenticated()) {
+            res.json(req.user);
+        } else {
+            res.json(false);
+        }
+    });
+
+    //#endregion: LoggedIn User
+
 
     //#region: Register User
 
@@ -95,6 +110,7 @@ module.exports = (function () {
 
     //#endregion: Create User
 
+
     //#region : Find user by Id
 
     // route: [GET] '/api/user/:userId'
@@ -112,6 +128,7 @@ module.exports = (function () {
     }
 
     //#endregion Find user by id
+
 
     //#region : Find user username & credentials
 
@@ -145,6 +162,7 @@ module.exports = (function () {
     }
     //#endregion
 
+
     //#region : Update User
 
     // route: [PUT] '/api/user/:userId'
@@ -163,6 +181,7 @@ module.exports = (function () {
     }
 
     //#endregion: Update User
+
 
     //#region : Delete User
 

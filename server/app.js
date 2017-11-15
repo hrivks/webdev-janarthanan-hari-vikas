@@ -5,7 +5,7 @@ const router = require('express').Router();
 require('./models/db.server.js');
 
 // initialize PassportJs Auth
-require('./services/auth.service.server.js');
+require('./auth.js');
 
 //#region: api route definitions
 
