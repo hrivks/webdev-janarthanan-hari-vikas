@@ -1,9 +1,10 @@
 // provides authentication services
 
-module.exports = (function() {
+module.exports = (function () {
     const passport = require('passport');
     const LocalStrategy = require('passport-local').Strategy;
     const UserService = require('./services/user.service.server.js');
+    const bcrypt = require('bcrypt-nodejs');
 
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
@@ -16,20 +17,17 @@ module.exports = (function() {
      * @param {function} done callback function to invoke upon authentication
      */
     function localStrategy(username, password, done) {
-        UserService.api.findUserByCredentials(username, password)
+        UserService.api.findUserByUsername(username)
             .then((user) => {
-
-                if (user) {
+                if (user && bcrypt.compareSync(password, user.password)) {
                     done(null, user);
                 } else {
                     done(null, false);
                 }
-
             }, (err) => {
-
                 done(err, null);
-
             });
+
     }
 
     /** User serializer function for passport js */
@@ -40,18 +38,15 @@ module.exports = (function() {
     /** User deserializer function for passport js */
     function deserializeUser(user, done) {
         UserService.api.findUserById(user._id)
-            .then(
-                (user) => {
-                    if (user) {
-                        done(null, user);
-                    } else {
-                        done('No such user exists', null);
-                    }
-                },
-                (err) => {
-                    done(err, null);
+            .then((user) => {
+                if (user) {
+                    done(null, user);
+                } else {
+                    done('No such user exists', null);
                 }
-            );
+            }, (err) => {
+                done(err, null);
+            });
     }
 
 })();

@@ -27,8 +27,7 @@ export class LoginComponent implements OnInit {
     private interactionsService: InteractionsService,
     private errorHanderService: ErrorHandlerService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   login() {
     this.interactionsService.showLoader(true);
@@ -40,7 +39,12 @@ export class LoginComponent implements OnInit {
       },
       (err) => {
         console.error('Error occured during login.', err);
-        const errMessage = this.errorHanderService.getErrorMessage(err);
+        let errMessage = '';
+        if (err.status === 401) {
+          errMessage = 'Invalid Credentials';
+        } else {
+          errMessage = this.errorHanderService.getErrorMessage(err);
+        }
         this.loginError = 'Error. ' + errMessage;
       }
       );

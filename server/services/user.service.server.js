@@ -8,6 +8,7 @@ module.exports = (function () {
     const Utils = require('./service-utils.js');
     const q = require('q');
     const passport = require('passport');
+    const bcrypt = require('bcrypt-nodejs');
 
     /** Exported objects */
     const exp = {
@@ -73,6 +74,7 @@ module.exports = (function () {
                 if (userExists) {
                     def.reject('user with userid "' + userExists.username + '" already exists');
                 } else {
+                    user.password = bcrypt.hashSync(user.password);
                     // create new user
                     createUser(user)
                         .then((createdUser) => {

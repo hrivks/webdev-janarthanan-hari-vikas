@@ -1228,8 +1228,7 @@ var LoginComponent = (function () {
         this.interactionsService = interactionsService;
         this.errorHanderService = errorHanderService;
     }
-    LoginComponent.prototype.ngOnInit = function () {
-    };
+    LoginComponent.prototype.ngOnInit = function () { };
     LoginComponent.prototype.login = function () {
         var _this = this;
         this.interactionsService.showLoader(true);
@@ -1239,7 +1238,13 @@ var LoginComponent = (function () {
             _this.router.navigate(['/profile']);
         }, function (err) {
             console.error('Error occured during login.', err);
-            var errMessage = _this.errorHanderService.getErrorMessage(err);
+            var errMessage = '';
+            if (err.status === 401) {
+                errMessage = 'Invalid Credentials';
+            }
+            else {
+                errMessage = _this.errorHanderService.getErrorMessage(err);
+            }
             _this.loginError = 'Error. ' + errMessage;
         });
     };
