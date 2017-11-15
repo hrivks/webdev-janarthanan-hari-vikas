@@ -13,6 +13,7 @@ module.exports = (function () {
     UserModel.findUserById = findUserById;
     UserModel.findUserByUsername = findUserByUsername;
     UserModel.findUserByCredentials = findUserByCredentials;
+    UserModel.findUserByFacebookId = findUserByFacebookId;
     UserModel.updateUser = updateUser;
     UserModel.deleteUser = deleteUser;
 
@@ -89,7 +90,7 @@ module.exports = (function () {
      * Find user by username and password
      * @param {string} username 
      * @param {string} password 
-     * @returns {Promise<UserSchema>} query that resolves to the user object
+     * @returns {Promise<UserSchema>} promise that resolves to the user object
      */
     function findUserByCredentials(username, password) {
         const def = q.defer();
@@ -104,6 +105,15 @@ module.exports = (function () {
                 }
             });
         return def.promise;
+    }
+
+    /**
+     * Find user by facebookId
+     * @param {string} facebookId
+     * @returns {DocumentQuery<UserSchema>} query that resolves to the user with the specified facebook id
+     */
+    function findUserByFacebookId(facebookId) {
+        return UserModel.findOne({ 'facebook.id': facebookId });
     }
 
     /**

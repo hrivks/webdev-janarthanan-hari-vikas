@@ -11,14 +11,23 @@
         (ngSubmit)="login()"
         novalidate>
     <div class="form-group">
-      <input placeholder="User Name"
-             type="text"
-             class="form-control"
-             name="username"
-             #usernameField="ngModel"
-             [(ngModel)]="username"
-             [ngClass]="{'border-danger': !usernameField.valid && usernameField.touched}"
-             required />
+      <div class="input-group">
+        <input placeholder="User Name"
+               type="text"
+               class="form-control"
+               name="username"
+               #usernameField="ngModel"
+               [(ngModel)]="username"
+               [ngClass]="{'border-danger': !usernameField.valid && usernameField.touched}"
+               required />
+        <!-- login with Facebook -->
+        <span class="input-group-btn">
+          <a class="btn btn-primary"
+             href="/auth/facebook">Login with
+            <span class="fa fa-facebook"></span>
+          </a>
+        </span>
+      </div>
       <span class="small text-danger ml-2"
             *ngIf="usernameField.invalid && usernameField.touched">Username is required</span>
     </div>
