@@ -1,61 +1,63 @@
 <div class="container">
 
-  <p>
-    <span class="display-3">Login</span>
-  </p>
-  <hr>
-  <br>
-  <!--form-->
-  <form class="form"
-        #loginForm="ngForm"
-        (ngSubmit)="login()"
-        novalidate>
-    <div class="form-group">
-      <div class="input-group">
-        <input placeholder="User Name"
-               type="text"
-               class="form-control"
-               name="username"
-               #usernameField="ngModel"
-               [(ngModel)]="username"
-               [ngClass]="{'border-danger': !usernameField.valid && usernameField.touched}"
-               required />
-        <!-- login with Facebook -->
-        <span class="input-group-btn">
-          <a class="btn btn-primary"
-             href="/auth/facebook">Login with
+    <p>
+        <span class="display-3">Login</span>
+    </p>
+    <hr>
+    <br>
+    <!--form-->
+    <form class="form"
+          #loginForm="ngForm"
+          (ngSubmit)="login()"
+          novalidate>
+        <div class="form-group">
+            <div class="input-group">
+                <input placeholder="User Name"
+                       type="text"
+                       class="form-control"
+                       name="username"
+                       #usernameField="ngModel"
+                       [(ngModel)]="username"
+                       [ngClass]="{'border-danger': !usernameField.valid && usernameField.touched}"
+                       required />
+                <!-- login with Facebook -->
+                <span class="input-group-btn">
+          <a class="btn btn-royal"
+             [href]="fbLoginRedirectUrl" 
+             target="_self"
+             title="Login with Facebook">
             <span class="fa fa-facebook"></span>
-          </a>
-        </span>
-      </div>
-      <span class="small text-danger ml-2"
-            *ngIf="usernameField.invalid && usernameField.touched">Username is required</span>
-    </div>
-    <div class="form-group">
-      <input placeholder="Password"
-             type="password"
-             class="form-control"
-             name="password"
-             #passwordField="ngModel"
-             [(ngModel)]="password"
-             [ngClass]="{'border-danger': !passwordField.valid && passwordField.touched}"
-             required/>
-      <span class="small text-danger ml-2"
-            *ngIf="passwordField.invalid && passwordField.touched">Password is required</span>
-    </div>
-    <div *ngIf="loginError">
-      <div class="alert alert-danger text-center">{{loginError}}</div>
-    </div>
-    <!-- form actions -->
-    <div>
-      <button type="submit"
-              class="btn btn-royal btn-block"
-              [disabled]="!loginForm.valid">Login</button>
-      <a class="btn btn-secondary btn-block"
-         [routerLink]="['/register']">Register</a>
-    </div>
-    <!-- /form actions -->
-  </form>
-  <!--/form-->
+                </a>
+                </span>
+            </div>
+            <span class="small text-danger ml-2"
+                  *ngIf="usernameField.invalid && usernameField.touched">Username is required</span>
+        </div>
+        <div class="form-group">
+            <input placeholder="Password"
+                   type="password"
+                   class="form-control"
+                   name="password"
+                   #passwordField="ngModel"
+                   [(ngModel)]="password"
+                   [ngClass]="{'border-danger': !passwordField.valid && passwordField.touched}"
+                   required/>
+            <span class="small text-danger ml-2"
+                  *ngIf="passwordField.invalid && passwordField.touched">Password is required</span>
+        </div>
+        <div *ngIf="loginError">
+            <div class="alert alert-danger text-center">{{loginError}}</div>
+        </div>
+        <!-- form actions -->
+        <div>
+            <button type="submit"
+                    class="btn btn-royal btn-block"
+                    [disabled]="!loginForm.valid">Login</button>
+            <a class="btn btn-secondary btn-block"
+               [routerLink]="['/register']">Register</a>
+        </div>
+        <!-- /form actions -->
+    </form>
+    <!--/form-->
 
 </div>

@@ -403,7 +403,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"container\">\r\n\r\n  <h1>\r\n    Angular 4 MEAN stack app\r\n  </h1>\r\n\r\n\r\n  <h3>\r\n    App works\r\n  </h3>\r\n\r\n\r\n  <h4>\r\n    <a href=\"test\">Test MongoDB</a>\r\n  </h4>\r\n\r\n  <h4>\r\n      <a [routerLink]=\"['/login']\">Assignment 5</a>\r\n  </h4>\r\n</div>\r\n\r\n"
+module.exports = "\r\n<div class=\"container\">\r\n\r\n  <h1>\r\n    Angular 4 MEAN stack app\r\n  </h1>\r\n\r\n\r\n  <h3>\r\n    App works\r\n  </h3>\r\n\r\n\r\n  <h4>\r\n    <a href=\"test\">Test MongoDB</a>\r\n  </h4>\r\n\r\n  <h4>\r\n      <a [routerLink]=\"['/login']\">Assignment 6</a>\r\n  </h4>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -1188,7 +1188,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n\r\n  <p>\r\n    <span class=\"display-3\">Login</span>\r\n  </p>\r\n  <hr>\r\n  <br>\r\n  <!--form-->\r\n  <form class=\"form\"\r\n        #loginForm=\"ngForm\"\r\n        (ngSubmit)=\"login()\"\r\n        novalidate>\r\n    <div class=\"form-group\">\r\n      <div class=\"input-group\">\r\n        <input placeholder=\"User Name\"\r\n               type=\"text\"\r\n               class=\"form-control\"\r\n               name=\"username\"\r\n               #usernameField=\"ngModel\"\r\n               [(ngModel)]=\"username\"\r\n               [ngClass]=\"{'border-danger': !usernameField.valid && usernameField.touched}\"\r\n               required />\r\n        <!-- login with Facebook -->\r\n        <span class=\"input-group-btn\">\r\n          <a class=\"btn btn-primary\"\r\n             href=\"/auth/facebook\">Login with\r\n            <span class=\"fa fa-facebook\"></span>\r\n          </a>\r\n        </span>\r\n      </div>\r\n      <span class=\"small text-danger ml-2\"\r\n            *ngIf=\"usernameField.invalid && usernameField.touched\">Username is required</span>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <input placeholder=\"Password\"\r\n             type=\"password\"\r\n             class=\"form-control\"\r\n             name=\"password\"\r\n             #passwordField=\"ngModel\"\r\n             [(ngModel)]=\"password\"\r\n             [ngClass]=\"{'border-danger': !passwordField.valid && passwordField.touched}\"\r\n             required/>\r\n      <span class=\"small text-danger ml-2\"\r\n            *ngIf=\"passwordField.invalid && passwordField.touched\">Password is required</span>\r\n    </div>\r\n    <div *ngIf=\"loginError\">\r\n      <div class=\"alert alert-danger text-center\">{{loginError}}</div>\r\n    </div>\r\n    <!-- form actions -->\r\n    <div>\r\n      <button type=\"submit\"\r\n              class=\"btn btn-royal btn-block\"\r\n              [disabled]=\"!loginForm.valid\">Login</button>\r\n      <a class=\"btn btn-secondary btn-block\"\r\n         [routerLink]=\"['/register']\">Register</a>\r\n    </div>\r\n    <!-- /form actions -->\r\n  </form>\r\n  <!--/form-->\r\n\r\n</div>"
+module.exports = "<div class=\"container\">\r\n\r\n    <p>\r\n        <span class=\"display-3\">Login</span>\r\n    </p>\r\n    <hr>\r\n    <br>\r\n    <!--form-->\r\n    <form class=\"form\"\r\n          #loginForm=\"ngForm\"\r\n          (ngSubmit)=\"login()\"\r\n          novalidate>\r\n        <div class=\"form-group\">\r\n            <div class=\"input-group\">\r\n                <input placeholder=\"User Name\"\r\n                       type=\"text\"\r\n                       class=\"form-control\"\r\n                       name=\"username\"\r\n                       #usernameField=\"ngModel\"\r\n                       [(ngModel)]=\"username\"\r\n                       [ngClass]=\"{'border-danger': !usernameField.valid && usernameField.touched}\"\r\n                       required />\r\n                <!-- login with Facebook -->\r\n                <span class=\"input-group-btn\">\r\n          <a class=\"btn btn-royal\"\r\n             [href]=\"fbLoginRedirectUrl\" \r\n             target=\"_self\"\r\n             title=\"Login with Facebook\">\r\n            <span class=\"fa fa-facebook\"></span>\r\n                </a>\r\n                </span>\r\n            </div>\r\n            <span class=\"small text-danger ml-2\"\r\n                  *ngIf=\"usernameField.invalid && usernameField.touched\">Username is required</span>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <input placeholder=\"Password\"\r\n                   type=\"password\"\r\n                   class=\"form-control\"\r\n                   name=\"password\"\r\n                   #passwordField=\"ngModel\"\r\n                   [(ngModel)]=\"password\"\r\n                   [ngClass]=\"{'border-danger': !passwordField.valid && passwordField.touched}\"\r\n                   required/>\r\n            <span class=\"small text-danger ml-2\"\r\n                  *ngIf=\"passwordField.invalid && passwordField.touched\">Password is required</span>\r\n        </div>\r\n        <div *ngIf=\"loginError\">\r\n            <div class=\"alert alert-danger text-center\">{{loginError}}</div>\r\n        </div>\r\n        <!-- form actions -->\r\n        <div>\r\n            <button type=\"submit\"\r\n                    class=\"btn btn-royal btn-block\"\r\n                    [disabled]=\"!loginForm.valid\">Login</button>\r\n            <a class=\"btn btn-secondary btn-block\"\r\n               [routerLink]=\"['/register']\">Register</a>\r\n        </div>\r\n        <!-- /form actions -->\r\n    </form>\r\n    <!--/form-->\r\n\r\n</div>"
 
 /***/ }),
 
@@ -1204,6 +1204,7 @@ module.exports = "<div class=\"container\">\r\n\r\n  <p>\r\n    <span class=\"di
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_auth_service_client__ = __webpack_require__("../../../../../src/app/services/auth.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_interactions_service_client__ = __webpack_require__("../../../../../src/app/services/interactions.service.client.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_error_handler_service_client__ = __webpack_require__("../../../../../src/app/services/error-handler.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_constant__ = __webpack_require__("../../../../../src/app/app.constant.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1220,6 +1221,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = (function () {
     function LoginComponent(router, userService, authService, interactionsService, errorHanderService) {
         this.router = router;
@@ -1228,7 +1230,9 @@ var LoginComponent = (function () {
         this.interactionsService = interactionsService;
         this.errorHanderService = errorHanderService;
     }
-    LoginComponent.prototype.ngOnInit = function () { };
+    LoginComponent.prototype.ngOnInit = function () {
+        this.fbLoginRedirectUrl = __WEBPACK_IMPORTED_MODULE_7__app_constant__["a" /* AppConstants */].ENDPOINT.baseUrl + '/auth/facebook';
+    };
     LoginComponent.prototype.login = function () {
         var _this = this;
         this.interactionsService.showLoader(true);
@@ -3208,7 +3212,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-text/widget-text.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hvj-widget-text\">\r\n  <label *ngIf=\"widget.text\"\r\n         class=\"font-weight-bold text-muted\">{{widget.text}}</label>\r\n  <div *ngIf=\"widget.formatted\">\r\n    <quill-editor></quill-editor>\r\n  </div>\r\n  <div *ngIf=\"!widget.formatted\"\r\n       class=\"form-group\">\r\n    <input *ngIf=\"widget.rows < 2 || widget.rows === undefined\"\r\n           type=\"text\"\r\n           class=\"form-control\"\r\n           placeholder=\"{{widget?.placeholder}}\" />\r\n    <textarea *ngIf=\"widget.rows > 2\"\r\n              rows=\"{{widget.rows}}\"\r\n              class=\"form-control\"\r\n              placeholder=\"{{widget?.placeholder}}\"></textarea>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"hvj-widget-text\">\n  <label *ngIf=\"widget.text\"\n         class=\"font-weight-bold text-muted\">{{widget.text}}</label>\n  <div *ngIf=\"widget.formatted\">\n    <quill-editor></quill-editor>\n  </div>\n  <div *ngIf=\"!widget.formatted\"\n       class=\"form-group\">\n    <input *ngIf=\"widget.rows < 2 || widget.rows === undefined\"\n           type=\"text\"\n           class=\"form-control\"\n           placeholder=\"{{widget?.placeholder}}\" />\n    <textarea *ngIf=\"widget.rows > 2\"\n              rows=\"{{widget.rows}}\"\n              class=\"form-control\"\n              placeholder=\"{{widget?.placeholder}}\"></textarea>\n  </div>\n</div>"
 
 /***/ }),
 

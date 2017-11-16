@@ -5,6 +5,7 @@ import { UserService } from '../../../services/user.service.client';
 import { AuthService } from '../../../services/auth.service.client';
 import { InteractionsService } from '../../../services/interactions.service.client';
 import { ErrorHandlerService } from '../../../services/error-handler.service.client';
+import { AppConstants } from '../../../app.constant';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   loginError: string;
+  private fbLoginRedirectUrl: string;
 
   constructor(private router: Router,
     private userService: UserService,
@@ -27,7 +29,9 @@ export class LoginComponent implements OnInit {
     private interactionsService: InteractionsService,
     private errorHanderService: ErrorHandlerService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.fbLoginRedirectUrl = AppConstants.ENDPOINT.baseUrl + '/auth/facebook';
+  }
 
   login() {
     this.interactionsService.showLoader(true);

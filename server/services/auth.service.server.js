@@ -1,11 +1,13 @@
 // Provides Authentication mechanism
 // Module Route Root: '/auth'
 
-module.exports = (function () {
+module.exports = (function() {
 
-    const router = require('express').Router({ mergeParams: true });
+    const router = require('express').Router({
+        mergeParams: true
+    });
     const passport = require('passport');
-    const facebookPassportStrategy = require('passport-facebook').Strategy;
+    const FacebookPassportStrategy = require('passport-facebook').Strategy;
     const Utils = require('./service-utils.js');
     const UserModel = require('../models/user/user.model.server.js');
 
@@ -28,14 +30,13 @@ module.exports = (function () {
                         // user does not exist. create user
 
                         const newFBUser = {
-                            firstName: '', // todo: get name
-                            lastName: '',
-                            email: '',
+                            firstName: profile.name.givenName || profile.displayName,
+                            lastName: profile.name.familyName,
                             facebook: {
                                 id: profile.id,
                                 token: token
                             }
-                        }
+                        };
 
                         UserModel.create(newFBUser, (err, createdUser) => {
                             if (err) {
@@ -47,28 +48,31 @@ module.exports = (function () {
                     }
                 }, (err) => {
                     done(err, null);
-                })
+                });
         }
     }
 
     //#region: Facebook Authentication
 
     var facebookConfig = {
-        clientID: process.env.FACEBOOK_CLIENT_ID,
-        clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-        callbackURL: process.env.FACEBOOK_CALLBACK_URL
+        clientID: process.env.FACEBOOK_CLIENT_ID || '',
+        clientSecret: process.env.FACEBOOK_CLIENT_SECRET || '',
+        callbackURL: process.env.FACEBOOK_CALLBACK_URL || 'http://localhost:3100/api/auth/facebook/callback'
     };
 
-    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+    passport.use(new FacebookPassportStrategy(facebookConfig, facebookStrategy));
 
 
 
-    // route: [GET] '/auth/facebook'
-    router.get('/facebook', passport.authenticate('facebook', { scope: 'email' }));
+    // route: [GET] '/api/auth/facebook'
+    router.get('/facebook', passport.authenticate('facebook', {
+        scope: 'email'
+    }));
 
+    // route: [GET] '/api/auth/facebook/callback'
     router.get('/facebook/callback', passport.authenticate('facebook', {
-        successRedirect: '/profile',
-        failureRedirect: '/login'
+        successRedirect: process.env.IS_SERVER ? '/profile' : 'http://localhost:4200/profile',
+        failureRedirect: process.env.IS_SERVER ? '/login' : 'http://localhost:4200/login'
     }));
 
     //#endregion : Facebook Authentication

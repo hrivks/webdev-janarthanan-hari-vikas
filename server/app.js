@@ -11,7 +11,7 @@ require('./auth.js');
 
 // User route: /api/user
 router.use('/user', require('./services/user.service.server.js').router);
-
+router.use('/auth', require('./services/auth.service.server').router);
 
 // Website route: /api/website
 router.use('/user/:userId/website', require('./services/website.service.server.js').router);
