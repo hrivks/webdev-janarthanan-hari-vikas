@@ -55,8 +55,8 @@ module.exports = (function() {
     //#region: Facebook Authentication
 
     var facebookConfig = {
-        clientID: process.env.FACEBOOK_CLIENT_ID || '147411069321322',
-        clientSecret: process.env.FACEBOOK_CLIENT_SECRET || '777aa8fe309e17d09643e2f9db740091',
+        clientID: process.env.FACEBOOK_CLIENT_ID || '<FB App ID here>',
+        clientSecret: process.env.FACEBOOK_CLIENT_SECRET || '<FB App Secret here>',
         callbackURL: process.env.FACEBOOK_CALLBACK_URL || 'http://localhost:3100/api/auth/facebook/callback'
     };
 
