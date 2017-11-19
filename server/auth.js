@@ -1,6 +1,6 @@
 // provides authentication services
 
-module.exports = (function () {
+module.exports = (function() {
     const passport = require('passport');
     const LocalStrategy = require('passport-local').Strategy;
     const UserService = require('./services/user.service.server.js');
@@ -19,9 +19,13 @@ module.exports = (function () {
     function localStrategy(username, password, done) {
         UserService.api.findUserByUsername(username)
             .then((user) => {
-                if (user && bcrypt.compareSync(password, user.password)) {
-                    done(null, user);
-                } else {
+                try {
+                    if (user && bcrypt.compareSync(password, user.password)) {
+                        done(null, user);
+                    } else {
+                        done(null, false);
+                    }
+                } catch (ex) {
                     done(null, false);
                 }
             }, (err) => {

@@ -1,7 +1,7 @@
 /**
  * Widget Model
  */
-module.exports = (function () {
+module.exports = (function() {
     const q = require('q');
     const mongoose = require('mongoose');
     const WidgetSchemas = require('./widget.schema.server');
@@ -69,14 +69,19 @@ module.exports = (function () {
             if (err) {
                 def.reject(err);
             } else if (!page) {
-                def.reject({ message: 'No page with the given id exists' });
-            }
-            else {
+                def.reject({
+                    message: 'No page with the given id exists'
+                });
+            } else {
 
                 // get the last widget on the page
                 WidgetModel
-                    .findOne({ pageId: pageId })
-                    .sort({ order: -1 })
+                    .findOne({
+                        pageId: pageId
+                    })
+                    .sort({
+                        order: -1
+                    })
                     .then((lastWidget) => {
 
                         // compute order of new widget
@@ -114,7 +119,9 @@ module.exports = (function () {
      * @returns {DocumentQuery<[WidgetSchema]>} query that gets resolved to the list of website objects
      */
     function findWidgetsByPageId(pageId) {
-        return WidgetModel.find({ pageId: pageId });
+        return WidgetModel.find({
+            pageId: pageId
+        });
     }
 
     /**
@@ -142,7 +149,9 @@ module.exports = (function () {
                 break;
         }
 
-        return model.findByIdAndUpdate(widgetId, widget, { new: true });
+        return model.findByIdAndUpdate(widgetId, widget, {
+            new: true
+        });
     }
 
     /**
@@ -151,13 +160,15 @@ module.exports = (function () {
      * @returns {DocumentQuery} query that resolves on successful deletion
      */
     function deleteWidget(widgetId) {
-        return WidgetModel.remove({ _id: widgetId });
+        return WidgetModel.remove({
+            _id: widgetId
+        });
     }
 
     /**
      * Reorder widgets
      * @param {string} pageId 
-     * @param {number} start 
+     * @param {string} widgetId 
      * @param {number} end 
      */
     function reorderWidgets(pageId, start, end) {
@@ -167,32 +178,46 @@ module.exports = (function () {
 
         // get widget at start index
         WidgetModel
-            .findOne({ pageId: pageId, order: { $gte: start } })
+            .findOne({
+                pageId: pageId,
+                order: start
+            })
             .then((wAtStart) => {
                 widgetAtStart = wAtStart;
 
-                // get widget at end index
-                WidgetModel
-                    .findOne({ pageId: pageId, order: { $gte: end } })
-                    .then((wAtEnd) => {
-                        widgetAtEnd = wAtEnd;
+                if (widgetAtStart) {
+                    widgetAtStart.order = end;
+                    widgetAtStart.save()
+                        .then(() => {
+                            WidgetModel
+                                .find({
+                                    pageId: pageId,
+                                    order: {
+                                        $gte: end
+                                    }
+                                })
+                                .then((widgets) => {
+                                    if (widgets) {
+                                        widgets.forEach((w) => {
+                                            if (!w._id.equals(wAtStart._id)) {
+                                                w.order = ++end;
+                                                w.save();
+                                            }
+                                        });
+                                    }
+                                }, (err) => {
+                                    def.reject(err);
+                                });
 
-                        // update indices
-                        if (widgetAtStart) {
-                            widgetAtStart.order = end;
-                            widgetAtStart.save();
-                        }
+                        }, (err) => {
+                            def.reject(err);
+                        });
+                }
 
-                        if (widgetAtEnd) {
-                            widgetAtEnd.order = start;
-                            widgetAtEnd.save();
-                        }
+                def.resolve({
+                    result: 'reordered'
+                });
 
-                        def.resolve({ result: 'reordered' });
-
-                    }, (err) => {
-                        def.reject(err);
-                    });
             }, (err) => {
                 def.reject(err);
             });

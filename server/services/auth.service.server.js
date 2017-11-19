@@ -77,8 +77,6 @@ module.exports = (function() {
 
     //#endregion : Facebook Authentication
 
-
-
     return exp;
 
 })();
