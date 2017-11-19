@@ -162,42 +162,56 @@ module.exports = (function () {
      */
     function reorderWidgets(pageId, start, end) {
         var def = q.defer();
-
-        let widgetAtStart, widgetAtEnd;
-
-        // get widget at start index
-        WidgetModel
-            .findOne({ pageId: pageId, order: { $gte: start } })
-            .then((wAtStart) => {
-                widgetAtStart = wAtStart;
-
-                // get widget at end index
+        
+                let widgetAtStart, widgetAtEnd;
+        
+                // get widget at start index
                 WidgetModel
-                    .findOne({ pageId: pageId, order: { $gte: end } })
-                    .then((wAtEnd) => {
-                        widgetAtEnd = wAtEnd;
-
-                        // update indices
+                    .findOne({
+                        pageId: pageId,
+                        order: start
+                    })
+                    .then((wAtStart) => {
+                        widgetAtStart = wAtStart;
+        
                         if (widgetAtStart) {
                             widgetAtStart.order = end;
-                            widgetAtStart.save();
+                            widgetAtStart.save()
+                                .then(() => {
+                                    WidgetModel
+                                        .find({
+                                            pageId: pageId,
+                                            order: {
+                                                $gte: end
+                                            }
+                                        })
+                                        .then((widgets) => {
+                                            if (widgets) {
+                                                widgets.forEach((w) => {
+                                                    if (!w._id.equals(wAtStart._id)) {
+                                                        w.order = ++end;
+                                                        w.save();
+                                                    }
+                                                });
+                                            }
+                                        }, (err) => {
+                                            def.reject(err);
+                                        });
+        
+                                }, (err) => {
+                                    def.reject(err);
+                                });
                         }
-
-                        if (widgetAtEnd) {
-                            widgetAtEnd.order = start;
-                            widgetAtEnd.save();
-                        }
-
-                        def.resolve({ result: 'reordered' });
-
+        
+                        def.resolve({
+                            result: 'reordered'
+                        });
+        
                     }, (err) => {
                         def.reject(err);
-                    })
-            }, (err) => {
-                def.reject(err);
-            });
-
-        return def.promise;
+                    });
+        
+                return def.promise;
     }
 
     return WidgetModel;
