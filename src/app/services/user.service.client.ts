@@ -8,6 +8,10 @@ import { AppConstants } from '../app.constant';
 export class UserService {
 
   api = {
+    'login': this.login,
+    'logout': this.logout,
+    'loggedIn': this.loggedIn,
+    'register': this.register,
     'createUser': this.createUser,
     'findUserById': this.findUserById,
     'findUserByUsername': this.findUserByUsername,
@@ -39,14 +43,12 @@ export class UserService {
    * @param password password
    */
   login(username: string, password: string) {
-
     const url = this.endpoint.login;
     const creds = {
       username: username,
       password: password
     };
     return this.http.post<User>(url, creds, { withCredentials: true });
-
   }
 
   /** Logout user */
